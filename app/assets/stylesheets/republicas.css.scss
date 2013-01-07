@@ -1,0 +1,128 @@
+// Place all the styles related to the Republicas controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.list_line_odd
+{
+	background-color:#f0f0f0;
+}
+
+div.list_line_even
+{
+	background-color:#ffffff;
+}
+
+div.list_actions
+{
+	margin-left:100px;
+	font-size:x-small;
+}
+
+/* START_HIGHLIGHT */
+
+h1 {
+  margin: 0;
+  padding-bottom: 0.5em;
+  font:  150% sans-serif;
+  color: #226;
+  border-bottom: 3px dotted #77d;
+}
+
+  /* An entry in the store catalog */
+  .entry {
+    overflow: auto;
+    margin-top: 1em;
+    border-bottom: 1px dotted #77d;
+    min-height: 100px;
+
+    img {
+      width: 50px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      position: absolute;
+    }
+
+    h3 {
+      font-size: 120%;
+      font-family: sans-serif;
+      margin-left: 100px;
+      margin-top: 0;
+      margin-bottom: 2px;
+      color: #227;
+    }
+
+    p{
+      margin-left: 100px;
+      margin-top: 0.5em; 
+      margin-bottom: 0.8em; 
+    }
+  }
+
+/* END_HIGHLIGHT */
+
+/*  MORADORES_FIELDS  */
+
+div.fields
+{
+  font-size: x-small;
+  border-bottom: 1px dotted #c0cdcf;
+  margin-top: 1em;
+
+  #left {
+    float: left;
+  }
+
+  .hidden_field, .repres_field {
+    display: none;
+  }
+
+  #right {
+    text-align: right;
+  }
+}
+
+//#START:form
+.cadastro_form {
+  fieldset {
+    background: #f3fafb;
+    legend {
+      color: #dfd;
+      background: #03404d;
+      font-family: sans-serif;
+      padding: 0.2em 1em;
+    }
+  }
+  form {
+    label {
+      width: 8em;
+      float: left;
+      text-align: right;
+      padding-top: 0.2em;
+      margin-right: 0.1em;
+      display: block;
+    }
+
+    .fields label {
+      width: 14em;
+    }
+
+    select, textarea, input {
+      margin-left: 0.5em;
+    }
+
+    textarea{
+      font-size: 90%;
+      font-family: sans-serif;
+    }
+
+    .submit {
+      margin-left: 4em;
+    }
+
+    br {
+      display: none
+    }
+
+  }
+}
+//#END:form

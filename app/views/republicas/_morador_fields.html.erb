@@ -1,0 +1,52 @@
+
+
+  <div class="morador_field" id='left' >
+    <%= f.label :nome %> <br/>
+    <%= f.text_field :nome, size: 20, placeholder: 'Nome' %>
+  </div>
+
+  <div class="morador_field">
+    <%= f.text_field :sobrenome, size: 20, placeholder: 'Sobrenome' %>
+  </div>
+
+  <div class="morador_field"  >
+    <%= f.label :curso %><br />
+    <%= f.text_field :curso, size: 20  %>
+  </div>
+  <div class="morador_field">
+    <%= f.label :ano_de_ingresso %><br />
+    <%= f.select :ano_de_ingresso, (2000..Time.now.year).to_a.reverse, prompt: "Selecione" %>
+  </div>
+
+  <div class="morador_field" id='universidade' >
+    <%= f.label :universidade %><br />
+    <%= f.select :universidade, Morador::UNIVERSIDADE, prompt: 'Selecione', :class => 'universidade' %>
+  </div>
+
+  <div class="hidden_field" id='RA'>
+    <%= f.label :ra, 'RA' %><br />
+    <%= f.text_field :ra, size: 5 %>
+  </div>
+
+
+  <%= f.hidden_field :representante, value: 'false', :id => 'representante', :class => 'repres_input'%>
+
+
+  <div class="radio_but" > 
+   <%= label_tag('representante', "Representante da República") %>
+   <%= radio_button_tag('representante', true ) %>
+ </div>
+
+ <div class="repres_field" >
+  <%= f.label :email %><br />
+  <%= f.text_field :email, size: 20 %>
+</div>
+
+<div class="repres_field">
+  <%= f.label :celular %><br />
+  <%= f.text_field :celular, size: 15 %>
+</div>
+
+<div id='right'>
+  <%= f.link_to_remove "Remover Morador" %>
+</div>

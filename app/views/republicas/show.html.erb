@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<div class="logotipo">
+    <%= image_tag("rails.png") %>
+  </div>
+
+<p>
+  <b>Nome:</b>
+  <%= @republica.nome %>
+</p>
+
+<p>
+  <b>Tipo:</b>
+  <%= @republica.tipo %>
+</p>
+
+<p>
+  <b>Ano de fundacao:</b>
+  <%= @republica.ano_de_fundacao %>
+</p>
+
+<p>
+  <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
+  <%= @republica.moradores.length %>
+</p>
+
+<p>
+  <b>Representante:</b>
+   <%= 'Nome' %>
+</p>
+
+<p>
+  <b>Descricao:</b>
+  <%= @republica.descricao %>
+</p>
+
+<p>
+  <b>Endereco:</b>
+  <%= @republica.endereco %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%= @republica.telefone %>
+</p>
+
+<p>
+  <b>Username:</b>
+  <%= @republica.username %>
+</p>
+
+
+<%= link_to 'Edit', edit_republica_path(@republica) %> |
+<%= link_to 'Back', republicas_path %>

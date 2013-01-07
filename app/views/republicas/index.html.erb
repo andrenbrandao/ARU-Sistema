@@ -1,0 +1,19 @@
+<h1>Repúblicas Associadas</h1>
+
+<% @republicas.each do |republica| %>
+<div class="entry">
+    <div class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <%= image_tag 'rails.png' %>
+        <h3><%= link_to republica.nome, republica %></h3>
+        <p><b>Tipo:</b> <%= republica.tipo %></p>
+        <p><%= truncate republica.descricao, length: 220, separator: ' ' %> <%= link_to 'Leia mais..',republica %> </p>
+        <div class="list_actions"><%= link_to 'Editar', edit_republica_path(republica) %>
+        <%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+    </div>
+    </div>
+</div>
+<% end %>
+
+<br />
+
+<%= link_to 'Nova República', new_republica_path %>

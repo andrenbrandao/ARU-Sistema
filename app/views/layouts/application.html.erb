@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sistema de Repúblicas da ARU (SRA)</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body class="<%= controller.controller_name %>">
+
+	<div id="banner">
+		<%= image_tag("logo.png", height: "70") %>
+		<%= @page_title || "Sistema de Repúblicas da ARU (SRA)" %>
+	</div>
+
+	<div id="columns">
+		<div id="side">
+			<ul>
+				<li><%= link_to 'Home', '/' %></li>
+				<li><%= link_to 'Profile', republicas_path %> </li>
+				<li>Eventos</li>
+				<li><%= link_to 'Cadastro', new_republica_path %></li>
+			</ul>
+		</div>
+		<div id="main">
+			<p id="notice"><%= notice %></p>
+			<%= yield %>
+		</div>
+
+		<div id="push">
+		</div>
+
+		<div id="footer">
+			<p>ARU Copyright © 2013</p>
+		</div>
+	</div>
+</body>
+</html>

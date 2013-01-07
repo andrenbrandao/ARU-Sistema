@@ -1,0 +1,74 @@
+  <%= nested_form_for @republica, validate: true do |f| %>
+  <% if @republica.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@republica.errors.count, "erro") %> ao cadastrar sua República:</h2>
+
+    <ul>
+      <% @republica.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <h2>Login</h2>
+
+  <div class="field">
+    <%= f.label :username, "Usuário" %><br />
+    <%= f.text_field :username%>
+  </div>
+  <div class="field">
+    <%= f.label :password, 'Senha' %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, 'Confirmação' %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <h2>República</h2>
+
+  <div class="field">
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo %><br />
+    <%= f.select :tipo, Republica::TIPO_DE_REP, prompt: "Selecione" %>
+  </div>
+  <div class="field">
+    <%= f.label :ano_de_fundacao, "Ano de Fundação" %><br />
+    <%= f.select :ano_de_fundacao, (1962..Time.now.year).to_a.reverse, prompt: "Selecione" %>
+  </div>
+  <div class="field">
+    <%= f.label :endereco, "Endereço" %><br />
+    <%= f.text_field :endereco %>
+  </div>
+  <div class="field">
+    <%= f.label :telefone %><br />
+    <%= f.text_field :telefone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descricao, "Descrição" %><br />
+    <%= f.text_area :descricao, rows: 5, cols: 80  %>
+  </div>
+
+  <fieldset>
+
+    <legend> Moradores </legend>
+
+    <div class="morad">
+      <%= f.fields_for :moradores do |builder| %>
+      <%= render 'morador_fields', f: builder %>
+      <% end %>
+    </div>
+    <p><%= f.link_to_add "Add Morador", :moradores %></p>
+
+  </fieldset>
+
+  <div class="actions">
+   <%= f.submit 'Submit' %>
+
+ </div>
+ <% end %>

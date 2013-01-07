@@ -1,0 +1,49 @@
+<%= form_for([@republica, @morador]) do |f| %>
+  <% if @morador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@morador.errors.count, "error") %> prohibited this morador from being saved:</h2>
+
+      <ul>
+      <% @morador.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :sobrenome %><br />
+    <%= f.text_field :sobrenome %>
+  </div>
+  <div class="field">
+    <%= f.label :curso %><br />
+    <%= f.text_field :curso %>
+  </div>
+  <div class="field">
+    <%= f.label :ano_de_ingresso %><br />
+    <%= f.number_field :ano_de_ingresso %>
+  </div>
+  <div class="field">
+    <%= f.label :ra %><br />
+    <%= f.text_field :ra %>
+  </div>
+  <div class="field">
+    <%= f.label :universidade %><br />
+    <%= f.text_field :universidade %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :celular %><br />
+    <%= f.text_field :celular %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

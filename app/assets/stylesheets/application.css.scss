@@ -1,0 +1,112 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ #banner {
+ 	padding: 20px;
+ 	font: small-caps 40px/40px "Times New Roman", serif;
+ 	text-align: center;
+ 	background: #026177;
+ 	color: white;
+ 	border-bottom: 2px solid;
+ 	border-color: #034c5c;
+
+ 	img {
+ 		position: absolute;
+ 		top: 2%;
+ 		left: 1%;
+ 		float: left;
+ 	}
+ }
+
+ #columns {
+ 	background: #03404d;
+
+ 	#main {
+ 		margin-left: 17em;
+ 		padding: 1em;
+ 		background: white;
+ 		border: 4px solid;
+ 		border-color: #026177;
+ 		width: 63%;
+ 	}
+ 	
+ 	#side {
+ 		color: white;
+ 		float: left;
+ 		clear: both;
+ 		padding: 1em 2em;
+ 		width: 13em;
+ 		background: #03404d;
+ 		ul {
+ 			padding: 0;
+ 			li {
+ 				list-style: none;
+ 				a {
+ 					color: white;
+ 				}
+ 			}
+ 		}
+ 	}
+
+ 	#push {
+ 		clear:both;
+ 	}
+
+ 	#footer {
+ 		color: white;
+ 		text-align:center;
+ 		border-top: 1px dashed;
+ 		border-color: #022e37;
+ 	}
+
+
+ }
+
+
+ .field_with_errors .message {
+ 	color: white;
+ 	font-size: 12px;
+ 	display: inline-block;
+ 	float: none;
+ 	border: 1px solid black;
+ 	background-color: #D00;
+ 	width: auto;
+ 	padding: 0.5em;
+ 	padding-top: 0.2em;
+ 	padding-bottom: 0.2em;
+ 	text-align: left;
+ }
+
+ #error_explanation {
+ 	width: 450px;
+ 	border: 2px solid red;
+ 	padding: 7px;
+ 	padding-bottom: 0;
+ 	margin-bottom: 20px;
+ 	background-color: #f0f0f0;
+ 	h2 {
+ 		text-align: left;
+ 		font-weight: bold;
+ 		padding: 5px 5px 5px 15px;
+ 		font-size: 12px;
+ 		margin: -7px;
+ 		margin-bottom: 0px;
+ 		background-color: #c00;
+ 		color: #fff;
+ 	}
+ 	ul li {
+ 		font-size: 12px;
+ 		list-style: square;
+ 	}
+ }
