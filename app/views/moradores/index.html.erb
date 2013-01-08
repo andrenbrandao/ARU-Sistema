@@ -1,19 +1,22 @@
-<h1>Listing moradores</h1>
+<legend>Moradores</legend>
 
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Sobrenome</th>
-    <th>Curso</th>
-    <th>Ano de ingresso</th>
-    <th>Ra</th>
-    <th>Universidade</th>
-    <th>Republica</th>
-    <th></th>
-    <th></th>
-    <th></th>
-</tr>
+<table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Curso</th>
+        <th>Ano de ingresso</th>
+        <th>Ra</th>
+        <th>Universidade</th>
+        <th>Republica</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+</thead>
 
+<tbody>
 <% @moradores.each do |morador| %>
 <tr>
     <td><%= morador.nome %></td>
@@ -29,6 +32,7 @@
 
 </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />

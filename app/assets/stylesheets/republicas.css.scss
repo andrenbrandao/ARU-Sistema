@@ -12,23 +12,9 @@ div.list_line_even
 	background-color:#ffffff;
 }
 
-div.list_actions
-{
-	margin-left:100px;
-	font-size:x-small;
-}
-
 /* START_HIGHLIGHT */
 
-h1 {
-  margin: 0;
-  padding-bottom: 0.5em;
-  font:  150% sans-serif;
-  color: #226;
-  border-bottom: 3px dotted #77d;
-}
-
-  /* An entry in the store catalog */
+  /* Uma República */
   .entry {
     overflow: auto;
     margin-top: 1em;
@@ -60,69 +46,3 @@ h1 {
 
 /* END_HIGHLIGHT */
 
-/*  MORADORES_FIELDS  */
-
-div.fields
-{
-  font-size: x-small;
-  border-bottom: 1px dotted #c0cdcf;
-  margin-top: 1em;
-
-  #left {
-    float: left;
-  }
-
-  .hidden_field, .repres_field {
-    display: none;
-  }
-
-  #right {
-    text-align: right;
-  }
-}
-
-//#START:form
-.cadastro_form {
-  fieldset {
-    background: #f3fafb;
-    legend {
-      color: #dfd;
-      background: #03404d;
-      font-family: sans-serif;
-      padding: 0.2em 1em;
-    }
-  }
-  form {
-    label {
-      width: 8em;
-      float: left;
-      text-align: right;
-      padding-top: 0.2em;
-      margin-right: 0.1em;
-      display: block;
-    }
-
-    .fields label {
-      width: 14em;
-    }
-
-    select, textarea, input {
-      margin-left: 0.5em;
-    }
-
-    textarea{
-      font-size: 90%;
-      font-family: sans-serif;
-    }
-
-    .submit {
-      margin-left: 4em;
-    }
-
-    br {
-      display: none
-    }
-
-  }
-}
-//#END:form
