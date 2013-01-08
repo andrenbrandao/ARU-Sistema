@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require rails.validations
 //= require rails.validations.nested_form
+//= require bootstrap
+//= require_tree .
+
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
@@ -30,14 +32,14 @@ function add_fields(link, association, content) {
 // Utilizado para ATUALIZAR o CLIENT-SIDE-VALIDATIONS em NESTED FIELDS com APPLICATION HELPER
 $(function () {
  $('a').on('click', function() {
-    setTimeout(function() { 
-      $('.fields').find(':input').enableClientSideValidations();
-    });
+  setTimeout(function() { 
+    $('.fields').find(':input').enableClientSideValidations();
   });
+});
 });
 
 
-// Mostra campo de RA se for da Unicamp
+//Mostra campo de RA se for da Unicamp
 $(function() {
   $(document).on('change', '#universidade', function() {
      // this == the element that fired the change event

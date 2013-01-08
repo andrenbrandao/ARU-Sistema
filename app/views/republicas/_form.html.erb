@@ -1,69 +1,35 @@
-  <%= nested_form_for @republica, validate: true do |f| %>
-  <% if @republica.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@republica.errors.count, "erro") %> ao cadastrar sua República:</h2>
+  <%= simple_nested_form_for @republica, validate: true do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @republica %>
 
-    <ul>
-      <% @republica.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
+  <h3>Login</h3>
 
-  <h2>Login</h2>
+  <%= f.input :username, label: 'Usuário' %>
+  <%= f.input :password, label: 'Senha' %>
+  <%= f.input :password_confirmation, label: 'Confirmação' %>
 
-  <div class="field">
-    <%= f.label :username, "Usuário" %><br />
-    <%= f.text_field :username%>
-  </div>
-  <div class="field">
-    <%= f.label :password, 'Senha' %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, 'Confirmação' %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <h3>República</h3>
 
-  <h2>República</h2>
+  <%= f.input :nome %>
+  <%= f.input :tipo, collection: Republica::TIPO_DE_REP, prompt: 'Selecione' %>
 
-  <div class="field">
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome %>
-  </div>
-  <div class="field">
-    <%= f.label :tipo %><br />
-    <%= f.select :tipo, Republica::TIPO_DE_REP, prompt: "Selecione" %>
-  </div>
-  <div class="field">
-    <%= f.label :ano_de_fundacao, "Ano de Fundação" %><br />
-    <%= f.select :ano_de_fundacao, (1962..Time.now.year).to_a.reverse, prompt: "Selecione" %>
-  </div>
-  <div class="field">
-    <%= f.label :endereco, "Endereço" %><br />
-    <%= f.text_field :endereco %>
-  </div>
-  <div class="field">
-    <%= f.label :telefone %><br />
-    <%= f.text_field :telefone %>
-  </div>
+  <%= f.input :ano_de_fundacao, collection: (1962..Time.now.year).to_a.reverse, prompt: "Selecione", label: 'Ano de Fundação' %>
 
-  <div class="field">
-    <%= f.label :descricao, "Descrição" %><br />
-    <%= f.text_area :descricao, rows: 5, cols: 80  %>
-  </div>
+  <%= f.input :endereco, label: 'Endereço' %>
+  <%= f.input :telefone %>
+  <%= f.input :descricao, label: 'Descrição', input_html: {rows: 5, cols: 10} %>
+
 
   <fieldset>
 
     <legend> Moradores </legend>
 
-    <div class="morad">
-      <%= f.fields_for :moradores do |builder| %>
+    <div class="morador">
+      <%= f.simple_fields_for :moradores do |builder| %>
       <%= render 'morador_fields', f: builder %>
       <% end %>
     </div>
-  <p><%= f.link_to_add "Add Morador", :moradores %></p>
+    <p><%= f.link_to_add "Add Morador", :moradores %></p>
 
   </fieldset>
 

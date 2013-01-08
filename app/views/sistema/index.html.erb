@@ -1,11 +1,18 @@
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
+<div class='row-fluid'>
 
-<div class="noticias">
-<%= image_tag 'maintenance.jpg', height: 120 %>
+	<div class='span12'>
+		<% if notice %>
+		<p id="notice"><%= notice %></p>
+		<% end %>
+
+		<div class='span2'>
+			<%= image_tag 'maintenance.jpg', width: '150px' %>
+		</div>
+		<div class='span10'>
+			<h2> No momento o sistema está em fase de testes.</h2>
+			<p> Aqui serão postadas informações sobre a sua utilização e sobre novas funcionalidades.</p>
+		</div>
+	</div>
+
 </div>
-<h2 class="noticias"> No momento o sistema está em fase de testes.</h2>
-<p class="noticias"> Aqui serão postadas informações sobre a sua utilização e sobre novas funcionalidades.</p>
-
 

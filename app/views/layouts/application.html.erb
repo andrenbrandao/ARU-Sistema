@@ -1,38 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-	<title>Sistema de Repúblicas da ARU (SRA)</title>
-	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
-</head>
-<body class="<%= controller.controller_name %>">
-
-	<div id="banner">
-		<%= image_tag("logo.png", height: "70") %>
-		<%= @page_title || "Sistema de Repúblicas da ARU (SRA)" %>
-	</div>
-
-	<div id="columns">
-		<div id="side">
-			<ul>
-				<li><%= link_to 'Home', '/' %></li>
-				<li><%= link_to 'Profile', republicas_path %> </li>
-				<li>Eventos</li>
-				<li><%= link_to 'Cadastro', new_republica_path %></li>
-			</ul>
-		</div>
-		<div id="main">
-			<p id="notice"><%= notice %></p>
-			<%= yield %>
-		</div>
-
-		<div id="push">
-		</div>
-
-		<div id="footer">
-			<p>ARU Copyright © 2013</p>
-		</div>
-	</div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Sistema de Repúblicas da ARU - SRA" %></title>
+    <meta name="description" content="Sistema de Repúblicas da ARU">
+    <meta name="author" content="André Brandão">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </nav>
+    </header>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
 </html>
