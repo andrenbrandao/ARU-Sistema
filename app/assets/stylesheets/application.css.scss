@@ -61,3 +61,33 @@
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
+
+#steps {
+	list-style: none;
+	margin-left: 0px;
+
+	li {
+		font-size: 24px;
+		padding: 10px;
+		color: #B0B1B3;
+		display: inline-block;
+	}
+
+	li.current {
+		color: black;
+	}
+
+	span {
+		font-size:11px; 
+		display: block;
+	}
+
+}
+
+fieldset {
+	width: 220px;
+
+	.next_btn {
+		float: right;
+	}
+}

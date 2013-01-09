@@ -1,27 +1,30 @@
-  <%= simple_nested_form_for @republica, validate: true do |f| %>
+  <%= simple_nested_form_for @republica, validate: true, html: {id: 'republica_form'} do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @republica %>
 
-  <legend>Login</legend>
+  <fieldset>
+    <legend>Login</legend>
 
-  <%= f.input :username, placeholder: 'Usuário', label: false %>
-  <%= f.input :password, placeholder: 'Senha', label: false %>
-  <%= f.input :password_confirmation, placeholder: 'Confirmação', label: false %>
-
-  <legend>República</legend>
-
-  <%= f.input :nome, placeholder: 'Nome', label: false %>
-  <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo' %>
-
-  <%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
-
-  <%= f.input :endereco, placeholder: 'Endereço', label: false %>
-  <%= f.input :telefone, placeholder: 'Telefone', label: false %>
-  <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {rows: 5, cols: 10} %>
-
+    <%= f.input :username, placeholder: 'Usuário', label: false %>
+    <%= f.input :password, placeholder: 'Senha', label: false %>
+    <%= f.input :password_confirmation, placeholder: 'Confirmação', label: false %>
+  </fieldset>
 
   <fieldset>
-    <legend> Moradores </legend>
+    <legend>República</legend>
+
+    <%= f.input :nome, placeholder: 'Nome', label: false %>
+    <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo' %>
+
+    <%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
+
+    <%= f.input :endereco, placeholder: 'Endereço', label: false %>
+    <%= f.input :telefone, placeholder: 'Telefone', label: false %>
+    <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {rows: 5, cols: 10} %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Moradores</legend>
 
     <div class="morador">
       <%= f.simple_fields_for :moradores do |builder| %>
@@ -30,11 +33,11 @@
     </div>
     <p><%= f.link_to_add "Add Morador", :moradores, class: 'btn btn-success btn-small' %></p>
 
-  </fieldset>
+ </fieldset>
 
-  <div class="form-actions">
-   <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
-   <%= link_to 'Cancel', republicas_path, class: 'btn' %>
- </div>
+     <div class="form-actions" id='cadastro_actions'>
+     <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
+     <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+   </div>
 
  <% end %>

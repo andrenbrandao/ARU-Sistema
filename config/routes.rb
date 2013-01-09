@@ -1,6 +1,8 @@
 Cadastro::Application.routes.draw do
 
   get "sistema/index"
+
+  resources :user_steps
   
   resources :republicas do
     collection do

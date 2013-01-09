@@ -15,8 +15,13 @@
 //= require rails.validations
 //= require rails.validations.nested_form
 //= require bootstrap
+//= require formToWizard
 //= require_tree .
-
+$(function() {
+  $(document).ready( function() {
+$("#republica_form").formToWizard({ submitButton: 'cadastro_actions' })
+});
+});
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
