@@ -1,3 +1,72 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+html,
+body {
+	height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+    }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+      	min-height: 100%;
+      	height: auto !important;
+      	height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+    }
+
+      /* Set the fixed height of the footer here */
+
+      #push {
+      	height: 63px;
+      }
+
+      #footer {
+      	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      	font-size: 13px;
+      	height:30px;
+      	color: #B4ACA9;
+      	padding: 17px 0 18px 0;
+      	margin-bottom: 0px;
+      	text-align: left;
+      	background-color: #434343;
+      	border-top: 1px solid #ddd;
+      	*zoom: 1;
+      	-webkit-box-shadow: inset 0 1px 0 #ffffff;
+      	-moz-box-shadow: inset 0 1px 0 #ffffff;
+      	box-shadow: inset 0 1px 0 #ffffff;
+      }
+
+      #footer a {
+      	color: #fff;
+      }
+
+      .footer a:hover {
+      	color: #efefef;
+      }
+
+      #footer:before,
+      #footer:after {
+      	display: table;
+      	line-height: 0;
+      	content: "";
+      }
+      #footer:after {
+      	clear: both;
+      }
+
+      #footer-links {
+
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+      	#footer {
+      		margin-left: -20px;
+      		margin-right: -20px;
+      		padding-left: 20px;
+      		padding-right: 20px;
+      	}
+      }

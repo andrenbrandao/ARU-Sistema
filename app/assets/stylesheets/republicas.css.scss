@@ -15,34 +15,19 @@ div.list_line_even
 /* START_HIGHLIGHT */
 
   /* Uma República */
-  .entry {
-    overflow: auto;
-    margin-top: 1em;
-    border-bottom: 1px dotted #77d;
-    min-height: 100px;
 
-    img {
-      width: 50px;
-      margin-right: 5px;
-      margin-bottom: 5px;
-      position: absolute;
+    #logotipo {
+    	width: 40px;
     }
 
-    h3 {
-      font-size: 120%;
-      font-family: sans-serif;
-      margin-left: 100px;
-      margin-top: 0;
-      margin-bottom: 2px;
-      color: #227;
-    }
+.table td {
+   text-align: center;   
+   vertical-align: middle;
+}
 
-    p{
-      margin-left: 100px;
-      margin-top: 0.5em; 
-      margin-bottom: 0.8em; 
-    }
-  }
+.table th {
+   text-align: center;   
+}
 
 /* END_HIGHLIGHT */
 
