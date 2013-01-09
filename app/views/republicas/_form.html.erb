@@ -23,7 +23,7 @@
     <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {rows: 5, cols: 10} %>
   </fieldset>
 
-  <fieldset>
+  <fieldset id='moradores'>
     <legend>Moradores</legend>
 
     <div class="morador">
@@ -33,11 +33,14 @@
     </div>
     <p><%= f.link_to_add "Add Morador", :moradores, class: 'btn btn-success btn-small' %></p>
 
- </fieldset>
 
-     <div class="form-actions" id='cadastro_actions'>
-     <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
-     <%= link_to 'Cancel', republicas_path, class: 'btn' %>
-   </div>
+    <br><hr>
+
+  </fieldset>
+
+  <div class="form-actions" id='cadastro_actions'>
+   <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
+   <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+ </div>
 
  <% end %>

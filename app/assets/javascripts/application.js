@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require formToWizard
 //= require_tree .
+
 $(function() {
   $(document).ready( function() {
 $("#republica_form").formToWizard({ submitButton: 'cadastro_actions' })
@@ -67,6 +68,5 @@ $(function() {
     // modificação dos campos para representante
     $(this).nextAll('.repres_field').show('slow');    
     $(this).prev('#representante').val('true');
-
   });
 });

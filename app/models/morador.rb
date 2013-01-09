@@ -5,7 +5,7 @@ class Morador < ActiveRecord::Base
 	validates :republica, presence: true
 
 	attr_accessible :ano_de_ingresso, :curso, :nome, :ra, :republica_id, :sobrenome, :universidade
-	attr_accessible :email, :celular, :representante
+	attr_accessible :email, :celular, :representante, :apelido
 
 	UNIVERSIDADE = [ "Unicamp", "Outra" ]
 
