@@ -10,7 +10,7 @@ pt-BR:
       already_authenticated: 'Você já está logado.'
       inactive: 'Sua conta ainda não foi ativada.'
       invalid: 'Login ou senha inválidos.'
-      not_found_in_database: 'República não encontrada.'
+      not_found_in_database: 'Usuário não encontrado.'
       invalid_token: 'O token de autenticação não é válido.'
       locked: 'Sua conta está bloqueada.'
       timeout: 'Sua sessão expirou, por favor, efetue login novamente para continuar.'
