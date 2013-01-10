@@ -1,5 +1,7 @@
 Cadastro::Application.routes.draw do
 
+  devise_for :admins
+
   devise_for :republicas
 
   get "sistema/index"

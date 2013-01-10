@@ -33,4 +33,15 @@
 		</li>
 		<% end %>
 	</ul>
+	<ul class='nav pull-right'>
+		<% if admin_signed_in? %>
+		<li>
+			<%= link_to('Logout', destroy_admin_session_path, :method=>'delete') %>
+		</li>
+		<% else %>
+		<li>
+			<%= link_to('Admin', new_admin_session_path)  %>
+		</li>
+		<% end %>
+	</ul>
 </div>
