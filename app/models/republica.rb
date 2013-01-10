@@ -33,6 +33,7 @@ class Republica < ActiveRecord::Base
 	validate :min_of_moradores
 	validate :max_of_moradores
 	validate :has_one_representante
+	validates_confirmation_of :password
 
 
 	private
