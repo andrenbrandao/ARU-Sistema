@@ -107,7 +107,7 @@ jQuery(function($) {
 
 $(function() {
   var fieldsCount,
-      maxFieldsCount = 3,
+      maxFieldsCount = 19,
       $addLink = $('a.add_nested_fields');
 
       var minFieldsCount = 0,

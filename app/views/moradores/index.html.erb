@@ -5,14 +5,14 @@
       <tr>
         <th>Nome</th>
         <th>Sobrenome</th>
+        <th>Apelido</th>
         <th>Curso</th>
         <th>Ano de ingresso</th>
-        <th>Ra</th>
+        <th>RA</th>
         <th>Universidade</th>
-        <th>Republica</th>
+        <th>República</th>
         <th></th>
-        <th></th>
-        <th></th>
+
     </tr>
 </thead>
 
@@ -21,14 +21,15 @@
 <tr>
     <td><%= morador.nome %></td>
     <td><%= morador.sobrenome %></td>
+    <td><%= morador.apelido %></td>
     <td><%= morador.curso %></td>
     <td><%= morador.ano_de_ingresso %></td>
     <td><%= morador.ra %></td>
     <td><%= morador.universidade %></td>
     <td><%= morador.republica_id %></td>
-    <td><%= link_to 'Show', republica_morador_path(@republica, morador) %></td>
-    <td><%= link_to 'Edit', edit_republica_morador_path(@republica,morador) %></td>
-    <td><%= link_to 'Destroy', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Ver', republica_morador_path(@republica, morador), class: 'btn btn-mini' %>
+    <%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
+    <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %></td>
 
 </tr>
 <% end %>

@@ -1,14 +1,15 @@
 Cadastro::Application.routes.draw do
 
-  get "sistema/index"
+  devise_for :republicas
 
-  resources :user_steps
+  get "sistema/index"
   
   resources :republicas do
-    collection do
-      get 'add_moradores'
-    end
     resources :moradores
+  end
+
+  authenticated :user do
+    root :to => 'sistema#index'
   end
 
   #resources :user_steps
