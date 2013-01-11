@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div class="logotipo">
-  <%= image_tag("rails.png") %>
-</div>
+
+<%= image_tag @republica.logotipo, class: 'img-polaroid', id: 'logo_show' %>
 
 <p>
   <b>Nome:</b>
@@ -15,31 +14,34 @@
 </p>
 
 <p>
-  <b>Ano de fundacao:</b>
+  <b>Ano de fundação:</b>
   <%= @republica.ano_de_fundacao %>
 </p>
 
+<p>
+  <b>Descrição:</b>
+  <%= @republica.descricao %>
+</p>
+
 <% if can? :modify, @republica %>
+
+
+<legend> Dados Restritos </legend>
+
 <p>
   <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
   <%= @republica.moradores.length %>
 </p>
 
-<p>
+
 <p>
   <b>Representante:</b>
-  <%= 'Nome' %>
-</p>
-<% end %>
-
-<p>
-  <b>Descricao:</b>
-  <%= @republica.descricao %>
+  <%= @representante.nome + ' ' + @representante.sobrenome %>
 </p>
 
-<% if can? :modify, @republica %>
+
 <p>
-  <b>Endereco:</b>
+  <b>Endereço:</b>
   <%= @republica.endereco %>
 </p>
 
@@ -49,7 +51,7 @@
 </p>
 
 <p>
-  <b>Username:</b>
+  <b>Usuário:</b>
   <%= @republica.username %>
 </p>
 

@@ -16,18 +16,23 @@ div.list_line_even
 
   /* Uma República */
 
-    #logotipo {
-    	width: 40px;
-    }
+  #logotipo {
+  	width: 40px;
+  }
 
-.table td {
-   text-align: center;   
-   vertical-align: middle;
-}
+  #logo_show {
+  	width: 150px;
+  	margin-bottom: 10px;
+  }
 
-.table th {
-   text-align: center;   
-}
+  .table td {
+  	text-align: center;   
+  	vertical-align: middle;
+  }
+
+  .table th {
+  	text-align: center;   
+  }
 
 /* END_HIGHLIGHT */
 

@@ -17,6 +17,12 @@ class RepublicasController < ApplicationController
   def show
     @republica = Republica.find(params[:id])
 
+    @republica.moradores.each do |morador|
+      if morador.representante == true
+        @representante = morador
+      end
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @republica }
