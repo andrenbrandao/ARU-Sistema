@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="logotipo">
-    <%= image_tag("rails.png") %>
-  </div>
+  <%= image_tag("rails.png") %>
+</div>
 
 <p>
   <b>Nome:</b>
@@ -19,21 +19,25 @@
   <%= @republica.ano_de_fundacao %>
 </p>
 
+<% if can? :modify, @republica %>
 <p>
   <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
   <%= @republica.moradores.length %>
 </p>
 
 <p>
+<p>
   <b>Representante:</b>
-   <%= 'Nome' %>
+  <%= 'Nome' %>
 </p>
+<% end %>
 
 <p>
   <b>Descricao:</b>
   <%= @republica.descricao %>
 </p>
 
+<% if can? :modify, @republica %>
 <p>
   <b>Endereco:</b>
   <%= @republica.endereco %>
@@ -54,6 +58,5 @@
   <%= @republica.email %>
 </p>
 
-
-<%= link_to 'Edit', edit_republica_path(@republica) %> |
-<%= link_to 'Back', republicas_path %>
+<%= link_to 'Editar', edit_republica_path(@republica), class: 'btn btn-info btn-small' %><% end %>
+<%= link_to 'Voltar', republicas_path, class: 'btn btn-small'  %>

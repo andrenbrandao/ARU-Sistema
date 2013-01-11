@@ -22,9 +22,14 @@
 			<td><%= image_tag 'glyphicons/glyphicons_332_certificate.png' if republica.nome =='Paidabartira' %>
 				<%= image_tag 'glyphicons/glyphicons_045_calendar.png' if republica.nome =='Paidabartira' %>
 			</td>
-			<td><%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
+			
+			<td>
+				<% if can? :modify, republica %>
+				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
+				<% end %>
 			</td>
+
 		</tr>
 		<% end %>
 	</tbody>

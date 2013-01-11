@@ -1,4 +1,6 @@
 class RepublicasController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /republicas
   # GET /republicas.json
   def index
@@ -44,16 +46,16 @@ class RepublicasController < ApplicationController
   def create
     @republica = Republica.new(params[:republica])
 
-        respond_to do |format|
-          if @republica.save
-            format.html { redirect_to @republica, notice: 'Republica was successfully created.' }
-            format.json { render json: @republica, status: :created, location: @republica }
-          else
-            format.html { render action: "new" }
-            format.json { render json: @republica.errors, status: :unprocessable_entity }
-          end
-        end
+    respond_to do |format|
+      if @republica.save
+        format.html { redirect_to @republica, notice: 'Republica was successfully created.' }
+        format.json { render json: @republica, status: :created, location: @republica }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @republica.errors, status: :unprocessable_entity }
       end
+    end
+  end
 
   # PUT /republicas/1
   # PUT /republicas/1.json

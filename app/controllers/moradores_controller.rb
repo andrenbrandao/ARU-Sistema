@@ -1,4 +1,6 @@
 class MoradoresController < ApplicationController
+  load_and_authorize_resource :republica
+  load_and_authorize_resource :morador, :through => :republica
   # GET /moradores
   # GET /moradores.json
   def index

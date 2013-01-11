@@ -2,15 +2,31 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
+    alias_action :update, :destroy, :to => :modify
     
-      user ||= User.new # guest user (not logged in)
-      if user.admin?
-        can :manage, :all
-      else
-        can :read, :all
+    if user.is_a?(Admin)
+      # Permissões de ADMIN
+      can :manage, :all
+
+    elsif user.is_a?(Republica)
+      # Permissões para REPÚBLICAS
+
+      can :modify, Republica do |republica|
+        republica.try(:id) == user.id
       end
-    
+
+      can :read, Republica
+
+      # Pode administrar os próprios MORADORES
+      can :manage, Morador, republica: {id: user.id}
+      
+    else
+      # Permissões para CONVIDADOS
+      can :read, Republica
+      can :create, Republica
+    end
+
+
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are
     # :read, :create, :update and :destroy.
