@@ -1,5 +1,11 @@
 <legend>Repúblicas Associadas</legend>
 
+<% if can? :manage, :all %>
+<%= link_to "Todas as Repúblicas", republicas_path %>
+|
+<%= link_to "Repúblicas para aprovação", :action => "index", :approved => "false" %>
+<% end %>
+
 <table class='table table-striped table-condensed'>
 	<thead>
 		<tr>
@@ -27,6 +33,11 @@
 				<% if can? :modify, republica %>
 				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
+				<% end %>
+				<% if can? :manage, :all %>
+				<% if republica.approved == false %>
+				<%= link_to 'Approve', republica_path(republica, :republica => {:approved => 'true' }), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
+				<% end %>
 				<% end %>
 			</td>
 

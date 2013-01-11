@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111025100) do
+ActiveRecord::Schema.define(:version => 20130111172231) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(:version => 20130111025100) do
     t.text     "descricao"
     t.string   "endereco"
     t.string   "telefone"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "numero_de_moradores"
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -69,8 +69,10 @@ ActiveRecord::Schema.define(:version => 20130111025100) do
     t.string   "last_sign_in_ip"
     t.string   "username"
     t.string   "logotipo"
+    t.boolean  "approved",               :default => false, :null => false
   end
 
+  add_index "republicas", ["approved"], :name => "index_republicas_on_approved"
   add_index "republicas", ["email"], :name => "index_republicas_on_email", :unique => true
   add_index "republicas", ["reset_password_token"], :name => "index_republicas_on_reset_password_token", :unique => true
 

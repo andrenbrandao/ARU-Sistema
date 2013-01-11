@@ -16,6 +16,7 @@ pt-BR:
       timeout: 'Sua sessão expirou, por favor, efetue login novamente para continuar.'
       unauthenticated: 'Para continuar, efetue login ou registre-se.'
       unconfirmed: 'Antes de continuar, confirme a sua conta.'
+      not_approved: 'Sua conta ainda não foi autorizada pelo administrador.'
     mailer:
       confirmation_instructions:
         subject: 'Instruções de confirmação'
@@ -40,6 +41,7 @@ pt-BR:
       signed_up_but_unconfirmed: 'Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, abra o link para confirmar a sua conta.'
       update_needs_confirmation: 'Você atualizou a sua conta com sucesso, mas o seu novo endereço de e-mail precisa ser confirmado. Por favor, acesse-o e clique no link de confirmação que enviamos.'
       updated: 'Sua conta foi atualizada com sucesso.'
+      signed_up_but_not_approved: 'Seu cadastro foi efetuado com sucesso. No entando, ela ainda não foi autorizado pelo administrador.'
     sessions:
       signed_in: 'Login efetuado com sucesso!'
       signed_out: 'Saiu com sucesso.'

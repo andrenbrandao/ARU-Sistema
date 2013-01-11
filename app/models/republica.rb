@@ -21,7 +21,7 @@ class Republica < ActiveRecord::Base
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
 
-  attr_accessible :ano_de_fundacao, :descricao, :endereco, :nome, :logotipo
+  attr_accessible :ano_de_fundacao, :descricao, :endereco, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
@@ -95,6 +95,16 @@ class Republica < ActiveRecord::Base
 	# 	end
 	# end 
 
+  def active_for_authentication? 
+    super && approved? 
+  end 
 
+  def inactive_message 
+    if !approved? 
+      :not_approved 
+    else 
+      super # Use whatever other message 
+    end 
+  end
 
 end
