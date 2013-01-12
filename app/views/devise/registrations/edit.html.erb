@@ -1,4 +1,4 @@
-    <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: 'republica_form' }) do |f| %>
+    <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: 'republica_form' }, validate: true) do |f| %>
     <%= display_base_errors @republica %>
 
     <fieldset>

@@ -50,7 +50,7 @@ jQuery(function($) {
       return false;
     },
     insertFields: function(content, assoc, link) {
-        return $(content).insertBefore(link);
+        return $(content).insertBefore(link).hide().show('slow');
     },
     removeFields: function(e) {
       var $link = $(e.currentTarget),
@@ -60,7 +60,7 @@ jQuery(function($) {
           hiddenField.val('1');
 
           var field = $link.closest('.fields');
-          field.hide();
+          field.hide('slow');
 
           field
           .trigger({ type: 'nested:fieldRemoved', field: field })

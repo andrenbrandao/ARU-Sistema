@@ -21,8 +21,8 @@
 
 $(function() {
   $(document).ready( function() {
-$("#republica_form").formToWizard({ submitButton: 'cadastro_actions' })
-});
+    $("#republica_form").formToWizard({ submitButton: 'cadastro_actions' })
+  });
 });
 
 function remove_fields(link) {
@@ -72,22 +72,12 @@ $(function() {
   });
 });
 
-
-// Codigo para DESABILITAR o botão de NEXT ---- INCOMPLETO
-$(".next_btn").bind("click", function(e) {
-  //If the form is valid then go to next else don't
-  var valid = true;
-  // this will cycle through all visible inputs and attempt to validate all of them.
-  // if validations fail 'valid' is set to false
-  $('[data-validate]:input:visible').each(function() {
-    var settings = window.ClientSideValidations.forms[this.form.id]
-    if (!$(this).isValid(settings.validators)) {
-      valid = false
-    }
+$(function() {
+  $(document).ready( function() {
+    $('#representante').each(function() {
+               if ($(this).val() == 'true') {
+                $(this).next('.repres_field').show('slow');
+               }
+          });
   });
-  if(valid){
-    //code to go to next step
-  }
-  // if any of the inputs are invalid we want to disrupt the click event
-  return valid;
 });

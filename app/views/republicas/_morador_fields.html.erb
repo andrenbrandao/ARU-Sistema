@@ -28,5 +28,5 @@
 </div>
 
 <div id='remover_btn'>
-	<%= f.link_to_remove "Remover", class: 'btn btn-danger btn-small' %>
+	<%= f.link_to_remove "Remover",:data => { :confirm => "Você tem certeza?" }, class: 'btn btn-danger btn-small' %>
 </div>

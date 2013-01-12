@@ -56,12 +56,30 @@
             $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='btn next_btn'><b>Próximo</b> <i class='icon-arrow-right'></i></a>");
 
             $("#" + stepName + "Next").bind("click", function(e) {
-                $("#" + stepName).hide();
-                $("#step" + (i + 1)).show();
-                if (i + 2 == count)
-                    $(submmitButtonName).show();
-                selectStep(i + 1);
-            });
+
+
+            //If the form is valid then go to next else don't
+            var valid = true;
+              // this will cycle through all visible inputs and attempt to validate all of them.
+              // if validations fail 'valid' is set to false
+              $('[data-validate]:input:visible').each(function() {
+                var settings = window.ClientSideValidations.forms[this.form.id]
+                if (!$(this).isValid(settings.validators)) {
+                  valid = false
+              }
+          });
+              if(!valid){
+                // if any of the inputs are invalid we want to disrupt the click event
+                return valid;
+            }
+
+
+            $("#" + stepName).hide();
+            $("#step" + (i + 1)).show();
+            if (i + 2 == count)
+                $(submmitButtonName).show();
+            selectStep(i + 1);
+        });
         }
 
         function selectStep(i) {

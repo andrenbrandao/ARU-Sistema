@@ -10,7 +10,7 @@
 
 <div id='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, disabled: true %></div>
 
-<%= f.hidden_field :representante, :id => 'representante', :class => 'repres_input'%>
+<%= f.text_field :representante, :id => 'representante', :class => 'repres_input'%>
 
 <div class="radio_but" > 
 	<label class='radio'>
@@ -28,5 +28,5 @@
 </div>
 
 <div id='remover_btn'>
-	<%= f.link_to_remove "Remover", class: 'btn btn-danger btn-small' %>
+	<%= f.link_to_remove "Remover",:data => { :confirm => "Você tem certeza?" }, class: 'btn btn-danger btn-small' %>
 </div>

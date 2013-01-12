@@ -39,6 +39,17 @@ class Republica < ActiveRecord::Base
   validate :has_one_representante
   validates_confirmation_of :password
 
+def active_for_authentication? 
+    super && approved? 
+  end 
+
+  def inactive_message 
+    if !approved? 
+      :not_approved 
+    else 
+      super # Use whatever other message 
+    end 
+  end
 
   private
 
@@ -94,17 +105,5 @@ class Republica < ActiveRecord::Base
 	# 		where(conditions).first
 	# 	end
 	# end 
-
-  def active_for_authentication? 
-    super && approved? 
-  end 
-
-  def inactive_message 
-    if !approved? 
-      :not_approved 
-    else 
-      super # Use whatever other message 
-    end 
-  end
 
 end
