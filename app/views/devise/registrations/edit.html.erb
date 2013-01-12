@@ -1,14 +1,52 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
-  <%= f.error_notification %>
-  <%= display_base_errors resource %>
-  <%= f.input :nome, :autofocus => true %>
-  <%= f.input :login, :required => true %>
-  <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-  <%= f.input :password_confirmation, :required => false %>
-  <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
-  <%= f.button :submit, 'Update', :class => 'btn-primary' %>
-<% end %>
-<h3>Cancel my account</h3>
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-<%= link_to "Back", :back %>
+    <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: 'republica_form' }) do |f| %>
+    <%= display_base_errors @republica %>
+
+    <fieldset>
+    	<legend>República</legend>
+
+    	<%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
+    	<%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
+
+    	<%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
+
+    	<%= f.input :endereco, placeholder: 'Endereço', label: false %>
+    	<%= f.input :telefone, placeholder: 'Telefone', label: false %>
+    	<%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {rows: 5, cols: 10} %>
+    </fieldset>
+
+    <fieldset id='moradores'>
+    	<legend>Moradores</legend>
+
+    	<div class="morador">
+    		<%= f.simple_fields_for :moradores do |builder| %>
+    		<% if builder.object.new_record? %>
+    		<%= render 'republicas/morador_fields', f: builder %>
+    		<% else %>
+    		<%= render 'morador_fields', f: builder %>
+    		<% end %>
+    		<% end %>
+    	</div>
+    	<p><%= f.link_to_add "Add Morador", :moradores, class: 'btn btn-success btn-small' %></p>
+
+
+    	<br><hr>
+
+    </fieldset>
+
+    <fieldset>
+    	<legend>Login</legend>
+
+    	<%= f.input :username, placeholder: 'Usuário', label: false %>
+    	<%= f.input :password, :autocomplete => "off", :hint => "Deixe em branco se não quiser alterar sua senha", :required => false, label: false, placeholder: 'Senha' %>
+    	<%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
+    	<%= f.input :current_password, :hint => "Utilize sua senha atual para confirmar as mudanças", :required => true, label: false, placeholder: 'Senha atual' %>
+    </fieldset>
+
+    <div class="form-actions" id='cadastro_actions'>
+    	<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+    	<%= link_to 'Cancel', republicas_path, class: 'btn' %>
+    	<p><%= link_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza?" }, :method => :delete %>.</p>
+    </div>
+
+
+    <% end %>
