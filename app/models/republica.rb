@@ -3,6 +3,7 @@
 class Republica < ActiveRecord::Base
 
 	before_validation :copy_email_to_republica
+  before_save :titleize_moradores
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -59,6 +60,13 @@ def active_for_authentication?
   			self.email = f.email
   		end
   	end
+  end
+
+  def titleize_moradores
+    self.moradores.reject(&:marked_for_destruction?).each do |f|
+      f.nome = f.nome.to_s.titleize
+      f.sobrenome = f.sobrenome.to_s.titleize
+    end
   end
 
   def min_of_moradores
