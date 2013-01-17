@@ -10,7 +10,9 @@
 
 <div id='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, disabled: true %></div>
 
-<%= f.text_field :representante, :id => 'representante', :class => 'repres_input'%>
+<div id='representante'>
+<%= f.hidden_field :representante, :class => 'repres_input'%>
+</div>
 
 <div class="radio_but" > 
 	<label class='radio'>

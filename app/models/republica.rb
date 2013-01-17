@@ -26,10 +26,10 @@ class Republica < ActiveRecord::Base
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
-  validates :nome, presence: true, uniqueness: true
+  validates :nome, presence: true, uniqueness: { case_sensitive: false}
   validates :tipo, presence: true, inclusion: TIPO_DE_REP
   validates :ano_de_fundacao, presence: true
-  validates :descricao, presence: true, length: {minimum: 140}
+  validates :descricao, presence: true, length: {minimum: 100}
   validates :endereco, presence: true
   #validates :telefone, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }

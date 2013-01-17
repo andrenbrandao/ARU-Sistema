@@ -68,16 +68,23 @@ $(function() {
 
     // modificação dos campos para representante
     $(this).nextAll('.repres_field').show('slow');    
-    $(this).prev('#representante').val('true');
+    $(this).prev('#representante').find('input').val('true');
   });
 });
 
-$(function() {
   $(document).ready( function() {
-    $('#representante').each(function() {
-               if ($(this).val() == 'true') {
-                $(this).next('.repres_field').show('slow');
+    $('.repres_input').each(function() {
+              $this = $(this);
+               if ($this.val() == 't' || $this.val() == 'true') {
+                $this.closest('div').next('.radio_but').find('input').prop('checked', true);
+                $this.closest('div').nextAll('.repres_field').show();
                }
           });
   });
-});
+
+// $(document).ready( function() {
+//   $('a#login-link').on('click', function() {
+//     $(this).modal('show');
+
+//   });
+// });

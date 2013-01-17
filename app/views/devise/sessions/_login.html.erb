@@ -1,0 +1,23 @@
+<div class='modal hide fade' id='login-form'>
+	<div class='modal-header'>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h2>Sign in</h2>
+	</div>
+	<div class='modal-body'>
+		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+		<%= f.input :login, :autofocus => true %>
+		<%= f.input :password %>
+		<%= f.input :remember_me, label:false, inline_label: 'Remember me', :as => :boolean if devise_mapping.rememberable? %>
+	</div>
+	<div class='modal-footer'>
+		<div class='pull-left'>
+			<%= f.button :submit, "Sign in", :class => 'btn-primary' %>
+			<button class= 'btn', data-dismiss = 'modal' >Cancelar</button>
+			<% end %>
+			<br />
+			<div class='pull-left'>
+				<%= link_to "Esquececeu a senha?", new_password_path(resource_name) %>
+			</div>
+		</div>
+	</div>
+</div>
