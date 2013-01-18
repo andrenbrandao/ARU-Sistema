@@ -6,7 +6,7 @@
 <%= f.input :ano_de_ingresso, label: false, collection: (2000..Time.now.year).to_a.reverse, prompt: 'Ano de Ingresso', disabled: true %>
 
 
-<div id='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade', input_html: {id: 'universidade'}, disabled: true %></div>
+<div id='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade', disabled: true %></div>
 
 <div id='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, disabled: true %></div>
 

@@ -17,23 +17,25 @@
 </thead>
 
 <tbody>
-<% @moradores.each do |morador| %>
-<tr>
-    <td><%= morador.nome %></td>
-    <td><%= morador.sobrenome %></td>
-    <td><%= morador.apelido %></td>
-    <td><%= morador.curso %></td>
-    <td><%= morador.ano_de_ingresso %></td>
-    <td><%= morador.ra %></td>
-    <td><%= morador.universidade %></td>
-    <td><%= morador.republica_id %></td>
-    <td><%= link_to 'Ver', republica_morador_path(@republica, morador), class: 'btn btn-mini' %>
-    <%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
-    <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %></td>
+    <% @moradores.each do |morador| %>
+    <tr>
+        <td><%= morador.nome %></td>
+        <td><%= morador.sobrenome %></td>
+        <td><%= morador.apelido %></td>
+        <td><%= morador.curso %></td>
+        <td><%= morador.ano_de_ingresso %></td>
+        <td><%= morador.ra %></td>
+        <td><%= morador.universidade %></td>
+        <td><%= morador.republica_id %></td>
+        <% if can? :manage, :all %>
+        <td><%= link_to 'Ver', republica_morador_path(@republica, morador), class: 'btn btn-mini' %>
+            <%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
+            <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %></td>
+            <% end %>
 
-</tr>
-<% end %>
-</tbody>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
 
 <br />

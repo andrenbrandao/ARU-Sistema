@@ -17,6 +17,7 @@
 //= require rails.validations.nested_form
 //= require bootstrap
 //= require formToWizard
+//= require chosen-jquery
 //= require_tree .
 
 $(function() {
@@ -41,7 +42,8 @@ $(function () {
  $('a').on('click', function() {
   setTimeout(function() { 
     $('.fields').find(':input').enableClientSideValidations();
-  });
+    $('.chzn-select').chosen();
+  }, 10);
 });
 });
 
@@ -72,15 +74,20 @@ $(function() {
   });
 });
 
-  $(document).ready( function() {
-    $('.repres_input').each(function() {
-              $this = $(this);
-               if ($this.val() == 't' || $this.val() == 'true') {
-                $this.closest('div').next('.radio_but').find('input').prop('checked', true);
-                $this.closest('div').nextAll('.repres_field').show();
-               }
-          });
+$(document).ready( function() {
+  $('.repres_input').each(function() {
+    $this = $(this);
+    if ($this.val() == 't' || $this.val() == 'true') {
+      $this.closest('div').next('.radio_but').find('input').prop('checked', true);
+      $this.closest('div').nextAll('.repres_field').show();
+    }
   });
+});
+
+$(document).ready( function() {
+  $('.chzn-select').chosen();
+  $('.chzn-select').enableClientSideValidations();
+});
 
 // $(document).ready( function() {
 //   $('a#login-link').on('click', function() {

@@ -34,6 +34,10 @@ GEM
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.8)
+    chosen-rails (0.9.11.1)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     client_side_validations (3.2.1)
     client_side_validations-simple_form (2.0.1)
       client_side_validations (~> 3.2.0)
@@ -137,6 +141,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass
   cancan
+  chosen-rails
   client_side_validations
   client_side_validations-simple_form
   coffee-rails (~> 3.2.1)
