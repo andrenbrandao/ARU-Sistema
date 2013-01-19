@@ -34,6 +34,9 @@ GEM
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.8)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     chosen-rails (0.9.11.1)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -105,6 +108,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    rmagick (2.13.1)
     rolify (3.2.0)
     sass (3.2.4)
     sass-rails (3.2.5)
@@ -141,6 +145,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass
   cancan
+  carrierwave
   chosen-rails
   client_side_validations
   client_side_validations-simple_form
@@ -150,6 +155,7 @@ DEPENDENCIES
   localtunnel
   nested_form
   rails (= 3.2.8)
+  rmagick
   rolify
   sass-rails (~> 3.2.3)
   simple_form

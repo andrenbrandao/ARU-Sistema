@@ -89,6 +89,7 @@ $(document).ready( function() {
   $('.chzn-select').enableClientSideValidations();
 });
 
+
 // $(document).ready( function() {
 //   $('a#login-link').on('click', function() {
 //     $(this).modal('show');

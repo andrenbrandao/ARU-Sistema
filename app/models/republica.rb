@@ -2,6 +2,7 @@
 
 class Republica < ActiveRecord::Base
 
+  mount_uploader :logotipo, LogotipoUploader
 	before_validation :copy_email_to_republica
   before_save :titleize_moradores
 
