@@ -137,6 +137,7 @@ GEM
     wicked (0.3.4)
       activesupport (>= 3.0.7)
       rails (>= 3.0.7)
+    will_paginate (3.0.3)
 
 PLATFORMS
   ruby
@@ -162,3 +163,4 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 1.0.3)
   wicked
+  will_paginate

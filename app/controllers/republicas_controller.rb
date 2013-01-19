@@ -4,10 +4,16 @@ class RepublicasController < ApplicationController
   # GET /republicas
   # GET /republicas.json
   def index
+    # if params[:approved] == "false"
+    #   @republicas = Republica.order(:nome).find_all_by_approved(false)
+    # else
+    #   @republicas = Republica.order(:nome).find_all_by_approved(true)
+    # end
+
     if params[:approved] == "false"
-      @republicas = Republica.order(:nome).find_all_by_approved(false)
+      @republicas = Republica.where(approved: false).page(params[:page]).order(:nome)
     else
-      @republicas = Republica.order(:nome).find_all_by_approved(true)
+      @republicas = Republica.where(approved: true).page(params[:page]).order(:nome)
     end
 
     respond_to do |format|

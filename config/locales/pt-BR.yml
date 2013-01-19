@@ -206,4 +206,8 @@ pt-BR:
     errors:
       <<: *errors
     
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Próximo &#8594;"
+    page_gap: "&hellip;"
 
