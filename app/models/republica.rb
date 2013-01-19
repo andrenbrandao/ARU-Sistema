@@ -5,7 +5,7 @@ class Republica < ActiveRecord::Base
   self.per_page = 7
 
   mount_uploader :logotipo, LogotipoUploader
-	before_validation :copy_email_to_republica
+  before_validation :copy_email_to_republica
   before_save :titleize_moradores
 
   # Include default devise modules. Others available are:
@@ -43,7 +43,7 @@ class Republica < ActiveRecord::Base
   validate :has_one_representante
   validates_confirmation_of :password
 
-def active_for_authentication? 
+  def active_for_authentication? 
     super && approved? 
   end 
 
@@ -53,6 +53,14 @@ def active_for_authentication?
     else 
       super # Use whatever other message 
     end 
+  end
+
+  def self.search(search)
+    if search
+      where('nome LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
   end
 
   private

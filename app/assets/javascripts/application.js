@@ -89,6 +89,18 @@ $(document).ready( function() {
   $('.chzn-select').enableClientSideValidations();
 });
 
+// Adiciona AJAX no Will_Paginate
+$(document).ready(function () {
+    $(".pagination a").attr('data-remote', true);
+});
+
+// AJAX para Search sem clicar em botao
+$(document).ready(function() {
+  $("#republicas_search input").keyup(function() {
+    $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script");
+    return false;
+  });
+});
 
 // $(document).ready( function() {
 //   $('a#login-link').on('click', function() {

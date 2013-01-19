@@ -11,14 +11,15 @@ class RepublicasController < ApplicationController
     # end
 
     if params[:approved] == "false"
-      @republicas = Republica.where(approved: false).page(params[:page]).order(:nome)
+      @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(:nome)
     else
-      @republicas = Republica.where(approved: true).page(params[:page]).order(:nome)
+      @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(:nome)
     end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @republicas }
+      format.js # index.js.erb
     end
   end
 
