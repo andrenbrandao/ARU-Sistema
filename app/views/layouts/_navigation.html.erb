@@ -11,7 +11,7 @@
 <div class="nav-collapse collapse">
 	<!-- .nav, .navbar-search, .navbar-form, etc -->
 	<ul class="nav">
-		<li>
+		<li class="<%= 'active' if current_page?(republicas_path) %>">
 			<%= link_to "Repúblicas", republicas_path %>
 		</li>
 		<% if republica_signed_in? %>
@@ -19,16 +19,16 @@
 			<%= link_to('Logout', destroy_republica_session_path, :method=>'delete') %>
 		</li>
 		<% else %>
-		<li>
+		<li class="<%= 'active' if current_page?(new_republica_session_path) %>">
 			<%= link_to('Login', new_republica_session_path)  %>
 		</li>
 		<% end %>
 		<% if republica_signed_in? %>
-		<li>
+		<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
 			<%= link_to('Edit account', edit_republica_registration_path) %>
 		</li>
 		<% else %>
-		<li>
+		<li class="<%= 'active' if current_page?(new_republica_registration_path) %>">
 			<%= link_to('Cadastro', new_republica_registration_path)  %>
 		</li>
 		<% end %>
@@ -39,7 +39,7 @@
 			<%= link_to('Logout', destroy_admin_session_path, :method=>'delete') %>
 		</li>
 		<% else %>
-		<li>
+		<li class="<%= 'active' if current_page?(new_admin_session_path) %>">
 			<%= link_to('Admin', new_admin_session_path)  %>
 		</li>
 		<% end %>
