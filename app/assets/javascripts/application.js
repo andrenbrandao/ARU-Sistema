@@ -16,7 +16,7 @@
 //= require rails.validations.simple_form
 //= require rails.validations.nested_form
 //= require bootstrap
-//= require bootstrap-inputmask
+//= require jquery.inputmask
 //= require formToWizard
 //= require chosen-jquery
 //= require_tree .
@@ -92,21 +92,36 @@ $(document).ready( function() {
 
 // Adiciona AJAX no Will_Paginate
 $(document).ready(function () {
-    $(".pagination a").attr('data-remote', true);
+  $(".pagination a").attr('data-remote', true);
 });
 
 // AJAX para Search sem clicar em botao
 $(document).ready(function() {
-  $("#republicas_search input").keyup(function() {
+  $("#republicas_search input").keyup(function(e) {
     $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script");
-    return false;
+    e.preventDefault();
   });
 });
 
 $(document).ready(function() {
   $('#search_btn').on('click', function() {
-      $(this).fadeOut();
-      $('#search_field').show('slow');
+    $(this).fadeOut();
+    $('#search_field').show('slow');
+  });
+});
+
+// Cria INPUT_MASKS para Telefones e Celulares
+$(document).ready(function() {
+  $('.telefone').inputmask('9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  $('.celular').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  $('.celular').keyup(function() {
+    var valor = $(this).val().substr(1,2); 
+    if(valor == '11') {
+      $(this).inputmask('(99) 99999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+    }
+    else {
+      $(this).inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+    }
   });
 });
 

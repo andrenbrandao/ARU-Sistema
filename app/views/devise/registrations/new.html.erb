@@ -13,7 +13,7 @@
     <%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
 
     <%= f.input :endereco, placeholder: 'Endereço', label: false %>
-    <%= f.input :telefone, placeholder: 'Telefone', label: false %>
+    <%= f.input :telefone, placeholder: 'Telefone', label: false, input_html: {class: 'telefone'} %>
     <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {rows: 5, cols: 10} %>
   </fieldset>
 

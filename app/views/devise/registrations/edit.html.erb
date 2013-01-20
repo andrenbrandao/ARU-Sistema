@@ -22,7 +22,7 @@
     		<% if builder.object.new_record? %>
     		<%= render 'republicas/morador_fields', f: builder %>
     		<% else %>
-    		<%= render 'morador_fields', f: builder %>
+    		<%= render 'current_morador_fields', f: builder %>
     		<% end %>
     		<% end %>
     	</div>
