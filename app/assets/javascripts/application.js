@@ -16,6 +16,7 @@
 //= require rails.validations.simple_form
 //= require rails.validations.nested_form
 //= require bootstrap
+//= require bootstrap-inputmask
 //= require formToWizard
 //= require chosen-jquery
 //= require_tree .
@@ -99,6 +100,13 @@ $(document).ready(function() {
   $("#republicas_search input").keyup(function() {
     $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script");
     return false;
+  });
+});
+
+$(document).ready(function() {
+  $('#search_btn').on('click', function() {
+      $(this).fadeOut();
+      $('#search_field').show('slow');
   });
 });
 

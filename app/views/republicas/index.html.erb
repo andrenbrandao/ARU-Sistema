@@ -6,10 +6,11 @@
 <%= link_to "Esperando aprovação", :action => "index", :approved => "false" %>
 <% end %>
 
-<div class='form-inline pull-right'>
+<p class='pull-right btn' id='search_btn'>Search</p>
+
+<div class='form-inline pull-right' id='search_field' style='display:none'>
 <%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil, class: 'btn' %>
+    <%= text_field_tag :search, params[:search], placeholder: 'Search', autocomplete: :off %>
 <% end %>
 </div>
 
