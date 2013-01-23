@@ -51,13 +51,21 @@ $(function () {
 
 //Mostra campo de RA se for da Unicamp
 $(function() {
-  $(document).on('change', '#universidade', function() {
+  $(document).on('change', '.universidade', function() {
      // this == the element that fired the change event
      if( $(':selected', this).val() == 'Unicamp') {
-      $(this).next('#RA').show('slow');
+      $(this).next('.RA').show('slow');
     }
     else {
-      $(this).next('#RA').hide('slow');
+      $(this).next('.RA').hide('slow');
+    }
+  });
+});
+$(document).ready( function() {
+  $('.universidade').each(function() {
+    $this = $(this);
+    if ($this.find(':input').val() == 'Unicamp') {
+      $this.next('.RA').show();
     }
   });
 });
@@ -74,7 +82,6 @@ $(function() {
     $(this).prev('#representante').find('input').val('true');
   });
 });
-
 $(document).ready( function() {
   $('.repres_input').each(function() {
     $this = $(this);
@@ -168,16 +175,16 @@ $(document).ready(function() {
       //   $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em OK
       // });
 
-      $('.edit-morador-btn').on('click', function() {
-        $this = $(this);
-        $this.closest('.nomes-moradores').next('.morador-modal').modal('show');
-      });
+    $('.edit-morador-btn').on('click', function() {
+      $this = $(this);
+      $this.closest('.nomes-moradores').next('.morador-modal').modal('show');
+    });
 
-      $('a.remove_nested_fields').on('click', function() {
+    $('a.remove_nested_fields').on('click', function() {
       $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em Remover
     });
-    }, 10);
-  });
+  }, 10);
+});
 });
 
 function ConfirmMorador() {
@@ -203,7 +210,20 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-$('.modal').on('shown', function(){
-        $(ClientSideValidations.selectors.forms).validate();
-      });
+  $('.modal').on('shown', function(){
+    $(ClientSideValidations.selectors.forms).validate();
+  });
+});
+
+$(document).ready(function(){
+  $('#troca-senha').on('click', function(){
+    $(this).slideUp();
+    $('#change-pass-fields').slideDown();
+  });
+});
+
+// Adiciona DICAS ao lado de USUARIO e SENHA na EDIÇÃO
+$(document).ready(function(){
+  $('#edit-username').tooltip( {title:'Só modifique se desejar alterar o Usuário', placement: 'right'})
+   $('#edit-current-pass').tooltip( {title:'Utilize sua senha atual para confirmar as mudanças', placement: 'right'})
 });

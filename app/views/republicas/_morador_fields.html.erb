@@ -1,6 +1,6 @@
 <div class='nomes-moradores control-group' >
 <li>
-	<span class='inline nome-morador'>Morador Novo</span>	
+	<span class='inline nome-morador label label-inverse'>Morador Novo</span>	
 	<span class='btn btn-mini edit-morador-btn'><i class="icon-edit"></i></span>
 	<%= f.link_to_remove '<i class="icon-remove-sign"></i>'.html_safe,:data => { :confirm => "Você tem certeza?" }, class: 'btn btn-danger btn-mini' %>
 	</li>
@@ -21,9 +21,9 @@
 		<%= f.input :ano_de_ingresso, label: false, collection: (2000..Time.now.year).to_a.reverse, prompt: 'Ano de ingresso' %>
 
 
-		<div id='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade' %></div>
+		<div class='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade', input_html: {id: 'universidade'} %></div>
 
-		<div id='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false %></div>
+		<div class='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, input_html: {id: 'RA'} %></div>
 
 		<div id='representante'>
 			<%= f.hidden_field :representante, :class => 'repres_input'%>

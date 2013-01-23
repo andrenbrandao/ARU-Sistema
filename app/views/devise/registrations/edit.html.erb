@@ -4,42 +4,48 @@
     <fieldset>
     	<legend>República</legend>
 
-    	<%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
-    	<%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
+        <%= f.input :logotipo, label: false, input_html: {} %>
+        <%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
+        <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
 
-    	<%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
+        <%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
 
-    	<%= f.input :endereco, placeholder: 'Endereço', label: false %>
-    	<%= f.input :telefone, placeholder: 'Telefone', label: false %>
-    	<%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {rows: 5, cols: 10} %>
+        <%= f.input :endereco, placeholder: 'Endereço', label: false %>
+        <%= f.input :telefone, placeholder: 'Telefone', label: false, input_html: {class: 'telefone'} %>
+        <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
     </fieldset>
 
     <fieldset id='moradores'>
     	<legend>Moradores</legend>
 
-    	<div class="morador">
-    		<%= f.simple_fields_for :moradores do |builder| %>
-    		<% if builder.object.new_record? %>
-    		<%= render 'republicas/morador_fields', f: builder %>
-    		<% else %>
-    		<%= render 'current_morador_fields', f: builder %>
-    		<% end %>
-    		<% end %>
-    	</div>
-    	<p><%= f.link_to_add "Add Morador", :moradores, class: 'btn btn-success btn-small' %></p>
+        <ol>
+            <div class="morador">
+                <%= f.simple_fields_for :moradores do |builder| %>
+                <% if builder.object.new_record? %>
+                <%= render 'republicas/morador_fields', f: builder %>
+                <% else %>
+                <%= render 'current_morador_fields', f: builder %>
+                <% end %>
+                <% end %>
+            </div>
+            <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+        </ol>
 
-
-    	<br><hr>
+        <br><hr>
 
     </fieldset>
 
     <fieldset>
     	<legend>Login</legend>
-
-    	<%= f.input :username, placeholder: 'Usuário', label: false %>
-    	<%= f.input :password, :autocomplete => "off", :hint => "Deixe em branco se não quiser alterar sua senha", :required => false, label: false, placeholder: 'Senha' %>
-    	<%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
-    	<%= f.input :current_password, :hint => "Utilize sua senha atual para confirmar as mudanças", :required => true, label: false, placeholder: 'Senha atual' %>
+        <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
+        <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %>
+        <div id='change-pass-fields' style='display:none'>
+            <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
+            <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
+        </div>
+        <div class='control-group controls'>
+            <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
+        </div>
     </fieldset>
 
     <div class="form-actions" id='cadastro_actions'>
