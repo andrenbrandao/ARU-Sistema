@@ -102,7 +102,6 @@ $(document).ready(function() {
     e.preventDefault();
   });
 });
-
 $(document).ready(function() {
   $('#search_btn').on('click', function() {
     $(this).fadeOut();
@@ -157,6 +156,10 @@ $(document).ready(function() {
       // $('#nomes-moradores').append('<p>Morador Novo</p> ' + '<%= link_to "Do" %>');
 
       $('.modal').last().modal('show'); // mostra MODAL
+      $('.modal').on('shown', function(){
+        $(ClientSideValidations.selectors.forms).validate();
+      });
+      isMoradorValid();
 
       // $('.modal').find('.confirm-morador').on('click', function() {
       //   var nome = $('.in').find('.nome').val();
@@ -200,8 +203,6 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-
-
 $('.modal').on('shown', function(){
         $(ClientSideValidations.selectors.forms).validate();
       });

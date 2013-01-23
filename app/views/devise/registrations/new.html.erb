@@ -20,14 +20,14 @@
   <fieldset id='moradores'>
     <legend>Moradores</legend>
 
-    <div id='nomes-moradores'></div>
-
+<ol>
     <div class="morador">
       <%= f.simple_fields_for :moradores do |builder| %>
       <%= render 'republicas/morador_fields', f: builder %>
       <% end %>
     </div>
-    <p><%= f.link_to_add "Add Morador", :moradores, class: 'btn btn-success btn-small' %></p>
+    <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+  </ol>
 
 
     <br><hr>
