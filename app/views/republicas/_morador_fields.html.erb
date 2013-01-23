@@ -1,34 +1,50 @@
-
-<%= f.input :nome, placeholder: 'Nome', label: false  %>
-<%= f.input :sobrenome, placeholder: 'Sobrenome', label: false  %>
-<%= f.input :apelido, placeholder: 'Apelido', label: false  %>
-<%= f.input :curso, label: false, collection: (Morador::CURSO).sort, input_html: {class: 'chzn-select', :'data-placeholder' => 'Curso' } %>
-<%= f.input :ano_de_ingresso, label: false, collection: (2000..Time.now.year).to_a.reverse, prompt: 'Ano de ingresso' %>
-
-
-<div id='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade' %></div>
-
-<div id='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false %></div>
-
-<div id='representante'>
-<%= f.hidden_field :representante, :class => 'repres_input'%>
+<div class='nomes-moradores control-group' >
+	<span class='inline nome-morador'>Morador novo</span>	
+	<span class='btn btn-mini edit-morador-btn'>Editar</span>
+	<%= f.link_to_remove "Remover",:data => { :confirm => "Você tem certeza?" }, class: 'btn btn-danger btn-mini' %>
 </div>
 
-<div class="radio_but" > 
-	<label class='radio'>
-		<%= radio_button_tag('representante', true ) %>
-		Representante da República
-	</label>
-</div>
+<div class='modal hide fade morador-modal'>
 
-<div class='repres_field' style='display:none' >
-	<%= f.input :email, placeholder: 'Email', label: false %>
-</div>
+	<div class='modal-header'>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3>Morador</h3>
+	</div>
 
-<div class='repres_field' style='display:none'>
-	<%= f.input :celular, placeholder: 'Celular', label: false, input_html: {class: 'celular'} %>
-</div>
+	<div class='modal-body'>
+		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
+		<%= f.input :sobrenome, placeholder: 'Sobrenome', label: false,input_html: {class: 'sobrenome'}  %>
+		<%= f.input :apelido, placeholder: 'Apelido', label: false  %>
+		<%= f.input :curso, label: false, collection: (Morador::CURSO).sort, input_html: {class: 'chzn-select', :'data-placeholder' => 'Curso' } %>
+		<%= f.input :ano_de_ingresso, label: false, collection: (2000..Time.now.year).to_a.reverse, prompt: 'Ano de ingresso' %>
 
-<div id='remover_btn'>
-	<%= f.link_to_remove "Remover",:data => { :confirm => "Você tem certeza?" }, class: 'btn btn-danger btn-small' %>
+
+		<div id='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade' %></div>
+
+		<div id='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false %></div>
+
+		<div id='representante'>
+			<%= f.hidden_field :representante, :class => 'repres_input'%>
+		</div>
+
+		<div class="radio_but" > 
+			<label class='radio'>
+				<%= radio_button_tag('representante', true ) %>
+				Representante da República
+			</label>
+		</div>
+
+		<div class='repres_field' style='display:none' >
+			<%= f.input :email, placeholder: 'Email', label: false %>
+		</div>
+
+		<div class='repres_field' style='display:none'>
+			<%= f.input :celular, placeholder: 'Celular', label: false, input_html: {class: 'celular'} %>
+		</div>
+
+	</div>
+
+	<div class='modal-footer'>
+		<p class='btn btn-success btn-small confirm-morador'>OK</p>
+	</div>
 </div>

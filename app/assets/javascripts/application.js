@@ -111,7 +111,7 @@ $(document).ready(function() {
 });
 
 // Cria INPUT_MASKS para Telefones e Celulares
-$(document).ready(function() {
+function activeMask() {
   $('.telefone').inputmask('9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
   $('.celular').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
   $('.celular').keyup(function() {
@@ -123,8 +123,23 @@ $(document).ready(function() {
       $(this).inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
     }
   });
+}
+
+$(document).ready(function() {
+  activeMask();
 });
 
+
+$(document).ready(function(){ 
+  $('a.add_nested_fields').on('click', function() {
+    setTimeout( function() {
+      activeMask();
+    },10);
+  });
+});
+
+
+// Layout para Navbar ATIVA
 $('.navbar li a').click(function(e) {
   var $this = $(this);
   if (!$this.hasClass('active')) {
@@ -133,9 +148,61 @@ $('.navbar li a').click(function(e) {
   e.preventDefault();
 });
 
-// $(document).ready( function() {
-//   $('a#login-link').on('click', function() {
-//     $(this).modal('show');
 
-//   });
-// });
+// Codigos para mostrar Modal
+$(document).ready(function() {
+  $('a.add_nested_fields').on('click', function() {
+    setTimeout( function() {
+
+      // $('#nomes-moradores').append('<p>Morador Novo</p> ' + '<%= link_to "Do" %>');
+
+      $('.modal').last().modal('show'); // mostra MODAL
+
+      // $('.modal').find('.confirm-morador').on('click', function() {
+      //   var nome = $('.in').find('.nome').val();
+      //   var sobrenome = $('.in').find('.sobrenome').val();
+      //   $(this).closest('.modal.in').prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
+      //   $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em OK
+      // });
+
+      $('.edit-morador-btn').on('click', function() {
+        $this = $(this);
+        $this.closest('.nomes-moradores').next('.morador-modal').modal('show');
+      });
+
+      $('a.remove_nested_fields').on('click', function() {
+      $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em Remover
+    });
+    }, 10);
+  });
+});
+
+function ConfirmMorador() {
+  $('.modal').find('.confirm-morador').on('click', function() {
+    var nome = $('.in').find('.nome').val();
+    var sobrenome = $('.in').find('.sobrenome').val();
+    $(this).closest('.modal.in').prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
+        $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em OK
+      });
+}
+
+function EditMorador() {
+  $('.edit-morador-btn').on('click', function() {
+    $this = $(this);
+    $this.closest('.nomes-moradores').next('.morador-modal').modal('show');
+  });
+}
+
+$(document).ready(function() {
+  EditMorador();
+  isMoradorValid();
+  // ConfirmMorador();
+});
+
+$(document).ready(function() {
+
+
+$('.modal').on('shown', function(){
+        $(ClientSideValidations.selectors.forms).validate();
+      });
+});

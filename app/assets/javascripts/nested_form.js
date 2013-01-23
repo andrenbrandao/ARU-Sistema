@@ -138,3 +138,26 @@ $(function() {
   toggleAddLink();
   toggleRemoveLink();
 });
+
+
+// Utilizado para contar o Numero de Moradores
+// $(function() {
+//   var fieldsCount;
+
+//   $(document).on('nested:fieldAdded', function() {
+//     fieldsCount += 1;
+//     $('.fields').find('.modal-header').last().children('h3').text('Morador ' + fieldsCount); 
+//   });
+
+//   $(document).on('nested:fieldRemoved', function() {
+//     fieldsCount -= 1;
+//   });  
+
+//   // count existing nested fields after page was loaded
+//   fieldsCount = $('form .fields').length;
+
+//   for(var i = 0; i < fieldsCount; i++) {
+//     $('.fields').find('.modal-header').eq(i).children('h3').text('Morador ' + fieldsCount);  
+//   }
+
+// });

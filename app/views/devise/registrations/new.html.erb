@@ -20,6 +20,8 @@
   <fieldset id='moradores'>
     <legend>Moradores</legend>
 
+    <div id='nomes-moradores'></div>
+
     <div class="morador">
       <%= f.simple_fields_for :moradores do |builder| %>
       <%= render 'republicas/morador_fields', f: builder %>
