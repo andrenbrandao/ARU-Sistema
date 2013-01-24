@@ -23,7 +23,7 @@
 
 		<div class='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade', input_html: {id: 'universidade'} %></div>
 
-		<div class='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, input_html: {id: 'RA'}, validate: false %></div>
+		<div class='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, input_html: {id: 'RA'}, validate: true %></div>
 
 		<div id='representante'>
 			<%= f.hidden_field :representante, :class => 'repres_input'%>

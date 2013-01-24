@@ -55,8 +55,10 @@ $(function() {
      // this == the element that fired the change event
      if( $(':selected', this).val() == 'Unicamp') {
       $(this).next('.RA').show('slow');
+      $(this).next('.RA').find('input').enableClientSideValidations();
     }
     else {
+      $(this).next('.RA').find('input').disableClientSideValidations();
       $(this).next('.RA').hide('slow');
     }
   });
@@ -134,8 +136,6 @@ function activeMask() {
 $(document).ready(function() {
   activeMask();
 });
-
-
 $(document).ready(function(){ 
   $('a.add_nested_fields').on('click', function() {
     setTimeout( function() {
@@ -187,13 +187,14 @@ $(document).ready(function() {
 });
 });
 
-function ConfirmMorador() {
-  $('.modal').find('.confirm-morador').on('click', function() {
-    var nome = $('.in').find('.nome').val();
-    var sobrenome = $('.in').find('.sobrenome').val();
-    $(this).closest('.modal.in').prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
-        $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em OK
-      });
+function RememberMorador() {
+  $('.modal').each(function() {
+    var nome = $(this).find('.nome').val();
+    var sobrenome = $(this).find('.sobrenome').val();
+    if(nome != '' || sobrenome != '') {
+      $(this).prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
+    }
+  });
 }
 
 function EditMorador() {
@@ -206,7 +207,7 @@ function EditMorador() {
 $(document).ready(function() {
   EditMorador();
   isMoradorValid();
-  // ConfirmMorador();
+  RememberMorador();
 });
 
 $(document).ready(function() {
@@ -225,5 +226,5 @@ $(document).ready(function(){
 // Adiciona DICAS ao lado de USUARIO e SENHA na EDIÇÃO
 $(document).ready(function(){
   $('#edit-username').tooltip( {title:'Só modifique se desejar alterar o Usuário', placement: 'right'})
-   $('#edit-current-pass').tooltip( {title:'Utilize sua senha atual para confirmar as mudanças', placement: 'right'})
+  $('#edit-current-pass').tooltip( {title:'Utilize sua senha atual para confirmar as mudanças', placement: 'right'})
 });
