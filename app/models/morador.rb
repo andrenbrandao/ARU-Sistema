@@ -14,7 +14,7 @@ class Morador < ActiveRecord::Base
 	validates :sobrenome, presence: true
 	validates :universidade, presence: true, inclusion: UNIVERSIDADE
 	validates :ra, presence: true, uniqueness: true, numericality: {only_integer: true },
-			   length: {in: 5..6, message: 'RA inválido'}, :if => :is_unicamp?
+			   length: {is: 6, message: 'RA inválido'}, :if => :is_unicamp?
 	validates :curso, presence: true
 	validates :ano_de_ingresso, presence: true
 	validates :email, presence: true, :if => :is_representante?

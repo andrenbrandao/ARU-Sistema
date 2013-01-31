@@ -3,7 +3,7 @@
 * http://github.com/RobinHerbots/jquery.inputmask
 * Copyright (c) 2010 - 2013 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 2.0.7
+* Version: 2.0.7c
 */
 
 (function ($) {
@@ -74,7 +74,7 @@
             }
             var caretposCorrection = null;
             var masksets,
-	        activeMasksetIndex = 0;
+            activeMasksetIndex = 0;
 
             if (typeof fn == "string") {
                 switch (fn) {
@@ -142,6 +142,13 @@
                         else return "";
                     case "hasMaskedValue": //check wheter the returned value is masked or not; currently only works reliable when using jquery.val fn to retrieve the value 
                         return this.data('inputmask') ? !this.data('inputmask')['autoUnmask'] : false;
+                    case "isComplete":
+                        masksets = this.data('inputmask')['masksets'];
+                        activeMasksetIndex = this.data('inputmask')['activeMasksetIndex'];
+                        opts.greedy = this.data('inputmask')['greedy'];
+                        opts.repeat = this.data('inputmask')['repeat'];
+                        opts.definitions = this.data('inputmask')['definitions'];
+                        return isComplete(this[0]);
                     default:
                         //check if the fn is an alias
                         if (!resolveAlias(fn)) {
@@ -170,8 +177,8 @@
             //helper     functions
             function isInputEventSupported(eventName) {
                 var el = document.createElement('input'),
-		        eventName = 'on' + eventName,
-		        isSupported = (eventName in el);
+                eventName = 'on' + eventName,
+                isSupported = (eventName in el);
                 if (!isSupported) {
                     el.setAttribute(eventName, 'return;');
                     isSupported = typeof el[eventName] == 'function';
@@ -332,7 +339,7 @@
 
                         maskPos = isRTL ? seekPrevious(buffer, pos) : seekNext(buffer, pos);
                     }
-					if (isRTL ? activeMaskset['lastValidPosition'] <= opts.numericInput ? getMaskLength() : seekNext(buffer, maskPos) : activeMaskset['lastValidPosition'] >= seekPrevious(buffer, maskPos)) {
+                    if (isRTL ? activeMaskset['lastValidPosition'] <= opts.numericInput ? getMaskLength() : seekNext(buffer, maskPos) : activeMaskset['lastValidPosition'] >= seekPrevious(buffer, maskPos)) {
                       if (maskPos >= 0 && maskPos < getMaskLength()) {
                             var testPos = determineTestPosition(maskPos), loopend = c ? 1 : 0, chrs = '';
                             for (var i = activeMaskset['tests'][testPos].cardinality; i > loopend; i--) {
@@ -349,7 +356,7 @@
                                     results[index] = { "pos": maskPos }; //always take a possible corrected maskposition into account
                                 }
                                 activeMaskset['lastValidPosition'] = results[index].pos || maskPos; //set new position from isValid
-                            } else activeMaskset['lastValidPosition'] = isRTL ? seekNext(buffer, pos) : seekPrevious(buffer, pos); //autocorrect validposition from backspace etc  	
+                            } else activeMaskset['lastValidPosition'] = isRTL ? seekNext(buffer, pos) : seekPrevious(buffer, pos); //autocorrect validposition from backspace etc   
                         }
                     }
                 });
@@ -639,6 +646,31 @@
                     return caretpos;
                 }
             };
+            
+           function isComplete(npt) {
+                    var complete = false, nptValue = npt._valueGet(), ml = nptValue.length
+                    currentActiveMasksetIndex = activeMasksetIndex, highestValidPosition = 0;
+                    $.each(masksets, function (ndx, ms) {
+                        activeMasksetIndex = ndx;
+                        var aml = getMaskLength();
+                        if (ms["lastValidPosition"] >= highestValidPosition && ms["lastValidPosition"] == (aml - 1)) {
+                            var msComplete = true;
+                            for (var i = 0; i < aml; i++) {
+                                var mask = isMask(i);
+                                if ((mask && nptValue.charAt(i) == getPlaceHolder(i)) || (!mask && nptValue.charAt(i) != getActiveBuffer()[i])) {
+                                    msComplete = false;
+                                    break;
+                                }
+                            }
+                            complete = complete || msComplete;
+                            if (complete) //break loop
+                                return false;
+                        }
+                        highestValidPosition = ms["lastValidPosition"];
+                    });
+                    activeMasksetIndex = currentActiveMasksetIndex; //reset activeMaskset
+                    return complete;
+            }
 
             function mask(el) {
                 var $input = $(el);
@@ -711,7 +743,7 @@
                     if (nptValue != undoBuffer) {
                         $input.change();
                     }
-					if (opts.clearMaskOnLostFocus && nptValue != '') {
+                    if (opts.clearMaskOnLostFocus && nptValue != '') {
                         if (nptValue == getActiveBuffer().join(''))
                             input._valueSet('');
                         else { //clearout optional tail of the mask
@@ -773,7 +805,7 @@
                 }).bind("keydown.inputmask", keydownEvent
                 ).bind("keypress.inputmask", keypressEvent
                 ).bind("keyup.inputmask", keyupEvent
-                ).bind(pasteEvent + ".inputmask, dragdrop.inputmask, drop.inputmask", function () {
+                ).bind(pasteEvent + ".inputmask dragdrop.inputmask drop.inputmask", function () {
                     var input = this;
                     setTimeout(function () {
                         caret(input, checkVal(input, buffer, true));
@@ -812,31 +844,6 @@
                 installEventRuler(el);
 
                 //private functions
-                function isComplete(npt) {
-                    var complete = false, nptValue = npt._valueGet(), ml = nptValue.length
-                    currentActiveMasksetIndex = activeMasksetIndex, highestValidPosition = 0;
-                    $.each(masksets, function (ndx, ms) {
-                        activeMasksetIndex = ndx;
-                        var aml = getMaskLength();
-                        if (ms["lastValidPosition"] >= highestValidPosition && ms["lastValidPosition"] == (aml - 1)) {
-                            var msComplete = true;
-                            for (var i = 0; i < aml; i++) {
-                                if (isMask(i) && nptValue.charAt(i) == getPlaceHolder(i)) {
-                                    msComplete = false;
-                                    break;
-                                }
-                            }
-                            complete = complete || msComplete;
-                            if (complete) //break loop
-                                return false;
-                        }
-                        highestValidPosition = ms["lastValidPosition"];
-                    });
-                    activeMasksetIndex = currentActiveMasksetIndex; //reset activeMaskset
-                    return complete;
-                }
-
-
                 function installEventRuler(npt) {
                     var events = $._data(npt).events;
 

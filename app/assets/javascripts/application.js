@@ -55,10 +55,10 @@ $(function() {
      // this == the element that fired the change event
      if( $(':selected', this).val() == 'Unicamp') {
       $(this).next('.RA').show('slow');
-      $(this).next('.RA').find('input').enableClientSideValidations();
+      // $(this).next('.RA').find('input').enableClientSideValidations();
     }
     else {
-      $(this).next('.RA').find('input').disableClientSideValidations();
+      // $(this).next('.RA').find('input').disableClientSideValidations();
       $(this).next('.RA').hide('slow');
     }
   });
@@ -80,7 +80,8 @@ $(function() {
     $('.repres_input').val('false');
 
     // modificação dos campos para representante
-    $(this).nextAll('.repres_field').show('slow');    
+    $(this).nextAll('.repres_field').show('slow');
+    // $(this).nextAll('.repres_field').find('input').enableClientSideValidations();    
     $(this).prev('#representante').find('input').val('true');
   });
 });
@@ -96,7 +97,7 @@ $(document).ready( function() {
 
 $(document).ready( function() {
   $('.chzn-select').chosen();
-  $('.chzn-select').enableClientSideValidations();
+  // $('.chzn-select').enableClientSideValidations();
 });
 
 // Adiciona AJAX no Will_Paginate
@@ -122,6 +123,7 @@ $(document).ready(function() {
 function activeMask() {
   $('.telefone').inputmask('9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
   $('.celular').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  $('.RA').find('input').inputmask('999999', {placeholder: "", clearMaskOnLostFocus: true, "clearIncomplete": false, showMaskOnHover: false });
   $('.celular').keyup(function() {
     var valor = $(this).val().substr(1,2); 
     if(valor == '11') {
