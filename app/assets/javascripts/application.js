@@ -77,6 +77,11 @@ $(function() {
   $(document).on('change', '.radio_but', function() {
     // esconde os campos e modifica valor a cada mudança
     $('.repres_field').hide('slow');
+    $('.repres_field').each( function() {
+      $(this).find('.control-group').removeClass('error')
+              .find('span.help-inline').remove();
+      $(this).find('input').val('');
+    });
     $('.repres_input').val('false');
 
     // modificação dos campos para representante
@@ -170,16 +175,16 @@ $(document).ready(function() {
       });
       isMoradorValid();
 
-    $('.edit-morador-btn').on('click', function() {
-      $this = $(this);
-      $this.closest('.nomes-moradores').next('.morador-modal').modal('show');
-    });
+      $('.edit-morador-btn').on('click', function() {
+        $this = $(this);
+        $this.closest('.nomes-moradores').next('.morador-modal').modal('show');
+      });
 
-    $('a.remove_nested_fields').on('click', function() {
+      $('a.remove_nested_fields').on('click', function() {
       $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em Remover
     });
-  }, 10);
-});
+    }, 10);
+  });
 });
 
 function RememberMorador() {
@@ -223,3 +228,28 @@ $(document).ready(function(){
   $('#edit-username').tooltip( {title:'Só modifique se desejar alterar o Usuário', placement: 'right'})
   $('#edit-current-pass').tooltip( {title:'Utilize sua senha atual para confirmar as mudanças', placement: 'right'})
 });
+
+$(document).ready(function() {
+  validateEachMorador();
+});
+
+function validateEachMorador() {
+  $('.modal').each(function() {
+    var valid = true;
+    $(this).find('.control-group').each(function() {
+      if($(this).hasClass('error')) {
+        valid = false;
+      }
+    });
+    if(!valid) {
+      var morador = $(this).prev('.nomes-moradores').find('li');
+
+      if(morador.find('span:contains("Morador com erro")').length == '0') {
+      morador.append('<span style="color:#B94A48">Morador com erro</span>');
+    }
+   }
+   else {
+     $(this).prev('.nomes-moradores').find('li').find('span:contains("Morador com erro")').remove();
+   }
+ });
+}

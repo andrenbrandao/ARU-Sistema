@@ -10,7 +10,6 @@
         <th>Ano de ingresso</th>
         <th>RA</th>
         <th>Universidade</th>
-        <th>República</th>
         <th></th>
 
     </tr>
@@ -26,7 +25,6 @@
         <td><%= morador.ano_de_ingresso %></td>
         <td><%= morador.ra %></td>
         <td><%= morador.universidade %></td>
-        <td><%= morador.republica_id %></td>
         <% if can? :manage, :all %>
         <td><%= link_to 'Ver', republica_morador_path(@republica, morador), class: 'btn btn-mini' %>
             <%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>

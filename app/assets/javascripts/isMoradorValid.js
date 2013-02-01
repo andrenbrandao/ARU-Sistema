@@ -1,7 +1,7 @@
             
 function isMoradorValid() {
   $(".confirm-morador").bind("click", function(e) {
-
+     validateEachMorador();
 
     //If the form is valid then go to next else don't
     var valid = true;
@@ -284,3 +284,62 @@ function validateCurso() {
 }
 
   
+
+
+
+  // Ativa validação em Email e Celular quando MODAL aparecer
+  $(function() {
+    var emailRegexp = new RegExp(/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i);
+
+    $('.modal').on('shown', function(){
+     $('.radio_but').next('.repres_field').find('.email :input').bind('focusout', function() {
+      var input = $('.in').find('.email :input'),
+      divEmail = $('.in').find('.email').parents('.repres_field');
+      if(input.val() == '') {
+        divEmail.find('.control-group').addClass('error');
+        if(divEmail.find('span.help-inline').length == '0') {
+          divEmail.find('.controls').append('<span class="help-inline">não pode ficar em branco</span>');
+        }
+        else if(divEmail.find('span')) {
+          divEmail.find('span').text('não pode ficar em branco');
+        }
+      }
+      else if(emailRegexp.test(input.val()) == false) {
+        divEmail.find('.control-group').addClass('error');
+        if(divEmail.find('span.help-inline').length == '0') {
+          divEmail.find('.controls').append('<span class="help-inline">email inválido</span>');
+        }
+        else if(divEmail.find('span')) {
+          divEmail.find('span').text('email inválido');
+        }
+      }
+
+      else if(emailRegexp.test(input.val()) == true) {
+          divEmail.find('.control-group').removeClass('error');
+          divEmail.find('span').remove();
+      }
+    });
+
+
+    $('.radio_but').siblings('.repres_field').eq(1).find('.celular').bind('focusout', function() {
+        var input = $('.in').find('.celular'),
+        divCelular = $('.in').find('.celular').parents('.repres_field');
+        if(input.val() == '') {
+          divCelular.find('.control-group').addClass('error');
+          if(divCelular.find('span.help-inline').length == '0') {
+            divCelular.find('.controls').append('<span class="help-inline">não pode ficar em branco</span>');
+          }
+
+          else if(divCelular.find('span')) {
+            divCelular.find('span').text('não pode ficar em branco');
+          }
+
+        }
+        else if(input.inputmask("isComplete")) {
+          divCelular.find('.controls').find('span').remove();
+          divCelular.find('.control-group').removeClass('error');
+        }
+    });
+
+    });
+  });
