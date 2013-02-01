@@ -119,6 +119,10 @@ pt-BR:
       too_long: ! 'é muito longo (máximo: %{count} caracteres)'
       too_short: ! 'é muito curto (mínimo: %{count} caracteres)'
       wrong_length: não possui o tamanho esperado (%{count} caracteres)
+      carrierwave_processing_error: "Não pode redimensionar imagem."
+      carrierwave_integrity_error: "Não é uma imagem."
+      carrierwave_download_error: "Não conseguiu baixar a imagem."
+      extension_white_list_error: "Você não pode usar arquivos %{extension}, tipos permitidos: %{allowed_types}"
     template:
       body: ! 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:
@@ -238,4 +242,7 @@ pt-BR:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
+    errors:
+      messages:
+
 

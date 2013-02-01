@@ -170,13 +170,6 @@ $(document).ready(function() {
       });
       isMoradorValid();
 
-      // $('.modal').find('.confirm-morador').on('click', function() {
-      //   var nome = $('.in').find('.nome').val();
-      //   var sobrenome = $('.in').find('.sobrenome').val();
-      //   $(this).closest('.modal.in').prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
-      //   $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em OK
-      // });
-
     $('.edit-morador-btn').on('click', function() {
       $this = $(this);
       $this.closest('.nomes-moradores').next('.morador-modal').modal('show');

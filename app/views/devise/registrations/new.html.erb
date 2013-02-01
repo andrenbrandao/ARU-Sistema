@@ -1,6 +1,5 @@
   <% 3.times {@republica.moradores.build} if @republica.moradores.empty? %>
   <%= simple_nested_form_for @republica, validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
-  <%= f.error_notification %>
   <%= display_base_errors @republica %>
 
   <fieldset>
