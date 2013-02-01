@@ -79,7 +79,7 @@ $(function() {
     $('.repres_field').hide('slow');
     $('.repres_field').each( function() {
       $(this).find('.control-group').removeClass('error')
-              .find('span.help-inline').remove();
+      .find('span.help-inline').remove();
       $(this).find('input').val('');
     });
     $('.repres_input').val('false');
@@ -110,11 +110,22 @@ $(document).ready(function () {
   $(".pagination a").attr('data-remote', true);
 });
 
+// Delay para AJAX de SEARCH
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
 // AJAX para Search sem clicar em botao
 $(document).ready(function() {
   $("#republicas_search input").keyup(function(e) {
-    $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script");
-    e.preventDefault();
+    delay(function() {
+      $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script");
+      e.preventDefault();
+    }, 500);
   });
 });
 $(document).ready(function() {
@@ -245,10 +256,10 @@ function validateEachMorador() {
       var morador = $(this).prev('.nomes-moradores').find('li');
 
       if(morador.find('span:contains("Morador com erro")').length == '0') {
-      morador.append('<span style="color:#B94A48">Morador com erro</span>');
+        morador.append('<span style="color:#B94A48">Morador com erro</span>');
+      }
     }
-   }
-   else {
+    else {
      $(this).prev('.nomes-moradores').find('li').find('span:contains("Morador com erro")').remove();
    }
  });
