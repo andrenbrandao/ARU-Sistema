@@ -1,9 +1,9 @@
 <legend>Repúblicas Associadas</legend>
 
 <% if can? :manage, :all %>
-<%= link_to "Repúblicas aprovadas", republicas_path, remote: true %>
+<%= link_to "Repúblicas aprovadas", republicas_path, remote: true, id:'approved_link' %>
 |
-<%= link_to "Esperando aprovação", {:action => "index", :approved => "false"}, remote: true %>
+<%= link_to "Esperando aprovação", {:action => "index", :approved => "false"}, remote: true, id: 'disapproved_link' %>
 <% end %>
 
 <p class='pull-right btn' id='search_btn'>Search</p>

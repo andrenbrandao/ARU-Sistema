@@ -124,7 +124,8 @@ var delay = (function(){
 $(document).ready(function() {
   $("#republicas_search input").keyup(function(e) {
     delay(function() {
-      $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script");
+      $.get($("#republicas_search").attr("action"), $("#republicas_search").serialize(), null, "script")
+      .done(function() { tooltipAtributos(); });
       e.preventDefault();
     }, 500);
   });
@@ -268,8 +269,31 @@ function validateEachMorador() {
 
 // Tooltips
 $(document).ready(function() {
+  tooltipAtributos();
+});
+
+$(document).ready(function() {
+  $('#approved_link').on('click', function() {
+    delay(function() {
+      tooltipAtributos();
+    }, 100);
+  });
+  $('#disapproved_link').on('click', function() {
+   delay(function() {
+    tooltipAtributos();
+  }, 100);
+ });
+});
+$(document).on('click', '.pagination a', function() {
+ delay(function() {
+  tooltipAtributos();
+}, 100);
+});
+
+
+function tooltipAtributos() {
   $('.file').find('input').tooltip( {title:'Adicione um logotipo', placement: 'top'});
   $('.interreps').tooltip( {title:'Campeã de InterReps', placement: 'top'} );
-   $('.reunioes').tooltip( {title:'Presente em Reuniões', placement: 'top'} );
-    $('.nova_rep').tooltip( {title:'República Nova', placement: 'top'} );
-});
+  $('.reunioes').tooltip( {title:'Presente em Reuniões', placement: 'top'} );
+  $('.nova_rep').tooltip( {title:'República Nova', placement: 'top'} );
+}
