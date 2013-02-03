@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <div id='show-rep'>
-  
+
   <div class='media' id='rep-header'>
     <%= image_tag @republica.logotipo, id: 'logo_show'%>
 
@@ -25,10 +23,23 @@
     <%= @republica.descricao %>
   </p>
 
+  <% if can? :manage, :all %>
+  <%= link_to 'Editar Atributos', republica_edit_atributos_path(@republica), class: 'btn btn-mini' %>
+  <% end %>
+
+  <% if @republica.atributos == true %>
   <p>
-    <b>Atividades:</b>
-    Campeã InterReps X
+    <b>Atributos:</b>
+    <ul>
+      <% if @republica.campea_interreps != '' %>
+      <li><b>Campeã InterReps</b>: <%= @republica.campea_interreps %></li>
+      <% end %>
+      <% if @republica.presente_reunioes == true %>
+      <li><b>Presente em Reuniões da ARU</b></li>
+      <% end %>
+    </ul>
   </p>
+  <% end %>
 
 
   <% if can? :modify, @republica %>

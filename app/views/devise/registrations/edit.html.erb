@@ -16,7 +16,7 @@
     <%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
     <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
 
-    <%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
+    <%= f.input :ano_de_fundacao, label: false, collection: (1990..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
 
     <%= f.input :endereco, placeholder: 'Endereço', label: false %>
     <%= f.input :numero, placeholder: 'Número', label: false %>

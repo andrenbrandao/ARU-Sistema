@@ -27,6 +27,7 @@ class Republica < ActiveRecord::Base
 
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
+  attr_accessible :campea_interreps, :presente_reunioes
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
@@ -44,14 +45,28 @@ class Republica < ActiveRecord::Base
   validate :has_one_representante
   validates_confirmation_of :password
 
-  def active_for_authentication? 
-    super && approved? 
-  end 
+  # Mostra os atributos se tiver algum
+  def atributos
+    valid = false
+    if campea_interreps != nil 
+      valid = true
 
-  def inactive_message 
-    if !approved? 
-      :not_approved 
-    else 
+    elsif presente_reunioes == true
+      valid = true
+    end
+
+    valid
+  end
+
+
+def active_for_authentication? 
+  super && approved? 
+end 
+
+def inactive_message 
+  if !approved? 
+    :not_approved 
+  else 
       super # Use whatever other message 
     end 
   end

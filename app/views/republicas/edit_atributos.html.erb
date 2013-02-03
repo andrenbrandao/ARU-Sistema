@@ -1,0 +1,17 @@
+<%= simple_nested_form_for(@republica, :html => { :method => :put, id: 'republica_form'}) do |f| %>
+<%= display_base_errors @republica %>
+
+<fieldset>
+    	<legend>Atributos de <%= @republica.nome %></legend>
+
+<%= f.input :campea_interreps, label: 'Campeã InterReps:' %>
+<%= f.input :presente_reunioes, label: false, inline_label: 'Presente em Reuniões'%>
+
+<div class="form-actions" id='cadastro_actions'>
+	<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+	 <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+</div>
+
+</fieldset>
+
+<% end %>

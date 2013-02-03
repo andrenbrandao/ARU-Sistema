@@ -5,7 +5,7 @@
 			<th>República</th>
 			<th>Tipo</th>
 			<th>Ano de Fundação</th>
-			<th>Atividades</th> <!-- Prêmios - Campeã de InterReps, Reuniões, etc. -->
+			<th>Atributos</th> <!-- Prêmios - Campeã de InterReps, Reuniões, etc. -->
 			<th></th> <!-- Comandos ADMIN -->
 		</tr>
 	</thead>
@@ -17,10 +17,14 @@
 			<td><b><%= link_to republica.nome, republica %></b></td>
 			<td><%= republica.tipo %></td>
 			<td><%= republica.ano_de_fundacao %></td>
-			<td><%= image_tag 'glyphicons/glyphicons_332_certificate.png' if republica.nome =='Paidabartira' %>
-				<%= image_tag 'glyphicons/glyphicons_045_calendar.png' if republica.nome =='Paidabartira' %>
+			<td>
+				<%  if republica.campea_interreps != '' && republica.campea_interreps != nil %>
+				<%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'interreps' %>
+				<% end %>
+				<%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'reunioes' if republica.presente_reunioes == true %>
+				<%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'nova_rep' if Time.now.year - "#{republica.ano_de_fundacao}".to_i <= 1 %>
 			</td>
-			
+
 			<td>
 				<% if can? :manage, :all %>
 				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>

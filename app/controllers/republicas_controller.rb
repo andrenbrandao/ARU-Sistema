@@ -103,5 +103,9 @@ class RepublicasController < ApplicationController
     end
   end
 
+  def edit_atributos
+    @republica = Republica.find(params[:republica_id])
+  end
+
 
 end

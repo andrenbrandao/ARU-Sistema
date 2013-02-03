@@ -7,6 +7,7 @@ Cadastro::Application.routes.draw do
   get "sistema/index"
   
   resources :republicas do
+    get "edit_atributos"
     resources :moradores
   end
 

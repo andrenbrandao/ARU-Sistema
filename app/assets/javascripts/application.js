@@ -266,6 +266,10 @@ function validateEachMorador() {
  });
 }
 
+// Tooltips
 $(document).ready(function() {
-$('.file').find('input').tooltip( {title:'Adicione um logotipo', placement: 'top'})
+  $('.file').find('input').tooltip( {title:'Adicione um logotipo', placement: 'top'});
+  $('.interreps').tooltip( {title:'Campeã de InterReps', placement: 'top'} );
+   $('.reunioes').tooltip( {title:'Presente em Reuniões', placement: 'top'} );
+    $('.nova_rep').tooltip( {title:'República Nova', placement: 'top'} );
 });

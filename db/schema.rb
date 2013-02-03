@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202142424) do
+ActiveRecord::Schema.define(:version => 20130203014954) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20130202142424) do
     t.string   "logotipo"
     t.boolean  "approved",               :default => false, :null => false
     t.integer  "numero"
+    t.string   "campea_interreps"
+    t.boolean  "presente_reunioes"
   end
 
   add_index "republicas", ["approved"], :name => "index_republicas_on_approved"
