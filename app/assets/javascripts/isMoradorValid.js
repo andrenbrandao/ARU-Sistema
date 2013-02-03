@@ -33,6 +33,7 @@ function isMoradorValid() {
       $(this).closest('.modal.in').modal('hide'); // Esconde MODAL após clicar em OK
     }
   });
+
 }
 
 $(function() {

@@ -25,7 +25,7 @@ class Republica < ActiveRecord::Base
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
 
-  attr_accessible :ano_de_fundacao, :descricao, :endereco, :nome, :logotipo, :approved
+  attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
@@ -35,6 +35,7 @@ class Republica < ActiveRecord::Base
   validates :ano_de_fundacao, presence: true
   validates :descricao, presence: true, length: {minimum: 100}
   validates :endereco, presence: true
+  validates :numero, presence: true, numericality: {greater_than: 0}
   #validates :telefone, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 

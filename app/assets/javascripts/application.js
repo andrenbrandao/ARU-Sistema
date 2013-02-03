@@ -16,16 +16,17 @@
 //= require rails.validations.simple_form
 //= require rails.validations.nested_form
 //= require bootstrap
+//= require bootstrap-fileupload
 //= require jquery.inputmask
 //= require formToWizard
 //= require chosen-jquery
 //= require_tree .
 
-$(function() {
-  $(document).ready( function() {
-    $("#republica_form").formToWizard({ submitButton: 'cadastro_actions' })
-  });
-});
+// $(function() {
+//   $(document).ready( function() {
+//     $("#republica_form").formToWizard({ submitButton: 'cadastro_actions' })
+//   });
+// });
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
@@ -264,3 +265,7 @@ function validateEachMorador() {
    }
  });
 }
+
+$(document).ready(function() {
+$('.file').find('input').tooltip( {title:'Adicione um logotipo', placement: 'top'})
+});

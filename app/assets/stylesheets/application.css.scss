@@ -9,10 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
-
  *= require_tree .
  */
-
+label.file {
+	font-size: 11px;
+	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-weight: bold;
+}
 
  .field_with_errors .message {
  	color: white;

@@ -6,13 +6,22 @@
   <fieldset>
     <legend>República</legend>
 
-    <%= f.input :logotipo, label: false, input_html: {} %>
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+      <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+      <div>
+        <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+      </div>
+    </div>
+
+    <%= f.input :logotipo, label: 'Logotipo da República' %>
     <%= f.input :nome, placeholder: 'Nome', label: false %>
     <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo' %>
 
     <%= f.input :ano_de_fundacao, label: false, collection: (1962..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
 
     <%= f.input :endereco, placeholder: 'Endereço', label: false %>
+    <%= f.input :numero, placeholder: 'Número', label: false %>
     <%= f.input :telefone, placeholder: 'Telefone', label: false, input_html: {class: 'telefone'} %>
     <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história.', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
   </fieldset>
@@ -20,17 +29,17 @@
   <fieldset id='moradores'>
     <legend>Moradores</legend>
 
-<ol>
-    <div class="morador">
-      <%= f.simple_fields_for :moradores do |builder| %>
-      <%= render 'republicas/morador_fields', f: builder %>
-      <% end %>
-    </div>
-    <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
-  </ol>
+    <ol>
+      <div class="morador">
+        <%= f.simple_fields_for :moradores do |builder| %>
+        <%= render 'republicas/morador_fields', f: builder %>
+        <% end %>
+      </div>
+      <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+    </ol>
 
 
-    <br><hr>
+    <br>
 
   </fieldset>
 
