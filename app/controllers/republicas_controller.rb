@@ -84,7 +84,6 @@ class RepublicasController < ApplicationController
         format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
         format.json { head :no_content }
       else
-
        format.html { render action: "edit" }
        format.json { render json: @republica.errors, status: :unprocessable_entity }
      end
@@ -105,6 +104,16 @@ class RepublicasController < ApplicationController
 
   def edit_atributos
     @republica = Republica.find(params[:republica_id])
+  end
+
+  def index_exmoradores
+    @republica = Republica.find(params[:republica_id])
+    @exmoradores = @republica.moradores.where(exmorador: true)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @exmoradores }
+    end
   end
 
 

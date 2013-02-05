@@ -297,3 +297,14 @@ function tooltipAtributos() {
   $('.reunioes').tooltip( {title:'Presente em Reuniões', placement: 'top'} );
   $('.nova_rep').tooltip( {title:'República Nova', placement: 'top'} );
 }
+
+// Seta EXMORADOR ao clicar no Botão
+$(function() {
+  $('.exmorador-btn').on('click', function() {
+    if(confirm("Tem certeza de que é um ex-morador?")) {
+      $(this).next('div').find('.exmorador-input').eq(0).prop('checked', true);
+      // $(this).next('div').find('.exmorador-input').eq(0).val('t');
+      // $(this).parents('div.fields').hide('slow');
+      }
+  });
+});

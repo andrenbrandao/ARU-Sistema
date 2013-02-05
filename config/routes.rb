@@ -2,12 +2,13 @@ Cadastro::Application.routes.draw do
 
   devise_for :admins
 
-  devise_for :republicas
+  devise_for :republicas, :controllers => {:registrations => 'registrations'}
 
   get "sistema/index"
   
   resources :republicas do
     get "edit_atributos"
+    get 'index_exmoradores'
     resources :moradores
   end
 

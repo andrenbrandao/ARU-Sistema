@@ -1,4 +1,4 @@
-<legend>Moradores</legend>
+<legend>Ex-Moradores</legend>
 
 <table class='table table-striped'>
     <thead>
@@ -16,8 +16,7 @@
 </thead>
 
 <tbody>
-    <% @moradores.each do |morador| %>
-    <% if morador.exmorador? == false %>
+    <% @exmoradores.each do |morador| %>
     <tr>
         <td><%= morador.nome %></td>
         <td><%= morador.sobrenome %></td>
@@ -33,7 +32,6 @@
             <% end %>
 
         </tr>
-        <% end %>
         <% end %>
     </tbody>
 </table>

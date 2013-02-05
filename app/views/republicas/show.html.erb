@@ -42,30 +42,57 @@
   <% end %>
 
 
-  <% if can? :modify, @republica %>
-
-  <legend> Dados Restritos </legend>
+  <legend>Contatos</legend>
 
   <p>
-    <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
-    <%= @republica.moradores.length %>
+    <b>Telefone da República:</b>
+    <%= @republica.telefone %>
   </p>
-
 
   <p>
     <b>Representante:</b>
     <%= @representante.nome + ' ' + @representante.sobrenome %>
   </p>
 
+  <p>
+    <b>Email:</b>
+    <%= @republica.email %>
+  </p>
+
+  <% if republica_signed_in? %> 
+  <% if current_republica != @republica %>
+
+  <legend> Outros Dados </legend>
 
   <p>
-    <b>Endereço:</b>
-    <%= @republica.endereco %>
+    <b>Número de Moradores:</b>
+    <%= @republica.moradores.where(exmorador: false).length %>
   </p>
 
   <p>
-    <b>Telefone:</b>
-    <%= @republica.telefone %>
+    <b>Endereço:</b>
+    <%= @republica.endereco + ', ' + @republica.numero.to_s %>
+  </p>
+  <% end %>
+  <% end %>
+
+  <% if can? :modify, @republica %>
+
+  <legend> Dados Restritos </legend>
+
+  <p>
+    <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
+    <%= @republica.moradores.where(exmorador: false).length %>
+  </p>
+
+  <p>
+    <b><%= link_to 'Ex-moradores', republica_index_exmoradores_path(@republica) %>:</b>
+    <%= @republica.moradores.where(exmorador: true).length %>
+  </p>
+
+  <p>
+    <b>Endereço:</b>
+    <%= @republica.endereco + ', ' + @republica.numero.to_s %>
   </p>
 
   <p>
@@ -73,10 +100,6 @@
     <%= @republica.username %>
   </p>
 
-  <p>
-    <b>Email:</b>
-    <%= @republica.email %>
-  </p>
   <% end %>
 
   <%= link_to 'Voltar', republicas_path, class: 'btn btn-small'  %>
