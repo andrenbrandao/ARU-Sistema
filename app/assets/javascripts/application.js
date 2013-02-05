@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 // Cria INPUT_MASKS para Telefones e Celulares
 function activeMask() {
-  $('.telefone').inputmask('9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  $('.telefone').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
   $('.celular').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
   $('.RA').find('input').inputmask('999999', {placeholder: "", clearMaskOnLostFocus: true, "clearIncomplete": false, showMaskOnHover: false });
   $('.celular').keyup(function() {
