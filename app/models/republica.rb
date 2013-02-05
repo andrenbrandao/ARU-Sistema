@@ -87,7 +87,7 @@ class Republica < ActiveRecord::Base
     self.moradores.reject(&:marked_for_destruction? ).each do |f|
       if f.exmorador == true
         if Time.now - f.created_at < 6.months
-          self.errors.add(:base, "Morador tem menos de 3 meses de vivência")  
+          self.errors.add(:base, "'#{f.nome + ' ' + f.sobrenome}' tem menos de 6 meses de vivência")  
         end   
       end
     end

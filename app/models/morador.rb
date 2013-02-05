@@ -21,17 +21,8 @@ class Morador < ActiveRecord::Base
 	validates :email, presence: true, :if => :is_representante?
 	validates :celular, presence: true, :if => :is_representante?
 
-	validate :is_exmorador_valid?
 	
 	private
-
-	def is_exmorador_valid?
-		if self.exmorador == true
-			if Time.now - self.created_at < 3.months
-				self.errors.add(:base, "Morador tem menos de 3 meses de vivência")	
-			end		
-		end
-	end
 
 	def is_unicamp?
 		universidade == "Unicamp"

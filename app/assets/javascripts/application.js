@@ -302,9 +302,9 @@ function tooltipAtributos() {
 $(function() {
   $('.exmorador-btn').on('click', function() {
     if(confirm("Tem certeza de que é um ex-morador?")) {
-      $(this).next('div').find('.exmorador-input').eq(0).prop('checked', true);
-      // $(this).next('div').find('.exmorador-input').eq(0).val('t');
-      // $(this).parents('div.fields').hide('slow');
+      // $(this).next('div').find('.exmorador-input').eq(0).prop('checked', true);
+      $(this).next('div').find('.exmorador-input').eq(0).val('t');
+      $(this).parents('div.fields').hide('slow');
       }
   });
 });
