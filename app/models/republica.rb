@@ -43,6 +43,7 @@ class Republica < ActiveRecord::Base
   validate :min_of_moradores
   validate :max_of_moradores
   validate :has_one_representante
+  validate :is_exmorador_valid?
   validates_confirmation_of :password
 
   # Mostra os atributos se tiver algum
@@ -59,14 +60,14 @@ class Republica < ActiveRecord::Base
   end
 
 
-def active_for_authentication? 
-  super && approved? 
-end 
+  def active_for_authentication? 
+    super && approved? 
+  end 
 
-def inactive_message 
-  if !approved? 
-    :not_approved 
-  else 
+  def inactive_message 
+    if !approved? 
+      :not_approved 
+    else 
       super # Use whatever other message 
     end 
   end
@@ -80,6 +81,18 @@ def inactive_message
   end
 
   private
+
+
+  def is_exmorador_valid?
+    self.moradores.reject(&:marked_for_destruction? ).each do |f|
+      if f.exmorador == true
+        if Time.now - f.created_at < 6.months
+          self.errors.add(:base, "Morador tem menos de 3 meses de vivência")  
+        end   
+      end
+    end
+
+  end
 
   def copy_email_to_republica
   	self.moradores.reject(&:marked_for_destruction? && :exmorador? ).each do |f|

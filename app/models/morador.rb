@@ -15,13 +15,23 @@ class Morador < ActiveRecord::Base
 	validates :sobrenome, presence: true
 	validates :universidade, presence: true, inclusion: UNIVERSIDADE
 	validates :ra, presence: true, uniqueness: true, numericality: {only_integer: true },
-			   length: {is: 6, message: 'RA inválido'}, :if => :is_unicamp?
+	length: {is: 6, message: 'RA inválido'}, :if => :is_unicamp?
 	validates :curso, presence: true
 	validates :ano_de_ingresso, presence: true
 	validates :email, presence: true, :if => :is_representante?
 	validates :celular, presence: true, :if => :is_representante?
+
+	validate :is_exmorador_valid?
 	
-private
+	private
+
+	def is_exmorador_valid?
+		if self.exmorador == true
+			if Time.now - self.created_at < 3.months
+				self.errors.add(:base, "Morador tem menos de 3 meses de vivência")	
+			end		
+		end
+	end
 
 	def is_unicamp?
 		universidade == "Unicamp"
