@@ -308,3 +308,7 @@ $(function() {
       }
   });
 });
+
+$(document).ready(function() {
+  $('.marked_for_destruction').hide();
+  });
