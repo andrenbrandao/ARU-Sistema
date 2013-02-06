@@ -4,12 +4,12 @@
     <thead>
       <tr>
         <th>Nome</th>
-        <th>Sobrenome</th>
         <th>Apelido</th>
         <th>Curso</th>
         <th>Ano de ingresso</th>
-        <th>RA</th>
         <th>Universidade</th>
+        <th>RA</th>
+        <th>Contato</th>
         <th></th>
 
     </tr>
@@ -19,24 +19,36 @@
     <% @moradores.each do |morador| %>
     <% if morador.exmorador? == false %>
     <tr>
-        <td><%= morador.nome %></td>
-        <td><%= morador.sobrenome %></td>
+        <td>
+            <%= morador.nome + ' ' + morador.sobrenome %>
+            <% if morador.representante %>
+            <b> (Representante)</b>
+            <% end %>
+        </td>
         <td><%= morador.apelido %></td>
         <td><%= morador.curso %></td>
         <td><%= morador.ano_de_ingresso %></td>
-        <td><%= morador.ra %></td>
         <td><%= morador.universidade %></td>
+        <td><%= morador.ra %></td>
+        <td>
+            <% if morador.representante %>
+            <%= morador.email  %> 
+            <br>
+            <%= morador.celular %>
+            <% end %>
+        </td>
+
         <% if can? :manage, :all %>
         <td><%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
             <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
             <%= link_to "Ex-morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'true' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-warning' %>
         </td>
-            <% end %>
+        <% end %>
 
-        </tr>
-        <% end %>
-        <% end %>
-    </tbody>
+    </tr>
+    <% end %>
+    <% end %>
+</tbody>
 </table>
 
 <br />

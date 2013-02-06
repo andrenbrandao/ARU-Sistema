@@ -4,12 +4,11 @@
     <thead>
       <tr>
         <th>Nome</th>
-        <th>Sobrenome</th>
         <th>Apelido</th>
         <th>Curso</th>
         <th>Ano de ingresso</th>
-        <th>RA</th>
         <th>Universidade</th>
+        <th>RA</th>
         <th></th>
         <th></th>
 
@@ -19,13 +18,12 @@
 <tbody>
     <% @exmoradores.each do |morador| %>
     <tr>
-        <td><%= morador.nome %></td>
-        <td><%= morador.sobrenome %></td>
+        <td><%= morador.nome + ' ' + morador.sobrenome %></td>
         <td><%= morador.apelido %></td>
         <td><%= morador.curso %></td>
         <td><%= morador.ano_de_ingresso %></td>
-        <td><%= morador.ra %></td>
         <td><%= morador.universidade %></td>
+        <td><%= morador.ra %></td>
         <td><%= link_to "Morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %></td>
         <% if can? :manage, :all %>
         <td><%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
@@ -40,4 +38,4 @@
 <br />
 
 
-  <%= link_to 'Voltar', republica_path(@republica), class: 'btn btn-small'  %>
+<%= link_to 'Voltar', republica_path(@republica), class: 'btn btn-small'  %>
