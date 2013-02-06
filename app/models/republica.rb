@@ -95,7 +95,7 @@ class Republica < ActiveRecord::Base
   end
 
   def copy_email_to_republica
-  	self.moradores.reject(&:marked_for_destruction? && :exmorador? ).each do |f|
+  	self.moradores.reject(&:marked_for_destruction? || :exmorador? ).each do |f|
   		if f.representante == true
   			self.email = f.email
   		end
@@ -110,7 +110,7 @@ class Republica < ActiveRecord::Base
   end
 
   def min_of_moradores
-  	if self.moradores.reject( &:marked_for_destruction? && :exmorador? ).length < 3
+  	if self.moradores.reject( &:marked_for_destruction? || :exmorador? ).length < 3
   		self.errors.add(:base, "República deve ter no mínimo 3 moradores")
   	end
   end
@@ -123,7 +123,7 @@ class Republica < ActiveRecord::Base
 
   def has_one_representante
   	count = 0
-  	self.moradores.reject(&:marked_for_destruction? && :exmorador? ).each do |f|
+  	self.moradores.reject(&:marked_for_destruction? || :exmorador? ).each do |f|
   		if f.representante == true
   			count += 1
   		end
