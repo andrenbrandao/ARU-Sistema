@@ -59,6 +59,20 @@
     <%= @republica.email %>
   </p>
 
+  <% if admin_signed_in? %>
+  <p>
+    <b>Celular do Representante:</b>
+    <%= @representante.celular %>
+  </p>
+  <% end %>
+
+  <% if republica_signed_in? %> 
+  <p>
+    <b>Celular do Representante:</b>
+    <%= @representante.celular %>
+  </p>
+  <% end %>
+
   <% if republica_signed_in? %> 
   <% if current_republica != @republica %>
 
@@ -72,11 +86,6 @@
   <p>
     <b>Endereço:</b>
     <%= @republica.endereco + ', ' + @republica.numero.to_s %>
-  </p>
-
-    <p>
-    <b>Celular do Representante:</b>
-    <%= @representante.celular %>
   </p>
   <% end %>
   <% end %>

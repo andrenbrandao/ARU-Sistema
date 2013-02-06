@@ -1,8 +1,16 @@
 Cadastro::Application.routes.draw do
 
   devise_for :admins
+  devise_scope :admin do
+    get "/admin" => 'devise/sessions#new', :as => :new_admin_session
+    delete "/logoutadmin" => "devise/sessions#destroy", :as => :destroy_admin_session
+  end
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
+  devise_scope :republica do
+    get "/login" => "devise/sessions#new", :as => :new_republica_session 
+    delete "/logout" => "devise/sessions#destroy", :as => :destroy_republica_session
+  end
 
   get "sistema/index"
   
