@@ -26,7 +26,7 @@
         <td><%= morador.ano_de_ingresso %></td>
         <td><%= morador.ra %></td>
         <td><%= morador.universidade %></td>
-        <td><%= link_to "Morador", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %></td>
+        <td><%= link_to "Morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %></td>
         <% if can? :manage, :all %>
         <td><%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
             <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %></td>
