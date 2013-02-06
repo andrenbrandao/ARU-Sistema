@@ -36,12 +36,12 @@
 	<ul class='nav pull-right'>
 		<% if admin_signed_in? %>
 		<li>
-			<%= link_to('Logout', destroy_admin_session_path, :method=>'delete') %>
+			<%= link_to('Logout for Admin', destroy_admin_session_path, :method=>'delete') %>
 		</li>
 		<% else %>
-		<li class="<%= 'active' if current_page?(new_admin_session_path) %>">
+		<!-- <li class="<%= 'active' if current_page?(new_admin_session_path) %>">
 			<%= link_to('Admin', new_admin_session_path)  %>
-		</li>
+		</li> -->
 		<% end %>
 	</ul>
 </div>
