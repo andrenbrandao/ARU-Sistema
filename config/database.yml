@@ -30,7 +30,7 @@ development:
   database: cadastro_development
   pool: 5
   username: andre
-  password:
+  password: cadastro
 
 test:
   adapter: postgresql
@@ -38,4 +38,4 @@ test:
   database: cadastro_test
   pool: 5
   username: andre
-  password:
+  password: cadastro
