@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class MoradoresController < ApplicationController
   load_and_authorize_resource :republica
   load_and_authorize_resource :morador, :through => :republica
@@ -68,7 +70,7 @@ class MoradoresController < ApplicationController
 
     respond_to do |format|
       if @morador.update_attributes(params[:morador])
-        format.html { redirect_to republica_morador_path(@republica, @morador), notice: 'Morador was successfully updated.' }
+        format.html { redirect_to republica_moradores_path(@republica), notice: 'Morador foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,14 +83,14 @@ class MoradoresController < ApplicationController
   # DELETE /moradores/1.json
   def destroy
     @republica = Republica.find(params[:republica_id])
-    @moradores = @republica.moradores.all
+    @moradores = @republica.moradores.where(exmorador: false)
     @morador = Morador.find(params[:id])
 
     if @moradores.size > 3 
       @morador.destroy
-      flash[:notice] = "Morador destroyed"
+      flash[:notice] = "Morador deletado!"
     else 
-      flash[:notice] = "Must have more than 3 moradores"
+      flash[:notice] = "República não pode ter menos que 3 moradores."
     end
 
     respond_to do |format|
