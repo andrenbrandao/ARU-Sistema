@@ -19,7 +19,7 @@
 //= require bootstrap-fileupload
 //= require jquery.inputmask
 //= require formToWizard
-//= require chosen-jquery
+//= require chosen
 //= require_tree .
 
 // $(function() {
@@ -44,7 +44,13 @@ $(function () {
  $('a').on('click', function() {
   setTimeout(function() { 
     $('.fields').find(':input').enableClientSideValidations();
-    $('.chzn-select').chosen();
+    $('.chzn-select').chosen({
+     create_option: true,
+    // persistent_create_option decides if you can add any term, even if part
+    // of the term is also found, or only unique, not overlapping terms
+    persistent_create_option: true,
+    create_option_text: 'Usar curso'
+  });
   }, 10);
 });
 });
@@ -102,7 +108,13 @@ $(document).ready( function() {
 });
 
 $(document).ready( function() {
-  $('.chzn-select').chosen();
+  $('.chzn-select').chosen({
+   create_option: true,
+    // persistent_create_option decides if you can add any term, even if part
+    // of the term is also found, or only unique, not overlapping terms
+    persistent_create_option: true,
+    create_option_text: 'Usar curso'
+  });
   // $('.chzn-select').enableClientSideValidations();
 });
 
@@ -305,10 +317,10 @@ $(function() {
       // $(this).next('div').find('.exmorador-input').eq(0).prop('checked', true);
       $(this).next('div').find('.exmorador-input').eq(0).val('t');
       $(this).parents('div.fields').hide('slow');
-      }
+    }
   });
 });
 
 $(document).ready(function() {
   $('.marked_for_destruction').hide();
-  });
+});

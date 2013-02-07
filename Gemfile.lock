@@ -37,10 +37,6 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    chosen-rails (0.9.11.1)
-      coffee-rails (>= 3.2)
-      railties (>= 3.0)
-      sass-rails (>= 3.2)
     client_side_validations (3.2.1)
     client_side_validations-simple_form (2.0.1)
       client_side_validations (~> 3.2.0)
@@ -147,7 +143,6 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   carrierwave
-  chosen-rails
   client_side_validations
   client_side_validations-simple_form
   coffee-rails (~> 3.2.1)

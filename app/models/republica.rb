@@ -7,6 +7,7 @@ class Republica < ActiveRecord::Base
   mount_uploader :logotipo, LogotipoUploader
   before_validation :copy_email_to_republica
   before_save :titleize_moradores
+  before_save :titleize_curso
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -106,6 +107,12 @@ class Republica < ActiveRecord::Base
     self.moradores.reject(&:marked_for_destruction?).each do |f|
       f.nome = f.nome.to_s.titleize
       f.sobrenome = f.sobrenome.to_s.titleize
+    end
+  end
+
+  def titleize_curso
+    self.moradores.reject(&:marked_for_destruction?).each do |f|
+      f.curso = f.curso.to_s.titleize
     end
   end
 

@@ -236,7 +236,7 @@ $(function() {
 });
 
 function validateCursoClick() {
-$('.chzn-select').chosen().change( function() {  
+$('.chzn-select').change( function() {  
     var span = $('.in').find('.curso').siblings('div').eq(0).find('span'),
         cursoControlGroup = $('.in').find('.curso').parents('.control-group');
         if(span.text() == 'Curso') {
