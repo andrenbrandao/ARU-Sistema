@@ -7,7 +7,7 @@ class Republica < ActiveRecord::Base
   mount_uploader :logotipo, LogotipoUploader
   before_validation :copy_email_to_republica
   before_save :titleize_moradores
-  before_save :titleize_curso
+  # before_save :titleize_curso
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -85,7 +85,7 @@ class Republica < ActiveRecord::Base
 
 
   def is_exmorador_valid?
-    self.moradores.reject(&:marked_for_destruction? ).each do |f|
+    self.moradores.reject(&:marked_for_destruction?).each do |f|
       if f.exmorador == true
         if Time.now - f.created_at < 6.months
           self.errors.add(:base, "'#{f.nome + ' ' + f.sobrenome}' tem menos de 6 meses de vivência")  
@@ -123,7 +123,7 @@ class Republica < ActiveRecord::Base
   end
 
   def max_of_moradores
-  	if self.moradores.reject(&:marked_for_destruction?).length > 20
+  	if self.moradores.reject(&:marked_for_destruction? || :exmorador?).length > 20
   		self.errors.add(:base, "República possui mais de 20 moradores")
   	end
   end
