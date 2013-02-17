@@ -45,11 +45,7 @@ $(function () {
   setTimeout(function() { 
     $('.fields').find(':input').enableClientSideValidations();
     $('.chzn-select').chosen({
-     create_option: true,
-    // persistent_create_option decides if you can add any term, even if part
-    // of the term is also found, or only unique, not overlapping terms
-    persistent_create_option: true,
-    create_option_text: 'Usar curso'
+     
   });
   }, 10);
 });
@@ -109,11 +105,7 @@ $(document).ready( function() {
 
 $(document).ready( function() {
   $('.chzn-select').chosen({
-   create_option: true,
-    // persistent_create_option decides if you can add any term, even if part
-    // of the term is also found, or only unique, not overlapping terms
-    persistent_create_option: true,
-    create_option_text: 'Usar curso'
+  
   });
   // $('.chzn-select').enableClientSideValidations();
 });
