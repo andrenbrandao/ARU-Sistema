@@ -6,6 +6,8 @@ Cadastro::Application.routes.draw do
     delete "/logoutadmin" => "devise/sessions#destroy", :as => :destroy_admin_session
   end
 
+  get "admin/dashboard"
+
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
   devise_scope :republica do
     get "/login" => "devise/sessions#new", :as => :new_republica_session 
