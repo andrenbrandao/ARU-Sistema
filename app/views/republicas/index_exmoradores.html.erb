@@ -9,6 +9,8 @@
         <th>Ano de ingresso</th>
         <th>Universidade</th>
         <th>RA</th>
+        <th>Data de Saída</th>
+        <th>Tempo de Rep</th>
         <th></th>
         <th></th>
 
@@ -24,6 +26,8 @@
         <td><%= morador.ano_de_ingresso %></td>
         <td><%= morador.universidade %></td>
         <td><%= morador.ra %></td>
+        <td><%= morador.data_de_saida.to_date %></td>
+        <td class='<%= "red" if morador.data_de_saida - morador.created_at < 3.months %>'><%= distance_of_time_in_words(morador.data_de_saida - morador.created_at) %></td>
         <td><%= link_to "Morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %></td>
         <% if can? :manage, :all %>
         <td><%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>

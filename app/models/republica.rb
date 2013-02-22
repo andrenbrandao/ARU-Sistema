@@ -7,6 +7,7 @@ class Republica < ActiveRecord::Base
   mount_uploader :logotipo, LogotipoUploader
   before_validation :copy_email_to_republica
   before_save :titleize_moradores
+  before_save :set_data_de_saida
   # before_save :titleize_curso
 
   # Include default devise modules. Others available are:
@@ -44,7 +45,7 @@ class Republica < ActiveRecord::Base
   validate :min_of_moradores
   validate :max_of_moradores
   validate :has_one_representante
-  validate :is_exmorador_valid?
+  # validate :is_exmorador_valid?
   validates_confirmation_of :password
 
   # Mostra os atributos se tiver algum
@@ -84,19 +85,29 @@ class Republica < ActiveRecord::Base
   private
 
 
-  def is_exmorador_valid?
+  # # Verificação de tempo de vivência para ex-morador
+  # def is_exmorador_valid?
+  #   self.moradores.reject(&:marked_for_destruction?).each do |f|
+  #     if f.exmorador == true
+  #       if Time.now - f.created_at < 6.months
+  #         self.errors.add(:base, "'#{f.nome + ' ' + f.sobrenome}' tem menos de 6 meses de vivência")  
+  #       end   
+  #     end
+  #   end
+  # end
+
+   def set_data_de_saida
     self.moradores.reject(&:marked_for_destruction?).each do |f|
-      if f.exmorador == true
-        if Time.now - f.created_at < 6.months
-          self.errors.add(:base, "'#{f.nome + ' ' + f.sobrenome}' tem menos de 6 meses de vivência")  
+      if f.exmorador_changed?
+        if f.exmorador_was == false
+          f.data_de_saida = Time.now
         end   
       end
     end
-
   end
 
   def copy_email_to_republica
-  	self.moradores.reject(&:marked_for_destruction? || :exmorador? ).each do |f|
+  	self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).each do |f|
   		if f.representante == true
   			self.email = f.email
   		end
@@ -117,20 +128,20 @@ class Republica < ActiveRecord::Base
   end
 
   def min_of_moradores
-  	if self.moradores.reject( &:marked_for_destruction? || :exmorador? ).length < 3
+  	if self.moradores.reject( &:marked_for_destruction?).reject(&:exmorador?).length < 3
   		self.errors.add(:base, "República deve ter no mínimo 3 moradores")
   	end
   end
 
   def max_of_moradores
-  	if self.moradores.reject(&:marked_for_destruction? || :exmorador?).length > 20
+  	if self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).length > 20
   		self.errors.add(:base, "República possui mais de 20 moradores")
   	end
   end
 
   def has_one_representante
   	count = 0
-  	self.moradores.reject(&:marked_for_destruction? || :exmorador? ).each do |f|
+  	self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).each do |f|
   		if f.representante == true
   			count += 1
   		end
