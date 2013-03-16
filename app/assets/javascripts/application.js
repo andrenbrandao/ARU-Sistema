@@ -45,8 +45,9 @@ $(function () {
   setTimeout(function() { 
     $('.fields').find(':input').enableClientSideValidations();
     $('.chzn-select').chosen({
-     
+        no_results_text: "Escolha o curso 'Outro'. Não foi encontrado"
   });
+      $('.chzn-container').tooltip({title: 'Se não encontrar seu Curso, escolha a opção "Outro"', placement: 'right'});
   }, 10);
 });
 });
@@ -105,7 +106,7 @@ $(document).ready( function() {
 
 $(document).ready( function() {
   $('.chzn-select').chosen({
-  
+   no_results_text: "Escolha o curso 'Outro'. Não foi encontrado"
   });
   // $('.chzn-select').enableClientSideValidations();
 });
@@ -244,6 +245,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('#edit-username').tooltip( {title:'Só modifique se desejar alterar o Usuário', placement: 'right'})
   $('#edit-current-pass').tooltip( {title:'Utilize sua senha atual para confirmar as mudanças', placement: 'right'})
+  $('.chzn-container').tooltip({title: 'Se não encontrar seu Curso, escolha a opção "Outro"', placement: 'right'});
 });
 
 $(document).ready(function() {
