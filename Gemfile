@@ -50,7 +50,7 @@ gem 'rolify'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'will_paginate'
-gem 'fog'
+gem "fog", "~> 1.3.1"
 
 group :development do
   gem 'better_errors'
