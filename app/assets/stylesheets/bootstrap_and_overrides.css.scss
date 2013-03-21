@@ -1,12 +1,12 @@
 @import "bootstrap";
-body { padding-top: 60px; }
+body { padding-top: 40px; }
 @import "bootstrap-responsive";
 
 html,
 body {
 	height: 100%;
         /* The html and body elements cannot have any padding or margin. */
-    }
+  }
 
       /* Wrapper for page content to push down footer */
       #wrap {
@@ -15,7 +15,7 @@ body {
       	height: 100%;
         /* Negative indent footer by it's height */
         margin: 0 auto -60px;
-    }
+  }
 
       /* Set the fixed height of the footer here */
 
@@ -23,43 +23,32 @@ body {
       	height: 63px;
       }
 
-      #footer {
-      	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      	font-size: 13px;
-      	height:30px;
-      	color: #B4ACA9;
-      	padding: 17px 0 18px 0;
-      	margin-bottom: 0px;
-      	text-align: left;
-      	background-color: #434343;
-      	border-top: 1px solid #ddd;
-      	*zoom: 1;
-      	-webkit-box-shadow: inset 0 1px 0 #ffffff;
-      	-moz-box-shadow: inset 0 1px 0 #ffffff;
-      	box-shadow: inset 0 1px 0 #ffffff;
+
+
+      html,body
+      {
+            height:100%;
       }
 
-      #footer a {
-      	color: #fff;
+      #wrap
+      {
+            min-height: 100%; 
       }
 
-      .footer a:hover {
-      	color: #efefef;
-      }
+      #main{
+            overflow:auto;
+      padding-bottom:80px; /* this needs to be bigger than footer height*/
+}
 
-      #footer:before,
-      #footer:after {
-      	display: table;
-      	line-height: 0;
-      	content: "";
-      }
-      #footer:after {
-      	clear: both;
-      }
 
-      #footer-links {
-
-      }
+.footer {
+      height: 50px;
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 70px;
+      border-top: 1px solid #e5e5e5;
+      background-color: #f5f5f5;
+}
 
       /* Lastly, apply responsive CSS fixes as necessary */
       @media (max-width: 767px) {

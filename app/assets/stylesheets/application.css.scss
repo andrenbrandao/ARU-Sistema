@@ -118,23 +118,6 @@ fieldset {
 	color: red;
 }
 
-.top_news{
-	background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%);
-	padding: 70px 0 80px; 
-	position: relative; 
-	color: white;
-	text-align: center;
-	margin: 0;
-}
-
-.top_news:after {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-
-.top_news h1 {
-	color: white;
+.content {
+	margin-top: 40px;
 }

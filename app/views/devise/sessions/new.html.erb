@@ -1,10 +1,12 @@
-		<h2>Sign in</h2>
-		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-		<%= f.input :login, :autofocus => true %>
-		<%= f.input :password %>
-		<%= f.input :remember_me, label:false, inline_label: 'Remember me', :as => :boolean if devise_mapping.rememberable? %>
-
-		<%= f.button :submit, "Sign in", :class => 'btn-primary' %>
-		<% end %>
-
-		<%= render 'devise/shared/links' %>
+	<div class='form-signin'>
+			<h2>Login</h2>
+			<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+			<%= f.input :login, :autofocus => true, label: false, placeholder: 'Usuário' %>
+			<%= f.input :password, label: false, placeholder: 'Senha' %>
+			<%= f.input :remember_me, label:false, inline_label: 'Remember me', :as => :boolean if devise_mapping.rememberable? %>
+	
+			<%= f.button :submit, "Sign in", :class => 'btn-primary' %>
+			<% end %>
+	
+			<%= render 'devise/shared/links' %>
+	</div>

@@ -12,6 +12,16 @@
   <%= yield(:head) %>
 </head>
 <body>
+  
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
       <div class="container">
@@ -20,17 +30,19 @@
     </div>
   </div>
 
-  <div id='wrap'>
-    <div class="container-fluid">
-      <div class="row-fluid">
+<!--   <div id='wrap'> -->
+    <%= render 'layouts/index' if @index_header %>
+
+    <div id='main' class="container">
+      <div class="content">
         <!-- Body Content -->
         <%= render 'layouts/messages' %>
         <%= yield %>
       </div>
-      <div id='push'></div>
+<!--       <div id='push'></div> -->
     </div>
-  </div>
-  <div id='footer'>
+<!--   </div> -->
+  <div class='footer'>
     <div class='container'>
       <p>Copyright © <%= Date.today.year %> <b>ARU - Associação de Repúblicas da Unicamp</b>. Todos os direitos reservados.</p>
     </div>
