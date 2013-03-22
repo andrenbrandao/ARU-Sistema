@@ -99,9 +99,9 @@ pt-BR:
     format: ! '%{attribute} %{message}'
     messages:
       accepted: deve ser aceito
-      blank: não pode ficar em branco
-      confirmation: não está de acordo com a confirmação
-      empty: não pode ficar vazio
+      blank: campo obrigatório
+      confirmation: diferente da confirmação
+      empty: campo obrigatório
       equal_to: deve ser igual a %{count}
       even: deve ser par
       exclusion: não está disponível
@@ -116,8 +116,8 @@ pt-BR:
       odd: deve ser ímpar
       record_invalid: ! 'A validação falhou: %{errors}'
       taken: já está em uso
-      too_long: ! 'é muito longo (máximo: %{count} caracteres)'
-      too_short: ! 'é muito curto (mínimo: %{count} caracteres)'
+      too_long: ! 'máximo: %{count} caracteres'
+      too_short: ! 'mínimo: %{count} caracteres'
       wrong_length: não possui o tamanho esperado (%{count} caracteres)
       carrierwave_processing_error: "Não pode redimensionar imagem."
       carrierwave_integrity_error: "Não é uma imagem."
