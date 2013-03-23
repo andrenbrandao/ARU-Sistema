@@ -10,6 +10,8 @@ class RepublicasController < ApplicationController
     #   @republicas = Republica.order(:nome).find_all_by_approved(true)
     # end
 
+    @republicas_header = true
+
     if params[:approved] == "false"
       @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(:nome)
     else
