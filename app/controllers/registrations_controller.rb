@@ -14,6 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource
 
     if resource.save
+      RepublicaMailer.novo_cadastro_email(resource).deliver
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)

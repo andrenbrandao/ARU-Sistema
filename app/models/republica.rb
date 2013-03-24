@@ -14,7 +14,7 @@ class Republica < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
@@ -41,12 +41,15 @@ class Republica < ActiveRecord::Base
   validates :numero, presence: true, numericality: {greater_than: 0}
   #validates :telefone, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  
+ validates :email, uniqueness: {message: 'email'}
 
   validate :min_of_moradores
   validate :max_of_moradores
   validate :has_one_representante
   # validate :is_exmorador_valid?
   validates_confirmation_of :password
+
 
   # Mostra os atributos se tiver algum
   def atributos

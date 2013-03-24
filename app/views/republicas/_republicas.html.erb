@@ -32,10 +32,10 @@
 				<% end %>
 				<% if can? :manage, :all %>
 				<% if republica.approved == false %>
-				<%= link_to 'Approve', republica_path(republica, :republica => {:approved => 'true' }), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
+				<%= link_to 'Approve', republica_approve_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
 				<% end %>
 				<% if republica.approved == true %>
-				<%= link_to 'Disapprove', republica_path(republica, :republica => {:approved => 'false' }), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
+				<%= link_to 'Disapprove', republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
 				<% end %>
 				<% end %>
 			</td>

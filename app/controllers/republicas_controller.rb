@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class RepublicasController < ApplicationController
   load_and_authorize_resource
   
@@ -67,6 +69,7 @@ class RepublicasController < ApplicationController
 
     respond_to do |format|
       if @republica.save
+        
         format.html { redirect_to @republica, notice: 'Republica was successfully created.' }
         format.json { render json: @republica, status: :created, location: @republica }
       else
@@ -117,6 +120,39 @@ class RepublicasController < ApplicationController
       format.json { render json: @exmoradores }
     end
   end
+
+  def approve
+    @republica = Republica.find(params[:republica_id])
+
+    respond_to do |format|
+      if @republica.update_attributes(:approved => 'true')
+        RepublicaMailer.welcome_email(@republica).deliver
+        format.html { redirect_to republicas_path, notice: 'Republica aprovada.' }
+        format.json { head :no_content }
+      else
+       format.html { render action: "index" }
+       format.json { render json: @republica.errors, status: :unprocessable_entity }
+     end
+   end
+
+ end
+
+
+  def disapprove
+    @republica = Republica.find(params[:republica_id])
+
+    respond_to do |format|
+      if @republica.update_attributes(:approved => 'false')
+        RepublicaMailer.disapprove_email(@republica).deliver
+        format.html { redirect_to republicas_path, notice: 'Republica desaprovada.' }
+        format.json { head :no_content }
+      else
+       format.html { render action: "index" }
+       format.json { render json: @republica.errors, status: :unprocessable_entity }
+     end
+   end
+
+ end
 
 
 end
