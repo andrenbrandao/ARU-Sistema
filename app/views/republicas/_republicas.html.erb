@@ -9,10 +9,9 @@
 
 			<% if can? :manage, :all %>
 			<th>Registro</th>
-			<th>Ultimo Login</th>
-			<th>Habilitado</th>
+			<th>Último Login</th>
+			<th>Última Atualização</th>
 			<th>Confirmado</th>
-			<th>Aprovado</th>
 			<th></th> <!-- Comandos ADMIN -->
 			<% end %>
 		</tr>
@@ -36,11 +35,24 @@
 			<% if can? :manage, :all %>
 			<td><%= republica.created_at.to_date %></td>
 
-			<td><%= republica.last_sign_in_at.date %></td>
+			<td>
+				<% if republica.last_sign_in_at != nil %>
+				<%= republica.last_sign_in_at.to_date %>
+				<% end %>
+			</td>
 
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>
+				<%= republica.updated_at.to_s.to_date %>
+			</td>
+
+			<td>
+				<% if republica.confirmed_at != nil %>
+				<span style='color:green'>Sim</span>
+				<% else %>
+				<span style='color:red'>Não</span>
+				<% end %>
+			</td>
+
 
 			<td>
 				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
