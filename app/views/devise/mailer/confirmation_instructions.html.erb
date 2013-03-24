@@ -1,12 +1,12 @@
-<p>Bem vindo <%= @resource.nome %>!</p>
+<p>Olá <%= @resource.nome %>!</p>
 
 <p>Você pode confirmar sua conta de email acessando o link abaixo:</p>
 
 <p><%= link_to 'Confirmar minha conta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
 
-<p>Atenciosamente,</p>
-<p>ARU - Associação de Repúblicas da Unicamp</p>
+<p>Atenciosamente,<br/>
+ARU - Associação de Repúblicas da Unicamp</p>
 
 <hr>
-<p>Obs: Esse email é gerado automaticamente. Não responda essa mensagem.</p>
-<p>Qualquer dúvida envie um email para: contato@republicasunicamp.com.br</p>
+<p>Obs: Esse email é gerado automaticamente. Não responda essa mensagem.<br/>
+Qualquer dúvida envie um email para: contato@republicasunicamp.com.br</p>

@@ -17,6 +17,8 @@ Cadastro::Application.routes.draw do
   get "sistema/index"
   
   resources :republicas do
+    put 'approve'
+    put 'disapprove'
     get "edit_atributos"
     get 'index_exmoradores'
     resources :moradores

@@ -2,13 +2,12 @@
 
 <p>Sua conta foi bloqueada devido a um número excessivo de tentativas não sucedidas de Login.</p>
 
-<p>Clique no link abaixo para desbloquear sua conta:</p>
+<p>Clique no link abaixo para desbloquear sua conta:<br/>
+<%= link_to 'Desbloquear minha conta', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>
 
-<p><%= link_to 'Desbloquear minha conta', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>
-
-<p>Atenciosamente,</p>
-<p>ARU - Associação de Repúblicas da Unicamp</p>
+<p>Atenciosamente,<br/>
+ARU - Associação de Repúblicas da Unicamp</p>
 
 <hr>
-<p>Obs: Esse email é gerado automaticamente. Não responda essa mensagem.</p>
-<p>Qualquer dúvida envie um email para: contato@republicasunicamp.com.br</p>
+<p>Obs: Esse email é gerado automaticamente. Não responda essa mensagem.<br/>
+Qualquer dúvida envie um email para: contato@republicasunicamp.com.br</p>

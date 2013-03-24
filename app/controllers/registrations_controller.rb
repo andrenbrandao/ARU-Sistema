@@ -13,11 +13,8 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
 
-
-
     if resource.save
-      # Tell the UserMailer to send a welcome Email after save
-       RepublicaMailer.welcome_email(@republica).deliver
+      RepublicaMailer.novo_cadastro_email(resource).deliver
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)
@@ -31,8 +28,6 @@ class RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       respond_with resource
     end
-
-      Rails.logger.info(resource.errors.inspect) 
   end
 
   # GET /resource/edit
