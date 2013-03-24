@@ -6,7 +6,15 @@
 			<th>Tipo</th>
 			<th>Ano de Fundação</th>
 			<th>Atributos</th> <!-- Prêmios - Campeã de InterReps, Reuniões, etc. -->
+
+			<% if can? :manage, :all %>
+			<th>Registro</th>
+			<th>Ultimo Login</th>
+			<th>Habilitado</th>
+			<th>Confirmado</th>
+			<th>Aprovado</th>
 			<th></th> <!-- Comandos ADMIN -->
+			<% end %>
 		</tr>
 	</thead>
 
@@ -25,20 +33,26 @@
 				<%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'nova_rep' if Time.now.year - "#{republica.ano_de_fundacao}".to_i <= 1 %>
 			</td>
 
+			<% if can? :manage, :all %>
+			<td><%= republica.created_at.to_date %></td>
+
+			<td><%= republica.last_sign_in_at.date %></td>
+
+			<td></td>
+			<td></td>
+			<td></td>
+
 			<td>
-				<% if can? :manage, :all %>
 				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
-				<% end %>
-				<% if can? :manage, :all %>
 				<% if republica.approved == false %>
 				<%= link_to 'Approve', republica_approve_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
 				<% end %>
 				<% if republica.approved == true %>
 				<%= link_to 'Disapprove', republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
 				<% end %>
-				<% end %>
 			</td>
+			<% end %>
 
 		</tr>
 		<% end %>
