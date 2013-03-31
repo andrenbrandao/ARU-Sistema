@@ -49,24 +49,19 @@
     <%= @republica.telefone %>
   </p>
 
+  <% if republica_signed_in? || admin_signed_in? %> 
   <p>
     <b>Representante:</b>
     <%= @representante.nome + ' ' + @representante.sobrenome %>
   </p>
+  <% end %>
 
   <p>
-    <b>Email:</b>
+    <b>Email do Representante:</b>
     <%= @republica.email %>
   </p>
 
-  <% if admin_signed_in? %>
-  <p>
-    <b>Celular do Representante:</b>
-    <%= @representante.celular %>
-  </p>
-  <% end %>
-
-  <% if republica_signed_in? %> 
+  <% if admin_signed_in? || republica_signed_in? %>
   <p>
     <b>Celular do Representante:</b>
     <%= @representante.celular %>
