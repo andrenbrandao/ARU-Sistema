@@ -54,7 +54,7 @@
 
 
   <div class="form-actions" id='cadastro_actions'>
-      <p class='terms_text'>Ao clicar em Cadastrar, você aceita nossos <%= link_to "Termos de Associação", terms_path %>.</p>
+      <p class='terms_text'>Ao clicar em Cadastrar, você aceita nossos <%= link_to "Termos de Associação", terms_path, target: "_blank" %>.</p>
    <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
    <%= link_to 'Cancel', republicas_path, class: 'btn' %>
  </div>
