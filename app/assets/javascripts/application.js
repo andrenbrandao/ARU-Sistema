@@ -20,6 +20,8 @@
 //= require jquery.inputmask
 //= require formToWizard
 //= require chosen
+//= require enhance.min
+//= require fileinput.jquery
 //= require_tree .
 
 // $(function() {
@@ -317,4 +319,10 @@ $(function() {
 
 $(document).ready(function() {
   $('.marked_for_destruction').hide();
+});
+
+$(function() {
+  $('#republica_logotipo').customFileInput({
+      button_position : 'right'
+  });
 });
