@@ -50,12 +50,14 @@
     <%= f.input :password_confirmation, placeholder: 'Confirmação', label: false %>
   </fieldset>
 
+
+
+
   <div class="form-actions" id='cadastro_actions'>
+      <p class='terms_text'>Ao clicar em Cadastrar, você aceita nossos <%= link_to "Termos de Associação", terms_path %>.</p>
    <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
    <%= link_to 'Cancel', republicas_path, class: 'btn' %>
  </div>
 
-<%= f.input :terms, :as => :boolean, label: false, wrapper: :inline   %> 
-  Aceito os <%= link_to "termos de aceitação", terms_path, :remote => true %> 
 
  <% end %>
