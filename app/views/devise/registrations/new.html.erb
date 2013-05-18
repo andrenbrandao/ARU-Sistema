@@ -55,4 +55,7 @@
    <%= link_to 'Cancel', republicas_path, class: 'btn' %>
  </div>
 
+<%= f.input :terms, :as => :boolean, label: false, wrapper: :inline   %> 
+  Aceito os <%= link_to "termos de aceitação", terms_path, :remote => true %> 
+
  <% end %>

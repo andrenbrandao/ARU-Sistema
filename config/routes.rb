@@ -24,6 +24,8 @@ Cadastro::Application.routes.draw do
     resources :moradores
   end
 
+  get "/terms" => "sistema#terms", :as => :terms
+
   authenticated :user do
     root :to => 'sistema#index'
   end

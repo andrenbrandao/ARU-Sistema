@@ -30,6 +30,7 @@ class Republica < ActiveRecord::Base
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
   attr_accessible :campea_interreps, :presente_reunioes
+  attr_accessible :terms
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
