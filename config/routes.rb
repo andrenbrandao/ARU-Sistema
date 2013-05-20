@@ -16,7 +16,8 @@ Cadastro::Application.routes.draw do
 
   get "sistema/index"
   
-  resources :republicas do
+  resources :republicas, :except => [:edit, :create, :update, :destroy] do
+
     put 'approve'
     put 'disapprove'
     get "edit_atributos"
