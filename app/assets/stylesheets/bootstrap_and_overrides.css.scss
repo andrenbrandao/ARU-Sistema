@@ -103,6 +103,10 @@ body {
         .jumbotron h1 {
           font-size: 60px !important;
         }
+        .container {
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
       }
 
 
@@ -114,6 +118,9 @@ body {
         }
         .jumbotron h1 {
           font-size: 45px !important;
+        }
+        .subhead { 
+          text-align: center !important;
         }
       }
 
