@@ -42,6 +42,8 @@
   <% end %>
 
 
+  <% if republica_signed_in? || admin_signed_in? %> 
+
   <legend>Contatos</legend>
 
   <p>
@@ -49,43 +51,24 @@
     <%= @republica.telefone %>
   </p>
 
-  <% if republica_signed_in? || admin_signed_in? %> 
   <p>
     <b>Representante:</b>
     <%= @representante.nome + ' ' + @representante.sobrenome %>
   </p>
-  <% end %>
 
   <p>
     <b>Email do Representante:</b>
     <%= @republica.email %>
   </p>
 
-  <% if admin_signed_in? || republica_signed_in? %>
   <p>
     <b>Celular do Representante:</b>
     <%= @representante.celular %>
   </p>
   <% end %>
 
-  <% if republica_signed_in? %> 
-  <% if current_republica != @republica %>
 
-  <legend> Outros Dados </legend>
-
-  <p>
-    <b>Número de Moradores:</b>
-    <%= @republica.moradores.where(exmorador: false).length %>
-  </p>
-
-  <p>
-    <b>Endereço:</b>
-    <%= @republica.endereco + ', ' + @republica.numero.to_s %>
-  </p>
-  <% end %>
-  <% end %>
-
-  <% if can? :modify, @republica %>
+<% if current_republica == @republica %>
 
   <legend> Dados Restritos </legend>
 

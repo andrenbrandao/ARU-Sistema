@@ -16,10 +16,12 @@ class Ability
       # end
 
       can :read, Republica
+
       can :index_exmoradores, Republica
 
       # Pode administrar os próprios MORADORES
       # can :manage, Morador, republica: {id: user.id}
+      can :read, Morador, republica: {id: user.id}
       
     else
       # Permissões para CONVIDADOS
