@@ -30,7 +30,7 @@
         <td class='<%= "red" if morador.data_de_saida - morador.created_at < 3.months %>'><%= distance_of_time_in_words(morador.data_de_saida - morador.created_at) %></td>
         <% if can? :manage, :all %>
         <td><%= link_to "Morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %></td>
-        <td><%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
+        <td class='admin_action'><%= link_to 'Editar', edit_republica_morador_path(@republica,morador), class: 'btn btn-mini' %>
             <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %></td>
             <% end %>
 

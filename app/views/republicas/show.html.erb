@@ -68,7 +68,7 @@
   <% end %>
 
 
-<% if current_republica == @republica %>
+<% if current_republica == @republica || admin_signed_in? %>
 
   <legend> Dados Restritos </legend>
 
