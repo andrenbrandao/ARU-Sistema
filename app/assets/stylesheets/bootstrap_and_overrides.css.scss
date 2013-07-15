@@ -42,7 +42,7 @@ body {
 
 
     .footer {
-      height: 50px;
+      height: 80px;
       text-align: center;
       padding: 30px 0;
       margin-top: 70px;
@@ -61,6 +61,7 @@ body {
     .footer p {
       margin-bottom: 0;
       color: #777;
+      font-size: 13px;
     }
 
     .footer span {
@@ -69,7 +70,7 @@ body {
     }
 
     .mini {
-      font-size: 10px;
+      font-size: 10px !important;
     }
 
     .alert {
