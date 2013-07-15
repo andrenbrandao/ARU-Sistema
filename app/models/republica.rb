@@ -43,11 +43,12 @@ class Republica < ActiveRecord::Base
   #validates :telefone, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   
- validates :email, uniqueness: {message: 'email'}
+  validates :email, uniqueness: {case_sensitive: false}
 
   validate :min_of_moradores
   validate :max_of_moradores
   validate :has_one_representante
+  validate :uniqueness_of_email
   # validate :is_exmorador_valid?
   validates_confirmation_of :password
 
@@ -87,6 +88,12 @@ class Republica < ActiveRecord::Base
   end
 
   private
+
+  def uniqueness_of_email
+    unless Republica.where(email: email).count == 0
+      self.errors.add(:base, 'O email do representante já está em uso')
+    end
+  end
 
 
   # # Verificação de tempo de vivência para ex-morador
