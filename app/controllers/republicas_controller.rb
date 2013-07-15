@@ -107,6 +107,10 @@ class RepublicasController < ApplicationController
     end
   end
 
+ ############################################
+ ####### FUNÇÕES ADICIONADAS POR MIM ########
+ ############################################
+
   def edit_atributos
     @republica = Republica.find(params[:republica_id])
   end
@@ -114,6 +118,9 @@ class RepublicasController < ApplicationController
   def index_exmoradores
     @republica = Republica.find(params[:republica_id])
     @exmoradores = @republica.moradores.where(exmorador: true)
+
+    # comando necessário para que CANCAN funcionasse!
+    authorize! :index_exmoradores, @republica
 
     respond_to do |format|
       format.html # index.html.erb
