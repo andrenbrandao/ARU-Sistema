@@ -21,6 +21,7 @@ Cadastro::Application.routes.draw do
     put 'disapprove'
     get "edit_atributos"
     get 'index_exmoradores' 
+    get "statistics"
     resources :moradores
   end
 

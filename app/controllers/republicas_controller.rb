@@ -156,10 +156,18 @@ class RepublicasController < ApplicationController
       else
        format.html { render action: "index" }
        format.json { render json: @republica.errors, status: :unprocessable_entity }
+       end
      end
    end
 
- end
+     def statistics
+      @republica = Republica.find(params[:republica_id])
+      @moradores = @republica.moradores.where(exmorador: false)
+
+      respond_to do |format|
+        format.html 
+       end
+    end
 
 
 end

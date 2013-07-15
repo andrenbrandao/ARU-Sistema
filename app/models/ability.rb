@@ -19,7 +19,6 @@ class Ability
 
       can :index_exmoradores, Republica, id: user.id
       
-
       # Pode administrar os próprios MORADORES
       # can :manage, Morador, republica: {id: user.id}
 

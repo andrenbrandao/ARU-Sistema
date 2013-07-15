@@ -9,12 +9,5 @@ class SistemaController < ApplicationController
 	      format.json 
     	end		
 	end
-
-	 def statistics
-	    @republica = Republica.find(params[:republica_id])
-
-	    respond_to do |format|
-	      format.html # index.html.erb
-   		 end
- 	 end
+	
 end
