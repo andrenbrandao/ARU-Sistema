@@ -2,7 +2,7 @@
       <legend>Statistics of <%= @republica.nome %></legend>
 
       <% @count_of_unicampers = @moradores.where(universidade: 'Unicamp').count %>
-      <% @porcentagem = number_to_percentage (@count_of_unicampers.to_f/(@moradores.count))*100, precision: 2 %>
+      <% @porcentagem = number_to_percentage (@count_of_unicampers.to_f/(@moradores.count))*100, precision: 1 %>
 
       <p>Porcentagem de Unicampers: <%= @porcentagem %></p>
 
