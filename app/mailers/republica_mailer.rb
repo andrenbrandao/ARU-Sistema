@@ -1,7 +1,8 @@
 #encoding: utf-8
 
 class RepublicaMailer < ActionMailer::Base
-	default from: "cadastro@republicasunicamp.com.br"
+	default from: "cadastro@republicasunicamp.com.br",
+			reply_to: 'contato@republicasunicamp.com.br'
 
 	def welcome_email(republica)
 		@republica = republica

@@ -132,7 +132,7 @@ class RepublicasController < ApplicationController
     @republica = Republica.find(params[:republica_id])
 
     respond_to do |format|
-      if @republica.update_attributes(:approved => 'true')
+      if @republica.update_attribute(:approved, 'true')
         RepublicaMailer.welcome_email(@republica).deliver
         format.html { redirect_to republicas_path, notice: 'Republica aprovada.' }
         format.json { head :no_content }
@@ -149,7 +149,7 @@ class RepublicasController < ApplicationController
     @republica = Republica.find(params[:republica_id])
 
     respond_to do |format|
-      if @republica.update_attributes(:approved => 'false')
+      if @republica.update_attribute(:approved, 'false')
         RepublicaMailer.disapprove_email(@republica).deliver
         format.html { redirect_to republicas_path, notice: 'Republica desaprovada.' }
         format.json { head :no_content }
@@ -168,6 +168,8 @@ class RepublicasController < ApplicationController
         format.html 
        end
     end
+
+
 
 
 end

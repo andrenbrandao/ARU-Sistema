@@ -53,6 +53,19 @@ class Republica < ActiveRecord::Base
   validates_confirmation_of :password
 
 
+    def self.check_inactivity 
+      @republica = Republica.where(approved: true)
+
+      @republica.each do |republica|
+        if (Time.now - republica.updated_at) >= 6.months
+          if republica.update_attribute(:approved, 'false')
+             RepublicaMailer.disapprove_email(republica).deliver
+          end
+        end
+     end
+    end
+
+
   # Mostra os atributos se tiver algum
   def atributos
     valid = false
