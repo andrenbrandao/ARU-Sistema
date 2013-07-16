@@ -22,7 +22,7 @@ Cadastro::Application.routes.draw do
     get "edit_atributos"
     get 'index_exmoradores' 
     get "statistics"
-    resources :moradores
+    resources :moradores, except: [:show, :edit]
   end
 
   get "/terms" => "sistema#terms", :as => :terms

@@ -17,14 +17,14 @@ class MoradoresController < ApplicationController
 
   # GET /moradores/1
   # GET /moradores/1.json
-  def show
-    @morador = Morador.find(params[:id])
+  # def show
+  #   @morador = Morador.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @morador }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @morador }
+  #   end
+  # end
 
   # GET /moradores/new
   # GET /moradores/new.json
@@ -40,10 +40,10 @@ class MoradoresController < ApplicationController
   end
 
   # GET /moradores/1/edit
-  def edit
-    @republica = Republica.find(params[:republica_id])
-    @morador = Morador.find(params[:id])
-  end
+  # def edit
+  #   @republica = Republica.find(params[:republica_id])
+  #   @morador = Morador.find(params[:id])
+  # end
 
   # POST /moradores
   # POST /moradores.json
