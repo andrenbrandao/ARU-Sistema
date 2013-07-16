@@ -12,6 +12,7 @@
 			<th>Último Login</th>
 			<th>Última Atualização</th>
 			<th>Confirmado</th>
+			<th>Reconfirmado? (em caso de mudança)</th>
 			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->
 			<% end %>
@@ -47,7 +48,7 @@
 			</td>
 
 			<td>
-				<% if republica.confirmed_at != nil %>
+				<% if republica.confirmed? %>
 				<span style='color:green'>Sim</span>
 				<% else %>
 				<span style='color:red'>Não</span>
@@ -55,10 +56,18 @@
 			</td>
 
 			<td>
+				<% if republica.pending_reconfirmation?%>
+				<span style='color:red'>Não</span>
+				<% else %>
+				<span style='color:green'>Sim</span>
+				<% end %>
+			</td>
+
+			<td>
 				<%= link_to 'Statistics', republica_statistics_path(republica), class: 'btn btn-mini' %>
 			</td>
 				
-			<td>
+			<td class='admin_action'>
 				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
 				<% if republica.approved == false %>

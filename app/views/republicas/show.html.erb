@@ -61,6 +61,15 @@
     <%= @republica.email %>
   </p>
 
+<% if current_republica == @republica || admin_signed_in? %>
+  <% if @republica.pending_reconfirmation? %>
+  <p style='color:red'>
+    <b>Email Não Reconfirmado:</b>
+    <%= @republica.unconfirmed_email %>
+  </p>
+  <% end %>
+<% end %>
+
   <p>
     <b>Celular do Representante:</b>
     <%= @representante.celular %>
