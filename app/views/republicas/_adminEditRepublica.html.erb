@@ -1,0 +1,68 @@
+  <%= simple_nested_form_for @republica, validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @republica %>
+
+    <fieldset>
+      <legend>República</legend>
+
+<!--       <div class="fileupload fileupload-new" data-provides="fileupload">
+        <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+        <div>
+          <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+          <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+        </div>
+      </div> -->
+
+      <%= f.input :logotipo, label: 'Logotipo da República' %>
+      <%= f.input :nome, placeholder: 'Nome', label: false %>
+      <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo'%>
+
+      <%= f.input :ano_de_fundacao, label: false, collection: (1990..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
+
+      <%= f.input :endereco, placeholder: 'Endereço', label: false %>
+      <%= f.input :numero, placeholder: 'Número', label: false %>
+      <%= f.input :telefone, placeholder: 'Telefone da República', label: false, input_html: {class: 'telefone'} %>
+      <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
+    </fieldset>
+
+    <fieldset id='moradores'>
+     <legend>Moradores</legend>
+
+     <ol>
+      <div class="morador">
+        <%= f.simple_fields_for :moradores do |builder| %>
+        <% if builder.object.new_record? %>
+        <%= render 'republicas/morador_fields', f: builder %>
+        <% elsif builder.object.exmorador != true %>
+        <%= render 'devise/registrations/current_morador_fields', f: builder %>
+        <% end %>
+        <% end %>
+      </div>
+      <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+    </ol>
+
+    <br><hr>
+
+  </fieldset>
+
+  <fieldset>
+   <legend>Autenticação</legend>
+   <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
+<!--    <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %> -->
+<!--    <div id='change-pass-fields' style='display:none'>
+    <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
+    <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
+  </div> -->
+<!--   <div class='control-group controls'>
+    <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
+  </div> -->
+</fieldset>
+
+<div class="form-actions" id='cadastro_actions'>
+ <%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+ <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+ <p><%= link_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza?" }, :method => :delete %>.</p>
+</div>
+
+
+<% end %>

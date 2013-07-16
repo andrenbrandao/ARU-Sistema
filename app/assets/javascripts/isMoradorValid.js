@@ -1,7 +1,10 @@
             
 function isMoradorValid() {
   $(".confirm-morador").bind("click", function(e) {
-     validateEachMorador();
+    delay( function() {
+      validateEachMorador();
+    }, 100);
+     
 
     //If the form is valid then go to next else don't
     var valid = true;

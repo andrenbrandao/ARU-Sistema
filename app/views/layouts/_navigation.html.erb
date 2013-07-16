@@ -18,7 +18,7 @@
 		<li>
 			<%= link_to('Logout', destroy_republica_session_path, :method=>'delete') %>
 		</li>
-		<% else %>
+		<% elsif !admin_signed_in? %>
 		<li class="<%= 'active' if current_page?(new_republica_session_path) %>">
 			<%= link_to('Login', new_republica_session_path)  %>
 		</li>
@@ -36,9 +36,19 @@
 	<ul class='nav pull-right'>
 		<% if admin_signed_in? %>
 		<li>
-			<%= link_to('Logout for Admin', destroy_admin_session_path, :method=>'delete') %>
+			<p class="navbar-text">Logado como <span style="color: #0088cc; text-decoration: none;">Admin</span></p>
+		</li>
+		<li>
+			<%= link_to('Logout', destroy_admin_session_path, :method=>'delete') %>
 		</li>
 		<% else %>
+
+		<% if republica_signed_in? %>
+			<li>
+				<p class="navbar-text">Logado como <%= link_to current_republica.nome, republica_path(current_republica) %></p>
+			</li>
+		<% end %>
+
 		<!-- <li class="<%= 'active' if current_page?(new_admin_session_path) %>">
 			<%= link_to('Admin', new_admin_session_path)  %>
 		</li> -->

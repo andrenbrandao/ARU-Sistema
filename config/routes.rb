@@ -20,9 +20,12 @@ Cadastro::Application.routes.draw do
     put 'approve'
     put 'disapprove'
     get "edit_atributos"
-    get 'index_exmoradores'
+    get 'index_exmoradores' 
+    get "statistics"
     resources :moradores
   end
+
+  get "/terms" => "sistema#terms", :as => :terms
 
   authenticated :user do
     root :to => 'sistema#index'

@@ -30,6 +30,7 @@ class Republica < ActiveRecord::Base
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
   attr_accessible :campea_interreps, :presente_reunioes
+  attr_accessible :terms
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
@@ -42,13 +43,27 @@ class Republica < ActiveRecord::Base
   #validates :telefone, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   
- validates :email, uniqueness: {message: 'email'}
+  validates :email, uniqueness: {case_sensitive: false}
 
   validate :min_of_moradores
   validate :max_of_moradores
   validate :has_one_representante
+  validate :uniqueness_of_email
   # validate :is_exmorador_valid?
   validates_confirmation_of :password
+
+
+    def self.check_inactivity 
+      @republica = Republica.where(approved: true)
+
+      @republica.each do |republica|
+        if (Time.now - republica.updated_at) >= 6.months
+          if republica.update_attribute(:approved, 'false')
+             RepublicaMailer.disapprove_email(republica).deliver
+          end
+        end
+     end
+    end
 
 
   # Mostra os atributos se tiver algum
@@ -86,6 +101,12 @@ class Republica < ActiveRecord::Base
   end
 
   private
+
+  def uniqueness_of_email
+    unless Republica.where(email: email).count == 0
+      self.errors.add(:base, 'O email do representante já está em uso')
+    end
+  end
 
 
   # # Verificação de tempo de vivência para ex-morador

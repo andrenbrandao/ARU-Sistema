@@ -107,6 +107,10 @@ class RepublicasController < ApplicationController
     end
   end
 
+ ############################################
+ ####### FUNÇÕES ADICIONADAS POR MIM ########
+ ############################################
+
   def edit_atributos
     @republica = Republica.find(params[:republica_id])
   end
@@ -114,6 +118,9 @@ class RepublicasController < ApplicationController
   def index_exmoradores
     @republica = Republica.find(params[:republica_id])
     @exmoradores = @republica.moradores.where(exmorador: true)
+
+    # comando necessário para que CANCAN funcionasse!
+    authorize! :index_exmoradores, @republica
 
     respond_to do |format|
       format.html # index.html.erb
@@ -125,7 +132,7 @@ class RepublicasController < ApplicationController
     @republica = Republica.find(params[:republica_id])
 
     respond_to do |format|
-      if @republica.update_attributes(:approved => 'true')
+      if @republica.update_attribute(:approved, 'true')
         RepublicaMailer.welcome_email(@republica).deliver
         format.html { redirect_to republicas_path, notice: 'Republica aprovada.' }
         format.json { head :no_content }
@@ -142,17 +149,27 @@ class RepublicasController < ApplicationController
     @republica = Republica.find(params[:republica_id])
 
     respond_to do |format|
-      if @republica.update_attributes(:approved => 'false')
+      if @republica.update_attribute(:approved, 'false')
         RepublicaMailer.disapprove_email(@republica).deliver
         format.html { redirect_to republicas_path, notice: 'Republica desaprovada.' }
         format.json { head :no_content }
       else
        format.html { render action: "index" }
        format.json { render json: @republica.errors, status: :unprocessable_entity }
+       end
      end
    end
 
- end
+     def statistics
+      @republica = Republica.find(params[:republica_id])
+      @moradores = @republica.moradores.where(exmorador: false)
+
+      respond_to do |format|
+        format.html 
+       end
+    end
+
+
 
 
 end

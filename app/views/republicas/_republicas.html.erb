@@ -12,6 +12,7 @@
 			<th>Último Login</th>
 			<th>Última Atualização</th>
 			<th>Confirmado</th>
+			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->
 			<% end %>
 		</tr>
@@ -20,7 +21,7 @@
 	<tbody>
 		<% @republicas.each do |republica| %>
 		<tr>
-			<td><%= image_tag republica.logotipo, id: 'logotipo' %></td>
+			<td><%= image_tag republica.logotipo_url(:thumb), id: 'logotipo' %></td>
 			<td><b><%= link_to republica.nome, republica %></b></td>
 			<td><%= republica.tipo %></td>
 			<td><%= republica.ano_de_fundacao %></td>
@@ -37,7 +38,7 @@
 
 			<td>
 				<% if republica.last_sign_in_at != nil %>
-				<%= republica.last_sign_in_at.to_date %>
+				<%= republica.last_sign_in_at.to_s.to_date %>
 				<% end %>
 			</td>
 
@@ -53,7 +54,10 @@
 				<% end %>
 			</td>
 
-
+			<td>
+				<%= link_to 'Statistics', republica_statistics_path(republica), class: 'btn btn-mini' %>
+			</td>
+				
 			<td>
 				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
@@ -70,5 +74,6 @@
 		<% end %>
 	</tbody>
 </table>
+
 
 <p><%= will_paginate @republicas %></p>

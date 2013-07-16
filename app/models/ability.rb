@@ -11,15 +11,19 @@ class Ability
     elsif user.is_a?(Republica)
       # Permissões para REPÚBLICAS
 
-      can :modify, Republica do |republica|
-        republica.try(:id) == user.id
-      end
+      # can :modify, Republica do |republica|
+      #   republica.try(:id) == user.id
+      # end
 
       can :read, Republica
-      can :index_exmoradores, Republica
 
+      can :index_exmoradores, Republica, id: user.id
+      
       # Pode administrar os próprios MORADORES
-      can :manage, Morador, republica: {id: user.id}
+      # can :manage, Morador, republica: {id: user.id}
+
+      # Pode ler os próprios moradores
+      can :read, Morador, republica: {id: user.id}
       
     else
       # Permissões para CONVIDADOS
