@@ -103,7 +103,14 @@ class Republica < ActiveRecord::Base
   private
 
   def uniqueness_of_email
-    unless Republica.where(email: email).count == 0
+    @rep = Republica.find(:all, :conditions => ["id != ?", self.id])
+    count = 0
+    @rep.each do |republica|
+      if republica.email == email
+        count += 1
+      end
+    end
+    if count != 0
       self.errors.add(:base, 'O email do representante já está em uso')
     end
   end
