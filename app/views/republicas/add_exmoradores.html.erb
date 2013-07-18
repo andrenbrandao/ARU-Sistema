@@ -1,0 +1,49 @@
+  <%= simple_nested_form_for @republica, validate: true, html: {id: 'republica_form', multipart: true}, :url => { :action => :add_exmoradores_update } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @republica %>
+
+  <%= f.hidden_field :has_inserted_ex_moradores, :value => 'true' %>
+
+  <h2 style='text-align: center; color: #942a25'>ATENÇÃO!</h2>
+  <p style='text-align: center;'><b>Você só poderá utilizar essa ação uma vez!</p>
+  <p style='text-align: center;'>Por isso, tenha certeza de que não esqueceu nenhum ex-morador!</b></p>
+  <br>
+
+    <fieldset id='moradores'>
+     <legend>Ex-Moradores</legend>
+
+     <ol>
+      <div class="morador">
+        <%= f.simple_fields_for :moradores do |builder| %>
+	        <% if builder.object.new_record? %>
+	       	 <%= render 'republicas/exmoradores_fields', f: builder %>
+	        <% end %>
+        <% end %>
+      </div>
+      <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+    </ol>
+
+    <br>
+
+  </fieldset>
+
+<!--   <fieldset>
+   <legend>Autenticação</legend>
+<%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %> -->
+<!--    <div id='change-pass-fields' style='display:none'>
+    <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
+    <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
+  </div> -->
+<!--   <div class='control-group controls'>
+    <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
+  </div> --><!-- 
+</fieldset> -->
+
+<div class="form-actions" id='cadastro_actions'>
+<%= f.submit 'Atualizar',  class: 'btn btn-primary' %>
+ <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+ <p><%= link_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza?" }, :method => :delete %>.</p>
+</div>
+
+
+<% end %>

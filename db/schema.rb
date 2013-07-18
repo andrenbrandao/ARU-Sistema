@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425184036) do
+ActiveRecord::Schema.define(:version => 20130717205933) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -94,22 +94,22 @@ ActiveRecord::Schema.define(:version => 20130425184036) do
     t.text     "descricao"
     t.string   "endereco"
     t.string   "telefone"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "numero_de_moradores"
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                     :default => "",    :null => false
+    t.string   "encrypted_password",        :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",             :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
     t.string   "logotipo"
-    t.boolean  "approved",               :default => false, :null => false
+    t.boolean  "approved",                  :default => false, :null => false
     t.integer  "numero"
     t.string   "campea_interreps"
     t.boolean  "presente_reunioes"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(:version => 20130425184036) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "terms"
+    t.boolean  "has_inserted_ex_moradores", :default => false, :null => false
   end
 
   add_index "republicas", ["approved"], :name => "index_republicas_on_approved"

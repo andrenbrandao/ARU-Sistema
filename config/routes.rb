@@ -22,6 +22,8 @@ Cadastro::Application.routes.draw do
     get "edit_atributos"
     get 'index_exmoradores' 
     get "statistics"
+    get 'add_exmoradores'
+    put 'add_exmoradores_update'
     resources :moradores, except: [:show, :edit]
   end
 

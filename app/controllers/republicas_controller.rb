@@ -119,7 +119,7 @@ class RepublicasController < ApplicationController
     @republica = Republica.find(params[:republica_id])
     @exmoradores = @republica.moradores.where(exmorador: true)
 
-    # comando necessário para que CANCAN funcionasse!
+    # comando necessário para que CANCAN funcione!
     authorize! :index_exmoradores, @republica
 
     respond_to do |format|
@@ -160,7 +160,7 @@ class RepublicasController < ApplicationController
      end
    end
 
-     def statistics
+    def statistics
       @republica = Republica.find(params[:republica_id])
       @moradores = @republica.moradores.where(exmorador: false)
 
@@ -169,7 +169,34 @@ class RepublicasController < ApplicationController
        end
     end
 
+  def add_exmoradores
+    @republica = Republica.find(params[:republica_id])
+    @republica.moradores.build
+    # comando necessário para que CANCAN funcione!
+    authorize! :add_exmoradores, @republica
+     
+    respond_to do |format|
+     if @republica.has_inserted_ex_moradores == false
+      format.html # index.html.erb
+     else
+      format.html { redirect_to @republica, alert: 'Essa ação só pode ser executada uma vez.' }
+     end
+    end
+  end
 
+  def add_exmoradores_update
+    @republica = Republica.find(params[:republica_id])
+
+    respond_to do |format|
+      if @republica.update_attributes(params[:republica])
+        format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
+        format.json { head :no_content }
+      else
+       format.html { render action: "add_exmoradores" }
+       format.json { render json: @republica.errors, status: :unprocessable_entity }
+     end
+   end
+  end
 
 
 end
