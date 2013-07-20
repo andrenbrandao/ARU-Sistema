@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+	load_and_authorize_resource
+
 	def dashboard
 		@republica = Republica.where(approved: true)
 		@republica.each do |republica|
@@ -11,14 +13,15 @@ class AdminController < ApplicationController
 	end
 
 	def edit_morador
+
 		@republica = Republica.find(params[:republica_id])
-		@morador = Morador.find(params[:id])
+		@morador = Morador.find(params[:morador_id])
 	end
 
 
 	### NÃO ESTÁ SENDO UTILIZADO AINDA!!! ###
 	def update_morador
-   		@morador = Morador.where(params[:id])
+   		@morador = Morador.where(params[:morador_id])
 
 	    respond_to do |format|
 	      if @morador.update_attributes(params[:morador])

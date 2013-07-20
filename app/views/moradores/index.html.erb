@@ -39,7 +39,7 @@
         </td>
 
         <% if can? :manage, :all %>
-        <td class='admin_action'><%= link_to 'Editar', admin_edit_morador_path(republica_id: @republica, id:morador), class: 'btn btn-mini admin_action' %>
+        <td class='admin_action'><%= link_to 'Editar', admin_edit_morador_path(republica_id: @republica, morador_id: morador), class: 'btn btn-mini admin_action' %>
             <%= link_to 'Deletar', republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
             <%= link_to "Ex-morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'true', :data_de_saida => Time.now } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-warning admin_action' %>
         </td>
