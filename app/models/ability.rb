@@ -18,6 +18,8 @@ class Ability
       can :read, Republica
 
       can :index_exmoradores, Republica, id: user.id
+      can :add_exmoradores, Republica, id: user.id
+      can :add_exmoradores_update, Republica, id: user.id
       
       # Pode administrar os próprios MORADORES
       can :modify, Morador, republica: {id: user.id}

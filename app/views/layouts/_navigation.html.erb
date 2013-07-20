@@ -24,9 +24,14 @@
 		</li>
 		<% end %>
 		<% if republica_signed_in? %>
-		<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
-			<%= link_to('Edit account', edit_republica_registration_path) %>
-		</li>
+			<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
+				<%= link_to('Edit account', edit_republica_registration_path) %>
+			</li>
+			<% if !current_republica.has_inserted_ex_moradores? %>
+				<li class="<%= 'active' if current_page?(republica_add_exmoradores_path(current_republica)) %>">
+					<%= link_to('Adicionar Ex-Moradores', republica_add_exmoradores_path(current_republica)) %>
+				</li>
+			<% end %>
 		<% else %>
 		<li class="<%= 'active' if current_page?(new_republica_registration_path) %>">
 			<%= link_to('Cadastro', new_republica_registration_path)  %>
