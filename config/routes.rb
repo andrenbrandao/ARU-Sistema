@@ -6,7 +6,9 @@ Cadastro::Application.routes.draw do
     delete "/logoutadmin" => "devise/sessions#destroy", :as => :destroy_admin_session
   end
 
-  get "admin/dashboard"
+    get "admin/dashboard"
+    get 'admin/edit_morador'
+    put 'admin/update_morador'
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
   devise_scope :republica do
