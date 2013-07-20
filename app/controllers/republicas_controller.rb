@@ -176,7 +176,7 @@ class RepublicasController < ApplicationController
     authorize! :add_exmoradores, @republica
      
     respond_to do |format|
-     if @republica.has_inserted_ex_moradores == false
+     if @republica.has_inserted_ex_moradores == FALSE
       format.html # index.html.erb
      else
       format.html { redirect_to @republica, alert: 'Essa ação só pode ser executada uma vez.' }
