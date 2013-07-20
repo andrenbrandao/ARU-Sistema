@@ -17,12 +17,12 @@
     <b>Ano de fundação:</b>
     <%= @republica.ano_de_fundacao %>
   </p>
-
+<div style='word-wrap: break-word;'>
   <p>
     <b>Descrição:</b>
-    <%= @republica.descricao %>
+    <%= simple_format @republica.descricao %>
   </p>
-
+</div>
   <% if can? :manage, :all %>
   <%= link_to 'Editar Atributos', republica_edit_atributos_path(@republica), class: 'btn btn-mini' %>
   <% end %>
