@@ -41,9 +41,15 @@
       <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
     </ol>
 
-    <br><hr>
+    <br>
 
   </fieldset>
+
+   <fieldset id='moradores'>
+     <legend>Ex-Moradores</legend>
+      <p>Confira a seguir a lista de seus <%= link_to "Ex-Moradores", republica_index_exmoradores_path(resource), target: '_blank' %></p>
+   
+   </fieldset>
 
   <fieldset>
    <legend>Autenticação</legend>

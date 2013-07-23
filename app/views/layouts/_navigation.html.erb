@@ -15,21 +15,12 @@
 			<%= link_to "Repúblicas", republicas_path %>
 		</li>
 		<% if republica_signed_in? %>
-		<li>
-			<%= link_to('Logout', destroy_republica_session_path, :method=>'delete') %>
-		</li>
-		<% elsif !admin_signed_in? %>
-		<li class="<%= 'active' if current_page?(new_republica_session_path) %>">
-			<%= link_to('Login', new_republica_session_path)  %>
-		</li>
-		<% end %>
-		<% if republica_signed_in? %>
 			<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
 				<%= link_to('Edit account', edit_republica_registration_path) %>
 			</li>
 			<% if !current_republica.has_inserted_ex_moradores? %>
 				<li class="<%= 'active' if current_page?(republica_add_exmoradores_path(current_republica)) %>">
-					<%= link_to('Adicionar Ex-Moradores', republica_add_exmoradores_path(current_republica)) %>
+					 <%= link_to("<i class=\'icon-exclamation-sign icon-white\'></i> Adicionar Ex-Moradores".html_safe, republica_add_exmoradores_path(current_republica)) %>
 				</li>
 			<% end %>
 		<% else %>
@@ -52,6 +43,14 @@
 			<li>
 				<p class="navbar-text">Logado como <%= link_to current_republica.nome, republica_path(current_republica) %></p>
 			</li>
+		<li>
+			<%= link_to('Logout', destroy_republica_session_path, :method=>'delete') %>
+		</li>
+
+		<% elsif !admin_signed_in? %>
+		<li class="<%= 'active' if current_page?(new_republica_session_path) %>">
+			<%= link_to('Login', new_republica_session_path)  %>
+		</li>
 		<% end %>
 
 		<!-- <li class="<%= 'active' if current_page?(new_admin_session_path) %>">
