@@ -7,6 +7,7 @@ class Republica < ActiveRecord::Base
   mount_uploader :logotipo, LogotipoUploader
   before_validation :copy_email_to_republica
   before_save :titleize_moradores
+  before_save :titleize_endereco
   before_save :set_data_de_saida
   # before_save :titleize_curso
 
@@ -181,6 +182,10 @@ class Republica < ActiveRecord::Base
   	if count == 0
   		self.errors.add(:base, "Selecione um representante")
   	end
+  end
+
+  def titleize_endereco
+    self.endereco = self.endereco.to_s.titleize
   end
 
 
