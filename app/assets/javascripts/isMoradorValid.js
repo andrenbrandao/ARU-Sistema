@@ -45,18 +45,18 @@ $(function() {
       $(this).next('.RA').bind('focusout', function() {
         var input = $(this).find('input'),
         divRA = $(this);
-        if(input.val() == '') {
-          divRA.find('.control-group').addClass('error');
-          if(divRA.find('span.help-inline').length == '0') {
-            divRA.find('.controls').append('<span class="help-inline">não pode ficar em branco</span>');
-          }
+        // if(input.val() == '') {
+        //   divRA.find('.control-group').addClass('error');
+        //   if(divRA.find('span.help-inline').length == '0') {
+        //     divRA.find('.controls').append('<span class="help-inline">não pode ficar em branco</span>');
+        //   }
 
-          else if(divRA.find('span')) {
-           divRA.find('span').text('não pode ficar em branco')
-        }
-        }
+        //   else if(divRA.find('span')) {
+        //    divRA.find('span').text('não pode ficar em branco')
+        // }
+        // }
         
-        else if(input.val().length != '6') {
+        if(input.val().length != '6' && input.val().length != '0') {
           divRA.find('.control-group').addClass('error');
           if(divRA.find('span.help-inline').length == '0') {
             divRA.find('.controls').append('<span class="help-inline">RA inválido</span>');
@@ -67,6 +67,11 @@ $(function() {
         }
         
         else if(input.val().length == '6') {
+          divRA.find('.control-group').removeClass('error');
+          divRA.find('span').remove();
+        }
+
+         else if(input.val().length == '0') {
           divRA.find('.control-group').removeClass('error');
           divRA.find('span').remove();
         }
@@ -86,18 +91,18 @@ $(function() {
     var input = $('.in').find('.RA').find('input'),
     divRA = $('.in').find('.RA');
     if($('.in .universidade :selected').val() == 'Unicamp') {
-      if(input.val() == '') {
-        divRA.find('.control-group').addClass('error');
-        if(divRA.find('span.help-inline').length == '0') {
-          divRA.find('.controls').append('<span class="help-inline">não pode ficar em branco</span>');
-        }
-        else if(divRA.find('span')) {
-          divRA.find('span').text('não pode ficar em branco')
-        }
-        valid = false;
-      }
+      // if(input.val() == '') {
+      //   divRA.find('.control-group').addClass('error');
+      //   if(divRA.find('span.help-inline').length == '0') {
+      //     divRA.find('.controls').append('<span class="help-inline">não pode ficar em branco</span>');
+      //   }
+      //   else if(divRA.find('span')) {
+      //     divRA.find('span').text('não pode ficar em branco')
+      //   }
+      //   valid = false;
+      // }
       
-      else if(input.val().length != '6') {
+      if(input.val().length != '6' && input.val().length != '0') {
         divRA.find('.control-group').addClass('error');
         if(divRA.find('span.help-inline').length == '0') {
           divRA.find('.controls').append('<span class="help-inline">RA inválido</span>');
@@ -109,6 +114,11 @@ $(function() {
       }
 
       else if(input.val().length == '6') {
+          divRA.find('.control-group').removeClass('error');
+          divRA.find('span').remove();
+        }
+
+      else if(input.val().length == '0') {
           divRA.find('.control-group').removeClass('error');
           divRA.find('span').remove();
         }

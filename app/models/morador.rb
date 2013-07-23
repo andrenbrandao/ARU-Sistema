@@ -14,8 +14,8 @@ class Morador < ActiveRecord::Base
 	validates_format_of :nome, :sobrenome, :with => /^[^0-9`!@#\$%\^&*+_=]+$/
 	validates :sobrenome, presence: true
 	validates :universidade, presence: true, inclusion: UNIVERSIDADE
-	validates :ra, presence: true, uniqueness: true, numericality: {only_integer: true },
-	length: {is: 6, message: 'RA inválido'}, :if => :is_unicamp?
+	validates :ra, uniqueness: true, numericality: {only_integer: true },
+	length: {is: 6, message: 'RA inválido'}, :allow_blank => true, :if => :is_unicamp?
 	validates :curso, presence: true
 	validates :ano_de_ingresso, presence: true
 	validates :email, presence: true, :if => :is_representante?
