@@ -326,3 +326,32 @@ $(function() {
       button_position : 'right'
   });
 });
+
+$(function() {
+  displayRepresentante();
+});
+
+$(function() {
+  $(document).on('change', '.radio_but', function() {
+      displayRepresentante();
+    })
+});
+
+function displayRepresentante() {
+  $('.modal').each(function() {
+    var representante = false;
+    var morador = $(this).prev('.nomes-moradores').find('li');
+
+    representante = $(this).find('.radio_but').find('input').is(':checked')
+    
+    if(representante) {
+      if(morador.find('.icon-user').length == '0') {
+        morador.prepend('<i class="icon-user"></i>');
+        morador.find('.icon-user').tooltip( {title:'Representante', placement: 'top'} );
+      }
+    }
+    else {
+     morador.find('.icon-user').remove();
+    }
+ });
+}
