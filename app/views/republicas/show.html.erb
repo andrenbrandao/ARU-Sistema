@@ -2,7 +2,7 @@
 
   <div class='media rep-show' id='rep-header'>
 
-    <%= image_tag 'logotipos/paidabartira.jpg', id: 'logo_show', class: 'pull-left '%>
+    <%= image_tag @republica.logotipo, id: 'logo_show', class: 'pull-left '%>
 
     <div class='media-body'>
       <h1>
@@ -52,12 +52,9 @@
 
     <!-- GERAL -->
     <div class="tab-pane active" id="geral">
-
+      <legend>Descrição</legend>
       <div style='word-wrap: break-word;'>
-        <p style='text-align: justify'>
-          <b>Descrição:</b>
-          <%= simple_format @republica.descricao %>
-        </p>
+        <%= simple_format @republica.descricao, class: 'description' %>
       </div>
 
     </div>
@@ -66,16 +63,15 @@
     <div class="tab-pane" id="atividades">
 
       <% if @republica.atributos == true %>
-      <p>
-        <ul>
-          <% if @republica.campea_interreps != '' %>
-          <li><b>Campeã InterReps</b>: <%= @republica.campea_interreps %></li>
-          <% end %>
-          <% if @republica.presente_reunioes == true %>
-          <li><b>Presente em Reuniões da ARU</b></li>
-          <% end %>
-        </ul>
-      </p>
+
+      <% if @republica.campea_interreps != '' %>
+      <p><%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'atributos' %>  <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
+      <% end %>
+
+      <% if @republica.presente_reunioes == true %>
+      <p><%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'atributos' %> <b>Presente em Reuniões</b></p>
+      <% end %>
+
       <% else %>
       <p>Nenhuma Atividade Recente</p>
       <% end %>
@@ -157,11 +153,11 @@
       <%= link_to 'Editar Atributos', republica_edit_atributos_path(@republica), class: 'btn btn-success btn-mini' %>
       <% end %>
       <br>
-      <br>
 
     </div>
   </div>
 
+  <br>
 
   <%= link_to 'Voltar', republicas_path, class: 'btn btn-small'  %>
 
