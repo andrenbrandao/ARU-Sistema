@@ -23,6 +23,7 @@ div.list_line_even
   #logo_show {
   	width: 150px;
   	margin-bottom: 10px;
+    margin-right: 30px;
   }
 
   .table td {
@@ -34,10 +35,6 @@ div.list_line_even
   	text-align: center;   
   }
 
-  #nome-rep {
-    margin-left: 20px;
-    vertical-align: middle;
-  }
 
   #rep-header {
     margin-bottom: 15px;
@@ -46,6 +43,54 @@ div.list_line_even
   #show-rep {
     width: 800px;
     margin: auto;
+  }
+
+  .dot-separator {
+    margin: 0 3px 0 3px;
+  }
+
+  .male_icon {
+    width: auto;
+    height: 13px;
+    vertical-align: baseline;
+  }
+
+  .calendar_icon {
+    width: auto;
+    height: 13px;
+    vertical-align: baseline;
+  }
+
+  .female_icon {
+    width: auto;
+    height: 15px;
+    vertical-align: middle;
+  }
+
+  .mixed_icon {
+    width: 13px;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  // #rep-header {
+  //   width: 500px;
+  //       margin: auto;
+  // }
+
+  .rep-show {
+    h1 {
+      font-size: 60px;
+      font-weight: 200;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #5a5a5a;
+    }
+
   }
 
 /* END_HIGHLIGHT */
