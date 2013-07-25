@@ -25,7 +25,7 @@
         this.$element = $(content);
 
         this.options = $.extend({
-            classes	: (this.$element.attr('class') ? this.$element.attr('class') : ''),
+            classes : (this.$element.attr('class') ? this.$element.attr('class') : ''),
         }, options);
 
         //create custom control container
@@ -129,11 +129,10 @@
     };
 
     $.fn.customFileInput.defaults = {
-        button_position 	: 'right',
-        feedback_text		: 'No file selected...',
-        button_text			: 'Browse',
-        button_change_text	: 'Change'
+        button_position     : 'right',
+        feedback_text       : 'Logotipo da República...',
+        button_text         : 'Browse',
+        button_change_text  : 'Change'
     }
 
 }(window.jQuery);
-
