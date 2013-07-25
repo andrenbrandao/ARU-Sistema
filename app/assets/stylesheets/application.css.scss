@@ -82,22 +82,6 @@
 
 }
 
-fieldset {
-	width: 400px;
-
-	.next_btn {
-		float: right;
-	}
-
-	#remover_btn {
-		float: right;
-		margin-bottom: 10px;
-	}
-
-	#moradores {
-		width: auto;
-	}
-}
 
 .modal .modal-body {
 	overflow-y: hidden;
@@ -123,6 +107,7 @@ fieldset {
 .terms_text {
 	color: #777;
 	font-size: 11px;
+	text-align: center;
 }
 
 .admin_action {

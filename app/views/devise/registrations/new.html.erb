@@ -3,7 +3,7 @@
   <%= f.error_notification %>
   <%= display_base_errors @republica %>
 
-  <p style='font-size: 11px'>Para saber quais dados ficarão disponíveis ao público, confira os nossos <%= link_to "Termos de Privacidade", terms_path(anchor: 'privacy'), :target => "_blank" %>.</p>
+  <p class='terms_text'>Para saber quais dados ficarão disponíveis ao público, confira os nossos <%= link_to "Termos de Privacidade", terms_path(anchor: 'privacy'), :target => "_blank" %>.</p>
   
   <fieldset>
     <legend>República</legend>
@@ -54,9 +54,8 @@
 
 
 
-
   <div class="form-actions" id='cadastro_actions'>
-      <p class='terms_text'>Ao clicar em Cadastrar, você aceita nossos <%= link_to "Termos de Associação", terms_path, target: "_blank" %>.</p>
+      <p class='terms_text' style='text-align: left'>Ao clicar em Cadastrar, você aceita nossos <%= link_to "Termos de Associação", terms_path, target: "_blank" %>.</p>
    <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
    <%= link_to 'Cancel', republicas_path, class: 'btn' %>
  </div>
