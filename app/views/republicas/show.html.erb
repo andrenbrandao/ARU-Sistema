@@ -37,7 +37,10 @@
       <a href="#geral" data-toggle="tab">Geral</a>
     </li>
     <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
+
+    <% if republica_signed_in? || admin_signed_in? %>
     <li><a href="#contato"  data-toggle="tab">Contato</a></li>
+    <% end %>
 
     <% if current_republica == @republica || admin_signed_in? %>
     <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
@@ -78,6 +81,8 @@
 
     </div>
 
+
+    <% if republica_signed_in? || admin_signed_in? %> 
     <!-- CONTATOS -->
     <div class="tab-pane" id="contato">
 
@@ -88,14 +93,10 @@
       </p>
       <% end %>
 
-      <% if republica_signed_in? || admin_signed_in? %> 
-
       <p>
         <b>Representante:</b>
         <%= @representante.nome + ' ' + @representante.sobrenome %>
       </p>
-
-      <% end %>
 
       <p>
         <b>Email do Representante:</b>
@@ -118,14 +119,12 @@
       </p>
       <% end %>
 
-
-
     </div>
+    <% end %>
 
+    <% if current_republica == @republica || admin_signed_in? %>
     <!-- DADOS RESTRITOS -->
     <div class='tab-pane' id='dados_restritos'>
-
-      <% if current_republica == @republica || admin_signed_in? %>
 
       <p>
         <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
@@ -146,20 +145,19 @@
         <b>Usuário:</b>
         <%= @republica.username %>
       </p>
-
-      <% end %>
-
     </div>
 
+    <% end %>
+
+    <% if can? :manage, :all %>
     <!-- ADMIN ACTIONS -->
     <div class="tab-pane" id="admin_actions">
-
-      <% if can? :manage, :all %>
       <%= link_to 'Editar Atributos', republica_edit_atributos_path(@republica), class: 'btn btn-success btn-mini' %>
-      <% end %>
       <br>
 
     </div>
+    <% end %>
+
   </div>
 
   <br>
