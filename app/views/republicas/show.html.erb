@@ -81,18 +81,21 @@
     <!-- CONTATOS -->
     <div class="tab-pane" id="contato">
 
-
-      <% if republica_signed_in? || admin_signed_in? %> 
-
+      <% if @republica.telefone != '' %>
       <p>
         <b>Telefone da República:</b>
         <%= @republica.telefone %>
       </p>
+      <% end %>
+
+      <% if republica_signed_in? || admin_signed_in? %> 
 
       <p>
         <b>Representante:</b>
         <%= @representante.nome + ' ' + @representante.sobrenome %>
       </p>
+
+      <% end %>
 
       <p>
         <b>Email do Representante:</b>
@@ -108,11 +111,13 @@
       <% end %>
       <% end %>
 
+      <% if republica_signed_in? || admin_signed_in? %> 
       <p>
         <b>Celular do Representante:</b>
         <%= @representante.celular %>
       </p>
       <% end %>
+
 
 
     </div>
