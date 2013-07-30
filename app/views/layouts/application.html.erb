@@ -12,7 +12,7 @@
   <%= yield(:head) %>
 </head>
 <body>
-  
+
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -30,24 +30,26 @@
     </div>
   </div>
 
-  <%= render 'layouts/messages' %>
-  <!--   <div id='wrap'> -->
-  <%= render 'layouts/index' if @index_header %>
-  <%= render 'layouts/republicas' if @republicas_header %>
 
-  <div id='main' class="container">
-    <div class="content">
-      <!-- Body Content -->
-      <%= yield %>
+<!--   <div id='wrap'> -->
+    <%= render 'layouts/messages' %>
+    <%= render 'layouts/index' if @index_header %>
+    <%= render 'layouts/republicas' if @republicas_header %>
+
+    <div id='main' class="container">
+      <div class="content">
+        <!-- Body Content -->
+        <%= yield %>
+      </div>
     </div>
-    <!--       <div id='push'></div> -->
-  </div>
-  <!--   </div> -->
-  <div class='footer'>
+<!--     <div id='push'></div> -->
+<!--   </div> -->
+
+  <footer class='footer'>
     <div class='container'>
       <%= render 'layouts/footer' %>
     </div>
-  </div>
+  </footer>
 
 
 
