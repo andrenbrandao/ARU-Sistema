@@ -49,9 +49,9 @@ $(function () {
   setTimeout(function() { 
     $('.fields').find(':input').enableClientSideValidations();
     $('.chzn-select').chosen({
-        no_results_text: "Escolha o curso 'Outro'. Não foi encontrado"
-  });
-      $('.chzn-container').tooltip({title: 'Se não encontrar seu Curso, escolha a opção "Outro"', placement: 'right'});
+      no_results_text: "Escolha o curso 'Outro'. Não foi encontrado"
+    });
+    $('.chzn-container').tooltip({title: 'Se não encontrar seu Curso, escolha a opção "Outro"', placement: 'right'});
   }, 10);
 });
 });
@@ -85,7 +85,7 @@ $(document).ready( function() {
 $(document).ready( function() {
   $('.chzn-select').chosen({
    no_results_text: "Escolha o curso 'Outro'. Não foi encontrado"
-  });
+ });
   // $('.chzn-select').enableClientSideValidations();
 });
 
@@ -206,6 +206,32 @@ $(document).ready(function() {
   RememberMorador();
 });
 
+// Muda o nome do MORADOR caso seja feita modificação no MODAL
+$(function(){
+  $('.morador-modal').each(function(){ 
+    var current_modal = $(this);
+
+    $(this).find('.nome').focusout(function(){
+      var nome = current_modal.find('.nome').val();
+      var sobrenome = current_modal.find('.sobrenome').val();
+      if(nome != "" || sobrenome != "") {
+        current_modal.prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
+      }
+    });
+
+    $(this).find('.sobrenome').focusout(function(){
+      var nome = current_modal.find('.nome').val();
+      var sobrenome = current_modal.find('.sobrenome').val();
+      if(nome != "" || sobrenome != "") {
+        current_modal.prev('.nomes-moradores').find('.nome-morador').text(nome + ' ' + sobrenome);
+      }
+    });
+
+  });
+
+
+});
+
 $(document).ready(function() {
   $('.modal').on('shown', function(){
     $(ClientSideValidations.selectors.forms).validate();
@@ -299,7 +325,7 @@ $(document).ready(function() {
 
 $(function() {
   $('#republica_logotipo').customFileInput({
-      button_position : 'right'
+    button_position : 'right'
   });
 });
 
