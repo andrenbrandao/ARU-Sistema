@@ -25,13 +25,12 @@
 		<div class='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, validate: true %></div>
 
 		<div id='representante'>
-			<%= f.hidden_field :representante, :class => 'repres_input'%>
+			<%= f.hidden_field :representante, :class => 'repres_input' %>
 		</div>
 
 		<div class="radio_but" > 
-			<label class='radio'>
-				<%= radio_button_tag('representante', true ) %>
-				Representante da República
+			<label class='checkbox'>
+				<%= check_box_tag('representante', true ) %>Representante da República
 			</label>
 		</div>
 
