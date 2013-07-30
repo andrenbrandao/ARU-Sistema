@@ -4,7 +4,7 @@
     <fieldset>
     	<legend>República</legend>
 
-    <%= image_tag @republica.logotipo_url(:thumb), id: 'logo', width: '100px' %>
+      <%= image_tag @republica.logotipo_url(:thumb), id: 'logo', width: '100px' %>
       <%= f.input :logotipo, label: false %>
       <%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
       <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
@@ -19,6 +19,9 @@
 
     <fieldset id='moradores'>
      <legend>Moradores</legend>
+
+     <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
+     <br>
 
      <ol>
       <div class="morador">
@@ -37,13 +40,13 @@
 
   </fieldset>
 
-   <fieldset id='moradores'>
-     <legend>Ex-Moradores</legend>
-      <p>Confira a seguir a lista de seus <%= link_to "Ex-Moradores", republica_index_exmoradores_path(resource), target: '_blank' %></p>
+  <fieldset id='moradores'>
+   <legend>Ex-Moradores</legend>
+   <p>Confira a seguir a lista de seus <%= link_to "Ex-Moradores", republica_index_exmoradores_path(resource), target: '_blank' %></p>
    
-   </fieldset>
+ </fieldset>
 
-  <fieldset>
+ <fieldset>
    <legend>Autenticação</legend>
    <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
    <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %>
