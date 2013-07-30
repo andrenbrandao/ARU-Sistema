@@ -16,6 +16,7 @@
       </div>
     </div> -->
 
+    <%= image_tag @republica.logotipo_url(:thumb), id: 'logo', width: '100px' %>
     <%= f.input :logotipo, label: false%>
     <%= f.input :nome, placeholder: 'Nome', label: false %>
     <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo' %>

@@ -22,6 +22,7 @@
 //= require chosen
 //= require enhance.min
 //= require fileinput.jquery
+//= require logotipo
 //= require_tree .
 
 // $(function() {
