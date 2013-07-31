@@ -59,7 +59,7 @@ class Republica < ActiveRecord::Base
 
       @republica.each do |republica|
         if (Time.now - republica.updated_at) >= 6.months
-          if republica.update_attribute(:approved, 'false')
+          if republica.update2_without_timestamping(:approved, 'false')
              RepublicaMailer.disapprove_email(republica).deliver
           end
         end
