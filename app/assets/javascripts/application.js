@@ -266,6 +266,7 @@ function validateEachMorador() {
       }
     });
     if(!valid) {
+      $(this).prev('.nomes-moradores').addClass('error');
       var morador = $(this).prev('.nomes-moradores').find('li');
 
       if(morador.find('span:contains("Morador com erro")').length == '0') {
@@ -273,9 +274,10 @@ function validateEachMorador() {
       }
     }
     else {
-     $(this).prev('.nomes-moradores').find('li').find('span:contains("Morador com erro")').remove();
-   }
- });
+      $(this).prev('.nomes-moradores').removeClass('error');
+      $(this).prev('.nomes-moradores').find('li').find('span:contains("Morador com erro")').remove();
+    }
+  });
 }
 
 // Tooltips
