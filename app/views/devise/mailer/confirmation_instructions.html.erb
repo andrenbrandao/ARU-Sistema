@@ -1,11 +1,19 @@
 <p>Olá <%= @resource.nome %>!</p>
 
-<p>Para continuar o seu cadastro, primeiramente você deve confirmar sua conta de email.</p>
-<p>Depois da confirmação, você deverá esperar que sua conta seja aprovada pela ARU para efetuar o Login.</p>
+<p>Para continuar o seu cadastro, primeiramente você deve confirmar sua conta de email.<br/>Depois da confirmação, você deverá esperar que sua conta seja aprovada pela ARU para efetuar o Login.</p>
 
 <p>Você pode confirmar sua conta de email acessando o link abaixo:</p>
 
 <p><%= link_to 'Confirmar minha conta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<hr>
+
+<p>Para dar início ao processo de associação da sua República, você deve comparecer na próxima reunião, quando será explicado os termos do Estatuto.</p>
+
+<p>Confira abaixo os Termos de Associação, juntamente com o Estatuto.</p>
+
+<p><%= link_to "Termos de Associação", 'http://cadastroaru.herokuapp.com/terms', target: "_blank" %><br/>
+<%= link_to "Estatuto", 'http://cadastroaru.herokuapp.com/assets/estatutoARU.pdf', target: '_blank' %></p>
 
 <p>Atenciosamente,<br/>
 ARU - Associação de Repúblicas da Unicamp</p>
