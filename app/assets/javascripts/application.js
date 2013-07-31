@@ -24,6 +24,7 @@
 //= require fileinput.jquery
 //= require logotipo
 //= require representante
+//= require jquery.scrollTo-1.4.3.1-min
 //= require_tree .
 
 // $(function() {
@@ -329,3 +330,10 @@ $(function() {
   });
 });
 
+// Dá um SCROLL para o PRIMEIRO erro que há no FORM
+// facilitando o Usuário de encontrar e consertar esse erro
+$(function(){
+  window.ClientSideValidations.callbacks.form.fail = function(form, eventData) {
+    $.scrollTo('.error', 500, {offset:{left:0,top:-50}} );
+  };
+})
