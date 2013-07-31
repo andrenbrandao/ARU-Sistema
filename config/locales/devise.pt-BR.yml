@@ -16,7 +16,7 @@ pt-BR:
       timeout: 'Sua sessão expirou, por favor, efetue login novamente para continuar.'
       unauthenticated: 'Para continuar, efetue login ou registre-se.'
       unconfirmed: 'Antes de continuar, confirme a sua conta.'
-      not_approved: 'Sua conta ainda não foi autorizada pelo administrador.'
+      not_approved: 'Aguarde a aprovação de sua conta pelo administrador da ARU.'
     mailer:
       confirmation_instructions:
         subject: 'Instruções de confirmação'
@@ -41,7 +41,7 @@ pt-BR:
       signed_up_but_unconfirmed: 'Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, abra o link para confirmar a sua conta.'
       update_needs_confirmation: 'Você atualizou a sua conta com sucesso, mas o seu novo endereço de e-mail precisa ser confirmado. Por favor, acesse-o e clique no link de confirmação que enviamos.'
       updated: 'Sua conta foi atualizada com sucesso.'
-      signed_up_but_not_approved: 'Seu cadastro foi efetuado com sucesso. No entanto, ela ainda não foi autorizado pelo administrador.'
+      signed_up_but_not_approved: 'Seu cadastro foi efetuado com sucesso. Confirme seu endereço de email e aguarde a aprovação de seu cadastro pela ARU.'
     sessions:
       signed_in: 'Login efetuado com sucesso!'
       signed_out: 'Saiu com sucesso.'

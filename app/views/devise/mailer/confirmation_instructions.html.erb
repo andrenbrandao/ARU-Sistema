@@ -1,5 +1,8 @@
 <p>Olá <%= @resource.nome %>!</p>
 
+<p>Para continuar o seu cadastro, primeiramente você deve confirmar sua conta de email.</p>
+<p>Depois da confirmação, você deverá esperar que sua conta seja aprovada pela ARU para efetuar o Login.</p>
+
 <p>Você pode confirmar sua conta de email acessando o link abaixo:</p>
 
 <p><%= link_to 'Confirmar minha conta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
