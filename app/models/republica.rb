@@ -75,6 +75,9 @@ class Republica < ActiveRecord::Base
 
     elsif presente_reunioes == true
       valid = true
+
+    elsif Time.now.year - ano_de_fundacao <= 1  
+      valid = true
     end
 
     valid

@@ -22,6 +22,9 @@
         <span>Fundada em <%= @republica.ano_de_fundacao %></span>
       </p>
 
+      <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
+      <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'calendar_icon' %> República Nova</p>
+      <% end %>
 
       <% if @republica.presente_reunioes == true %>
       <p>
@@ -67,12 +70,16 @@
 
       <% if @republica.atributos == true %>
 
-      <% if @republica.campea_interreps != '' %>
-      <p><%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'atributos' %>  <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
+      <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
+      <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'atributos' %> República Nova</p>
       <% end %>
 
       <% if @republica.presente_reunioes == true %>
-      <p><%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'atributos' %> <b>Presente em Reuniões</b></p>
+      <p><%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'atributos' %> Presente em Reuniões</p>
+      <% end %>
+
+      <% if @republica.campea_interreps != nil && @republica.campea_interreps != ''  %>
+      <p><%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'atributos' %> <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
       <% end %>
 
       <% else %>
