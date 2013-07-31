@@ -105,39 +105,41 @@ jQuery(function($) {
               };
             })(jQuery);
 
-$(function() {
-  var fieldsCount,
-      maxFieldsCount = 19,
-      $addLink = $('a.add_nested_fields');
 
-      var minFieldsCount = 0,
-      $removeLink = $('a.remove_nested_fields');
+// UTILIZADO PARA ESCONDER BOTOES de ADICIONAR e REMOVER MORADORES
+// $(function() {
+//   var fieldsCount,
+//       maxFieldsCount = 19,
+//       $addLink = $('a.add_nested_fields');
+
+//       var minFieldsCount = 0,
+//       $removeLink = $('a.remove_nested_fields');
   
-  function toggleAddLink() {
-    $addLink.toggle(fieldsCount <= maxFieldsCount)
-  }
+//   function toggleAddLink() {
+//     $addLink.toggle(fieldsCount <= maxFieldsCount)
+//   }
 
-  function toggleRemoveLink() {
-    $removeLink.toggle(fieldsCount > minFieldsCount)
-  }
+//   function toggleRemoveLink() {
+//     $removeLink.toggle(fieldsCount > minFieldsCount)
+//   }
 
-  $(document).on('nested:fieldAdded', function() {
-    fieldsCount += 1;
-    toggleAddLink();
-    toggleRemoveLink();
-  });
+//   $(document).on('nested:fieldAdded', function() {
+//     fieldsCount += 1;
+//     toggleAddLink();
+//     toggleRemoveLink();
+//   });
 
-  $(document).on('nested:fieldRemoved', function() {
-    fieldsCount -= 1;
-    toggleAddLink();
-    toggleRemoveLink();
-  });  
+//   $(document).on('nested:fieldRemoved', function() {
+//     fieldsCount -= 1;
+//     toggleAddLink();
+//     toggleRemoveLink();
+//   });  
 
-  // count existing nested fields after page was loaded
-  fieldsCount = $('form .fields').length;
-  toggleAddLink();
-  toggleRemoveLink();
-});
+//   // count existing nested fields after page was loaded
+//   fieldsCount = $('form .fields').length;
+//   toggleAddLink();
+//   toggleRemoveLink();
+// });
 
 
 // Utilizado para contar o Numero de Moradores
