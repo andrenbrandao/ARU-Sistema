@@ -1,4 +1,4 @@
-<%= simple_nested_form_for(@republica, :html => { :method => :put, id: 'republica_form'}) do |f| %>
+<%= simple_nested_form_for @republica, :html => {id: 'republica_form'},  :url => { :action => :atualizar_atributos } do |f| %>
 <%= display_base_errors @republica %>
 
 <fieldset>

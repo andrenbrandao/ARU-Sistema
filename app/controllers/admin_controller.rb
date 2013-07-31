@@ -24,7 +24,7 @@ class AdminController < ApplicationController
    		@morador = Morador.where(params[:morador_id])
 
 	    respond_to do |format|
-	      if @morador.update_attributes(params[:morador])
+	      if @morador.update_without_timestamping(params[:morador])
 	        format.html { redirect_to republica_path(@republica), notice: 'Morador foi atualizado com sucesso.' }
 	        format.json { head :no_content }
 	      else

@@ -22,6 +22,7 @@ Cadastro::Application.routes.draw do
     put 'approve'
     put 'disapprove'
     get "edit_atributos"
+    put "atualizar_atributos"
     get 'index_exmoradores' 
     get "statistics"
     get 'add_exmoradores'

@@ -69,7 +69,7 @@ class RepublicasController < ApplicationController
 
     respond_to do |format|
       if @republica.save
-        
+
         format.html { redirect_to @republica, notice: 'Republica was successfully created.' }
         format.json { render json: @republica, status: :created, location: @republica }
       else
@@ -84,8 +84,10 @@ class RepublicasController < ApplicationController
   def update
     @republica = Republica.find(params[:id])
 
+    ## UPDATE UTILIZADO ATUALMENTE POR ADMIN! ##
+    ## por isso, há o update_without_timestamping ##
     respond_to do |format|
-      if @republica.update_attributes(params[:republica])
+      if @republica.update_without_timestamping(params[:republica])
         format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
         format.json { head :no_content }
       else
@@ -111,13 +113,26 @@ class RepublicasController < ApplicationController
  ####### FUNÇÕES ADICIONADAS POR MIM ########
  ############################################
 
-  def edit_atributos
-    @republica = Republica.find(params[:republica_id])
-  end
+ def edit_atributos
+  @republica = Republica.find(params[:republica_id])
+end
 
-  def index_exmoradores
-    @republica = Republica.find(params[:republica_id])
-    @exmoradores = @republica.moradores.where(exmorador: true)
+def atualizar_atributos
+  @republica = Republica.find(params[:republica_id])
+
+  respond_to do |format|
+    ## Initializer utilizado para NÃO ALTERAR os TIMESTAMPS - como UPDATED_AT ##
+    if @republica.update_without_timestamping(params[:republica])
+      format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
+    else
+     format.html { render action: "edit_attributos" }
+   end
+ end
+end
+
+def index_exmoradores
+  @republica = Republica.find(params[:republica_id])
+  @exmoradores = @republica.moradores.where(exmorador: true)
 
     # comando necessário para que CANCAN funcione!
     authorize! :index_exmoradores, @republica
@@ -132,7 +147,7 @@ class RepublicasController < ApplicationController
     @republica = Republica.find(params[:republica_id])
 
     respond_to do |format|
-      if @republica.update_attribute(:approved, 'true')
+      if @republica.update2_without_timestamping(:approved, 'true')
         RepublicaMailer.welcome_email(@republica).deliver
         format.html { redirect_to republicas_path, notice: 'Republica aprovada.' }
         format.json { head :no_content }
@@ -145,58 +160,58 @@ class RepublicasController < ApplicationController
  end
 
 
-  def disapprove
-    @republica = Republica.find(params[:republica_id])
+ def disapprove
+  @republica = Republica.find(params[:republica_id])
 
-    respond_to do |format|
-      if @republica.update_attribute(:approved, 'false')
-        RepublicaMailer.disapprove_email(@republica).deliver
-        format.html { redirect_to republicas_path, notice: 'Republica desaprovada.' }
-        format.json { head :no_content }
-      else
-       format.html { render action: "index" }
-       format.json { render json: @republica.errors, status: :unprocessable_entity }
-       end
-     end
+  respond_to do |format|
+    if @republica.update2_without_timestamping(:approved, 'false')
+      RepublicaMailer.disapprove_email(@republica).deliver
+      format.html { redirect_to republicas_path, notice: 'Republica desaprovada.' }
+      format.json { head :no_content }
+    else
+     format.html { render action: "index" }
+     format.json { render json: @republica.errors, status: :unprocessable_entity }
    end
+ end
+end
 
-    def statistics
-      @republica = Republica.find(params[:republica_id])
-      @moradores = @republica.moradores.where(exmorador: false)
+def statistics
+  @republica = Republica.find(params[:republica_id])
+  @moradores = @republica.moradores.where(exmorador: false)
 
-      respond_to do |format|
-        format.html 
-       end
-    end
+  respond_to do |format|
+    format.html 
+  end
+end
 
-  def add_exmoradores
-    @republica = Republica.find(params[:republica_id])
-    @republica.moradores.build
+def add_exmoradores
+  @republica = Republica.find(params[:republica_id])
+  @republica.moradores.build
     # comando necessário para que CANCAN funcione!
     authorize! :add_exmoradores, @republica
-     
+
     respond_to do |format|
      if @republica.has_inserted_ex_moradores == FALSE
       format.html # index.html.erb
-     else
+    else
       format.html { redirect_to @republica, alert: 'Essa ação só pode ser executada uma vez.' }
-     end
     end
   end
+end
 
-  def add_exmoradores_update
-    @republica = Republica.find(params[:republica_id])
+def add_exmoradores_update
+  @republica = Republica.find(params[:republica_id])
 
-    respond_to do |format|
-      if @republica.update_attributes(params[:republica])
-        format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
-        format.json { head :no_content }
-      else
-       format.html { render action: "add_exmoradores" }
-       format.json { render json: @republica.errors, status: :unprocessable_entity }
-     end
+  respond_to do |format|
+    if @republica.update_attributes(params[:republica])
+      format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
+      format.json { head :no_content }
+    else
+     format.html { render action: "add_exmoradores" }
+     format.json { render json: @republica.errors, status: :unprocessable_entity }
    end
-  end
+ end
+end
 
 
 end
