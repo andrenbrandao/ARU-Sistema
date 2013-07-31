@@ -54,7 +54,7 @@
   <div class="tab-content">
 
     <!-- GERAL -->
-    <div class="tab-pane active" id="geral">
+    <div class="tab-pane fade active in" id="geral">
       <legend>Descrição</legend>
       <div style='word-wrap: break-word;'>
         <%= simple_format @republica.descricao, class: 'description' %>
@@ -63,7 +63,7 @@
     </div>
 
     <!-- ATIVIDADES -->
-    <div class="tab-pane" id="atividades">
+    <div class="tab-pane fade" id="atividades">
 
       <% if @republica.atributos == true %>
 
@@ -84,7 +84,7 @@
 
     <% if republica_signed_in? || admin_signed_in? %> 
     <!-- CONTATOS -->
-    <div class="tab-pane" id="contato">
+    <div class="tab-pane fade" id="contato">
 
       <% if @republica.telefone != '' %>
       <p>
@@ -124,7 +124,7 @@
 
     <% if current_republica == @republica || admin_signed_in? %>
     <!-- DADOS RESTRITOS -->
-    <div class='tab-pane' id='dados_restritos'>
+    <div class='tab-pane fade' id='dados_restritos'>
 
       <p>
         <b>Número de <%= link_to 'Moradores', republica_moradores_path(@republica) %>:</b>
@@ -151,7 +151,7 @@
 
     <% if can? :manage, :all %>
     <!-- ADMIN ACTIONS -->
-    <div class="tab-pane" id="admin_actions">
+    <div class="tab-pane fade" id="admin_actions">
       <%= link_to 'Editar Atributos', republica_edit_atributos_path(@republica), class: 'btn btn-success btn-mini' %>
       <br>
 
