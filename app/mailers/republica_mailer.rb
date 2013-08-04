@@ -19,4 +19,14 @@ class RepublicaMailer < ActionMailer::Base
 		@republica = republica
 		mail(to: 'contato@republicasunicamp.com.br', subject: 'Novo cadastro de República')		
 	end
+
+	def inactivity_email(republica)
+		@republica = republica
+		mail(to: republica.email, subject: 'Conta Desativada')
+	end
+
+	def inactivity_warning_email(republica)
+		@republica = republica
+		mail(to: republica.email, subject: 'Atualização de Cadastro')
+	end
 end

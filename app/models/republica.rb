@@ -54,17 +54,21 @@ class Republica < ActiveRecord::Base
   validates_confirmation_of :password
 
 
-    def self.check_inactivity 
-      @republica = Republica.where(approved: true)
+  def self.check_inactivity 
+    @republica = Republica.where(approved: true)
 
-      @republica.each do |republica|
-        if (Time.now - republica.updated_at) >= 6.months
-          if republica.update2_without_timestamping(:approved, 'false')
-             RepublicaMailer.disapprove_email(republica).deliver
-          end
-        end
+    @republica.each do |republica|
+      if (Time.now - republica.updated_at) >= 6.months
+        if republica.update2_without_timestamping(:approved, 'false')
+         RepublicaMailer.inactivity_email(republica).deliver
+       end
      end
-    end
+      # Quando faltar 7 dias para completar 6 meses, avisa com email
+      if (Time.now - republica.updated_at + 7.days).to_i / 1.day == 180
+         RepublicaMailer.inactivity_warning_email(republica).deliver
+      end 
+   end
+ end
 
 
   # Mostra os atributos se tiver algum
@@ -131,7 +135,7 @@ class Republica < ActiveRecord::Base
   #   end
   # end
 
-   def set_data_de_saida
+  def set_data_de_saida
     self.moradores.reject(&:marked_for_destruction?).each do |f|
       if f.exmorador_changed?
         if f.exmorador_was == false
