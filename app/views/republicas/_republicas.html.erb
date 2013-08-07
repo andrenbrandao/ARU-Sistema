@@ -2,16 +2,16 @@
 	<thead>
 		<tr>
 			<th></th> <!-- Logotipo -->
-			<th>República</th>
-			<th>Tipo</th>
-			<th>Ano de Fundação</th>
+			<th><%= sortable "nome", "República" %></th>
+			<th><%= sortable "tipo" %></th>
+			<th><%= sortable "ano_de_fundacao", "Ano de Fundação" %></th>
 			<th>Atributos</th> <!-- Prêmios - Campeã de InterReps, Reuniões, etc. -->
 
 			<% if can? :manage, :all %>
-			<th>Registro</th>
-			<th>Último Login</th>
-			<th>Última Atualização</th>
-			<th>Confirmado</th>
+			<th><%= sortable "created_at", "Registro" %></th>
+			<th><%= sortable "last_sign_in_at", "Último Login" %></th>
+			<th><%= sortable "updated_at", "Última Atualização" %></th>
+			<th><%= sortable "confirmed", "Confirmado" %></th>
 			<th>Reconfirmado? (em caso de mudança)</th>
 			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->

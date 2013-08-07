@@ -2,6 +2,7 @@
 
 class RepublicasController < ApplicationController
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
   
   # GET /republicas
   # GET /republicas.json
@@ -15,9 +16,9 @@ class RepublicasController < ApplicationController
     @republicas_header = true
 
     if params[:approved] == "false"
-      @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(:nome)
+      @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
     else
-      @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(:nome)
+      @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
     end
 
     respond_to do |format|
@@ -109,35 +110,35 @@ class RepublicasController < ApplicationController
     end
   end
 
- ############################################
- ####### FUNÇÕES ADICIONADAS POR MIM ########
- ############################################
+  ############################################
+  ####### FUNÇÕES ADICIONADAS POR MIM ########
+  ############################################
 
- def edit_atributos
-  @republica = Republica.find(params[:republica_id])
-end
+  def edit_atributos
+    @republica = Republica.find(params[:republica_id])
+  end
 
-def atualizar_atributos
-  @republica = Republica.find(params[:republica_id])
-
-  respond_to do |format|
-    ## Initializer utilizado para NÃO ALTERAR os TIMESTAMPS - como UPDATED_AT ##
-    if @republica.update_without_timestamping(params[:republica])
-      format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
-    else
-     format.html { render action: "edit_attributos" }
-   end
- end
-end
-
-def index_exmoradores
-  @republica = Republica.find(params[:republica_id])
-  @exmoradores = @republica.moradores.where(exmorador: true)
-
-    # comando necessário para que CANCAN funcione!
-    authorize! :index_exmoradores, @republica
+  def atualizar_atributos
+    @republica = Republica.find(params[:republica_id])
 
     respond_to do |format|
+        ## Initializer utilizado para NÃO ALTERAR os TIMESTAMPS - como UPDATED_AT ##
+        if @republica.update_without_timestamping(params[:republica])
+          format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
+        else
+         format.html { render action: "edit_attributos" }
+       end
+     end
+   end
+
+   def index_exmoradores
+    @republica = Republica.find(params[:republica_id])
+    @exmoradores = @republica.moradores.where(exmorador: true)
+
+      # comando necessário para que CANCAN funcione!
+      authorize! :index_exmoradores, @republica
+
+      respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @exmoradores }
     end
@@ -211,6 +212,16 @@ def add_exmoradores_update
      format.json { render json: @republica.errors, status: :unprocessable_entity }
    end
  end
+end
+
+private
+
+def sort_column
+  Republica.column_names.include?(params[:sort]) ? params[:sort] : "nome"
+end
+
+def sort_direction
+ %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
 end
 
 
