@@ -15,7 +15,7 @@ class Ability
       #   republica.try(:id) == user.id
       # end
 
-      can :read, Republica
+      can :read, Republica, approved: true
 
       can :index_exmoradores, Republica, id: user.id
       can :add_exmoradores, Republica, id: user.id
@@ -29,7 +29,7 @@ class Ability
       
     else
       # Permissões para CONVIDADOS
-      can :read, Republica
+      can :read, Republica, approved: true
       can :create, Republica
     end
 
