@@ -9,6 +9,7 @@ Cadastro::Application.routes.draw do
     get "admin/dashboard"
     get 'admin/edit_morador'
     put 'admin/update_morador'
+    get 'admin/unapproved_index'
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
   devise_scope :republica do

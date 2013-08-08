@@ -1,7 +1,7 @@
 <% if can? :manage, :all %>
 <%= link_to "Repúblicas aprovadas", republicas_path, remote: true, id:'approved_link' %>
 |
-<%= link_to "Esperando aprovação", admin_unapproved_index_path, remote:true, id: 'disapproved_link' %>
+<%= link_to "Esperando aprovação", admin_unapproved_index_path, remote: true, id: 'disapproved_link' %>
 <% end %>
 
 <!-- <p class='pull-right btn' id='search_btn'>Search</p>
@@ -18,8 +18,4 @@
 <% end %>
 </div>
 
-<div id='republicas'><%= render 'republicas' %></div>
-
-
-
-
+<div id='republicas'><%= render 'republicas/republicas' %></div>

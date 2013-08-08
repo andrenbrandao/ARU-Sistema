@@ -9,11 +9,8 @@ class RepublicasController < ApplicationController
   def index
     @republicas_header = true
 
-    if params[:approved] == "false"
-      @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
-    else
-      @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
-    end
+    @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
+
 
     respond_to do |format|
       format.html # index.html.erb
