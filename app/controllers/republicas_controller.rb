@@ -7,12 +7,6 @@ class RepublicasController < ApplicationController
   # GET /republicas
   # GET /republicas.json
   def index
-    # if params[:approved] == "false"
-    #   @republicas = Republica.order(:nome).find_all_by_approved(false)
-    # else
-    #   @republicas = Republica.order(:nome).find_all_by_approved(true)
-    # end
-
     @republicas_header = true
 
     if params[:approved] == "false"
