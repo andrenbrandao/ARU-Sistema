@@ -65,8 +65,8 @@ class Republica < ActiveRecord::Base
      end
       # Quando faltar 7 dias para completar 6 meses, avisa com email
       if (Time.now - republica.updated_at + 7.days).to_i / 1.day == 180
-         RepublicaMailer.inactivity_warning_email(republica).deliver
-      end 
+       RepublicaMailer.inactivity_warning_email(republica).deliver
+     end 
    end
  end
 
@@ -111,7 +111,11 @@ class Republica < ActiveRecord::Base
   private
 
   def uniqueness_of_email
-    @rep = Republica.find(:all, :conditions => ["id != ?", self.id])
+    if !self.new_record?
+      @rep = Republica.find(:all, :conditions => ["id != ?", self.id])
+    else
+      @rep = Republica.all
+    end
     count = 0
     @rep.each do |republica|
       if republica.email == email
