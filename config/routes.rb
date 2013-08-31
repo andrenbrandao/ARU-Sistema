@@ -6,10 +6,12 @@ Cadastro::Application.routes.draw do
     delete "/logoutadmin" => "devise/sessions#destroy", :as => :destroy_admin_session
   end
 
-    get "admin/dashboard"
-    get 'admin/edit_morador'
-    put 'admin/update_morador'
-    get 'admin/unapproved_index'
+  namespace :admin do
+    get 'dashboard'
+    get 'edit_morador'
+    put 'update_morador'
+    get 'unapproved_index'
+  end
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
   devise_scope :republica do
