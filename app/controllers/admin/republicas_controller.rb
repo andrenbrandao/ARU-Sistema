@@ -5,7 +5,11 @@ class Admin::RepublicasController < AdminController
  def index
   @republicas_header = true
 
-  @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
+  if params[:approved] == 'false'
+    @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
+  else
+    @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
+  end
 
   respond_to do |format|
       format.html # index.html.erb
@@ -33,16 +37,6 @@ class Admin::RepublicasController < AdminController
      end
    end
  end
-
- def unapproved_index
-  @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
-
-  respond_to do |format|
-   format.html
-   format.json { render json: @republicas }
-   format.js 
- end
-end
 
 private
 

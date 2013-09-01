@@ -9,7 +9,6 @@ Cadastro::Application.routes.draw do
   namespace :admin do
     get 'edit_morador'
     put 'update_morador'
-    get 'republicas/unapproved_index'
     resources :republicas
     resources :moradores
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
