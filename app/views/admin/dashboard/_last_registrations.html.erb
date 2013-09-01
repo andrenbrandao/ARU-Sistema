@@ -66,7 +66,7 @@
 			</td>
 				
 			<td class='admin_action'>
-				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
+				<%= link_to 'Editar', edit_admin_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
 				<% if republica.approved == false %>
 				<%= link_to 'Approve', republica_approve_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>

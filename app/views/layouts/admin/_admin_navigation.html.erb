@@ -12,8 +12,8 @@
 	<!-- .nav, .navbar-search, .navbar-form, etc -->
 	<ul class="nav">
 
-		<li class="<%= 'active' if current_page?(admin_dashboard_path) %>">
-			<%= link_to "Dashboard", admin_dashboard_path %>
+		<li class="<%= 'active' if current_page?(admin_dashboard_index_path) %>">
+			<%= link_to "Dashboard", admin_dashboard_index_path %>
 		</li>
 
 		<li class="<%= 'active' if current_page?(admin_republicas_path) %>">
