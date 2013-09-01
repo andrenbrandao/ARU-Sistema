@@ -49,11 +49,6 @@ class RepublicasController < ApplicationController
     end
   end
 
-  # GET /republicas/1/edit
-  def edit
-    @republica = Republica.find(params[:id])
-  end
-
   # POST /republicas
   # POST /republicas.json
   def create
@@ -70,24 +65,6 @@ class RepublicasController < ApplicationController
       end
     end
   end
-
-  # PUT /republicas/1
-  # PUT /republicas/1.json
-  def update
-    @republica = Republica.find(params[:id])
-
-    ## UPDATE UTILIZADO ATUALMENTE POR ADMIN! ##
-    ## por isso, há o update_without_timestamping ##
-    respond_to do |format|
-      if @republica.update_without_timestamping(params[:republica])
-        format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
-        format.json { head :no_content }
-      else
-       format.html { render action: "edit" }
-       format.json { render json: @republica.errors, status: :unprocessable_entity }
-     end
-   end
- end
 
   # DELETE /republicas/1
   # DELETE /republicas/1.json
