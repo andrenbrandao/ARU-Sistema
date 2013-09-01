@@ -1,9 +1,10 @@
 <%= link_to "Repúblicas aprovadas", admin_republicas_path, remote: true, id:'approved_link' %>
 |
 <%= link_to "Esperando aprovação", admin_republicas_path(:approved => false), remote:true, id: 'disapproved_link' %>
-
+<br/>
+<br>
 <div class='form-inline' id='search_field'>
-<%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
+<%= form_tag admin_republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
     <%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
 <% end %>
 </div>
