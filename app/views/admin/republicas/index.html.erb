@@ -1,7 +1,7 @@
 <% if can? :manage, :all %>
-<%= link_to "Repúblicas aprovadas", republicas_path, remote: true, id:'approved_link' %>
+<%= link_to "Repúblicas aprovadas", admin_republicas_path, remote: true, id:'approved_link' %>
 |
-<%= link_to "Esperando aprovação", admin_unapproved_index_path, remote:true, id: 'disapproved_link' %>
+<%= link_to "Esperando aprovação", admin_republicas_unapproved_index_path, remote:true, id: 'disapproved_link' %>
 <% end %>
 
 <div class='form-inline' id='search_field'>
@@ -11,7 +11,4 @@
 </div>
 
 <div id='republicas'><%= render 'republicas' %></div>
-
-
-
 

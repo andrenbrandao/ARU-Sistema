@@ -26,22 +26,22 @@
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
       <div class="container">
-        <%= render 'layouts/default/navigation' %>
+        <%= render 'layouts/admin/admin_navigation' %>
       </div>
     </div>
   </div>
 
+  <%= render 'layouts/default/messages' %>
+  <%= render 'layouts/default/index' if @index_header %>
+  <%= render 'layouts/default/republicas' if @republicas_header %>
+  <%= render 'layouts/admin/dashboard' if @dashboard_header %>
 
-    <%= render 'layouts/default/messages' %>
-    <%= render 'layouts/default/index' if @index_header %>
-    <%= render 'layouts/default/republicas' if @republicas_header %>
-
-    <div id='main' class="container">
-      <div class="content">
-        <!-- Body Content -->
-        <%= yield %>
-      </div>
+  <div id='main' class="container">
+    <div class="content">
+      <!-- Body Content -->
+      <%= yield %>
     </div>
+  </div>
 
   <footer class='footer'>
     <div class='container'>

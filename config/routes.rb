@@ -1,16 +1,18 @@
 Cadastro::Application.routes.draw do
 
-  devise_for :admins
+  devise_for :admins, :controllers => {:sessions => 'sessions'}
   devise_scope :admin do
     get "/admin" => 'devise/sessions#new', :as => :new_admin_session
     delete "/logoutadmin" => "devise/sessions#destroy", :as => :destroy_admin_session
   end
 
   namespace :admin do
-    get 'dashboard'
     get 'edit_morador'
     put 'update_morador'
-    get 'unapproved_index'
+    get 'republicas/unapproved_index'
+    resources :republicas
+    resources :moradores
+    resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
   end
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}

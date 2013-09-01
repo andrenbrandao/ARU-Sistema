@@ -6,16 +6,6 @@
 			<th><%= sortable "tipo" %></th>
 			<th><%= sortable "ano_de_fundacao", "Ano de Fundação" %></th>
 			<th>Atributos</th> <!-- Prêmios - Campeã de InterReps, Reuniões, etc. -->
-
-			<% if can? :manage, :all %>
-			<th><%= sortable "created_at", "Registro" %></th>
-			<th><%= sortable "last_sign_in_at", "Último Login" %></th>
-			<th><%= sortable "updated_at", "Última Atualização" %></th>
-			<th><%= sortable "confirmed_at", "Confirmado" %></th>
-			<th><%= sortable "unconfirmed_email", "Reconfirmado? (em caso de mudança)"%></th>
-			<th>Estatísticas</th>
-			<th></th> <!-- Comandos ADMIN -->
-			<% end %>
 		</tr>
 	</thead>
 
@@ -33,52 +23,6 @@
 				<%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'reunioes' if republica.presente_reunioes == true %>
 				<%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'nova_rep' if Time.now.year - "#{republica.ano_de_fundacao}".to_i <= 1 %>
 			</td>
-
-			<% if can? :manage, :all %>
-			<td><%= republica.created_at.to_date %></td>
-
-			<td>
-				<% if republica.last_sign_in_at != nil %>
-				<%= republica.last_sign_in_at.to_s.to_date %>
-				<% end %>
-			</td>
-
-			<td>
-				<%= republica.updated_at.to_s.to_date %>
-			</td>
-
-			<td>
-				<% if republica.confirmed? %>
-				<span style='color:green'>Sim</span>
-				<% else %>
-				<span style='color:red'>Não</span>
-				<% end %>
-			</td>
-
-			<td>
-				<% if republica.pending_reconfirmation?%>
-				<span style='color:red'>Não</span>
-				<% else %>
-				<span style='color:green'>Sim</span>
-				<% end %>
-			</td>
-
-			<td>
-				<%= link_to 'Statistics', republica_statistics_path(republica), class: 'btn btn-mini' %>
-			</td>
-				
-			<td class='admin_action'>
-				<%= link_to 'Editar', edit_republica_path(republica), class: 'btn btn-mini' %>
-				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
-				<% if republica.approved == false %>
-				<%= link_to 'Approve', republica_approve_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
-				<% end %>
-				<% if republica.approved == true %>
-				<%= link_to 'Disapprove', republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
-				<% end %>
-			</td>
-			<% end %>
-
 		</tr>
 		<% end %>
 	</tbody>
