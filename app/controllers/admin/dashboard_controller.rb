@@ -5,9 +5,11 @@ class Admin::DashboardController < AdminController
 	def index
 		@republicas = Republica.where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
 
+		@all_reps = Republica.all
+
 		@exmoradores = []
 
-		@republicas.each do |republica|
+		@all_reps.each do |republica|
 			republica.moradores.where(exmorador: true).each do |morador|
 				@exmoradores << morador
 			end

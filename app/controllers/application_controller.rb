@@ -10,4 +10,15 @@ class ApplicationController < ActionController::Base
 		@current_ability ||= current_admin ? Ability.new(current_admin) : Ability.new(current_republica)
 	end
 
+	layout :determine_layout
+
+	private
+	def determine_layout
+		if admin_signed_in?
+			"admin"
+		else
+			"application"
+		end
+	end
+
 end
