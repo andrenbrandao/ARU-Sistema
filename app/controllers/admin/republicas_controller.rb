@@ -74,9 +74,73 @@ def statistics
   @republica = Republica.find(params[:republica_id])
   @moradores = @republica.moradores.where(exmorador: false)
 
-  respond_to do |format|
-    format.html 
+  @uni_hash= Hash.new
+
+  Morador::UNIVERSIDADE.each do |uni|
+    count = @moradores.where(universidade: uni).count
+    percent = (count.to_f/@moradores.count)*100
+    @uni_hash[uni] = percent
   end
+
+  @uni_chart = LazyHighCharts::HighChart.new('pie') do |f|
+    f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
+    series = {
+     :type=> 'pie',
+     :name=> 'Alunos por Universidade',
+     :data=>
+     @uni_hash.map {|uni, percent| [uni, percent.to_f.round(1)] }
+   }
+   f.series(series)
+   f.options[:title][:text] = "Alunos por Universidade"
+   f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+   f.plot_options(:pie=>{
+    :allowPointSelect=>true, 
+    :cursor=>"pointer" , 
+    :dataLabels=>{
+      :enabled=>true,
+      :color=>"black",
+      :style=>{
+        :font=>"13px Trebuchet MS, Verdana, sans-serif"
+      }
+    }
+    })
+ end
+
+ @curso_hash= Hash.new
+
+ Morador::CURSO.each do |curso|
+  count = @moradores.where(curso: curso).count
+  percent = (count.to_f/@moradores.count)*100
+  @curso_hash[curso] = percent
+end
+
+@curso_chart = LazyHighCharts::HighChart.new('pie') do |f|
+  f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
+  series = {
+   :type=> 'pie',
+   :name=> 'Alunos por Curso',
+   :data=>
+   @curso_hash.map {|curso, percent| [curso, percent.to_f.round(1)] }
+ }
+ f.series(series)
+ f.options[:title][:text] = "Alunos por Curso"
+ f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+ f.plot_options(:pie=>{
+  :allowPointSelect=>true, 
+  :cursor=>"pointer" , 
+  :dataLabels=>{
+    :enabled=>true,
+    :color=>"black",
+    :style=>{
+      :font=>"13px Trebuchet MS, Verdana, sans-serif"
+    }
+  }
+  })
+end
+
+respond_to do |format|
+  format.html 
+end
 end
 
 private
