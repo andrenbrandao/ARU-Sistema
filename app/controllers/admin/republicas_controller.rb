@@ -38,6 +38,38 @@ class Admin::RepublicasController < AdminController
    end
  end
 
+ def approve
+  @republica = Republica.find(params[:republica_id])
+
+  respond_to do |format|
+    if @republica.update2_without_timestamping(:approved, 'true')
+      RepublicaMailer.welcome_email(@republica).deliver
+      format.html { redirect_to admin_dashboard_index_path, notice: 'Republica aprovada.' }
+      format.json { head :no_content }
+    else
+     format.html { render action: "index" }
+     format.json { render json: @republica.errors, status: :unprocessable_entity }
+   end
+ end
+
+end
+
+
+def disapprove
+  @republica = Republica.find(params[:republica_id])
+
+  respond_to do |format|
+    if @republica.update2_without_timestamping(:approved, 'false')
+      RepublicaMailer.disapprove_email(@republica).deliver
+      format.html { redirect_to admin_dashboard_index_path, notice: 'Republica desaprovada.' }
+      format.json { head :no_content }
+    else
+     format.html { render action: "index" }
+     format.json { render json: @republica.errors, status: :unprocessable_entity }
+   end
+ end
+end
+
 private
 
 def sort_column

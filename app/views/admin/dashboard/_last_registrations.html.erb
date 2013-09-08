@@ -69,10 +69,10 @@
 				<%= link_to 'Editar', edit_admin_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
 				<% if republica.approved == false %>
-				<%= link_to 'Approve', republica_approve_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
+				<%= link_to 'Approve', admin_republica_approve_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-success btn-mini' %>
 				<% end %>
 				<% if republica.approved == true %>
-				<%= link_to 'Disapprove', republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
+				<%= link_to 'Disapprove', admin_republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
 				<% end %>
 			</td>
 			<% end %>
