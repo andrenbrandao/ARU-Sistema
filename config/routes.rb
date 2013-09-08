@@ -13,6 +13,7 @@ Cadastro::Application.routes.draw do
       resources :atributos
       put 'approve'
       put 'disapprove'
+      get "statistics"
     end
     resources :moradores
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
@@ -28,7 +29,6 @@ Cadastro::Application.routes.draw do
   
   resources :republicas, except: [:edit, :update] do
     get 'index_exmoradores' 
-    get "statistics"
     get 'add_exmoradores'
     put 'add_exmoradores_update'
     resources :moradores, except: [:show, :edit]

@@ -98,16 +98,6 @@ class RepublicasController < ApplicationController
   end
 
 
-
-def statistics
-  @republica = Republica.find(params[:republica_id])
-  @moradores = @republica.moradores.where(exmorador: false)
-
-  respond_to do |format|
-    format.html 
-  end
-end
-
 def add_exmoradores
   @republica = Republica.find(params[:republica_id])
   @republica.moradores.build
