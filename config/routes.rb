@@ -7,15 +7,13 @@ Cadastro::Application.routes.draw do
   end
 
   namespace :admin do
-    get 'edit_morador'
-    put 'update_morador'
     resources :republicas do
+      resources :moradores
       resources :atributos
       put 'approve'
       put 'disapprove'
       get "statistics"
     end
-    resources :moradores
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
   end
 

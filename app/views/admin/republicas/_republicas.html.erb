@@ -21,7 +21,7 @@
 		<% @republicas.each do |republica| %>
 		<tr>
 			<td><%= image_tag republica.logotipo_url(:thumb), id: 'logotipo' %></td>
-			<td><b><%= link_to republica.nome, republica %></b></td>
+			<td><b><%= link_to republica.nome, admin_republica_path(republica) %></b></td>
 			<td><%= republica.tipo %></td>
 			<td><%= republica.ano_de_fundacao %></td>
 			<td>

@@ -1,13 +1,23 @@
 class Admin::MoradoresController < AdminController
 
-	def edit_morador
+	def index
 		@republica = Republica.find(params[:republica_id])
-		@morador = Morador.find(params[:morador_id])
+		@moradores = @republica.moradores
+
+		respond_to do |format|
+			format.html
+			format.json { render json: @moradores }
+		end
 	end
 
-	# ### NÃO ESTÁ SENDO UTILIZADO AINDA!!! ###
-	def update_morador
-		@morador = Morador.where(params[:morador_id])
+	def edit
+		@republica = Republica.find(params[:republica_id])
+		@morador = Morador.find(params[:id])
+	end
+
+	def update
+		@republica = Republica.find(params[:republica_id])
+		@morador = Morador.find(params[:id])
 
 		respond_to do |format|
 			if @morador.update_without_timestamping(params[:morador])
