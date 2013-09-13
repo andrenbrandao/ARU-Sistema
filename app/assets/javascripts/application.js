@@ -27,7 +27,6 @@
 //= require jquery.scrollTo-1.4.3.1-min
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more                                                         
-//= require highcharts/highstock
 //= require_tree .
 
 // $(function() {
