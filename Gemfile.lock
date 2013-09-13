@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
@@ -126,6 +127,11 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.2)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -189,6 +195,7 @@ DEPENDENCIES
   nested_form
   pg
   rails (= 3.2.8)
+  rails_12factor
   rmagick
   rolify
   sass-rails (~> 3.2.3)

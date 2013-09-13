@@ -53,8 +53,13 @@ gem 'will_paginate'
 gem "fog", "~> 1.3.1"
 gem 'lazy_high_charts'
 
+gem 'rails_12factor', group: :production
+
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'meta_request'
 end
+
+source "https://rubygems.org"
+ruby "1.9.3"
