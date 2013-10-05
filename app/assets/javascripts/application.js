@@ -126,17 +126,28 @@ $(document).ready(function() {
 // Cria INPUT_MASKS para Telefones e Celulares
 function activeMask() {
   $('.telefone').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
-  $('.celular').inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  $('.celular').inputmask('(99) 9999-9999[9]', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
   $('.RA').find('input').inputmask('999999', {placeholder: "", clearMaskOnLostFocus: true, "clearIncomplete": false, showMaskOnHover: false });
-  $('.celular').keyup(function() {
-    var valor = $(this).val().substr(1,2); 
-    if(valor == '11') {
-      $(this).inputmask('(99) 99999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
-    }
-    else {
-      $(this).inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
-    }
-  });
+  // $('.celular').keyup(function() {
+  //   var valor = $(this).val().substr(1,2); 
+  //   if(valor == '11') {
+  //     $(this).inputmask('(99) 99999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  //   }
+  //   else {
+  //     $(this).inputmask('(99) 9999-9999', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  //   }
+  // });
+$('.celular').on('focusout', function(event){
+  var target, phone, element;  
+  target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+  phone = target.value.replace(/\D/g, '');  
+  element = $(target);  
+  if(phone.length > 10) {
+    element.inputmask('(99) 99999-999[9]', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  } else {
+    element.inputmask('(99) 9999-9999[9]', {placeholder:"_", clearMaskOnLostFocus: true, "clearIncomplete": true, showMaskOnHover: false });
+  }
+}).trigger('focusout');
 }
 
 $(document).ready(function() {
