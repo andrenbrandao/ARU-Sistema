@@ -13,4 +13,9 @@
 	<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
 	<% end %>
 
+	<%= high_chart("anos_chart", @anos_chart) do |c| %>
+	<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+	<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+	<% end %>
+
 </fieldset>

@@ -153,6 +153,41 @@ end
   })
 end
 
+@ano_hash = Hash.new
+
+numero_de_moradores = @moradores.count
+
+@moradores.each do |morador|
+  ano = morador.ano_de_ingresso
+  count = @moradores.where(ano_de_ingresso: ano).count
+  percent = (count.to_f/numero_de_moradores)*100
+  @ano_hash[ano] = percent
+end
+
+@anos_chart = LazyHighCharts::HighChart.new('pie') do |f|
+  f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
+  series = {
+   :type=> 'pie',
+   :name=> 'Alunos por Ano',
+   :data=>
+   @ano_hash.map {|ano, percent| [ano.to_s, percent.to_f.round(1)]}
+ }
+ f.series(series)
+ f.options[:title][:text] = "Alunos por Ano"
+ f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+ f.plot_options(:pie=>{
+  :allowPointSelect=>true, 
+  :cursor=>"pointer" , 
+  :dataLabels=>{
+    :enabled=>true,
+    :color=>"black",
+    :style=>{
+      :font=>"13px Trebuchet MS, Verdana, sans-serif"
+    }
+  }
+  })
+end
+
 respond_to do |format|
   format.html 
 end
