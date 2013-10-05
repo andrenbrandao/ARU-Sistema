@@ -22,6 +22,14 @@ class Morador < ActiveRecord::Base
 	validates :celular, presence: true, :if => :is_representante?
 
 	
+	def self.update_9digit(old_number, new_number) 
+		@morador = Morador.where(celular: old_number)
+
+		@morador.each do |morador|
+			morador.update2_without_timestamping(:celular, new_number)
+		end
+	end
+
 	private
 
 	def is_unicamp?
