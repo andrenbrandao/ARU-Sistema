@@ -23,6 +23,12 @@ class Admin::DashboardController < AdminController
 	  end
 	end
 
+	def listadereps
+		@masculinas = Republica.where(tipo: 'Masculina').order('approved DESC', :nome)
+		@femininas = Republica.where(tipo: 'Feminina').order('approved DESC',:nome)
+		@mistas = Republica.where(tipo: 'Mista').order('approved DESC',:nome)
+	end
+
 	private
 
 	def sort_column

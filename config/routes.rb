@@ -15,6 +15,10 @@ Cadastro::Application.routes.draw do
       get "statistics"
     end
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
+
+    namespace :dashboard do
+      get 'listadereps'
+    end
   end
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
