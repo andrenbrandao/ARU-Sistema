@@ -3,6 +3,7 @@
 <table class='table table-striped'>
     <thead>
       <tr>
+        <th>Created At</th>
         <th>Nome</th>
         <th>Apelido</th>
         <th>Curso</th>
@@ -19,6 +20,7 @@
     <% @moradores.each do |morador| %>
     <% if morador.exmorador? == false %>
     <tr>
+        <td><%= morador.created_at.to_date %></td>
         <td>
             <%= morador.nome + ' ' + morador.sobrenome %>
             <% if morador.representante %>
