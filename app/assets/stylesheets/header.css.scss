@@ -2,6 +2,9 @@
  	padding: 20px 0 30px;
  	top: 0;
  	background-color: #FFF;
+ 	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+ 	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+ 	box-shadow: 0 2px 3px rgba(0,0,0,0.3);
  }
 
  .nav--top {
@@ -43,6 +46,10 @@
  	border-top: 1px solid #065072;
  	background-color: #043f5a;
 
+ 	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+ 	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+ 	box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+
  	ul {
  		margin: 10px 0 10px 0;
  	}
@@ -68,14 +75,22 @@
  .nav-button {
  	border-radius: 3px;
  	padding: 5px 12px;
+ 	font-weight: bold;
+ 	text-transform: uppercase;
+ 	font-family: "OpenSansBold",Helvetica,Arial,sans-serif;
  }
 
  .nav-button-a {
  	color: #FFF !important;
- 	background: #288b9a;
+ 	background: #00608D;
  }
  .nav-button-a:hover {
- 	background: #237986;
+ 	background: #005075;
+ }
+
+ .nav-button-big {
+ 	padding: 11px 19px;
+ 	font-size: 15.5px;
  }
 
  .nav-button-b {
