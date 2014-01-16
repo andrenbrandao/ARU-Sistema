@@ -20,11 +20,8 @@
  	font-size: small;
 
  	li {
-
  		a{
  			color: #777;
-
-
  		}
 
  		a:hover {
@@ -77,10 +74,16 @@
  	color: #FFF !important;
  	background: #288b9a;
  }
+ .nav-button-a:hover {
+ 	background: #237986;
+ }
 
  .nav-button-b {
  	color: #636365 !important;
  	background: #bfbeb2;
+ }
+ .nav-button-b:hover {
+ 	background: #b3b2a4;
  }
 
  .nav--text {
