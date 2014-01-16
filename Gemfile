@@ -52,6 +52,7 @@ gem 'rmagick'
 gem 'will_paginate'
 gem "fog", "~> 1.3.1"
 gem 'lazy_high_charts'
+gem 'font-awesome-sass'
 
 gem 'rails_12factor', group: :production
 
