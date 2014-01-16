@@ -18,10 +18,15 @@
 			<td><%= republica.ano_de_fundacao %></td>
 			<td>
 				<%  if republica.campea_interreps != '' && republica.campea_interreps != nil %>
-				<%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'interreps' %>
+				<i class='fa fa-trophy interreps'></i>
 				<% end %>
-				<%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'reunioes' if republica.presente_reunioes == true %>
+				<% if republica.presente_reunioes == true %>
+				<i class='fa fa-calendar reunioes'></i>
+				<% end %>
+
+				<% if false %>
 				<%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'nova_rep' if Time.now.year - "#{republica.ano_de_fundacao}".to_i <= 1 %>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>
