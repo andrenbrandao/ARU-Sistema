@@ -1,0 +1,39 @@
+<div class='row-fluid'>
+	<div class='span3'>
+		<div class='pull-left'>
+			<%= link_to image_tag('logo-navyblue.png'), root_path %>
+		</div>
+	</div>
+
+	<div class='span9'>
+
+		<nav class='nav--site'>
+			<ul class="nav--links pull-right">
+
+				<li class="<%= 'active' if current_page?(republicas_path) %>">
+					<%= link_to "Repúblicas", republicas_path %>
+				</li>
+
+				<li><a href='http://republicasunicamp.com.br/contato/' target='_blank'>Contato</a></li>
+
+				<% if republica_signed_in? %>
+				<li>
+					<%= link_to('Logout', destroy_republica_session_path, :method=>'delete') %>
+				</li>
+
+				<% elsif !admin_signed_in? %>
+
+				<li>
+					<%= link_to('Cadastrar Minha República', new_republica_registration_path, class: 'nav-button nav-button-a')  %>
+				</li>
+
+				<li>
+					<%= link_to('Login', new_republica_session_path, class: 'nav-button nav-button-b' ) %>
+				</li>
+
+				<% end %>
+			</ul>
+		</nav>
+
+	</div>
+</div>
