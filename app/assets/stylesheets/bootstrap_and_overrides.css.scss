@@ -44,7 +44,7 @@ a:hover {
 
 #main{
   overflow:auto;
-  padding-bottom:80px; /* this needs to be bigger than footer height*/
+  padding-bottom:110px; /* this needs to be bigger than footer height*/
 }
 
 .footer {
@@ -56,7 +56,12 @@ a:hover {
   width: 100%;
 
   a{
-    color: #74E3FF;
+    color: #FFF;
+  }
+
+  a:hover {
+    color: #05a9c5;
+    text-decoration: none;
   }
 
   span {

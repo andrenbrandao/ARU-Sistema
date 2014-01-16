@@ -22,10 +22,8 @@
 				<li class="<%= 'active' if current_page?(republicas_path) %>">
 					<%= link_to "Repúblicas", republicas_path %>
 				</li>
-				
-				<li>
-					<%= link_to('Cadastrar Minha República', new_republica_registration_path, class: 'nav-button nav-button-a') if !republica_signed_in?  %>
-				</li>
+
+				<li><a href='http://republicasunicamp.com.br/contato/' target='_blank'>Contato</a></li>
 
 				<% if republica_signed_in? %>
 				<li>
@@ -33,6 +31,10 @@
 				</li>
 
 				<% elsif !admin_signed_in? %>
+
+				<li>
+					<%= link_to('Cadastrar Minha República', new_republica_registration_path, class: 'nav-button nav-button-a')  %>
+				</li>
 
 				<li>
 					<%= link_to('Login', new_republica_session_path, class: 'nav-button nav-button-b' ) %>
