@@ -23,20 +23,21 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
-  <div class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-      <div class="container">
+  <header class="navigation-header">
+    <div class="nav--top">
         <%= render 'layouts/default/navigation' %>
-      </div>
     </div>
-  </div>
+  </header>
+
+  <%= render 'layouts/default/nav-sub' if republica_signed_in? %>
 
 
   <%= render 'layouts/default/messages' %>
   <%= render 'layouts/default/index' if @index_header %>
   <%= render 'layouts/default/republicas' if @republicas_header %>
 
-  <div id='main' class="container">
+
+  <div id='main' class="container-fluid">
     <div class="content">
       <!-- Body Content -->
       <%= yield %>
@@ -44,9 +45,7 @@
   </div>
 
   <footer class='footer'>
-    <div class='container'>
       <%= render 'layouts/default/footer' %>
-    </div>
     <%= render 'layouts/default/analytics' %>
   </footer>
 
