@@ -1,8 +1,10 @@
 <div class="nav--sub" id="account-navigation">
 	<ul class='nav--links'>
-		<li><a href="/account" class="is-active">Dashboard</a></li>
-		<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
-			<%= link_to('Minha Conta', edit_republica_registration_path) %>
+		<li class="<%= 'active' if current_page?(admin_dashboard_index_path) %>">
+			<%= link_to "Dashboard", admin_dashboard_index_path %>
+		</li>
+		<li class="<%= 'active' if current_page?(admin_republicas_path) %>">
+			<%= link_to "Repúblicas", admin_republicas_path %>
 		</li>
 
 		<!-- SOMENTE PARA ADICIONAR EX-MORADORES :::: DESATIVADO :::: -->
@@ -17,6 +19,7 @@
 
 		<li><a href="/eventos">Eventos</a></li>
 
-		<li class='pull-right nav--text'><span>Logado como <%= link_to 'Admin', admin_dashboard_index_path %></span></li>
+
+		<li class='nav--text pull-right'><span>Logado como <%= link_to 'Admin', admin_dashboard_index_path %></span></li>
 	</ul>
 </div>
