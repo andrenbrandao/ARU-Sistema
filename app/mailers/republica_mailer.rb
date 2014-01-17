@@ -6,7 +6,7 @@ class RepublicaMailer < ActionMailer::Base
 
 	def welcome_email(republica)
 		@republica = republica
-		@url  = 'http://cadastroaru.herokuapp.com/login'
+		@url  = 'http://cadastro.republicasunicamp.com.br/login'
 		mail(to: republica.email, subject: 'Aprovação de Cadastro')
 	end
 
