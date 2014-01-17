@@ -16,3 +16,6 @@
 
 # Ignore Passwords and Emails
 /config/local_env.yml
+
+# Ignore SSH Key
+/id_rsa.pub
