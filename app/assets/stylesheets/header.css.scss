@@ -36,6 +36,14 @@
  		text-transform: uppercase;
  		// font-weight: bold;
  	}
+
+ 	li.active {
+ 		color: #05a9c5;
+ 		a {
+ 			color: #05a9c5;
+ 		}
+ 	}
+
  }
 
 
@@ -62,15 +70,15 @@
  			color: #FFF;
  		}
  	}
- }
 
-
- .active {
- 	color: #05a9c5;
- 	a {
- 		color: #05a9c5 !important;
+ 	li.active {
+ 		color: #05a9c5;
+ 		a {
+ 			color: #05a9c5;
+ 		}
  	}
  }
+
 
  .nav-button {
  	border-radius: 3px;
