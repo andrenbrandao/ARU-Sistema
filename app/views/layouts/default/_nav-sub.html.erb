@@ -2,7 +2,7 @@
 	<ul class='nav--links'>
 		<li><a href="#">Dashboard</a></li>
 		<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
-			<%= link_to('Minha Conta', edit_republica_registration_path) %>
+			<%= link_to 'Minha Conta', republica_path(current_republica) %>
 		</li>
 
 		<!-- SOMENTE PARA ADICIONAR EX-MORADORES :::: DESATIVADO :::: -->
