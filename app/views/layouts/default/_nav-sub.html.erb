@@ -1,6 +1,6 @@
 <div class="nav--sub" id="account-navigation">
 	<ul class='nav--links'>
-		<li><a href="/account" class="is-active">Dashboard</a></li>
+		<li><a href="#">Dashboard</a></li>
 		<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
 			<%= link_to('Minha Conta', edit_republica_registration_path) %>
 		</li>
@@ -15,7 +15,7 @@
 		<% end %>
 		<!-- :::: DESATIVADO :::: -->
 
-		<li><a href="/eventos">Eventos</a></li>
+		<li><a href="#">Eventos</a></li>
 
 		<li class='pull-right nav--text'><span>Logado como <%= link_to current_republica.nome, republica_path(current_republica) %></span></li>
 	</ul>
