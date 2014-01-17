@@ -74,15 +74,16 @@ class Republica < ActiveRecord::Base
   # Mostra os atributos se tiver algum
   def atributos
     valid = false
-    if campea_interreps != nil 
+    if campea_interreps != nil && campea_interreps != ''
       valid = true
 
     elsif presente_reunioes == true
       valid = true
-
-    elsif Time.now.year - ano_de_fundacao <= 1  
-      valid = true
     end
+
+    # elsif Time.now.year - ano_de_fundacao <= 1  
+    #   valid = true
+    # end
 
     valid
   end

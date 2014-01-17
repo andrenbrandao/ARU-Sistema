@@ -44,16 +44,12 @@
     </li>
     <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
 
-    <% if republica_signed_in? || admin_signed_in? %>
+    <% if republica_signed_in?  %>
     <li><a href="#contato"  data-toggle="tab">Contato</a></li>
     <% end %>
 
-    <% if current_republica == @republica || admin_signed_in? %>
+    <% if current_republica == @republica %>
     <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
-    <% end %>
-
-    <% if admin_signed_in? %>
-    <li><a href="#admin_actions"  data-toggle="tab">Admin Actions</a></li>
     <% end %>
   </ul>
 
@@ -85,7 +81,7 @@
       <% end %>
 
       <% if @republica.campea_interreps != nil && @republica.campea_interreps != ''  %>
-      <p><i class='fa fa-trophy'></i> <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
+      <p><i class='fa fa-trophy'></i> Campeã InterReps: <%= @republica.campea_interreps %></p>
       <% end %>
 
       <% else %>
@@ -95,7 +91,7 @@
     </div>
 
 
-    <% if republica_signed_in? || admin_signed_in? %> 
+    <% if republica_signed_in? %> 
     <!-- CONTATOS -->
     <div class="tab-pane fade" id="contato">
 
@@ -116,7 +112,7 @@
         <%= @republica.email %>
       </p>
 
-      <% if current_republica == @republica || admin_signed_in? %>
+      <% if current_republica == @republica %>
       <% if @republica.pending_reconfirmation? %>
       <p style='color:red'>
         <b>Email Não Reconfirmado:</b>
@@ -125,7 +121,7 @@
       <% end %>
       <% end %>
 
-      <% if republica_signed_in? || admin_signed_in? %> 
+      <% if republica_signed_in? %> 
       <p>
         <b>Celular do Representante:</b>
         <%= @representante.celular %>
@@ -135,7 +131,7 @@
     </div>
     <% end %>
 
-    <% if current_republica == @republica || admin_signed_in? %>
+    <% if current_republica == @republica %>
     <!-- DADOS RESTRITOS -->
     <div class='tab-pane fade' id='dados_restritos'>
 
@@ -160,15 +156,6 @@
       </p>
     </div>
 
-    <% end %>
-
-    <% if can? :manage, :all %>
-    <!-- ADMIN ACTIONS -->
-    <div class="tab-pane fade" id="admin_actions">
-      <%= link_to 'Editar Atributos', edit_admin_republica_atributo_path(@republica), class: 'btn btn-success btn-mini' %>
-      <br>
-
-    </div>
     <% end %>
 
   </div>

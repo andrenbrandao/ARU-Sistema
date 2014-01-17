@@ -1,35 +1,27 @@
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-</a>
+<div class='row-fluid'>
+	<div class='span3'>
+		<div class='pull-left'>
+			<%= link_to image_tag('logo-navyblue.png'), root_path %>
+		</div>
+	</div>
 
-<!-- Be sure to leave the brand out there if you want it shown -->
-<%= link_to "Home", root_path, :class => 'brand' %>
+	<div class='span9'>
 
-<!-- Everything you want hidden at 940px or less, place within here -->
-<div class="nav-collapse collapse">
-	<!-- .nav, .navbar-search, .navbar-form, etc -->
-	<ul class="nav">
+		<nav class='nav--site'>
+			<ul class="nav--links pull-right">
 
-		<li class="<%= 'active' if current_page?(admin_dashboard_index_path) %>">
-			<%= link_to "Dashboard", admin_dashboard_index_path %>
-		</li>
+				<li>
+					<%= link_to "Repúblicas", admin_republicas_path %>
+				</li>
 
-		<li class="<%= 'active' if current_page?(admin_republicas_path) %>">
-			<%= link_to "Repúblicas", admin_republicas_path %>
-		</li>
+				<li><a href='http://republicasunicamp.com.br/contato/' target='_blank'>Contato</a></li>
 
-	</ul>
-	<ul class='nav pull-right'>
-		<% if admin_signed_in? %>
-		<li>
-			<p class="navbar-text">Logado como <span style="color: #0088cc; text-decoration: none;">Admin</span></p>
-		</li>
-		<li>
-			<%= link_to('Logout', destroy_admin_session_path, :method=>'delete') %>
-		</li>
+				<li>
+					<%= link_to('Logout', destroy_admin_session_path, :method=>'delete') %>
+				</li>
 
-		<% end %>
-	</ul>
+			</ul>
+		</nav>
+
+	</div>
 </div>
