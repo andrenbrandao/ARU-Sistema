@@ -1,3 +1,6 @@
+
+<div class='content-box center-form'>
+
 <%= simple_nested_form_for [:admin, @republica, @morador], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @morador %> 
@@ -46,3 +49,5 @@
 
 
 <% end %>
+
+</div>

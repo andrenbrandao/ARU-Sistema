@@ -1,3 +1,5 @@
+<div class='center-form content-box'>
+   
     <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: 'republica_form', multipart: true }, validate: true) do |f| %>
     <%= display_base_errors @republica %>
 
@@ -67,3 +69,4 @@
 
 
 <% end %>
+</div>
