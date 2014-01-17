@@ -1,4 +1,4 @@
-<div id='show-rep'>
+<div id='show-rep' class='content-box'>
 
   <div class='media rep-show' id='rep-header'>
 
@@ -11,24 +11,27 @@
 
       <p>
         <% if @republica.tipo == 'Masculina' %>
-        <%= image_tag 'glyphicons/glyphicons_246_male.png', class: 'male_icon' %>
+        <i class='fa fa-male'></i>
         <% elsif @republica.tipo == 'Feminina' %>
-        <%= image_tag 'glyphicons/glyphicons_247_female.png', class: 'female_icon'  %>
+        <i class='fa fa-female'></i>
         <% else %>
-        <%= image_tag 'glyphicons/246_247_male-female.png', class: 'mixed_icon'  %>
+        <i class='fa fa-group'></i>
         <% end %>
         <span><%= @republica.tipo %></span>
         <span class='dot-separator'>·</span>
         <span>Fundada em <%= @republica.ano_de_fundacao %></span>
       </p>
 
+      <!-- Desabilitado por enquanto -->
+      <% if false %>
       <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
       <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'calendar_icon' %> República Nova</p>
+      <% end %>
       <% end %>
 
       <% if @republica.presente_reunioes == true %>
       <p>
-        <%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'calendar_icon' %> Presente em Reuniões
+        <i class='fa fa-calendar'></i> Presente em Reuniões
       </p>
       <% end %>
 
@@ -70,16 +73,19 @@
 
       <% if @republica.atributos == true %>
 
+      <!-- Desabilitado por enquanto -->
+      <% if false %>
       <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
       <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'atributos' %> República Nova</p>
       <% end %>
+      <% end %>
 
       <% if @republica.presente_reunioes == true %>
-      <p><%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'atributos' %> Presente em Reuniões</p>
+      <p><i class='fa fa-calendar'></i> Presente em Reuniões</p>
       <% end %>
 
       <% if @republica.campea_interreps != nil && @republica.campea_interreps != ''  %>
-      <p><%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'atributos' %> <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
+      <p><i class='fa fa-trophy'></i> <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
       <% end %>
 
       <% else %>
