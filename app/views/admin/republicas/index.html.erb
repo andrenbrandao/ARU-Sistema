@@ -1,6 +1,6 @@
-<%= link_to "Repúblicas aprovadas", admin_republicas_path, remote: true, id:'approved_link' %>
-|
-<%= link_to "Esperando aprovação", admin_republicas_path(:approved => false), remote:true, id: 'disapproved_link' %>
+<%= link_to "<i class='fa fa-check'></i> Repúblicas aprovadas".html_safe, admin_republicas_path, remote: true, id:'approved_link', class: 'nav-btn nav-btn-a nav-btn-small' %>
+
+<%= link_to "<i class='fa fa-ban'></i> Esperando aprovação".html_safe, admin_republicas_path(:approved => false), remote:true, id: 'disapproved_link', class: 'nav-btn nav-btn-a nav-btn-small' %>
 <br/>
 <br>
 <div class='form-inline' id='search_field'>
@@ -9,5 +9,5 @@
 <% end %>
 </div>
 
-<div id='republicas'><%= render 'republicas' %></div>
+<div id='republicas' class='content-box-for-table'><%= render 'republicas' %></div>
 
