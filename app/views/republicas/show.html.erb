@@ -1,4 +1,9 @@
-<div id='show-rep' class='content-box'>
+<% if current_republica == @republica %>
+<%= render 'left_menu' %>
+<% end %>
+
+
+<div id='show-rep' class='content-box pull-left'>
 
   <div class='media rep-show' id='rep-header'>
 
