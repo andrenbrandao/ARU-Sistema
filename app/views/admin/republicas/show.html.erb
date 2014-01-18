@@ -61,7 +61,7 @@
 
     <!-- GERAL -->
     <div class="tab-pane fade active in" id="geral">
-      <legend>Descrição</legend>
+      <h2>Descrição</h2>
       <div style='word-wrap: break-word;'>
         <%= simple_format @republica.descricao, class: 'description' %>
       </div>
@@ -140,12 +140,12 @@
     <div class='tab-pane fade' id='dados_restritos'>
 
       <p>
-        <b>Número de <%= link_to 'Moradores', admin_republica_moradores_path(@republica) %>:</b>
+        <b>Moradores:</b>
         <%= @republica.moradores.where(exmorador: false).length %>
       </p>
 
       <p>
-        <b><%= link_to 'Ex-moradores', republica_index_exmoradores_path(@republica) %>:</b>
+        <b>Ex-moradores:</b>
         <%= @republica.moradores.where(exmorador: true).length %>
       </p>
 
