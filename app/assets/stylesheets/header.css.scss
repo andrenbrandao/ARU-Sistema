@@ -121,3 +121,13 @@
  	color: #A7A7A7;
  	margin-right: 0;
  }
+
+ ul.inline {
+ 	li {
+ 		display: inline-block;
+ 		// margin-left: 0;
+ 		a {
+ 			color: #FFF;
+ 		}
+ 	}
+ }

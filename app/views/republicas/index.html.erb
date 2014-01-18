@@ -1,8 +1,15 @@
-<div class='form-inline' id='search_field'>
-<%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
-    <%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
-<% end %>
+<div class='search' id='search_field'>
+	<%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
+	<%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
+	<% end %>
 </div>
+
+<ul class='inline'>
+	<li><a href='#' class='nav-btn nav-btn-a nav-btn-small'>Todas</a></li>
+	<li><a href='#' class='nav-btn nav-btn-a nav-btn-small'><i class='fa fa-male'></i> Masculinas</a></li>
+	<li><a href='#' class='nav-btn nav-btn-a nav-btn-small'><i class='fa fa-female'></i> Femininas</a></li>
+	<li><a href='#' class='nav-btn nav-btn-a nav-btn-small'><i class='fa fa-group'></i> Mistas</a></li>
+</ul>
 
 <div id='republicas' class='content-box-for-table'><%= render 'republicas' %></div>
 
