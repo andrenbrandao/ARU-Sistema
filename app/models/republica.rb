@@ -2,7 +2,7 @@
 
 class Republica < ActiveRecord::Base
   # Numero de republicas por pagina
-  self.per_page = 7
+  self.per_page = 9
 
   mount_uploader :logotipo, LogotipoUploader
   before_validation :copy_email_to_republica
