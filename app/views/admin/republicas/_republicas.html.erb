@@ -9,7 +9,6 @@
 
 			<th><%= sortable "created_at", "Registro", params[:approved] %></th>
 			<th><%= sortable "last_sign_in_at", "Último Login", params[:approved] %></th>
-			<th><%= sortable "updated_at", "Última Atualização", params[:approved] %></th>
 			<th>Status de Email</th>
 			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->
@@ -40,13 +39,10 @@
 
 			<td>
 				<% if republica.last_sign_in_at != nil %>
-				<%= republica.last_sign_in_at.to_s.to_date %>
+				<%= time_ago_in_words republica.last_sign_in_at %>
 				<% end %>
 			</td>
 
-			<td>
-				<%= republica.updated_at.to_s.to_date %>
-			</td>
 
 			<td>
 				<% if republica.confirmed? && !republica.pending_reconfirmation? %>

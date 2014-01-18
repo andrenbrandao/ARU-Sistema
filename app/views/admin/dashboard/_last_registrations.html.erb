@@ -9,7 +9,6 @@
 
 			<th><%= sortable "created_at", "Registro" %></th>
 			<th><%= sortable "last_sign_in_at", "Último Login" %></th>
-			<th><%= sortable "updated_at", "Última Atualização" %></th>
 			<th>Status de Email</th>
 			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->
@@ -36,17 +35,13 @@
 				<% end %>
 			</td>
 
-			<% if can? :manage, :all %>
+
 			<td><%= republica.created_at.to_date %></td>
 
 			<td>
 				<% if republica.last_sign_in_at != nil %>
-				<%= republica.last_sign_in_at.to_s.to_date %>
+				<%= time_ago_in_words republica.last_sign_in_at %>
 				<% end %>
-			</td>
-
-			<td>
-				<%= republica.updated_at.to_s.to_date %>
 			</td>
 
 			<td>
@@ -74,7 +69,6 @@
 				<%= link_to 'Disapprove', admin_republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
 				<% end %>
 			</td>
-			<% end %>
 
 		</tr>
 		<% end %>
