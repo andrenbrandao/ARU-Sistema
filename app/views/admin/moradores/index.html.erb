@@ -41,13 +41,11 @@
             <% end %>
         </td>
 
-        <% if can? :manage, :all %>
         <td class='admin_action'>
             <%= link_to 'Editar', edit_admin_republica_morador_path(@republica, morador), class: 'btn btn-mini admin_action' %>
             <%= link_to 'Deletar', admin_republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
             <%= link_to "Ex-morador?", admin_republica_morador_path(@republica, morador, :morador => {:exmorador => 'true', :data_de_saida => Time.now } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-warning admin_action' %>
         </td>
-        <% end %>
 
     </tr>
     <% end %>
@@ -58,4 +56,4 @@
 
 <br />
 
-<%= link_to 'Voltar', republica_path(@moradores.first.republica_id), class: 'btn btn-small'  %>
+<%= link_to 'Voltar', admin_republica_path(@moradores.first.republica_id), class: 'btn btn-small'  %>

@@ -1,17 +1,19 @@
-<%= simple_nested_form_for [:admin, @republica], :html => {id: 'republica_form'} do |f| %>
-<%= display_base_errors @republica %>
+<div class='content-box center-form'>
+	<%= simple_nested_form_for [:admin, @republica], :html => {id: 'republica_form'} do |f| %>
+	<%= display_base_errors @republica %>
 
-<fieldset>
-    	<legend>Atributos de <%= @republica.nome %></legend>
+	<fieldset>
+		<legend>Atributos de <%= @republica.nome %></legend>
 
-<%= f.input :campea_interreps, label: 'Campeã InterReps:' %>
-<%= f.input :presente_reunioes, label: false, inline_label: 'Presente em Reuniões'%>
+		<%= f.input :campea_interreps, label: 'Campeã InterReps:' %>
+		<%= f.input :presente_reunioes, label: false, inline_label: 'Presente em Reuniões'%>
 
-<div class="form-actions" id='cadastro_actions'>
-	<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
-	 <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+		<div class="form-actions" id='cadastro_actions'>
+			<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+			<%= link_to 'Cancel', admin_republica_path(@republica), class: 'btn' %>
+		</div>
+
+	</fieldset>
+
+	<% end %>
 </div>
-
-</fieldset>
-
-<% end %>

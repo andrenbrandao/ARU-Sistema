@@ -45,5 +45,8 @@
 </div>
 <br />
 
-
+<% if admin_signed_in? %>
+<%= link_to 'Voltar', admin_republica_path(@republica), class: 'btn btn-small'  %>
+<% else %>
 <%= link_to 'Voltar', republica_path(@republica), class: 'btn btn-small'  %>
+<% end %>
