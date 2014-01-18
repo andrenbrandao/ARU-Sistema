@@ -10,8 +10,7 @@
 			<th><%= sortable "created_at", "Registro", params[:approved] %></th>
 			<th><%= sortable "last_sign_in_at", "Último Login", params[:approved] %></th>
 			<th><%= sortable "updated_at", "Última Atualização", params[:approved] %></th>
-			<th><%= sortable "confirmed_at", "Confirmado", params[:approved] %></th>
-			<th><%= sortable "unconfirmed_email", "Reconfirmado? (em caso de mudança)", params[:approved]%></th>
+			<th>Status de Email</th>
 			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->
 		</tr>
@@ -37,7 +36,6 @@
 				<% end %>
 			</td>
 
-			<% if can? :manage, :all %>
 			<td><%= republica.created_at.to_date %></td>
 
 			<td>
@@ -51,25 +49,20 @@
 			</td>
 
 			<td>
-				<% if republica.confirmed? %>
-				<span style='color:green'>Sim</span>
+				<% if republica.confirmed? && !republica.pending_reconfirmation? %>
+				<span style='color:green'>OK</span>
+				<% elsif republica.confirmed? && republica.pending_reconfirmation? %>
+				<span style='color:red'>Precisa Reconfirmar</span>
 				<% else %>
-				<span style='color:red'>Não</span>
+				<span style='color:red'>Não Confirmado</span>
 				<% end %>
-			</td>
 
-			<td>
-				<% if republica.pending_reconfirmation?%>
-				<span style='color:red'>Não</span>
-				<% else %>
-				<span style='color:green'>Sim</span>
-				<% end %>
 			</td>
 
 			<td>
 				<%= link_to 'Statistics', admin_republica_statistics_path(republica), class: 'btn btn-mini' %>
 			</td>
-				
+
 			<td class='admin_action'>
 				<%= link_to 'Editar', edit_admin_republica_path(republica), class: 'btn btn-mini' %>
 				<%= link_to 'Deletar', republica, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
@@ -80,7 +73,6 @@
 				<%= link_to 'Disapprove', admin_republica_disapprove_path(republica), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-warning btn-mini' %>
 				<% end %>
 			</td>
-			<% end %>
 
 		</tr>
 		<% end %>

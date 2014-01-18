@@ -10,8 +10,7 @@
 			<th><%= sortable "created_at", "Registro" %></th>
 			<th><%= sortable "last_sign_in_at", "Último Login" %></th>
 			<th><%= sortable "updated_at", "Última Atualização" %></th>
-			<th><%= sortable "confirmed_at", "Confirmado" %></th>
-			<th><%= sortable "unconfirmed_email", "Reconfirmado? (em caso de mudança)"%></th>
+			<th>Status de Email</th>
 			<th>Estatísticas</th>
 			<th></th> <!-- Comandos ADMIN -->
 		</tr>
@@ -51,19 +50,14 @@
 			</td>
 
 			<td>
-				<% if republica.confirmed? %>
-				<span style='color:green'>Sim</span>
+				<% if republica.confirmed? && !republica.pending_reconfirmation? %>
+				<span style='color:green'>OK</span>
+				<% elsif republica.confirmed? && republica.pending_reconfirmation? %>
+				<span style='color:red'>Precisa Reconfirmar</span>
 				<% else %>
-				<span style='color:red'>Não</span>
+				<span style='color:red'>Não Confirmado</span>
 				<% end %>
-			</td>
 
-			<td>
-				<% if republica.pending_reconfirmation?%>
-				<span style='color:red'>Não</span>
-				<% else %>
-				<span style='color:green'>Sim</span>
-				<% end %>
 			</td>
 
 			<td>
