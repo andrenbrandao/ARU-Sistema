@@ -5,10 +5,21 @@ class Admin::RepublicasController < AdminController
  def index
   @republicas_header = true
 
-  if params[:approved] == 'false'
-    @republicas = Republica.search(params[:search]).where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
+  if params[:tipo] == 'Masculina'
+    @republicas = Republica.search(params[:search]).where(tipo: 'Masculina')
+  elsif params[:tipo] == 'Feminina'
+    @republicas = Republica.search(params[:search]).where(tipo: 'Feminina')
+  elsif params[:tipo] == 'Mista'
+    @republicas = Republica.search(params[:search]).where(tipo: 'Mista')
   else
-    @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
+    @republicas = Republica.search(params[:search])
+  end
+
+  if params[:approved] == 'false'
+    @approved = params[:approved]
+    @republicas = @republicas.where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
+  else
+    @republicas = @republicas.where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
   end
 
   respond_to do |format|
