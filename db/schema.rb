@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140118222346) do
+ActiveRecord::Schema.define(:version => 20140119020032) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -130,7 +130,6 @@ ActiveRecord::Schema.define(:version => 20140118222346) do
     t.string   "telefone"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
-    t.integer  "numero_de_moradores"
     t.string   "email",                     :default => "",    :null => false
     t.string   "encrypted_password",        :default => "",    :null => false
     t.string   "reset_password_token"
