@@ -31,10 +31,9 @@ class Republica < ActiveRecord::Base
   accepts_nested_attributes_for :interreps_vencidos, :allow_destroy => true, :reject_if => lambda { |a| a[:ano].blank?}
 
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
-  attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
-  attr_accessible :campea_interreps, :presente_reunioes
-  attr_accessible :terms, :has_inserted_ex_moradores
-  attr_accessible :interreps_vencidos_attributes
+  attr_accessible :telefone, :tipo, :moradores_attributes
+  attr_accessible :presente_reunioes, :interreps_vencidos_attributes ## Atributos de Gamefication
+  attr_accessible :has_inserted_ex_moradores
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
