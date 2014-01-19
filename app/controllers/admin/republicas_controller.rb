@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class Admin::RepublicasController < AdminController
  helper_method :sort_column, :sort_direction
 
@@ -66,14 +68,15 @@ class Admin::RepublicasController < AdminController
 
  def approve
   @republica = Republica.find(params[:republica_id])
+  @republica.approved = true
 
   respond_to do |format|
-    if @republica.update_attribute(:approved, 'true')
+    if @republica.save
       RepublicaMailer.welcome_email(@republica).deliver
-      format.html { redirect_to admin_dashboard_index_path, notice: 'Republica aprovada.' }
+      format.html { redirect_to admin_republicas_path, notice: 'República aprovada.' }
       format.json { head :no_content }
     else
-     format.html { render action: "index" }
+     format.html { redirect_to admin_dashboard_index_path, :alert => "A República não pode ser aprovada, pois o representante não confirmou o email."  }
      format.json { render json: @republica.errors, status: :unprocessable_entity }
    end
  end
@@ -83,17 +86,18 @@ end
 
 def disapprove
   @republica = Republica.find(params[:republica_id])
+  @republica.approved = false
 
   respond_to do |format|
-    if @republica.update_attribute(:approved, 'false')
+    if @republica.save
       RepublicaMailer.disapprove_email(@republica).deliver
-      format.html { redirect_to admin_dashboard_index_path, notice: 'Republica desaprovada.' }
+      format.html { redirect_to admin_dashboard_index_path, notice: 'República desaprovada.' }
       format.json { head :no_content }
     else
-     format.html { render action: "index" }
-     format.json { render json: @republica.errors, status: :unprocessable_entity }
-   end
- end
+      format.html { redirect_to admin_republicas_path, :alert => "A República não pode ser desaprovada."  }
+      format.json { render json: @republica.errors, status: :unprocessable_entity }
+    end
+  end
 end
 
 def statistics
