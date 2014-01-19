@@ -24,14 +24,17 @@ class Republica < ActiveRecord::Base
   attr_accessor :login
   attr_accessible :login
   has_many :moradores, :dependent => :destroy, :inverse_of => :republica
+  has_many :interreps_vencidos, :dependent => :destroy
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
+  accepts_nested_attributes_for :interreps_vencidos, :allow_destroy => true, :reject_if => lambda { |a| a[:ano].blank?}
 
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
   attr_accessible :campea_interreps, :presente_reunioes
   attr_accessible :terms, :has_inserted_ex_moradores
+  attr_accessible :interreps_vencidos_attributes
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
@@ -74,7 +77,7 @@ class Republica < ActiveRecord::Base
   # Mostra os atributos se tiver algum
   def atributos
     valid = false
-    if campea_interreps != nil && campea_interreps != ''
+    if self.interreps_vencidos.any?
       valid = true
 
     elsif presente_reunioes == true

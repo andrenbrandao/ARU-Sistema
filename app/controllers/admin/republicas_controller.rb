@@ -55,7 +55,7 @@ class Admin::RepublicasController < AdminController
     ## por isso, há o update_without_timestamping ##
     respond_to do |format|
       if @republica.update_without_timestamping(params[:republica])
-        format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
+        format.html { redirect_to admin_republica_path(@republica), notice: 'Republica was successfully updated.' }
         format.json { head :no_content }
       else
        format.html { render action: "edit" }

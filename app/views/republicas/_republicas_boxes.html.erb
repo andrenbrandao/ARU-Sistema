@@ -34,9 +34,9 @@
     </p>
     <% end %>
 
-    <% if republica.campea_interreps?  %>
-    <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= republica.campea_interreps %>.</p>
-    <% end %>
+      <% if republica.interreps_vencidos.any?  %>
+      <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= republica.interreps_vencidos.order(:ano).collect(&:ano).join(', ') %></p>
+      <% end %>
 
   </div>
 </div>

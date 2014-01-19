@@ -23,7 +23,7 @@
 			<td><%= republica.tipo %></td>
 			<td><%= republica.ano_de_fundacao %></td>
 			<td>
-				<%  if republica.campea_interreps != '' && republica.campea_interreps != nil %>
+				<%  if republica.interreps_vencidos.any? %>
 				<i class='fa fa-trophy interreps'></i>
 				<% end %>
 				<% if republica.presente_reunioes == true %>

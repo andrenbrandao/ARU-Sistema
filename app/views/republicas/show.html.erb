@@ -85,8 +85,8 @@
       <p><i class='fa fa-calendar'></i> Presente em Reuniões</p>
       <% end %>
 
-      <% if @republica.campea_interreps != nil && @republica.campea_interreps != ''  %>
-      <p><i class='fa fa-trophy'></i> Campeã InterReps: <%= @republica.campea_interreps %></p>
+      <% if @republica.interreps_vencidos.any?  %>
+      <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= @republica.interreps_vencidos.order(:ano).collect(&:ano).join(', ') %></p>
       <% end %>
 
       <% else %>
