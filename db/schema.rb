@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140119020032) do
+ActiveRecord::Schema.define(:version => 20140119205652) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -150,12 +150,6 @@ ActiveRecord::Schema.define(:version => 20140119020032) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.boolean  "has_inserted_ex_moradores", :default => false, :null => false
-    t.integer  "crop_x"
-    t.integer  "crop_y"
-    t.integer  "crop_w"
-    t.integer  "crop_h"
-    t.integer  "original_height"
-    t.integer  "original_width"
   end
 
   add_index "republicas", ["approved"], :name => "index_republicas_on_approved"
