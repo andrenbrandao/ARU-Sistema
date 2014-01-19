@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140119205652) do
+ActiveRecord::Schema.define(:version => 20140119215313) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -31,61 +31,6 @@ ActiveRecord::Schema.define(:version => 20140119205652) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
 
-  create_table "agregados", :force => true do |t|
-    t.string   "nome"
-    t.string   "sobrenome"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "republica_id"
-  end
-
-  create_table "agregados_interreps_republicas", :force => true do |t|
-    t.integer  "interreps_id"
-    t.integer  "republica_id"
-    t.integer  "agregado_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "exmoradores_interreps", :force => true do |t|
-    t.integer  "interreps_id"
-    t.integer  "morador_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "interreps", :force => true do |t|
-    t.integer  "ano"
-    t.float    "preco_por_jogador"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.datetime "datainicio"
-    t.datetime "datafim"
-    t.boolean  "active",            :default => false, :null => false
-    t.boolean  "block",             :default => false, :null => false
-  end
-
-  create_table "interreps_modalidades", :force => true do |t|
-    t.integer  "interreps_id"
-    t.integer  "modalidade_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "interreps_modalidades_republicas", :force => true do |t|
-    t.integer  "interreps_modalidade_id"
-    t.integer  "republica_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  create_table "interreps_moradores", :force => true do |t|
-    t.integer  "interreps_id"
-    t.integer  "morador_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "interreps_vencidos", :force => true do |t|
     t.integer  "ano",          :null => false
     t.integer  "republica_id", :null => false
@@ -95,13 +40,6 @@ ActiveRecord::Schema.define(:version => 20140119205652) do
 
   add_index "interreps_vencidos", ["republica_id"], :name => "index_interreps_vencidos_on_republica_id"
 
-  create_table "modalidades", :force => true do |t|
-    t.string   "nome"
-    t.string   "tipo"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "moradores", :force => true do |t|
     t.string   "nome"
     t.string   "sobrenome"
@@ -110,15 +48,14 @@ ActiveRecord::Schema.define(:version => 20140119205652) do
     t.string   "ra"
     t.string   "universidade"
     t.integer  "republica_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "email"
     t.string   "celular"
-    t.boolean  "representante",    :default => false, :null => false
+    t.boolean  "representante",   :default => false, :null => false
     t.string   "apelido"
-    t.boolean  "exmorador",        :default => false, :null => false
+    t.boolean  "exmorador",       :default => false, :null => false
     t.datetime "data_de_saida"
-    t.boolean  "played_interreps", :default => false, :null => false
   end
 
   create_table "republicas", :force => true do |t|
