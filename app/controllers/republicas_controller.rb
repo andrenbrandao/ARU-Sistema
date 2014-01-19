@@ -9,8 +9,15 @@ class RepublicasController < ApplicationController
   def index
     @republicas_header = true
 
-    @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
-
+    if params[:tipo] == 'Masculina'
+      @republicas = Republica.search(params[:search]).where(approved: true).where(tipo: 'Masculina').page(params[:page]).order(sort_column + ' ' + sort_direction)
+    elsif params[:tipo] == 'Feminina'
+      @republicas = Republica.search(params[:search]).where(approved: true).where(tipo: 'Feminina').page(params[:page]).order(sort_column + ' ' + sort_direction)
+    elsif params[:tipo] == 'Mista'
+      @republicas = Republica.search(params[:search]).where(approved: true).where(tipo: 'Mista').page(params[:page]).order(sort_column + ' ' + sort_direction)
+    else
+      @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,7 +91,7 @@ class RepublicasController < ApplicationController
 
 
 
-   def index_exmoradores
+  def index_exmoradores
     @republica = Republica.find(params[:republica_id])
     @exmoradores = @republica.moradores.where(exmorador: true)
 
@@ -98,9 +105,9 @@ class RepublicasController < ApplicationController
   end
 
 
-def add_exmoradores
-  @republica = Republica.find(params[:republica_id])
-  @republica.moradores.build
+  def add_exmoradores
+    @republica = Republica.find(params[:republica_id])
+    @republica.moradores.build
     # comando necessário para que CANCAN funcione!
     authorize! :add_exmoradores, @republica
 

@@ -1,17 +1,31 @@
-<%= simple_nested_form_for [:admin, @republica], :html => {id: 'republica_form'} do |f| %>
-<%= display_base_errors @republica %>
+<div class='content-box center-form'>
+	<%= simple_nested_form_for [:admin, @republica], :url => admin_republica_atributo_path(@republica), :html => {method: :put, id: 'republica_form', novalidate: 'novalidate'} do |f| %>
+	<%= display_base_errors @republica %>
 
-<fieldset>
-    	<legend>Atributos de <%= @republica.nome %></legend>
+	<fieldset>
+		<legend>Atributos de <%= @republica.nome %></legend>
 
-<%= f.input :campea_interreps, label: 'Campeã InterReps:' %>
-<%= f.input :presente_reunioes, label: false, inline_label: 'Presente em Reuniões'%>
+		<h3>InterReps Vencidos</h3>
 
-<div class="form-actions" id='cadastro_actions'>
-	<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
-	 <%= link_to 'Cancel', republicas_path, class: 'btn' %>
-</div>
 
-</fieldset>
 
-<% end %>
+		<%= f.simple_fields_for :interreps_vencidos do |builder| %>
+		<% if builder.object.new_record? %>
+		<%= builder.input :ano, label: false, placeholder: 'Adicionar Ano' %>
+		<% else %>
+		<p><i class='fa fa-trophy'></i> <%= builder.object.ano %> <%= builder.link_to_remove '<i class="icon-remove-sign"></i>'.html_safe,:data => { :confirm => "Você tem certeza?" }, class: 'btn btn-danger btn-mini' %></p>
+			<% end %>
+			<% end %>
+			<p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :interreps_vencidos, class: 'btn btn-success btn-small' %></p>
+
+			<%= f.input :presente_reunioes, label: false, inline_label: 'Presente em Reuniões'%>
+
+			<div class="form-actions" id='cadastro_actions'>
+				<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+				<%= link_to 'Cancel', admin_republica_path(@republica), class: 'btn' %>
+			</div>
+
+		</fieldset>
+
+		<% end %>
+	</div>

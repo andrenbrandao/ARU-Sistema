@@ -1,13 +1,24 @@
-<%= link_to "Repúblicas aprovadas", admin_republicas_path, remote: true, id:'approved_link' %>
-|
-<%= link_to "Esperando aprovação", admin_republicas_path(:approved => false), remote:true, id: 'disapproved_link' %>
-<br/>
-<br>
-<div class='form-inline' id='search_field'>
-<%= form_tag admin_republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
-    <%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
-<% end %>
+<div class='search' id='search_field'>
+	<%= form_tag admin_republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
+	<%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
+	<% end %>
 </div>
 
-<div id='republicas'><%= render 'republicas' %></div>
+<ul class='inline top-list'>
+	<li><%= link_to "<i class='fa fa-check'></i> Repúblicas aprovadas".html_safe, admin_republicas_path, remote: true, id:'approved_link', class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+
+	<li><%= link_to "<i class='fa fa-ban'></i> Esperando aprovação".html_safe, admin_republicas_path(:approved => false), remote:true, id: 'disapproved_link', class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+</ul>
+
+<ul class='inline'>
+	<li><%= link_to 'Todas', admin_republicas_path(approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small todas_option', remote: true %></li>
+
+	<li><%= link_to "<i class='fa fa-male'></i> Masculinas".html_safe, admin_republicas_path(tipo: 'Masculina', approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small masculina_option', remote: true %></li>
+
+	<li><%= link_to "<i class='fa fa-female'></i> Femininas".html_safe, admin_republicas_path(tipo: 'Feminina', approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small feminina_option', remote: true %></li>
+
+	<li><%= link_to "<i class='fa fa-group'></i> Mistas".html_safe, admin_republicas_path(tipo: 'Mista', approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small mista_option', remote: true %></li>
+</ul>
+
+<div id='republicas' class='content-box-for-table'><%= render 'republicas' %></div>
 

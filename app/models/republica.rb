@@ -2,7 +2,7 @@
 
 class Republica < ActiveRecord::Base
   # Numero de republicas por pagina
-  self.per_page = 7
+  self.per_page = 9
 
   mount_uploader :logotipo, LogotipoUploader
   before_validation :copy_email_to_republica
@@ -24,14 +24,16 @@ class Republica < ActiveRecord::Base
   attr_accessor :login
   attr_accessible :login
   has_many :moradores, :dependent => :destroy, :inverse_of => :republica
+  has_many :interreps_vencidos, :dependent => :destroy
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
+  accepts_nested_attributes_for :interreps_vencidos, :allow_destroy => true, :reject_if => lambda { |a| a[:ano].blank?}
 
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
-  attr_accessible :telefone, :tipo, :numero_de_moradores, :moradores_attributes
-  attr_accessible :campea_interreps, :presente_reunioes
-  attr_accessible :terms, :has_inserted_ex_moradores
+  attr_accessible :telefone, :tipo, :moradores_attributes
+  attr_accessible :presente_reunioes, :interreps_vencidos_attributes ## Atributos de Gamefication
+  attr_accessible :has_inserted_ex_moradores
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
@@ -50,6 +52,7 @@ class Republica < ActiveRecord::Base
   validate :max_of_moradores
   validate :has_one_representante
   validate :uniqueness_of_email
+  validate :check_email
   # validate :is_exmorador_valid?
   validates_confirmation_of :password
 
@@ -74,15 +77,16 @@ class Republica < ActiveRecord::Base
   # Mostra os atributos se tiver algum
   def atributos
     valid = false
-    if campea_interreps != nil 
+    if self.interreps_vencidos.any?
       valid = true
 
     elsif presente_reunioes == true
       valid = true
-
-    elsif Time.now.year - ano_de_fundacao <= 1  
-      valid = true
     end
+
+    # elsif Time.now.year - ano_de_fundacao <= 1  
+    #   valid = true
+    # end
 
     valid
   end
@@ -109,6 +113,14 @@ class Republica < ActiveRecord::Base
   end
 
   private
+
+  def check_email
+    if approved_changed? && approved_was == false && self.persisted?
+      if !confirmed_at?
+        self.errors.add(:base, "República não confirmou email.")
+      end
+    end 
+  end
 
   def uniqueness_of_email
     if !self.new_record?

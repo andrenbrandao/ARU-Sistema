@@ -1,0 +1,44 @@
+
+<% @republicas.each do |republica| %>
+
+<div class='content-box content-box-for-republica'>
+
+  <%= image_tag republica.logotipo_url(:large), id: 'logo_index', class: 'pull-left '%>
+
+  <div class='media-body'>
+    <h2><%= link_to republica.nome, republica_path(republica) %></h2>
+
+    <p>
+      <% if republica.tipo == 'Masculina' %>
+      <i class='fa fa-male'></i>
+      <% elsif republica.tipo == 'Feminina' %>
+      <i class='fa fa-female'></i>
+      <% else %>
+      <i class='fa fa-group'></i>
+      <% end %>
+      <span><%= republica.tipo %></span>
+      <span class='dot-separator'>·</span>
+      <span>Fundada em <%= republica.ano_de_fundacao %></span>
+    </p>
+
+    <!-- Desabilitado por enquanto -->
+    <% if false %>
+    <% if Time.now.year - republica.ano_de_fundacao <= 1 %>
+    <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'calendar_icon' %> República Nova</p>
+    <% end %>
+    <% end %>
+
+    <% if republica.presente_reunioes == true %>
+    <p>
+      <i class='fa fa-calendar'></i> Presente em Reuniões
+    </p>
+    <% end %>
+
+      <% if republica.interreps_vencidos.any?  %>
+      <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= republica.interreps_vencidos.order(:ano).collect(&:ano).join(', ') %></p>
+      <% end %>
+
+  </div>
+</div>
+
+<% end %>

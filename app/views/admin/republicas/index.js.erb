@@ -1,2 +1,14 @@
 $("#republicas").html("<%=j render 'republicas' %>");
 $(".pagination a").attr('data-remote', true);
+
+<% if @approved == 'false' %>
+$('.todas_option').closest('li').html("<%=j link_to 'Todas', admin_republicas_path(approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small todas_option', remote: true %>");
+$('.masculina_option').closest('li').html("<%=j link_to "<i class='fa fa-male'></i> Masculinas".html_safe, admin_republicas_path(tipo: 'Masculina', approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small masculina_option', remote: true %>");
+$('.feminina_option').closest('li').html("<%=j link_to "<i class='fa fa-female'></i> Femininas".html_safe, admin_republicas_path(tipo: 'Feminina', approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small feminina_option', remote: true %>");
+$('.mista_option').closest('li').html("<%=j link_to "<i class='fa fa-group'></i> Mistas".html_safe, admin_republicas_path(tipo: 'Mista', approved: @approved), class: 'nav-btn nav-btn-a nav-btn-small mista_option', remote: true %>");
+<% else %>
+$('.todas_option').closest('li').html("<%=j link_to 'Todas', admin_republicas_path, class: 'nav-btn nav-btn-a nav-btn-small todas_option', remote: true %>");
+$('.masculina_option').closest('li').html("<%=j link_to "<i class='fa fa-male'></i> Masculinas".html_safe, admin_republicas_path(tipo: 'Masculina'), class: 'nav-btn nav-btn-a nav-btn-small masculina_option', remote: true %>");
+$('.feminina_option').closest('li').html("<%=j link_to "<i class='fa fa-female'></i> Femininas".html_safe, admin_republicas_path(tipo: 'Feminina'), class: 'nav-btn nav-btn-a nav-btn-small feminina_option', remote: true %>");
+$('.mista_option').closest('li').html("<%=j link_to "<i class='fa fa-group'></i> Mistas".html_safe, admin_republicas_path(tipo: 'Mista'), class: 'nav-btn nav-btn-a nav-btn-small mista_option', remote: true %>");
+<% end %>

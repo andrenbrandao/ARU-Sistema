@@ -1,0 +1,133 @@
+ .navigation-header{
+ 	padding: 20px 0 30px;
+ 	top: 0;
+ 	background-color: #FFF;
+ 	-webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+ 	-moz-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+ 	box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+ }
+
+ .nav--top {
+ 	padding: 0 50px;
+
+ 	li {
+ 		margin-left: 20px;
+ 	}
+ }
+
+ .nav--links {
+
+ 	margin-top: 64px;
+ 	font-family: "OpenSansBold",Helvetica,Arial,sans-serif;
+ 	font-weight: bold;
+ 	font-size: small;
+
+ 	li {
+ 		a{
+ 			color: #777;
+ 		}
+
+ 		a:hover {
+ 			color: #05a9c5;
+ 			text-decoration: none;
+ 		}
+ 		// font: 13px 'PT Sans', sans-serif;
+ 		display: inline;
+ 		text-transform: uppercase;
+ 		// font-weight: bold;
+ 	}
+
+ 	li.active {
+ 		color: #05a9c5;
+ 		a {
+ 			color: #05a9c5;
+ 		}
+ 	}
+
+ }
+
+
+
+ .nav--sub {
+ 	padding: 0 50px;
+ 	border-bottom: 1px solid #043850;
+ 	border-top: 1px solid #065072;
+ 	background-color: #043f5a;
+
+ 	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+ 	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+ 	box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+
+ 	ul {
+ 		margin: 10px 0 10px 0;
+ 	}
+
+ 	li {
+ 		display: inline-block;
+ 		// margin-left: 0;
+ 		margin-right: 35px;
+ 		a {
+ 			color: #FFF;
+ 		}
+ 	}
+
+ 	li.active {
+ 		color: #05a9c5;
+ 		a {
+ 			color: #05a9c5;
+ 		}
+ 	}
+ }
+
+
+ .nav-btn {
+ 	border-radius: 3px;
+ 	padding: 5px 12px;
+ 	font-weight: bold;
+ 	text-transform: uppercase;
+ 	font-family: "OpenSansBold",Helvetica,Arial,sans-serif;
+ 	display: inline-block;
+ 	text-align: center;
+ 	vertical-align: middle;
+ }
+
+ .nav-btn-a {
+ 	color: #FFF !important;
+ 	background: #00608D;
+ }
+ .nav-btn-a:hover {
+ 	background: #005075;
+ }
+
+ .nav-btn-big {
+ 	padding: 20px 25px;
+ 	font-size: 15.5px;
+ }
+
+ .nav-btn-small {
+ 	padding: 5px 12px;
+ 	font-size: 12px;
+ }
+
+ .nav-btn-b {
+ 	color: #636365 !important;
+ 	background: #bfbeb2;
+ }
+ .nav-btn-b:hover {
+ 	background: #b3b2a4;
+ }
+
+ .nav--sub .nav--text {
+ 	color: #A7A7A7;
+ 	margin-right: 0;
+ }
+
+ ul.inline {
+ 	li {
+ 		display: inline-block;
+ 		// margin-left: 0;
+ 		a {
+ 			color: #FFF;
+ 		}
+ 	}
+ }

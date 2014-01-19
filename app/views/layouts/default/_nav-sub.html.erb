@@ -1,0 +1,22 @@
+<div class="nav--sub" id="account-navigation">
+	<ul class='nav--links'>
+		<!-- <li><a href="#">Dashboard</a></li> -->
+		<li class="<%= 'active' if current_page?(edit_republica_registration_path) %>">
+			<%= link_to 'Minha Conta', republica_path(current_republica) %>
+		</li>
+
+		<!-- SOMENTE PARA ADICIONAR EX-MORADORES :::: DESATIVADO :::: -->
+		<% if false %>
+		<% if !current_republica.has_inserted_ex_moradores? %>
+		<li class="<%= 'active' if current_page?(republica_add_exmoradores_path(current_republica)) %>">
+			<%= link_to("<i class=\'icon-exclamation-sign icon-white\'></i> Adicionar Ex-Moradores".html_safe, republica_add_exmoradores_path(current_republica)) %>
+		</li>
+		<% end %>
+		<% end %>
+		<!-- :::: DESATIVADO :::: -->
+
+	<!-- 	<li><a href="#">Eventos</a></li> -->
+
+		<li class='pull-right nav--text'><span>Logado como <%= link_to current_republica.nome, republica_path(current_republica) %></span></li>
+	</ul>
+</div>

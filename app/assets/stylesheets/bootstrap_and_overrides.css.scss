@@ -1,126 +1,150 @@
 @import "bootstrap";
-body { padding-top: 40px; }
+// body { padding-top: 40px; }
 @import "bootstrap-responsive";
 
 html, body {
 	height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
+  /* The html and body elements cannot have any padding or margin. */
+}
 
-      /* Wrapper for page content to push down footer */
-      #wrap {
-      	min-height: 100%;
-      	height: auto !important;
-      	height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -80px;
-      }
-
-      /* Set the fixed height of the footer here */
-
-      .footer, .push {
-      	height: 80px;
-        clear: both;
-      }
-
-      .footer {
-        text-align: center;
-        padding: 30px 0 30px 0;
-        margin-top: 70px;
-        border-top: 1px solid #e5e5e5;
-        background-color: #f5f5f5;
-        width: 100%;
-
-        .container {
-         background-color: #f5f5f5;
-       }
-     }
+body {
+  // background: url("body-bg.png") #ececec;
+  background-color: #EEE;
+}
 
 
-     #wrap
-     {
-      min-height: 100%; 
-    }
+a {
+  color: #043f5a;
+}
+a:hover {
+  color: #05a9c5;
+  text-decoration: none;
+}
 
-    #main{
-      overflow:auto;
-        padding-bottom:80px; /* this needs to be bigger than footer height*/
-      }
+/* Wrapper for page content to push down footer */
+#wrap {
+ min-height: 100%;
+ height: auto !important;
+ height: 100%;
+ /* Negative indent footer by it's height */
+ margin: 0 auto -110px;
+}
 
-      .footer-links {
-        margin: 0 0 10px 0;
-      }
+/* Set the fixed height of the footer here */
 
-      .footer-links li{
-        display: inline;
-      }
+.footer, .push {
+ height: 110px;
+ clear: both;
+}
 
-      .footer p {
-        margin-bottom: 0;
-        color: #777;
-        font-size: 13px;
-      }
+#wrap
+{
+  min-height: 100%; 
+}
 
-      .footer span {
-        margin-bottom: 0;
-        color: #777;
-      }
+#main{
+  overflow:auto;
+  padding-bottom:110px; /* this needs to be bigger than footer height*/
+}
 
-      .mini {
-        font-size: 10px !important;
-      }
+.footer {
+  text-align: center;
+  padding: 30px 0 30px 0;
+  margin-top: 70px;
+  // border-top: 1px solid #e5e5e5;
+  background-color: #00151F;
+  width: 100%;
 
-      .alert {
-        margin-bottom: 0;
-      }
+  a{
+    color: #FFF;
+  }
 
-      /* Lastly, apply responsive CSS fixes as necessary */
+  a:hover {
+    color: #05a9c5;
+    text-decoration: none;
+  }
 
-      @media (min-width: 1200px) {
+  span {
+    margin-bottom: 0;
+    color: #DBDBDB;
+  }
 
-      }
-
-
-      @media (max-width: 979px) {
-        body { padding: 0; }
-        .navbar {margin-bottom: 0;}
-        .jumbotron p {
-          font-size: 20px !important;
-        }
-        .jumbotron h1 {
-          font-size: 70px !important;
-        }
-      }
-
-      @media (max-width: 767px) {
-        body { padding: 0; }
-        .navbar {margin: 0;}
-        .jumbotron p {
-          font-size: 18px !important;
-        }
-        .jumbotron h1 {
-          font-size: 60px !important;
-        }
-        .container {
-          padding-left: 20px !important;
-          padding-right: 20px !important;
-        }
-      }
+  p {
+    margin-bottom: 0;
+    color: #DBDBDB;
+    font-size: 13px;
+  }
+}
 
 
-      @media (max-width: 480px) {
-        body { padding: 0; }
-        .navbar {margin: 0;}
-        .jumbotron p {
-          font-size: 18px !important;
-        }
-        .jumbotron h1 {
-          font-size: 45px !important;
-        }
-        .subhead { 
-          text-align: center !important;
-        }
-      }
+.footer-links {
+  margin: 0 0 10px 0;
+
+  li{
+    display: inline;
+    color: #DBDBDB;
+  }
+}
+
+.mini {
+  font-size: 10px !important;
+}
+
+.license {
+  margin-top: 30px;
+}
+
+.alert {
+  margin-bottom: 0;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+
+@media (min-width: 1200px) {
+
+}
+
+
+@media (max-width: 979px) {
+  body { padding: 0; }
+  .navbar {margin-bottom: 0;}
+  .jumbotron p {
+    font-size: 20px !important;
+  }
+  .jumbotron h1 {
+    font-size: 70px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body { padding: 0; }
+  .navbar {margin: 0;}
+  .jumbotron p {
+    font-size: 18px !important;
+  }
+  .jumbotron h1 {
+    font-size: 60px !important;
+  }
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+
+@media (max-width: 480px) {
+  body { padding: 0; }
+  .navbar {margin: 0;}
+  .jumbotron p {
+    font-size: 18px !important;
+  }
+  .jumbotron h1 {
+    font-size: 45px !important;
+  }
+  .subhead { 
+    text-align: center !important;
+  }
+}
 
 
 

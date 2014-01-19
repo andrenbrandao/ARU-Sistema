@@ -1,4 +1,6 @@
-<div id='show-rep'>
+<%= render 'left_menu' %>
+
+<div id='show-rep' class='content-box pull-left'>
 
   <div class='media rep-show' id='rep-header'>
 
@@ -11,24 +13,27 @@
 
       <p>
         <% if @republica.tipo == 'Masculina' %>
-        <%= image_tag 'glyphicons/glyphicons_246_male.png', class: 'male_icon' %>
+        <i class='fa fa-male'></i>
         <% elsif @republica.tipo == 'Feminina' %>
-        <%= image_tag 'glyphicons/glyphicons_247_female.png', class: 'female_icon'  %>
+        <i class='fa fa-female'></i>
         <% else %>
-        <%= image_tag 'glyphicons/246_247_male-female.png', class: 'mixed_icon'  %>
+        <i class='fa fa-group'></i>
         <% end %>
         <span><%= @republica.tipo %></span>
         <span class='dot-separator'>·</span>
         <span>Fundada em <%= @republica.ano_de_fundacao %></span>
       </p>
 
+      <!-- Desabilitado por enquanto -->
+      <% if false %>
       <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
       <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'calendar_icon' %> República Nova</p>
+      <% end %>
       <% end %>
 
       <% if @republica.presente_reunioes == true %>
       <p>
-        <%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'calendar_icon' %> Presente em Reuniões
+        <i class='fa fa-calendar'></i> Presente em Reuniões
       </p>
       <% end %>
 
@@ -40,25 +45,18 @@
       <a href="#geral" data-toggle="tab">Geral</a>
     </li>
     <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
-
-    <% if republica_signed_in? || admin_signed_in? %>
+    
     <li><a href="#contato"  data-toggle="tab">Contato</a></li>
-    <% end %>
 
-    <% if current_republica == @republica || admin_signed_in? %>
     <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
-    <% end %>
 
-    <% if admin_signed_in? %>
-    <li><a href="#admin_actions"  data-toggle="tab">Admin Actions</a></li>
-    <% end %>
   </ul>
 
   <div class="tab-content">
 
     <!-- GERAL -->
     <div class="tab-pane fade active in" id="geral">
-      <legend>Descrição</legend>
+      <h2>Descrição</h2>
       <div style='word-wrap: break-word;'>
         <%= simple_format @republica.descricao, class: 'description' %>
       </div>
@@ -70,16 +68,19 @@
 
       <% if @republica.atributos == true %>
 
+      <!-- Desabilitado por enquanto -->
+      <% if false %>
       <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
       <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'atributos' %> República Nova</p>
       <% end %>
-
-      <% if @republica.presente_reunioes == true %>
-      <p><%= image_tag 'glyphicons/glyphicons_045_calendar.png', class: 'atributos' %> Presente em Reuniões</p>
       <% end %>
 
-      <% if @republica.campea_interreps != nil && @republica.campea_interreps != ''  %>
-      <p><%= image_tag 'glyphicons/glyphicons_332_certificate.png', class: 'atributos' %> <b>Campeã InterReps</b>: <%= @republica.campea_interreps %></p>
+      <% if @republica.presente_reunioes == true %>
+      <p><i class='fa fa-calendar'></i> Presente em Reuniões</p>
+      <% end %>
+
+      <% if @republica.interreps_vencidos.any?  %>
+      <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= @republica.interreps_vencidos.order(:ano).collect(&:ano).join(', ') %></p>
       <% end %>
 
       <% else %>
@@ -88,8 +89,6 @@
 
     </div>
 
-
-    <% if republica_signed_in? || admin_signed_in? %> 
     <!-- CONTATOS -->
     <div class="tab-pane fade" id="contato">
 
@@ -119,27 +118,23 @@
       <% end %>
       <% end %>
 
-      <% if republica_signed_in? || admin_signed_in? %> 
       <p>
         <b>Celular do Representante:</b>
         <%= @representante.celular %>
       </p>
-      <% end %>
 
     </div>
-    <% end %>
 
-    <% if current_republica == @republica || admin_signed_in? %>
     <!-- DADOS RESTRITOS -->
     <div class='tab-pane fade' id='dados_restritos'>
 
       <p>
-        <b>Número de <%= link_to 'Moradores', admin_republica_moradores_path(@republica) %>:</b>
+        <b>Moradores:</b>
         <%= @republica.moradores.where(exmorador: false).length %>
       </p>
 
       <p>
-        <b><%= link_to 'Ex-moradores', republica_index_exmoradores_path(@republica) %>:</b>
+        <b>Ex-moradores:</b>
         <%= @republica.moradores.where(exmorador: true).length %>
       </p>
 
@@ -154,21 +149,10 @@
       </p>
     </div>
 
-    <% end %>
-
-    <% if can? :manage, :all %>
-    <!-- ADMIN ACTIONS -->
-    <div class="tab-pane fade" id="admin_actions">
-      <%= link_to 'Editar Atributos', edit_admin_republica_atributo_path(@republica), class: 'btn btn-success btn-mini' %>
-      <br>
-
-    </div>
-    <% end %>
-
   </div>
 
   <br>
 
-  <%= link_to 'Voltar', republicas_path, class: 'btn btn-small'  %>
+  <%= link_to 'Voltar', admin_republicas_path, class: 'btn btn-small'  %>
 
 </div>

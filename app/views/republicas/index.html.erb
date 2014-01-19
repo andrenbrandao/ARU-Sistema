@@ -1,10 +1,20 @@
-<div class='form-inline' id='search_field'>
-<%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
-    <%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
-<% end %>
+<div class='search' id='search_field'>
+	<%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
+	<%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
+	<% end %>
 </div>
 
-<div id='republicas'><%= render 'republicas' %></div>
+<ul class='inline'>
+	<li><%= link_to 'Todas', republicas_path, class: 'nav-btn nav-btn-a nav-btn-small', remote: true %></li>
+
+	<li><%= link_to "<i class='fa fa-male'></i> Masculinas".html_safe, republicas_path(tipo: 'Masculina'), class: 'nav-btn nav-btn-a nav-btn-small', remote: true %></li>
+
+	<li><%= link_to "<i class='fa fa-female'></i> Femininas".html_safe, republicas_path(tipo: 'Feminina'), class: 'nav-btn nav-btn-a nav-btn-small', remote: true %></li>
+
+	<li><%= link_to "<i class='fa fa-group'></i> Mistas".html_safe, republicas_path(tipo: 'Mista'), class: 'nav-btn nav-btn-a nav-btn-small', remote: true %></li>
+</ul>
+
+<div id='republicas'><%= render 'republicas_boxes' %></div>
 
 
 

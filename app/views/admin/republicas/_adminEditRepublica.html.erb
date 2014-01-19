@@ -2,44 +2,45 @@
   <%= f.error_notification %>
   <%= display_base_errors @republica %>
 
-    <fieldset>
-      <legend>República</legend>
+  <fieldset>
+    <legend>República</legend>
 
-      <%= f.input :logotipo, label: false %>
-      <%= f.input :nome, placeholder: 'Nome', label: false %>
-      <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo'%>
+    <%= image_tag @republica.logotipo_url(:thumb), id: 'logo', width: '100px' %>
+    <%= f.input :logotipo, label: false %>
+    <%= f.input :nome, placeholder: 'Nome', label: false %>
+    <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo'%>
 
-      <%= f.input :ano_de_fundacao, label: false, collection: (1990..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
+    <%= f.input :ano_de_fundacao, label: false, collection: (1990..Time.now.year).to_a.reverse, prompt: "Ano de Fundação" %>
 
-      <%= f.input :endereco, placeholder: 'Endereço', label: false %>
-      <%= f.input :numero, placeholder: 'Número', label: false %>
-      <%= f.input :telefone, placeholder: 'Telefone da República', label: false, input_html: {class: 'telefone'} %>
-      <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
-    </fieldset>
-
-    <fieldset id='moradores'>
-     <legend>Moradores</legend>
-
-     <ol>
-      <div class="morador">
-        <%= f.simple_fields_for :moradores do |builder| %>
-        <% if builder.object.new_record? %>
-        <%= render 'republicas/morador_fields', f: builder %>
-        <% elsif builder.object.exmorador != true %>
-        <%= render 'devise/registrations/current_morador_fields', f: builder %>
-        <% end %>
-        <% end %>
-      </div>
-      <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
-    </ol>
-
-    <br><hr>
-
+    <%= f.input :endereco, placeholder: 'Endereço', label: false %>
+    <%= f.input :numero, placeholder: 'Número', label: false %>
+    <%= f.input :telefone, placeholder: 'Telefone da República', label: false, input_html: {class: 'telefone'} %>
+    <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
   </fieldset>
 
-  <fieldset>
-   <legend>Autenticação</legend>
-   <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
+  <fieldset id='moradores'>
+   <legend>Moradores</legend>
+
+   <ol>
+    <div class="morador">
+      <%= f.simple_fields_for :moradores do |builder| %>
+      <% if builder.object.new_record? %>
+      <%= render 'republicas/morador_fields', f: builder %>
+      <% elsif builder.object.exmorador != true %>
+      <%= render 'devise/registrations/current_morador_fields', f: builder %>
+      <% end %>
+      <% end %>
+    </div>
+    <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+  </ol>
+
+  <br><hr>
+
+</fieldset>
+
+<fieldset>
+ <legend>Autenticação</legend>
+ <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
 </fieldset>
 
 <div class="form-actions" id='cadastro_actions'>
