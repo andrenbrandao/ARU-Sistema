@@ -1,8 +1,10 @@
+<h2><i class='fa fa-gears'></i> Utilidades</h2>
+<%= link_to 'Gerar lista de Repúblicas', admin_dashboard_listadereps_path, class: 'nav-btn nav-btn-a' %>
+<hr>
+
 <h2>Últimos Cadastros</h2>
 <div id='republicas' class='content-box-for-table'><%= render 'last_registrations' %></div>
 
 <h2>Ex-Moradores - Pouco tempo de República</h2>
 <div id='exmoradores' class='content-box-for-table'><%= render 'warning_exmoradores' %></div>
 
-<h2>Lista de Repúblicas</h2>
-<%= link_to 'Gerar lista de Repúblicas', admin_dashboard_listadereps_path, class: 'nav-btn nav-btn-a' %>
