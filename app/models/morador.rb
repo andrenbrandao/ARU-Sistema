@@ -1,6 +1,8 @@
 #encoding: utf-8
 
 class Morador < ActiveRecord::Base
+	self.per_page = 9
+	
 	belongs_to :republica, :inverse_of => :moradores
 	validates :republica, presence: true
 
