@@ -54,7 +54,7 @@ class Admin::RepublicasController < AdminController
     ## UPDATE UTILIZADO POR ADMIN! ##
     ## por isso, há o update_without_timestamping ##
     respond_to do |format|
-      if @republica.update_without_timestamping(params[:republica])
+      if @republica.update_attributes(params[:republica])
         format.html { redirect_to admin_republica_path(@republica), notice: 'Republica was successfully updated.' }
         format.json { head :no_content }
       else
@@ -68,7 +68,7 @@ class Admin::RepublicasController < AdminController
   @republica = Republica.find(params[:republica_id])
 
   respond_to do |format|
-    if @republica.update2_without_timestamping(:approved, 'true')
+    if @republica.update_attribute(:approved, 'true')
       RepublicaMailer.welcome_email(@republica).deliver
       format.html { redirect_to admin_dashboard_index_path, notice: 'Republica aprovada.' }
       format.json { head :no_content }
@@ -85,7 +85,7 @@ def disapprove
   @republica = Republica.find(params[:republica_id])
 
   respond_to do |format|
-    if @republica.update2_without_timestamping(:approved, 'false')
+    if @republica.update_attribute(:approved, 'false')
       RepublicaMailer.disapprove_email(@republica).deliver
       format.html { redirect_to admin_dashboard_index_path, notice: 'Republica desaprovada.' }
       format.json { head :no_content }
