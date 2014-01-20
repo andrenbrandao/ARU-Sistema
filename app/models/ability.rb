@@ -26,6 +26,9 @@ class Ability
 
       # Pode ler os próprios moradores
       can :read, Morador, republica: {id: user.id}
+
+      # Pode modificar o próprio contato
+      can :manage, Contato, republica: {id: user.id}
       
     else
       # Permissões para CONVIDADOS

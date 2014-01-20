@@ -9,6 +9,7 @@ class Republica < ActiveRecord::Base
   before_save :titleize_moradores
   before_save :titleize_endereco
   before_save :set_data_de_saida
+  after_create :make_contato
   # before_save :titleize_curso
 
   # Include default devise modules. Others available are:
@@ -25,6 +26,7 @@ class Republica < ActiveRecord::Base
   attr_accessible :login
   has_many :moradores, :dependent => :destroy, :inverse_of => :republica
   has_many :interreps_vencidos, :dependent => :destroy
+  has_one :contato, :dependent => :destroy
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
@@ -113,6 +115,10 @@ class Republica < ActiveRecord::Base
   end
 
   private
+
+  def make_contato
+    self.create_contato
+  end
 
   def check_email
     if approved_changed? && approved_was == false && self.persisted?
