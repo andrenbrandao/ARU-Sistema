@@ -29,7 +29,10 @@ class Ability
 
       # Pode modificar o próprio contato
       can :manage, Contato, republica: {id: user.id}
-      
+
+      # Pode modificar as próprias redes sociais
+      can :manage, SocialInformation, republica: {id: user.id}
+
     else
       # Permissões para CONVIDADOS
       can :read, Republica, approved: true

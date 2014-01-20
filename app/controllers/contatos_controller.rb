@@ -8,7 +8,7 @@ class ContatosController < ApplicationController
 	end
 
 	def update
-		@republica = current_republica
+		@republica = Republica.find(params[:republica_id])
 		@contato = @republica.contato
 
 		respond_to do |format|

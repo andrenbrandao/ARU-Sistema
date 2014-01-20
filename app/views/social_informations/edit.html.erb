@@ -1,0 +1,41 @@
+<div class='content-box center-form'>
+	<%= simple_form_for [@republica, @social_info], :url => republica_social_information_path, :html => {method: :put, novalidate: 'novalidate', class: 'form-inline'} do |f| %>
+	<%= display_base_errors @social_info %>
+
+
+	<h3>Redes Sociais de <%= @republica.nome %></h3>
+
+	<p><small>Adicione aqui somente os as redes sociais que devem ficar disponíveis ao público.</small></p>
+
+	<%= f.input :website, :wrapper => :prepend, label: false do %>
+	<span class="add-on"><i class="fa fa-globe"></i></span><%= f.input_field :website, placeholder: "http://minharepublica.com.br", class: 'input-xlarge' %>
+	<% end %>
+
+	<%= f.input :facebook, :wrapper => :prepend, label: false do %>
+	<span class="add-on"><i class="fa fa-facebook"></i></span><%= f.input_field :facebook, placeholder: "https://facebook.com/minharepublica", class: 'input-xlarge' %>
+	<% end %>
+
+	<%= f.input :googleplus, :wrapper => :prepend, label: false do %>
+	<span class="add-on"><i class="fa fa-google-plus"></i></span><%= f.input_field :googleplus, placeholder: "https://plus.google.com/minharepublica", class: 'input-xlarge' %>
+	<% end %>
+
+	<%= f.input :youtube, :wrapper => :prepend, label: false do %>
+	<span class="add-on"><i class="fa fa-youtube"></i></span><%= f.input_field :youtube, placeholder: "http://youtube.com/minharepublica", class: 'input-xlarge' %>
+	<% end %>
+
+
+	<%= f.input :twitter, :wrapper => :prepend, label: false do %>
+	<span class="add-on"><i class="fa fa-twitter"></i></span><%= f.input_field :twitter, placeholder: "https://twitter.com/minharepublica", class: 'input-xlarge' %>
+	<% end %>
+
+
+
+	<div class="form-actions" id='cadastro_actions'>
+		<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+		<%= link_to 'Cancel', republica_path(@republica), class: 'btn' %>
+	</div>
+
+
+
+	<% end %>
+</div>

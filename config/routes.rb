@@ -35,6 +35,7 @@ Cadastro::Application.routes.draw do
     put 'add_exmoradores_update'
     resources :moradores, except: [:show, :edit]
     resource :contato, only: [:edit, :update]
+    resource :social_information, only: [:edit, :update]
   end
 
   get "/terms" => "sistema#terms", :as => :terms
