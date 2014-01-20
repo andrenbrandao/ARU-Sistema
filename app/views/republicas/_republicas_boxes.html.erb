@@ -48,10 +48,40 @@
 
       <%= link_to "Mais Informações", republica_path(republica), class: 'nav-btn nav-btn-a nav-btn-small ' %>
     </div>
-    
+
+    <% if republica.social_information.not_empty? %>
+    <div class='social-top-right'>
+
+      <ul class='no-style'>
+        <% if republica.social_information.website.present? %>
+        <li><%= link_to '<i class="fa fa-globe fa-lg"></i>'.html_safe, republica.social_information.website, target: '_blank' %></li>
+        <% end %>
+
+        <% if republica.social_information.facebook.present? %>
+        <li><%= link_to '<i class="fa fa-facebook-square fa-lg"></i>'.html_safe, republica.social_information.facebook, target: '_blank' %></li>
+        <% end %>
+
+        <% if republica.social_information.googleplus.present? %>
+        <li><%= link_to '<i class="fa fa-google-plus-square fa-lg"></i>'.html_safe, republica.social_information.googleplus, target: '_blank' %></li>
+        <% end %>
+
+        <% if republica.social_information.youtube.present? %>
+        <li><%= link_to '<i class="fa fa-youtube fa-lg"></i>'.html_safe, republica.social_information.youtube, target: '_blank' %></li>
+        <% end %>
+
+        <% if republica.social_information.twitter.present? %>
+        <li><%= link_to '<i class="fa fa-twitter fa-lg"></i>'.html_safe, republica.social_information.twitter, target: '_blank' %></li>
+        <% end %>
+
+      </ul>
+
+    </div>
+    <% end %>
+
   </div>
 
   <% end %>
 </div>
 
 <p><%= will_paginate @republicas %></p>
+

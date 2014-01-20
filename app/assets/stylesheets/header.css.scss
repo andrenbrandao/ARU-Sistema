@@ -144,3 +144,20 @@
  	bottom: 15px;
  	right: 15px;
  }
+
+ .social-top-right {
+ 	position: absolute;
+ 	right: 15px;
+ 	top: 15px;
+ 	ul {
+ 		margin: 0 0 10px 0;
+ 	}
+
+ 	li {
+ 		margin-bottom: 5px;
+ 	}
+ }
+
+ .social-show {
+ 	margin-right: 10px;
+ }

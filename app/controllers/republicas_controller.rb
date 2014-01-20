@@ -31,6 +31,7 @@ class RepublicasController < ApplicationController
   def show
     @republica = Republica.find(params[:id])
     @contato = @republica.contato
+    @social_info = @republica.social_information
 
     @republica.moradores.each do |morador|
       if morador.representante == true
