@@ -40,6 +40,15 @@
       <% end %>
 
     </div>
+
+    <div class='btn-bottom-right'>
+      <% if republica.contato.not_empty? %>
+      <%= link_to "Contato", republica_path(republica, anchor: 'contato'), class: 'nav-btn nav-btn-a nav-btn-small ' %>
+      <% end %>
+
+      <%= link_to "Mais Informações", republica_path(republica), class: 'nav-btn nav-btn-a nav-btn-small ' %>
+    </div>
+    
   </div>
 
   <% end %>
