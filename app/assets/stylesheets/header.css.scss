@@ -159,5 +159,14 @@
  }
 
  .social-show {
- 	margin-right: 10px;
+ 	position: absolute;
+ 	right: 25px;
+ 	top: 25px;
+ 	ul {
+ 		margin: 0 0 10px 0;
+ 	}
+
+ 	li {
+ 		margin-bottom: 10px;
+ 	}
  }

@@ -52,10 +52,6 @@
 
     <li><a href="#representante"  data-toggle="tab">Representante</a></li>
 
-    <% if @social_info.not_empty? %>
-    <li><a href="#social_info"  data-toggle="tab">Redes Sociais</a></li>
-    <% end%>
-
     <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
 
   </ul>
@@ -152,33 +148,6 @@
 
     </div>
 
-    <!-- REDES SOCIAIS -->
-    <% if @social_info.not_empty? %>
-    <div class="tab-pane fade" id='social_info'>
-
-      <% if @social_info.website.present? %>
-      <p><i class="fa fa-lg fa-globe social-show"></i><%= link_to @social_info.website.sub(/^https?\:\/\//, '').sub(/^www./,''), @social_info.website, target: '_blank' %></p>
-      <% end %>
-
-      <% if @social_info.facebook.present? %>
-      <p><i class="fa fa-lg fa-facebook-square social-show"></i><%= link_to @social_info.facebook.sub(/^https?\:\/\//, '').sub(/^www./,''), @social_info.facebook, target: '_blank' %></p>
-      <% end %>
-
-      <% if @social_info.googleplus.present? %>
-      <p><i class="fa fa-lg fa-google-plus social-show"></i><%= link_to @social_info.googleplus.sub(/^https?\:\/\//, '').sub(/^www./,''), @social_info.googleplus, target: '_blank' %></p>
-      <% end %>
-
-      <% if @social_info.youtube.present? %>
-      <p><i class="fa fa-lg fa-youtube social-show"></i><%= link_to @social_info.youtube.sub(/^https?\:\/\//, '').sub(/^www./,''), @social_info.youtube, target: '_blank' %></p>
-      <% end %>
-
-      <% if @social_info.twitter.present? %>
-      <p><i class="fa fa-lg fa-twitter social-show"></i><%= link_to @social_info.twitter.sub(/^https?\:\/\//, '').sub(/^www./,''), @social_info.twitter, target: '_blank' %></p>
-      <% end %>
-
-    </div>
-    <% end %>
-    
 
     <!-- DADOS RESTRITOS -->
     <div class='tab-pane fade' id='dados_restritos'>
@@ -204,7 +173,37 @@
       </p>
     </div>
 
+  </div> <!-- END OF CONTENT TAB -->
+
+  <!-- REDES SOCIAIS -->
+  <% if @social_info.not_empty? %>
+  <div class='social-show'>
+
+    <ul class='no-style'>
+      <% if @social_info.website.present? %>
+      <li><%= link_to '<i class="fa fa-globe fa-2x"></i>'.html_safe, @social_info.website, target: '_blank' %></li>
+      <% end %>
+
+      <% if @social_info.facebook.present? %>
+      <li><%= link_to '<i class="fa fa-facebook-square fa-2x"></i>'.html_safe, @social_info.facebook, target: '_blank' %></li>
+      <% end %>
+
+      <% if @social_info.googleplus.present? %>
+      <li><%= link_to '<i class="fa fa-google-plus-square fa-2x"></i>'.html_safe, @social_info.googleplus, target: '_blank' %></li>
+      <% end %>
+
+      <% if @social_info.youtube.present? %>
+      <li><%= link_to '<i class="fa fa-youtube fa-2x"></i>'.html_safe, @social_info.youtube, target: '_blank' %></li>
+      <% end %>
+
+      <% if @social_info.twitter.present? %>
+      <li><%= link_to '<i class="fa fa-twitter fa-2x"></i>'.html_safe, @social_info.twitter, target: '_blank' %></li>
+      <% end %>
+
+    </ul>
+
   </div>
+  <% end %>
 
   <br>
 
