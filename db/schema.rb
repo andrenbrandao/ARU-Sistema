@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120004453) do
+ActiveRecord::Schema.define(:version => 20140120195843) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -106,5 +106,18 @@ ActiveRecord::Schema.define(:version => 20140120004453) do
   add_index "republicas", ["confirmation_token"], :name => "index_republicas_on_confirmation_token", :unique => true
   add_index "republicas", ["email"], :name => "index_republicas_on_email", :unique => true
   add_index "republicas", ["reset_password_token"], :name => "index_republicas_on_reset_password_token", :unique => true
+
+  create_table "social_informations", :force => true do |t|
+    t.string   "website"
+    t.string   "facebook"
+    t.string   "googleplus"
+    t.string   "youtube"
+    t.string   "twitter"
+    t.integer  "republica_id", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "social_informations", ["republica_id"], :name => "index_social_informations_on_republica_id"
 
 end
