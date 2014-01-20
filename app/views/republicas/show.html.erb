@@ -103,6 +103,7 @@
 
     </div>
 
+    <!-- CONTATO -->
     <% if @contato.not_empty? %>
     <div class="tab-pane fade" id='contato'>
 
@@ -131,7 +132,7 @@
     <% end %>
 
     <% if republica_signed_in? %> 
-    <!-- CONTATOS -->
+    <!-- REPRESENTANTE -->
     <div class="tab-pane fade" id="representante">
 
       <p>
@@ -149,18 +150,17 @@
         <%= @republica.email %>
       </p>
 
-      <% if current_republica == @republica %>
-      <% if @republica.pending_reconfirmation? %>
+      <% if current_republica == @republica && @republica.pending_reconfirmation? %>
       <p style='color:red'>
         <b>Confirme o novo Email cadastrado:</b>
         <%= @republica.unconfirmed_email %>
       </p>
       <% end %>
-      <% end %>
 
     </div>
     <% end %>
 
+    <!-- REDES SOCIAIS -->
     <% if @social_info.not_empty? %>
     <div class="tab-pane fade" id='social_info'>
 
