@@ -2,7 +2,7 @@ class ContatosController < ApplicationController
 	load_and_authorize_resource
 
 	def show
-		@republica = current_republica
+		@republica = Republica.find(params[:republica_id])
 		@contato = @republica.contato	
 	end
 

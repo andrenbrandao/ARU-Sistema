@@ -49,8 +49,12 @@
     </li>
     <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
 
-    <% if republica_signed_in?  %>
+    <% if @contato.not_empty? %>
     <li><a href="#contato"  data-toggle="tab">Contato</a></li>
+    <% end%>
+
+    <% if republica_signed_in?  %>
+    <li><a href="#representante"  data-toggle="tab">Representante</a></li>
     <% end %>
 
     <% if current_republica == @republica %>
@@ -95,17 +99,36 @@
 
     </div>
 
+    <% if @contato.not_empty? %>
+    <div class="tab-pane fade" id='contato'>
+
+      <% if @republica.telefone.present? || @contato.tel1.present? || @contato.tel2.present? %>
+      <h3><i class='fa fa-phone-square'></i> Telefones</h3>
+      <% end %>
+
+      <% if @republica.telefone.present? %>
+      <p><b>República:</b> <%= @republica.telefone %></p>
+      <% end %>
+
+      <% if @contato.nome1.present? && @contato.tel1.present? %>
+      <p><b><%= @contato.nome1 %>:</b> <%= @contato.tel1 %></p>
+      <% end %>
+
+      <% if @contato.nome2.present? && @contato.tel2.present?%>
+      <p><b><%= @contato.nome2 %>:</b> <%= @contato.tel2 %></p>
+      <% end %>
+
+      <% if @contato.email.present? %>
+      <h3><i class='fa fa-envelope'></i> Email</h3>
+      <p><%= @contato.email %></p>
+      <% end %>
+
+    </div>
+    <% end %>
 
     <% if republica_signed_in? %> 
     <!-- CONTATOS -->
-    <div class="tab-pane fade" id="contato">
-
-      <% if @republica.telefone != '' %>
-      <p>
-        <b>Telefone da República:</b>
-        <%= @republica.telefone %>
-      </p>
-      <% end %>
+    <div class="tab-pane fade" id="representante">
 
       <p>
         <b>Representante:</b>
@@ -113,24 +136,22 @@
       </p>
 
       <p>
-        <b>Email do Representante:</b>
+        <b>Celular:</b>
+        <%= @representante.celular %>
+      </p>
+
+      <p>
+        <b>Email:</b>
         <%= @republica.email %>
       </p>
 
       <% if current_republica == @republica %>
       <% if @republica.pending_reconfirmation? %>
       <p style='color:red'>
-        <b>Email Não Reconfirmado:</b>
+        <b>Confirme o novo Email cadastrado:</b>
         <%= @republica.unconfirmed_email %>
       </p>
       <% end %>
-      <% end %>
-
-      <% if republica_signed_in? %> 
-      <p>
-        <b>Celular do Representante:</b>
-        <%= @representante.celular %>
-      </p>
       <% end %>
 
     </div>

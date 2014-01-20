@@ -46,7 +46,11 @@
     </li>
     <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
     
+    <% if @contato.not_empty? %>
     <li><a href="#contato"  data-toggle="tab">Contato</a></li>
+    <% end%>
+
+    <li><a href="#representante"  data-toggle="tab">Representante</a></li>
 
     <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
 
@@ -89,15 +93,35 @@
 
     </div>
 
-    <!-- CONTATOS -->
-    <div class="tab-pane fade" id="contato">
+    <% if @contato.not_empty? %>
+    <div class="tab-pane fade" id='contato'>
 
-      <% if @republica.telefone != '' %>
-      <p>
-        <b>Telefone da República:</b>
-        <%= @republica.telefone %>
-      </p>
+      <% if @republica.telefone.present? || @contato.tel1.present? || @contato.tel2.present? %>
+      <h3><i class='fa fa-phone-square'></i> Telefones</h3>
       <% end %>
+
+      <% if @republica.telefone.present? %>
+      <p><b>República:</b> <%= @republica.telefone %></p>
+      <% end %>
+
+      <% if @contato.nome1.present? && @contato.tel1.present? %>
+      <p><b><%= @contato.nome1 %>:</b> <%= @contato.tel1 %></p>
+      <% end %>
+
+      <% if @contato.nome2.present? && @contato.tel2.present?%>
+      <p><b><%= @contato.nome2 %>:</b> <%= @contato.tel2 %></p>
+      <% end %>
+
+      <% if @contato.email.present? %>
+      <h3><i class='fa fa-envelope'></i> Email</h3>
+      <p><%= @contato.email %></p>
+      <% end %>
+
+    </div>
+    <% end %>
+
+    <!-- REPRESENTANTE -->
+    <div class="tab-pane fade" id="representante">
 
       <p>
         <b>Representante:</b>
@@ -105,7 +129,12 @@
       </p>
 
       <p>
-        <b>Email do Representante:</b>
+        <b>Celular:</b>
+        <%= @representante.celular %>
+      </p>
+
+      <p>
+        <b>Email:</b>
         <%= @republica.email %>
       </p>
 
@@ -117,11 +146,6 @@
       </p>
       <% end %>
       <% end %>
-
-      <p>
-        <b>Celular do Representante:</b>
-        <%= @representante.celular %>
-      </p>
 
     </div>
 

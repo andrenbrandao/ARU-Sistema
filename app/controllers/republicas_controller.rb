@@ -30,6 +30,7 @@ class RepublicasController < ApplicationController
   # GET /republicas/1.json
   def show
     @republica = Republica.find(params[:id])
+    @contato = @republica.contato
 
     @republica.moradores.each do |morador|
       if morador.representante == true
