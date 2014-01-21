@@ -1,12 +1,15 @@
 <div class='content-box left-menu'>
 	<ul>
-		<li><%= link_to 'Editar Conta', edit_republica_registration_path, class: 'nav-btn nav-btn-a nav-btn-small' %></li>
-		<li><%= link_to 'Editar Contatos', edit_republica_contato_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
-		<li><%= link_to 'Editar Redes Sociais', edit_republica_social_information_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
-		
-<!-- 		<li><%= link_to 'Modificar Moradores', '#', class: 'nav-btn nav-btn-a nav-btn-small' %></li>
-	<li><%= link_to 'Outras Configurações', '#', class: 'nav-btn nav-btn-a nav-btn-small' %></li> -->
-	<li><%= link_to 'Moradores', republica_moradores_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
-	<li><%= link_to 'Ex-moradores', republica_index_exmoradores_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
-</ul>
+		<li><%= link_to "<i class='fa fa-gears'></i> Editar Conta".html_safe, edit_republica_registration_path, class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+		<li><%= link_to "<i class='fa fa-gears'></i> Gerenciar Contatos".html_safe, edit_republica_contato_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+		<li><%= link_to "<i class='fa fa-gears'></i> Gerenciar Redes Sociais".html_safe, edit_republica_social_information_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+		<li><%= link_to "<i class='fa fa-gears'></i> Privacidade".html_safe, edit_republica_social_information_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+	</ul>
+</div>
+
+<div class='content-box left-menu'>
+	<ul>
+		<li><%= link_to "<i class='fa fa-eye'></i> Ver Moradores".html_safe, republica_moradores_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+		<li><%= link_to "<i class='fa fa-eye'></i> Ver Ex-moradores".html_safe, republica_index_exmoradores_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+	</ul>
 </div>

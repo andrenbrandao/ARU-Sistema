@@ -1,212 +1,217 @@
-<%= render 'left_menu' %>
+<div class='row-fluid'>
 
-<div id='show-rep' class='content-box pull-left'>
-
-  <div class='media rep-show' id='rep-header'>
-
-    <%= image_tag @republica.logotipo_url(:large), id: 'logo_show', class: 'pull-left '%>
-
-    <div class='media-body'>
-      <h1>
-        <%= @republica.nome %>
-      </h1>
-
-      <p>
-        <% if @republica.tipo == 'Masculina' %>
-        <i class='fa fa-male'></i>
-        <% elsif @republica.tipo == 'Feminina' %>
-        <i class='fa fa-female'></i>
-        <% else %>
-        <i class='fa fa-group'></i>
-        <% end %>
-        <span><%= @republica.tipo %></span>
-        <span class='dot-separator'>·</span>
-        <span>Fundada em <%= @republica.ano_de_fundacao %></span>
-      </p>
-
-      <!-- Desabilitado por enquanto -->
-      <% if false %>
-      <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
-      <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'calendar_icon' %> República Nova</p>
-      <% end %>
-      <% end %>
-
-      <% if @republica.presente_reunioes == true %>
-      <p>
-        <i class='fa fa-calendar'></i> Presente em Reuniões
-      </p>
-      <% end %>
-
-    </div>
+  <div class='span3'>
+    <%= render 'left_menu' %>
   </div>
 
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#geral" data-toggle="tab">Geral</a>
-    </li>
-    <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
-    
-    <% if @contato.not_empty? %>
-    <li><a href="#contato"  data-toggle="tab">Contato</a></li>
-    <% end%>
+  <div id='show-rep' class='content-box span9'>
 
-    <li><a href="#representante"  data-toggle="tab">Representante</a></li>
+    <div class='media rep-show' id='rep-header'>
 
-    <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
+      <%= image_tag @republica.logotipo_url(:large), id: 'logo_show', class: 'pull-left '%>
 
-  </ul>
+      <div class='media-body'>
+        <h1>
+          <%= @republica.nome %>
+        </h1>
 
-  <div class="tab-content">
+        <p>
+          <% if @republica.tipo == 'Masculina' %>
+          <i class='fa fa-male'></i>
+          <% elsif @republica.tipo == 'Feminina' %>
+          <i class='fa fa-female'></i>
+          <% else %>
+          <i class='fa fa-group'></i>
+          <% end %>
+          <span><%= @republica.tipo %></span>
+          <span class='dot-separator'>·</span>
+          <span>Fundada em <%= @republica.ano_de_fundacao %></span>
+        </p>
 
-    <!-- GERAL -->
-    <div class="tab-pane fade active in" id="geral">
-      <h2>Descrição</h2>
-      <div style='word-wrap: break-word;'>
-        <%= simple_format @republica.descricao, class: 'description' %>
+        <!-- Desabilitado por enquanto -->
+        <% if false %>
+        <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
+        <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'calendar_icon' %> República Nova</p>
+        <% end %>
+        <% end %>
+
+        <% if @republica.presente_reunioes == true %>
+        <p>
+          <i class='fa fa-calendar'></i> Presente em Reuniões
+        </p>
+        <% end %>
+
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#geral" data-toggle="tab">Geral</a>
+      </li>
+      <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
+
+      <% if @contato.not_empty? %>
+      <li><a href="#contato"  data-toggle="tab">Contato</a></li>
+      <% end%>
+
+      <li><a href="#representante"  data-toggle="tab">Representante</a></li>
+
+      <li><a href="#dados_restritos"  data-toggle="tab">Dados Restritos</a></li>
+
+    </ul>
+
+    <div class="tab-content">
+
+      <!-- GERAL -->
+      <div class="tab-pane fade active in" id="geral">
+        <h2>Descrição</h2>
+        <div style='word-wrap: break-word;'>
+          <%= simple_format @republica.descricao, class: 'description' %>
+        </div>
+
       </div>
 
-    </div>
+      <!-- ATIVIDADES -->
+      <div class="tab-pane fade" id="atividades">
 
-    <!-- ATIVIDADES -->
-    <div class="tab-pane fade" id="atividades">
+        <% if @republica.atributos == true %>
 
-      <% if @republica.atributos == true %>
+        <!-- Desabilitado por enquanto -->
+        <% if false %>
+        <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
+        <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'atributos' %> República Nova</p>
+        <% end %>
+        <% end %>
 
-      <!-- Desabilitado por enquanto -->
-      <% if false %>
-      <% if Time.now.year - @republica.ano_de_fundacao <= 1 %>
-      <p><%= image_tag 'glyphicons/glyphicons_075_stroller.png', class: 'atributos' %> República Nova</p>
+        <% if @republica.presente_reunioes == true %>
+        <p><i class='fa fa-calendar'></i> Presente em Reuniões</p>
+        <% end %>
+
+        <% if @republica.interreps_vencidos.any?  %>
+        <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= @republica.interreps_vencidos.order(:ano).collect(&:ano).join(', ') %></p>
+        <% end %>
+
+        <% else %>
+        <p>Nenhuma Atividade Recente</p>
+        <% end %>
+
+      </div>
+
+      <!-- CONTATO -->
+      <% if @contato.not_empty? %>
+      <div class="tab-pane fade" id='contato'>
+
+        <% if @republica.telefone.present? || @contato.tel1.present? || @contato.tel2.present? %>
+        <p style='font-size: 20px'><i class='fa fa-phone-square'></i> Telefones</p>
+        <% end %>
+
+        <% if @republica.telefone.present? %>
+        <p><b>República:</b> <%= @republica.telefone %></p>
+        <% end %>
+
+        <% if @contato.nome1.present? && @contato.tel1.present? %>
+        <p><b><%= @contato.nome1 %>:</b> <%= @contato.tel1 %></p>
+        <% end %>
+
+        <% if @contato.nome2.present? && @contato.tel2.present?%>
+        <p><b><%= @contato.nome2 %>:</b> <%= @contato.tel2 %></p>
+        <% end %>
+
+        <% if @contato.email.present? %>
+        <p style='font-size: 20px; margin-top: 25px;'><i class='fa fa-envelope'></i> Email</p>
+        <p><%= @contato.email %></p>
+        <% end %>
+
+      </div>
       <% end %>
-      <% end %>
 
-      <% if @republica.presente_reunioes == true %>
-      <p><i class='fa fa-calendar'></i> Presente em Reuniões</p>
-      <% end %>
+      <!-- REPRESENTANTE -->
+      <div class="tab-pane fade" id="representante">
 
-      <% if @republica.interreps_vencidos.any?  %>
-      <p><i class='fa fa-trophy'></i> Vencedora InterReps: <%= @republica.interreps_vencidos.order(:ano).collect(&:ano).join(', ') %></p>
-      <% end %>
+        <p>
+          <b>Representante:</b>
+          <%= @representante.nome + ' ' + @representante.sobrenome %>
+        </p>
 
-      <% else %>
-      <p>Nenhuma Atividade Recente</p>
-      <% end %>
+        <p>
+          <b>Celular:</b>
+          <%= @representante.celular %>
+        </p>
 
-    </div>
+        <p>
+          <b>Email:</b>
+          <%= @republica.email %>
+        </p>
 
-    <!-- CONTATO -->
-    <% if @contato.not_empty? %>
-    <div class="tab-pane fade" id='contato'>
+        <% if @republica.pending_reconfirmation? %>
+        <p style='color:red'>
+          <b>Email Não Reconfirmado:</b>
+          <%= @republica.unconfirmed_email %>
+        </p>
+        <% end %>
 
-      <% if @republica.telefone.present? || @contato.tel1.present? || @contato.tel2.present? %>
-      <p style='font-size: 20px'><i class='fa fa-phone-square'></i> Telefones</p>
-      <% end %>
+      </div>
 
-      <% if @republica.telefone.present? %>
-      <p><b>República:</b> <%= @republica.telefone %></p>
-      <% end %>
 
-      <% if @contato.nome1.present? && @contato.tel1.present? %>
-      <p><b><%= @contato.nome1 %>:</b> <%= @contato.tel1 %></p>
-      <% end %>
+      <!-- DADOS RESTRITOS -->
+      <div class='tab-pane fade' id='dados_restritos'>
 
-      <% if @contato.nome2.present? && @contato.tel2.present?%>
-      <p><b><%= @contato.nome2 %>:</b> <%= @contato.tel2 %></p>
-      <% end %>
+        <p>
+          <b>Moradores:</b>
+          <%= @republica.moradores.where(exmorador: false).length %>
+        </p>
 
-      <% if @contato.email.present? %>
-      <p style='font-size: 20px; margin-top: 25px;'><i class='fa fa-envelope'></i> Email</p>
-      <p><%= @contato.email %></p>
-      <% end %>
+        <p>
+          <b>Ex-moradores:</b>
+          <%= @republica.moradores.where(exmorador: true).length %>
+        </p>
+
+        <p>
+          <b>Endereço:</b>
+          <%= @republica.endereco + ', ' + @republica.numero.to_s %>
+        </p>
+
+        <p>
+          <b>Usuário:</b>
+          <%= @republica.username %>
+        </p>
+      </div>
+
+    </div> <!-- END OF CONTENT TAB -->
+
+    <!-- REDES SOCIAIS -->
+    <% if @social_info.not_empty? %>
+    <div class='social-show'>
+
+      <ul class='no-style'>
+        <% if @social_info.website.present? %>
+        <li><%= link_to '<i class="fa fa-globe fa-2x"></i>'.html_safe, @social_info.website, target: '_blank' %></li>
+        <% end %>
+
+        <% if @social_info.facebook.present? %>
+        <li><%= link_to '<i class="fa fa-facebook-square fa-2x"></i>'.html_safe, @social_info.facebook, target: '_blank' %></li>
+        <% end %>
+
+        <% if @social_info.googleplus.present? %>
+        <li><%= link_to '<i class="fa fa-google-plus-square fa-2x"></i>'.html_safe, @social_info.googleplus, target: '_blank' %></li>
+        <% end %>
+
+        <% if @social_info.youtube.present? %>
+        <li><%= link_to '<i class="fa fa-youtube fa-2x"></i>'.html_safe, @social_info.youtube, target: '_blank' %></li>
+        <% end %>
+
+        <% if @social_info.twitter.present? %>
+        <li><%= link_to '<i class="fa fa-twitter fa-2x"></i>'.html_safe, @social_info.twitter, target: '_blank' %></li>
+        <% end %>
+
+      </ul>
 
     </div>
     <% end %>
 
-    <!-- REPRESENTANTE -->
-    <div class="tab-pane fade" id="representante">
+    <br>
 
-      <p>
-        <b>Representante:</b>
-        <%= @representante.nome + ' ' + @representante.sobrenome %>
-      </p>
-
-      <p>
-        <b>Celular:</b>
-        <%= @representante.celular %>
-      </p>
-
-      <p>
-        <b>Email:</b>
-        <%= @republica.email %>
-      </p>
-
-      <% if @republica.pending_reconfirmation? %>
-      <p style='color:red'>
-        <b>Email Não Reconfirmado:</b>
-        <%= @republica.unconfirmed_email %>
-      </p>
-      <% end %>
-
-    </div>
-
-
-    <!-- DADOS RESTRITOS -->
-    <div class='tab-pane fade' id='dados_restritos'>
-
-      <p>
-        <b>Moradores:</b>
-        <%= @republica.moradores.where(exmorador: false).length %>
-      </p>
-
-      <p>
-        <b>Ex-moradores:</b>
-        <%= @republica.moradores.where(exmorador: true).length %>
-      </p>
-
-      <p>
-        <b>Endereço:</b>
-        <%= @republica.endereco + ', ' + @republica.numero.to_s %>
-      </p>
-
-      <p>
-        <b>Usuário:</b>
-        <%= @republica.username %>
-      </p>
-    </div>
-
-  </div> <!-- END OF CONTENT TAB -->
-
-  <!-- REDES SOCIAIS -->
-  <% if @social_info.not_empty? %>
-  <div class='social-show'>
-
-    <ul class='no-style'>
-      <% if @social_info.website.present? %>
-      <li><%= link_to '<i class="fa fa-globe fa-2x"></i>'.html_safe, @social_info.website, target: '_blank' %></li>
-      <% end %>
-
-      <% if @social_info.facebook.present? %>
-      <li><%= link_to '<i class="fa fa-facebook-square fa-2x"></i>'.html_safe, @social_info.facebook, target: '_blank' %></li>
-      <% end %>
-
-      <% if @social_info.googleplus.present? %>
-      <li><%= link_to '<i class="fa fa-google-plus-square fa-2x"></i>'.html_safe, @social_info.googleplus, target: '_blank' %></li>
-      <% end %>
-
-      <% if @social_info.youtube.present? %>
-      <li><%= link_to '<i class="fa fa-youtube fa-2x"></i>'.html_safe, @social_info.youtube, target: '_blank' %></li>
-      <% end %>
-
-      <% if @social_info.twitter.present? %>
-      <li><%= link_to '<i class="fa fa-twitter fa-2x"></i>'.html_safe, @social_info.twitter, target: '_blank' %></li>
-      <% end %>
-
-    </ul>
+    <%= link_to 'Voltar', admin_republicas_path, class: 'btn btn-small'  %>
 
   </div>
-  <% end %>
-
-  <br>
-
-  <%= link_to 'Voltar', admin_republicas_path, class: 'btn btn-small'  %>
-
 </div>
