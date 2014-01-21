@@ -16,10 +16,10 @@ class SocialInformation < ActiveRecord::Base
 	private
 
 	def downcase_all
-		self.website.downcase!
-		self.facebook.downcase!
-		self.googleplus.downcase!
-		self.youtube.downcase!
-		self.twitter.downcase!
+		self.website.downcase! if self.website.present?
+		self.facebook.downcase! if self.facebook.present?
+		self.googleplus.downcase! if self.googleplus.present?
+		self.youtube.downcase! if self.youtube.present?
+		self.twitter.downcase! if self.twitter.present?
 	end
 end
