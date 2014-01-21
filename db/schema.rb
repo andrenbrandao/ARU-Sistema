@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120195843) do
+ActiveRecord::Schema.define(:version => 20140121011646) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -119,5 +119,14 @@ ActiveRecord::Schema.define(:version => 20140120195843) do
   end
 
   add_index "social_informations", ["republica_id"], :name => "index_social_informations_on_republica_id"
+
+  create_table "vagas", :force => true do |t|
+    t.datetime "abertas"
+    t.integer  "republica_id", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "vagas", ["republica_id"], :name => "index_vagas_on_republica_id"
 
 end

@@ -33,6 +33,9 @@ class Ability
       # Pode modificar as próprias redes sociais
       can :manage, SocialInformation, republica: {id: user.id}
 
+      # Pode ativar ou desativar vagas
+      can :update, Vaga, republica: {id: user.id}
+
     else
       # Permissões para CONVIDADOS
       can :read, Republica, approved: true

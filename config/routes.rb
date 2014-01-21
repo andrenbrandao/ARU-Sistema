@@ -36,6 +36,7 @@ Cadastro::Application.routes.draw do
     resources :moradores, except: [:show, :edit]
     resource :contato, only: [:edit, :update]
     resource :social_information, only: [:edit, :update]
+    resource :vaga, only: [:update]
   end
 
   get "/terms" => "sistema#terms", :as => :terms

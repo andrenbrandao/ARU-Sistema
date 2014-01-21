@@ -28,6 +28,7 @@ class Republica < ActiveRecord::Base
   has_many :interreps_vencidos, :dependent => :destroy
   has_one :contato, :dependent => :destroy
   has_one :social_information, :dependent => :destroy
+  has_one :vaga, :dependent => :destroy
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
