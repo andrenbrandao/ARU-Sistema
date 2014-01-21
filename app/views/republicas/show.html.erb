@@ -53,7 +53,7 @@
       </li>
       <li><a href="#atividades" data-toggle="tab">Atividades</a></li>
 
-      <% if @contato.not_empty? %>
+      <% if @contato.not_empty? || @republica.telefone.present? %>
       <li><a href="#contato"  data-toggle="tab">Contato</a></li>
       <% end%>
 
@@ -104,7 +104,7 @@
       </div>
 
       <!-- CONTATO -->
-      <% if @contato.not_empty? %>
+      <% if @contato.not_empty? || @republica.telefone.present? %>
       <div class="tab-pane fade" id='contato'>
 
         <% if @republica.telefone.present? || @contato.tel1.present? || @contato.tel2.present? %>
