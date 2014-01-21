@@ -1,9 +1,9 @@
 <div class='content-box left-menu'>
 	<ul>
 		<% if @republica.vaga.abertas.present? && (Time.now - @republica.vaga.abertas).to_i <= 3.weeks  %>
-		<li><%= link_to "<i class='fa fa-thumbs-down'></i> Vagas Encerradas!".html_safe, republica_vaga_path(@republica, acao: 'fechar'), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'nav-btn nav-btn-d nav-btn-small' %></li>
+		<li><%= link_to "<i class='fa fa-thumbs-down'></i> Encerrar Vagas!".html_safe, republica_vaga_path(@republica, acao: 'fechar'), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'nav-btn nav-btn-d nav-btn-small' %></li>
 		<% else %>
-		<li><%= link_to "<i class='fa fa-thumbs-up'></i> Temos Vagas!".html_safe, republica_vaga_path(@republica, acao: 'abrir'), method: :put, data: { confirm: 'Você tem certeza? A sua República terá vagas habilitadas por 3 semanas. Após isso, você deverá ativar novamente.' }, class: 'nav-btn nav-btn-c nav-btn-small' %></li>
+		<li><%= link_to "<i class='fa fa-thumbs-up'></i> Abrir Vagas!".html_safe, republica_vaga_path(@republica, acao: 'abrir'), method: :put, data: { confirm: 'Você tem certeza? A sua República terá vagas habilitadas por 3 semanas. Após isso, você deverá ativar novamente.' }, class: 'nav-btn nav-btn-c nav-btn-small' %></li>
 		<% end %>
 	</ul>
 </div>

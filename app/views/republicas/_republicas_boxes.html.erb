@@ -46,7 +46,11 @@
       <%= link_to "Contato", republica_path(republica, anchor: 'contato'), class: 'nav-btn nav-btn-a nav-btn-small ' %>
       <% end %>
 
-      <%= link_to "Mais Informações", republica_path(republica), class: 'nav-btn nav-btn-a nav-btn-small ' %>
+      <!-- DESABILITADO POR ENQUANTO -->
+  
+      <%= link_to "Informações", republica_path(republica), class: 'nav-btn nav-btn-a nav-btn-small ' %>
+      
+
     </div>
 
     <% if republica.social_information.not_empty? %>
@@ -76,6 +80,11 @@
       </ul>
 
     </div>
+    <% end %>
+
+    <% if republica.vaga.abertas.present? && (Time.now - republica.vaga.abertas).to_i <= 3.weeks  %>
+
+      <%= link_to "<i class='fa fa-star'></i> Temos Vagas!".html_safe, republica_path(republica, anchor: 'contato'), class: 'btn-bottom-left nav-btn nav-btn-c nav-btn-small' %>
     <% end %>
 
   </div>
