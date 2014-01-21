@@ -9,7 +9,7 @@ class Republica < ActiveRecord::Base
   before_save :titleize_moradores
   before_save :titleize_endereco
   before_save :set_data_de_saida
-  after_create :generate_contato_and_social_info
+  after_create :generate_contato_social_vaga
   # before_save :titleize_curso
 
   # Include default devise modules. Others available are:
@@ -118,9 +118,10 @@ class Republica < ActiveRecord::Base
 
   private
 
-  def generate_contato_and_social_info
+  def generate_contato_social_vaga
     self.create_contato
     self.create_social_information
+    self.create_vaga
   end
 
   def check_email
