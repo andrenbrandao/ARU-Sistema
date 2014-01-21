@@ -121,3 +121,12 @@ div.list_line_even
    margin-bottom: 10px;
    margin-right: 20px;
  }
+
+ .card {
+  width: 215px;
+
+  .resizable {
+    white-space: nowrap;
+    margin-bottom: 5px;
+  }
+}

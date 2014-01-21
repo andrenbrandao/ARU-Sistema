@@ -26,7 +26,7 @@
 //= require representante
 //= require jquery.scrollTo-1.4.3.1-min
 //= require highcharts/highcharts                                                           
-//= require highcharts/highcharts-more                                                         
+//= require highcharts/highcharts-more                                               
 //= require_tree .
 
 // $(function() {
@@ -358,11 +358,33 @@ $(function() {
 var hash = document.location.hash;
 var prefix = "tab_";
 if (hash) {
-    $('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+  $('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
 } 
 
 // Change hash for page-reload
 $('.nav-tabs a').on('shown', function (e) {
-    window.location.hash = e.target.hash.replace("#", "#" + prefix);
+  window.location.hash = e.target.hash.replace("#", "#" + prefix);
 });
+});
+
+
+// Redimensionar Cards de Repúblicas em #index
+function resizeRepublicasNames() {
+  $('.resizable').find('a').each(function(){ 
+    while (($(this).width()) > 215){ 
+      var font = $(this).css('font-size');
+
+      font = parseInt(font) - 2;
+      font += 'px';
+      $(this).css('font-size',font);
+    }
+  });
+}
+
+$(document).ready(function(){
+  resizeRepublicasNames();
+
+  $('body').on('resizeNames', function() {
+    resizeRepublicasNames();
+  });
 });

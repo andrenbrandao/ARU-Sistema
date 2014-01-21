@@ -6,8 +6,10 @@
 
     <%= image_tag republica.logotipo_url(:large), id: 'logo_index', class: 'pull-left '%>
 
-    <div class='media-body'>
-      <h2><%= link_to republica.nome, republica_path(republica) %></h2>
+    <div class='media-body card'>
+
+      <h2 class='resizable'><%= link_to republica.nome, republica_path(republica) %></h2>
+
 
       <p>
         <% if republica.tipo == 'Masculina' %>
