@@ -65,7 +65,7 @@ class Republica < ActiveRecord::Base
     @republica = Republica.where(approved: true)
 
     @republica.each do |republica|
-      if (Time.now - republica.updated_at) >= 6.months
+      if (Time.now - republica.updated_at).to_i / 1.day == 180
         if republica.update2_without_timestamping(:approved, 'false')
          RepublicaMailer.inactivity_email(republica).deliver
        end

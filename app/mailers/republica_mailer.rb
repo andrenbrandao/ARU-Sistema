@@ -27,6 +27,7 @@ class RepublicaMailer < ActionMailer::Base
 
 	def inactivity_warning_email(republica)
 		@republica = republica
+		@url = 'http://cadastro.republicasunicamp.com.br/'
 		mail(to: republica.email, subject: 'Atualização de Cadastro')
 	end
 end
