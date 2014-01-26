@@ -38,8 +38,8 @@
 			<td><%= republica.created_at.to_date %></td>
 
 			<td>
-				<% if republica.last_sign_in_at != nil %>
-				<%= time_ago_in_words republica.last_sign_in_at %>
+				<% if republica.current_sign_in_at != nil %>
+				<%= time_ago_in_words republica.current_sign_in_at %>
 				<% end %>
 			</td>
 
