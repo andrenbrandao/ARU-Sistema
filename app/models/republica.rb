@@ -65,13 +65,23 @@ class Republica < ActiveRecord::Base
     @republica = Republica.where(approved: true)
 
     @republica.each do |republica|
-      if (Time.now - republica.updated_at).to_i / 1.day == 180
-        if republica.update2_without_timestamping(:approved, 'false')
+
+      ## Se a Republica nao tiver feito login, usa-se a data do cadastro
+      if republica.current_sign_in_at.present?
+        last_login = republica.current_sign_in_at
+      else
+        last_login = republica.created_at
+      end
+
+      if (Time.now - last_login).to_i / 1.day >= 180
+        if republica.update_attribute(:approved, 'false')
+         # puts "Republica being disapproved... " + republica.nome
          RepublicaMailer.inactivity_email(republica).deliver
        end
      end
       # Quando faltar 7 dias para completar 6 meses, avisa com email
-      if (Time.now - republica.updated_at + 7.days).to_i / 1.day == 180
+      if (Time.now - last_login + 7.days).to_i / 1.day == 180
+       # puts "Sending warning... " + republica.nome
        RepublicaMailer.inactivity_warning_email(republica).deliver
      end 
    end
