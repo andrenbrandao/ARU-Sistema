@@ -114,10 +114,7 @@ class RepublicasController < ApplicationController
     authorize! :add_exmoradores, @republica
 
     respond_to do |format|
-     if @republica.has_inserted_ex_moradores == FALSE
       format.html # index.html.erb
-    else
-      format.html { redirect_to @republica, alert: 'Essa ação só pode ser executada uma vez.' }
     end
   end
 end
@@ -127,7 +124,7 @@ def add_exmoradores_update
 
   respond_to do |format|
     if @republica.update_attributes(params[:republica])
-      format.html { redirect_to @republica, notice: 'Republica was successfully updated.' }
+      format.html { redirect_to @republica, notice: 'Ex-moradores adicionados com sucesso!' }
       format.json { head :no_content }
     else
      format.html { render action: "add_exmoradores" }

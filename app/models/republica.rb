@@ -37,7 +37,6 @@ class Republica < ActiveRecord::Base
   attr_accessible :ano_de_fundacao, :descricao, :endereco, :numero, :nome, :logotipo, :approved
   attr_accessible :telefone, :tipo, :moradores_attributes
   attr_accessible :presente_reunioes, :interreps_vencidos_attributes ## Atributos de Gamefication
-  attr_accessible :has_inserted_ex_moradores
 
   TIPO_DE_REP = [ "Masculina", "Feminina", "Mista"]
 
