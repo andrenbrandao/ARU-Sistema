@@ -117,25 +117,24 @@ class RepublicasController < ApplicationController
       format.html # index.html.erb
     end
   end
-end
 
-def add_exmoradores_update
-  @republica = Republica.find(params[:republica_id])
+  def add_exmoradores_update
+    @republica = Republica.find(params[:republica_id])
 
-  respond_to do |format|
-    if @republica.update_attributes(params[:republica])
-      format.html { redirect_to @republica, notice: 'Ex-moradores adicionados com sucesso!' }
-      format.json { head :no_content }
-    else
-     format.html { render action: "add_exmoradores" }
-     format.json { render json: @republica.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @republica.update_attributes(params[:republica])
+        format.html { redirect_to @republica, notice: 'Ex-moradores adicionados com sucesso!' }
+        format.json { head :no_content }
+      else
+       format.html { render action: "add_exmoradores" }
+       format.json { render json: @republica.errors, status: :unprocessable_entity }
+     end
    end
  end
-end
 
-private
+ private
 
-def sort_column
+ def sort_column
   Republica.column_names.include?(params[:sort]) ? params[:sort] : "nome"
 end
 
