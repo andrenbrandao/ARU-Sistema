@@ -26,7 +26,8 @@ class Morador < ActiveRecord::Base
 	validates :celular, presence: true, :if => :is_representante?
 	validates :data_de_saida, presence: true, :if => :is_exmorador?
 
-	validate :verify_data_de_saida
+	validate :verify_data_de_saida, :if => :is_exmorador?
+
 	
 	def self.update_9digit(old_number, new_number) 
 		@morador = Morador.where(celular: old_number)
@@ -41,7 +42,7 @@ class Morador < ActiveRecord::Base
 	def verify_data_de_saida
 		if !self.marked_for_destruction?
 			if !self.data_de_saida?
-				self.republica.errors.add(:base, "Preencha as datas de saída de ex-moradores.")
+				self.republica.errors.add(:base, "Preencha a data de saída do ex-morador '#{self.nome} #{self.sobrenome}'.")
 			elsif self.data_de_saida.year < self.ano_de_ingresso
 				self.republica.errors.add(:base, "A data de saída de um ex-morador não pode ser menor que o ano de ingresso.")
 			end
