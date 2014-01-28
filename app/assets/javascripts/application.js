@@ -26,7 +26,9 @@
 //= require representante
 //= require jquery.scrollTo-1.4.3.1-min
 //= require highcharts/highcharts                                                           
-//= require highcharts/highcharts-more                                               
+//= require highcharts/highcharts-more  
+//= require bootstrap-datetimepicker       
+//= require datepicker_custom                                 
 //= require_tree .
 
 // $(function() {

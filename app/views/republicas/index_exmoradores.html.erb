@@ -28,8 +28,7 @@
         <td><%= morador.universidade %></td>
         <td><%= morador.ra %></td>
         <td><%= morador.data_de_saida.to_date %></td>
-        <td class='<%= "red" if morador.data_de_saida - morador.created_at < 3.months %>'><%= distance_of_time_in_words(morador.data_de_saida - morador.created_at) %></td>
-        <!--         <td><%= link_to "Morador?", republica_morador_path(morador.republica_id, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %></td> -->
+        <td><%= distance_of_time_in_words( (morador.data_de_saida - DateTime.new(morador.ano_de_ingresso, 1, 1)).to_i )  %></td>
 
         <% if can? :manage, :all %>
         <td class='admin_action'>

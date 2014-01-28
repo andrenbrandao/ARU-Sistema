@@ -53,6 +53,7 @@ gem 'will_paginate'
 gem "fog", "~> 1.3.1"
 gem 'lazy_high_charts'
 gem 'font-awesome-sass'
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
 
 gem 'rails_12factor', group: :production
 

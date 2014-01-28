@@ -1,70 +1,74 @@
 <div class='center-form content-box'>
-   
-    <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: 'republica_form', multipart: true }, validate: true) do |f| %>
-    <%= display_base_errors @republica %>
+ 
+  <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: 'republica_form', multipart: true }, validate: true) do |f| %>
+  <%= display_base_errors @republica %>
 
-    <fieldset>
-    	<legend>República</legend>
+  <fieldset>
+   <legend>República</legend>
 
-      <%= image_tag @republica.logotipo_url(:thumb), id: 'logo', width: '100px' %>
-      <%= f.input :logotipo, label: false %>
-      <%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
-      <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
+   <%= image_tag @republica.logotipo_url(:thumb), id: 'logo', width: '100px' %>
+   <%= f.input :logotipo, label: false %>
+   <%= f.input :nome, placeholder: 'Nome', label: false, disabled: true %>
+   <%= f.input :tipo, label: false, collection: Republica::TIPO_DE_REP, prompt: 'Tipo', disabled: true %>
 
-      <%= f.input :ano_de_fundacao, label: false, collection: (1990..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
+   <%= f.input :ano_de_fundacao, label: false, collection: (1990..Time.now.year).to_a.reverse, prompt: "Ano de Fundação", disabled: true %>
 
-      <%= f.input :endereco, placeholder: 'Endereço', label: false %>
-      <%= f.input :numero, placeholder: 'Número', label: false %>
-      <%= f.input :telefone, placeholder: 'Telefone da República', label: false, input_html: {class: 'telefone'} %>
-      <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
-    </fieldset>
-
-    <fieldset id='moradores'>
-     <legend>Moradores</legend>
-
-     <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
-     <br>
-
-     <ol>
-      <div class="morador">
-        <%= f.simple_fields_for :moradores do |builder| %>
-        <% if builder.object.new_record? %>
-        <%= render 'republicas/morador_fields', f: builder %>
-        <% elsif builder.object.exmorador != true %>
-        <%= render 'current_morador_fields', f: builder %>
-        <% end %>
-        <% end %>
-      </div>
-      <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
-    </ol>
-
-    <br>
-
-  </fieldset>
-
-  <fieldset id='moradores'>
-   <legend>Ex-Moradores</legend>
-   <p>Confira a seguir a lista de seus <%= link_to "Ex-Moradores", republica_index_exmoradores_path(resource), target: '_blank' %></p>
-   
+   <%= f.input :endereco, placeholder: 'Endereço', label: false %>
+   <%= f.input :numero, placeholder: 'Número', label: false %>
+   <%= f.input :telefone, placeholder: 'Telefone da República', label: false, input_html: {class: 'telefone'} %>
+   <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
  </fieldset>
 
- <fieldset>
-   <legend>Autenticação</legend>
-   <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
-   <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %>
-   <div id='change-pass-fields' style='display:none'>
-    <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
-    <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
-  </div>
-  <div class='control-group controls'>
-    <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
-  </div>
+ <fieldset id='moradores'>
+   <legend>Moradores</legend>
+
+   <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
+   <br>
+
+   <ol>
+    <div class="morador">
+      <%= f.simple_fields_for :moradores do |builder| %>
+      <% if builder.object.new_record? %>
+      <%= render 'republicas/morador_fields', f: builder %>
+      <% elsif builder.object.exmorador != true %>
+      <%= render 'current_morador_fields', f: builder %>
+      <% end %>
+      <% end %>
+    </div>
+    <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
+  </ol>
+
+  <br>
+
+</fieldset>
+
+<fieldset id='moradores'>
+ <legend>Ex-Moradores</legend>
+ <p>Confira a seguir a lista de seus <%= link_to "Ex-Moradores", republica_index_exmoradores_path(resource), target: '_blank' %></p>
+ 
+</fieldset>
+
+<fieldset>
+ <legend>Autenticação</legend>
+ <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
+ <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %>
+ <div id='change-pass-fields' style='display:none'>
+  <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
+  <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
+</div>
+<div class='control-group controls'>
+  <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
+</div>
 </fieldset>
 
 <div class="form-actions" id='cadastro_actions'>
  <%= f.submit 'Atualizar', class: 'btn btn-primary' %>
  <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+
+ <!-- DESABILITADO -->
+ <% if false %>
  <p><%= link_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza?" }, :method => :delete %>.</p>
+ <% end %>
 </div>
 
 

@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require font-awesome
+ *= require bootstrap-datetimepicker
  *= require_self
  *= require_tree .
  */
@@ -114,3 +115,5 @@
  .admin_action {
  	white-space: nowrap;
  }
+
+.bootstrap-datetimepicker-widget{z-index:1151 !important;}

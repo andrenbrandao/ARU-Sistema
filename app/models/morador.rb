@@ -2,6 +2,8 @@
 
 class Morador < ActiveRecord::Base
 	self.per_page = 9
+
+	before_save :set_data_de_saida
 	
 	belongs_to :republica, :inverse_of => :moradores
 	validates :republica, presence: true
@@ -22,7 +24,9 @@ class Morador < ActiveRecord::Base
 	validates :ano_de_ingresso, presence: true
 	validates :email, presence: true, :if => :is_representante?
 	validates :celular, presence: true, :if => :is_representante?
+	validates :data_de_saida, presence: true, :if => :is_exmorador?
 
+	validate :verify_data_de_saida
 	
 	def self.update_9digit(old_number, new_number) 
 		@morador = Morador.where(celular: old_number)
@@ -34,12 +38,36 @@ class Morador < ActiveRecord::Base
 
 	private
 
+	def verify_data_de_saida
+		if !self.marked_for_destruction?
+			if !self.data_de_saida?
+				self.republica.errors.add(:base, "Preencha as datas de saída de ex-moradores.")
+			elsif self.data_de_saida.year < self.ano_de_ingresso
+				self.republica.errors.add(:base, "A data de saída de um ex-morador não pode ser menor que o ano de ingresso.")
+			end
+		end
+	end
+
+	def set_data_de_saida
+		if !self.marked_for_destruction?
+			if self.exmorador_changed? && self.exmorador_was == false
+				time = Time.now
+				self.data_de_saida ||= time 
+			end
+		end
+	end
+
+
 	def is_unicamp?
 		universidade == "Unicamp"
 	end
 
 	def is_representante?
 		representante == true		
+	end
+
+	def is_exmorador?
+		exmorador == true
 	end
 
 end

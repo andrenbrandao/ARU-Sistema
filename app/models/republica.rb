@@ -8,7 +8,6 @@ class Republica < ActiveRecord::Base
   before_validation :copy_email_to_republica
   before_save :titleize_moradores
   before_save :titleize_endereco
-  before_save :set_data_de_saida
   after_create :generate_contato_social_vaga
   # before_save :titleize_curso
 
@@ -170,75 +169,65 @@ class Republica < ActiveRecord::Base
   #   end
   # end
 
-  def set_data_de_saida
-    self.moradores.reject(&:marked_for_destruction?).each do |f|
-      if f.exmorador_changed?
-        if f.exmorador_was == false
-          f.data_de_saida = Time.now
-        end   
-      end
-    end
-  end
-
   def copy_email_to_republica
-  	self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).each do |f|
-  		if f.representante == true
-  			self.email = f.email
-  		end
-  	end
+   self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).each do |f|
+    if f.representante == true
+     self.email = f.email
+   end
+ end
+end
+
+def titleize_moradores
+  self.moradores.reject(&:marked_for_destruction?).each do |f|
+    f.nome = f.nome.to_s.titleize
+    f.sobrenome = f.sobrenome.to_s.titleize
   end
+end
 
-  def titleize_moradores
-    self.moradores.reject(&:marked_for_destruction?).each do |f|
-      f.nome = f.nome.to_s.titleize
-      f.sobrenome = f.sobrenome.to_s.titleize
-    end
+def titleize_curso
+  self.moradores.reject(&:marked_for_destruction?).each do |f|
+    f.curso = f.curso.to_s.titleize
   end
+end
 
-  def titleize_curso
-    self.moradores.reject(&:marked_for_destruction?).each do |f|
-      f.curso = f.curso.to_s.titleize
-    end
-  end
+def min_of_moradores
+ if self.moradores.reject( &:marked_for_destruction?).reject(&:exmorador?).length < 3
+  self.errors.add(:base, "República deve ter no mínimo 3 moradores")
+end
+end
 
-  def min_of_moradores
-  	if self.moradores.reject( &:marked_for_destruction?).reject(&:exmorador?).length < 3
-  		self.errors.add(:base, "República deve ter no mínimo 3 moradores")
-  	end
-  end
+def max_of_moradores
+ if self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).length > 20
+  self.errors.add(:base, "República possui mais de 20 moradores")
+end
+end
 
-  def max_of_moradores
-  	if self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).length > 20
-  		self.errors.add(:base, "República possui mais de 20 moradores")
-  	end
-  end
+def has_one_representante
+ count = 0
+ self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).each do |f|
+  if f.representante == true
+   count += 1
+ end
+end
 
-  def has_one_representante
-  	count = 0
-  	self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).each do |f|
-  		if f.representante == true
-  			count += 1
-  		end
-  	end
+if count == 0
+  self.errors.add(:base, "Selecione um representante")
+end
+end
 
-  	if count == 0
-  		self.errors.add(:base, "Selecione um representante")
-  	end
-  end
-
-  def titleize_endereco
-    self.endereco = self.endereco.to_s.titleize
-  end
+def titleize_endereco
+  self.endereco = self.endereco.to_s.titleize
+end
 
 
-  def self.find_first_by_auth_conditions(warden_conditions)
-  	conditions = warden_conditions.dup
-  	if login = conditions.delete(:login)
-  		where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-  	else
-  		where(conditions).first
-  	end
-  end
+def self.find_first_by_auth_conditions(warden_conditions)
+ conditions = warden_conditions.dup
+ if login = conditions.delete(:login)
+  where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+else
+  where(conditions).first
+end
+end
 
 	# function to handle user's login via email or username
 	# def self.find_for_database_authentication(warden_conditions)
