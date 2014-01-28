@@ -102,6 +102,16 @@ def disapprove
   end
 end
 
+def index_exmoradores
+  @republica = Republica.find(params[:republica_id])
+  @exmoradores = @republica.moradores.where(exmorador: true).order('ano_de_ingresso')
+
+  respond_to do |format|
+    format.html 
+    format.json { render json: @exmoradores }
+  end
+end
+
 def statistics
   @republica = Republica.find(params[:republica_id])
   @moradores = @republica.moradores.where(exmorador: false)

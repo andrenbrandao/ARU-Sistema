@@ -95,7 +95,7 @@ class RepublicasController < ApplicationController
 
   def index_exmoradores
     @republica = Republica.find(params[:republica_id])
-    @exmoradores = @republica.moradores.where(exmorador: true)
+    @exmoradores = @republica.moradores.where(exmorador: true).order('ano_de_ingresso')
 
       # comando necessário para que CANCAN funcione!
       authorize! :index_exmoradores, @republica

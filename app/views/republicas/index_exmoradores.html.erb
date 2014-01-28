@@ -12,9 +12,6 @@
         <th>RA</th>
         <th>Data de Saída</th>
         <th>Tempo de Rep</th>
-        <th></th>
-        <th></th>
-
     </tr>
 </thead>
 
@@ -29,14 +26,6 @@
         <td><%= morador.ra %></td>
         <td><%= morador.data_de_saida.to_date %></td>
         <td><%= distance_of_time_in_words( (morador.data_de_saida - DateTime.new(morador.ano_de_ingresso, 1, 1)).to_i )  %></td>
-
-        <% if can? :manage, :all %>
-        <td class='admin_action'>
-            <%= link_to "Morador?", admin_republica_morador_path(@republica, morador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %>
-            <%= link_to 'Editar', edit_admin_republica_morador_path(@republica, morador), class: 'btn btn-mini' %>
-            <%= link_to 'Deletar', admin_republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
-        </td>
-        <% end %>
         <% end %>
     </tr>
 </tbody>
@@ -44,8 +33,4 @@
 </div>
 <br />
 
-<% if admin_signed_in? %>
-<%= link_to 'Voltar', admin_republica_path(@republica), class: 'btn btn-small'  %>
-<% else %>
 <%= link_to 'Voltar', republica_path(@republica), class: 'btn btn-small'  %>
-<% end %>

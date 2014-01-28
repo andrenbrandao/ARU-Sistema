@@ -13,6 +13,7 @@ Cadastro::Application.routes.draw do
       put 'approve'
       put 'disapprove'
       get "statistics"
+      get 'index_exmoradores'
     end
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
 
