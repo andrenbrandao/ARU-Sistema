@@ -1,13 +1,13 @@
 
 <div class='content-box center-form'>
 
-<%= simple_nested_form_for [:admin, @republica, @morador], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
-  <%= f.error_notification %>
-  <%= display_base_errors @morador %> 
+	<%= simple_nested_form_for [:admin, @republica, @morador], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
+	<%= f.error_notification %>
+	<%= display_base_errors @morador %> 
 
 
- <fieldset id='moradores'>
-     <legend>Moradores</legend>
+	<fieldset id='moradores'>
+		<legend>Morador</legend>
 		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
 		<%= f.input :sobrenome, placeholder: 'Sobrenome', label: false,input_html: {class: 'sobrenome'}  %>
 		<%= f.input :apelido, placeholder: 'Apelido', label: false  %>
@@ -19,7 +19,7 @@
 
 		<div class='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, validate: true %></div>
 
-<% if @morador.exmorador != true %>
+		<% if @morador.exmorador != true %>
 		<div id='representante'>
 			<%= f.hidden_field :representante, :class => 'repres_input'%>
 		</div>
@@ -38,16 +38,16 @@
 		<div class='repres_field' style='display:none'>
 			<%= f.input :celular, placeholder: 'Celular', label: false, input_html: {class: 'celular'} %>
 		</div>
-<% end %>
+		<% end %>
 
-</fieldset>
+	</fieldset>
 
-<div class="form-actions" id='cadastro_actions'>
- <%= f.submit 'Atualizar', class: 'btn btn-primary' %>
- <%= link_to 'Cancel', republicas_path, class: 'btn' %>
-</div>
+	<div class="form-actions" id='cadastro_actions'>
+		<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+		<%= link_to 'Cancel', admin_republica_moradores_path(@republica), class: 'btn' %>
+	</div>
 
 
-<% end %>
+	<% end %>
 
 </div>

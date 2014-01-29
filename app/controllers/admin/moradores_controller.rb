@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class Admin::MoradoresController < AdminController
 
 	def index
@@ -32,12 +34,18 @@ class Admin::MoradoresController < AdminController
 
 	def destroy
 		@republica = Republica.find(params[:republica_id])
+		@moradores = @republica.moradores
 		@morador = Morador.find(params[:id])
-		@morador.destroy
 
 		respond_to do |format|
-			format.html { redirect_to admin_republica_moradores_path(@republica), notice: 'Morador deletado!' }
-			format.json { head :no_content }
+			if @moradores.size > 3 && @morador.destroy
+
+				format.html { redirect_to admin_republica_moradores_path(@republica), notice: 'Morador deletado!' }
+				format.json { head :no_content }
+			else
+				format.html { redirect_to admin_republica_moradores_path(@republica), :alert => "O morador não pode ser deletado, pois a República não pode ficar com menos que 3 deles."  }
+				format.json { render json: @republica.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
