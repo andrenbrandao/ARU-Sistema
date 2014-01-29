@@ -6,7 +6,7 @@ class ExmoradoresController < ApplicationController
 
   def index
     @republica = Republica.find(params[:republica_id])
-    @exmoradores = @republica.exmoradores.order('ano_de_ingresso')
+    @exmoradores = @republica.exmoradores.order(:ano_de_ingresso)
 
     respond_to do |format|
       format.html # index.html.erb

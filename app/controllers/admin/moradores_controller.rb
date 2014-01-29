@@ -4,7 +4,7 @@ class Admin::MoradoresController < AdminController
 
 	def index
 		@republica = Republica.find(params[:republica_id])
-		@moradores = @republica.moradores
+		@moradores = @republica.moradores.order(:ano_de_ingresso)
 
 		respond_to do |format|
 			format.html
