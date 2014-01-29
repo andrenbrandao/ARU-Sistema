@@ -17,12 +17,11 @@ class Ability
 
       can :read, Republica, approved: true
 
-      can :index_exmoradores, Republica, id: user.id
       can :add_exmoradores, Republica, id: user.id
       can :add_exmoradores_update, Republica, id: user.id
       
       # Pode administrar os próprios MORADORES
-      can :modify, Morador, republica: {id: user.id}
+      can :manage, Morador, republica: {id: user.id}
 
       # Pode ler os próprios moradores
       can :read, Morador, republica: {id: user.id}

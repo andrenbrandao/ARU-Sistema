@@ -19,51 +19,22 @@
    <%= f.input :descricao, placeholder: 'Descrição da República, contando sua história. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
  </fieldset>
 
- <fieldset id='moradores'>
-   <legend>Moradores</legend>
-
-   <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
-   <br>
-
-   <ol>
-    <div class="morador">
-      <%= f.simple_fields_for :moradores do |builder| %>
-      <% if builder.object.new_record? %>
-      <%= render 'republicas/morador_fields', f: builder %>
-      <% elsif builder.object.exmorador != true %>
-      <%= render 'current_morador_fields', f: builder %>
-      <% end %>
-      <% end %>
-    </div>
-    <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
-  </ol>
-
-  <br>
-
-</fieldset>
-
-<fieldset id='moradores'>
- <legend>Ex-Moradores</legend>
- <p>Confira a seguir a lista de seus <%= link_to "Ex-Moradores", republica_index_exmoradores_path(resource), target: '_blank' %></p>
- 
-</fieldset>
-
-<fieldset>
- <legend>Autenticação</legend>
- <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %>
- <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %>
- <div id='change-pass-fields' style='display:none'>
-  <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
-  <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
-</div>
-<div class='control-group controls'>
-  <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
-</div>
+ <fieldset>
+   <legend>Autenticação</legend>
+<!--    <%= f.input :username, placeholder: 'Usuário', label: false, input_html: {id:'edit-username'} %> -->
+   <%= f.input :current_password,input_html: {id:'edit-current-pass'}, :required => true, label: false, placeholder: 'Senha atual' %>
+   <div id='change-pass-fields' style='display:none'>
+    <%= f.input :password, :autocomplete => "off",  :required => false, label: false, placeholder: 'Nova Senha' %>
+    <%= f.input :password_confirmation, :required => false, label: false, placeholder: 'Confirmação' %>
+  </div>
+  <div class='control-group controls'>
+    <span class='btn btn-small' id='troca-senha'><i class='icon-lock'></i><strong> Trocar Senha </strong></span>
+  </div>
 </fieldset>
 
 <div class="form-actions" id='cadastro_actions'>
  <%= f.submit 'Atualizar', class: 'btn btn-primary' %>
- <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+ <%= link_to 'Cancel', republica_path(@republica), class: 'btn' %>
 
  <!-- DESABILITADO -->
  <% if false %>

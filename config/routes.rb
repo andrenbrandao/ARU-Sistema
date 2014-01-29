@@ -10,10 +10,10 @@ Cadastro::Application.routes.draw do
     resources :republicas do
       resources :moradores
       resources :atributos
+      resources :exmoradores
       put 'approve'
       put 'disapprove'
       get "statistics"
-      get 'index_exmoradores'
     end
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
 
@@ -31,10 +31,10 @@ Cadastro::Application.routes.draw do
   get "sistema/index"
   
   resources :republicas, except: [:edit, :update] do
-    get 'index_exmoradores' 
-    get 'add_exmoradores'
-    put 'add_exmoradores_update'
-    resources :moradores, except: [:show, :edit]
+    resources :exmoradores, only: [:index, :new, :create]
+    get 'moradores/edit', to: 'moradores#edit'
+    put 'moradores', to: 'moradores#update'
+    resources :moradores, except: [:show, :edit, :update]
     resource :contato, only: [:edit, :update]
     resource :social_information, only: [:edit, :update]
     resource :vaga, only: [:update]

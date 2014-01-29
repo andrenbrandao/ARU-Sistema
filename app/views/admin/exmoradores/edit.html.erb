@@ -1,50 +1,29 @@
-
 <div class='content-box center-form'>
 
-	<%= simple_nested_form_for [:admin, @republica, @morador], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
+	<%= simple_nested_form_for [:admin, @republica, @exmorador], validate: true, html: {method: :put, id: 'republica_form', multipart: true}, :url => admin_republica_exmorador_path do |f| %>
 	<%= f.error_notification %>
-	<%= display_base_errors @morador %> 
+	<%= display_base_errors @exmorador %> 
 
 
 	<fieldset id='moradores'>
-		<legend>Morador</legend>
+		<legend>Ex-Morador</legend>
 		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
 		<%= f.input :sobrenome, placeholder: 'Sobrenome', label: false,input_html: {class: 'sobrenome'}  %>
 		<%= f.input :apelido, placeholder: 'Apelido', label: false  %>
 		<%= f.input :curso, label: false, collection: (Morador::CURSO).sort, input_html: {class: 'chzn-select curso', :'data-placeholder' => 'Curso' } %>
 		<%= f.input :ano_de_ingresso, label: false, collection: (2000..Time.now.year).to_a.reverse, prompt: 'Ano de ingresso' %>
 
+		<%= f.input :data_de_saida, :as => :date_picker, label: false, placeholder: 'Data de Saída' %>
 
 		<div class='universidade'><%= f.input :universidade, label: false, collection: Morador::UNIVERSIDADE, prompt: 'Universidade', input_html: {id: 'universidade'} %></div>
 
 		<div class='RA' style='display:none'><%= f.input :ra, placeholder: 'RA', label: false, validate: true %></div>
 
-		<% if @morador.exmorador != true %>
-		<div id='representante'>
-			<%= f.hidden_field :representante, :class => 'repres_input'%>
-		</div>
-
-		<div class="radio_but" > 
-			<label class='radio'>
-				<%= radio_button_tag('representante', true ) %>
-				Representante da República
-			</label>
-		</div>
-
-		<div class='repres_field' style='display:none' >
-			<%= f.input :email, placeholder: 'Email', label: false, input_html: {class: 'email'} %>
-		</div>
-
-		<div class='repres_field' style='display:none'>
-			<%= f.input :celular, placeholder: 'Celular', label: false, input_html: {class: 'celular'} %>
-		</div>
-		<% end %>
-
 	</fieldset>
 
 	<div class="form-actions" id='cadastro_actions'>
 		<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
-		<%= link_to 'Cancel', admin_republica_moradores_path(@republica), class: 'btn' %>
+		<%= link_to 'Cancel', admin_republica_exmoradores_path(@republica), class: 'btn' %>
 	</div>
 
 

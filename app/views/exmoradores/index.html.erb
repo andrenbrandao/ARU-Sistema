@@ -16,16 +16,16 @@
 </thead>
 
 <tbody>
-    <% @exmoradores.each do |morador| %>
+    <% @exmoradores.each do |exmorador| %>
     <tr>
-        <td><%= morador.nome + ' ' + morador.sobrenome %></td>
-        <td><%= morador.apelido %></td>
-        <td><%= morador.curso %></td>
-        <td><%= morador.ano_de_ingresso %></td>
-        <td><%= morador.universidade %></td>
-        <td><%= morador.ra %></td>
-        <td><%= morador.data_de_saida.to_date %></td>
-        <td><%= distance_of_time_in_words( (morador.data_de_saida - DateTime.new(morador.ano_de_ingresso, 1, 1)).to_i )  %></td>
+        <td><%= exmorador.nome + ' ' + exmorador.sobrenome %></td>
+        <td><%= exmorador.apelido %></td>
+        <td><%= exmorador.curso %></td>
+        <td><%= exmorador.ano_de_ingresso %></td>
+        <td><%= exmorador.universidade %></td>
+        <td><%= exmorador.ra %></td>
+        <td><%= exmorador.data_de_saida.to_date %></td>
+        <td><%= distance_of_time_in_words( (exmorador.data_de_saida - DateTime.new(exmorador.ano_de_ingresso, 1, 1)).to_i )  %></td>
         <% end %>
     </tr>
 </tbody>

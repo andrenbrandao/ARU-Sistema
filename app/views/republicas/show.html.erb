@@ -1,13 +1,13 @@
 
 <div class='row-fluid'>
   <% if current_republica == @republica %>
-  <div class='span3'>
+  <div class='span4'>
     <%= render 'left_menu' %>
   </div>
   <% end %>
 
 
-  <div id='show-rep' class='content-box <%= "span9" if current_republica == @republica %> '>
+  <div id='show-rep' class='content-box <%= "span8" if current_republica == @republica %> '>
 
     <div class='media rep-show' id='rep-header'>
 
@@ -165,12 +165,12 @@
       <div class='tab-pane fade' id='dados_restritos'>
         <p>
           <b>Moradores:</b>
-          <%= @republica.moradores.where(exmorador: false).length %>
+          <%= @republica.moradores.length %>
         </p>
 
         <p>
           <b>Ex-moradores:</b>
-          <%= @republica.moradores.where(exmorador: true).length %>
+          <%= @republica.exmoradores.length %>
         </p>
 
         <p>

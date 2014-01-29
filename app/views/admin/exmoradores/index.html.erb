@@ -1,0 +1,47 @@
+<legend>Ex-Moradores</legend>
+
+<div class='content-box content-box-for-table'>
+    <table class='table table-condensed'>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Apelido</th>
+            <th>Curso</th>
+            <th>Ano de ingresso</th>
+            <th>Universidade</th>
+            <th>RA</th>
+            <th>Data de Saída</th>
+            <th>Tempo de Rep</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <% @exmoradores.each do |exmorador| %>
+        <tr>
+            <td><%= exmorador.nome + ' ' + exmorador.sobrenome %></td>
+            <td><%= exmorador.apelido %></td>
+            <td><%= exmorador.curso %></td>
+            <td><%= exmorador.ano_de_ingresso %></td>
+            <td><%= exmorador.universidade %></td>
+            <td><%= exmorador.ra %></td>
+            <td><%= exmorador.data_de_saida.to_date %></td>
+            <td><%= distance_of_time_in_words( (exmorador.data_de_saida - DateTime.new(exmorador.ano_de_ingresso, 1, 1)).to_i )  %></td>
+
+            <td class='admin_action'>
+                <%= link_to "Morador?", admin_republica_exmorador_path(@republica, exmorador, :morador => {:exmorador => 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info' %>
+                <%= link_to 'Editar', edit_admin_republica_exmorador_path(@republica, exmorador), class: 'btn btn-mini' %>
+                <%= link_to 'Deletar', admin_republica_exmorador_path(@republica, exmorador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
+            </td>
+        </tr>
+        <% end %>
+
+    </tbody>
+</table>
+</div>
+<br />
+
+<%= link_to 'Voltar', admin_republica_path(@republica), class: 'btn btn-small'  %>

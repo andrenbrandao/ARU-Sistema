@@ -4,7 +4,7 @@ class Admin::DashboardController < AdminController
 
 	def index
 		@republicas = Republica.where(approved: false).page(params[:page]).order(sort_column + ' ' + sort_direction)
-		@exmoradores = Morador.where(exmorador: true).page(params[:page])
+		@exmoradores = Morador.is_exmorador.page(params[:page])
 
 		@dashboard_header = true
 

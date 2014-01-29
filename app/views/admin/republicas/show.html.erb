@@ -158,12 +158,12 @@
 
         <p>
           <b>Moradores:</b>
-          <%= @republica.moradores.where(exmorador: false).length %>
+          <%= @republica.moradores.length %>
         </p>
 
         <p>
           <b>Ex-moradores:</b>
-          <%= @republica.moradores.where(exmorador: true).length %>
+          <%= @republica.exmoradores.length %>
         </p>
 
         <p>

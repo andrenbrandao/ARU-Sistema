@@ -1,21 +1,20 @@
   <div class='content-box center-form'>
-    <%= simple_nested_form_for @republica, validate: true, html: {id: 'republica_form', multipart: true}, :url => { :action => :add_exmoradores_update } do |f| %>
+    <%= simple_nested_form_for @republica, validate: true, html: {method: :create, id: 'republica_form'}, :url => republica_moradores_path do |f| %>
     <%= f.error_notification %>
     <%= display_base_errors @republica %>
 
-    <h3>Ex-Moradores</h3>
+    <h3>Novos Moradores</h3>
 
     <ol>
       <div class="morador">
         <%= f.simple_fields_for :moradores do |builder| %>
         <% if builder.object.new_record? %>
-        <%= render 'republicas/exmoradores_fields', f: builder %>
+        <%= render 'new_moradores_fields', f: builder %>
         <% end %>
         <% end %>
       </div>
       <p><%= f.link_to_add '<i class="icon-plus-sign"></i>'.html_safe, :moradores, class: 'btn btn-success btn-small' %></p>
     </ol>
-
 
     <div class="form-actions" id='cadastro_actions'>
       <p class='terms_text pull-left'>Ao clicar no botão 'adicionar', você confirma que os ex-moradores e seus respectivos dados são verdadeiros.</p>
