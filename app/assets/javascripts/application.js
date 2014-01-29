@@ -353,7 +353,14 @@ $(function(){
   window.ClientSideValidations.callbacks.form.fail = function(form, eventData) {
     $.scrollTo('.error', 500, {offset:{left:0,top:-50}} );
   };
-})
+  var has_alert = $('.alert-block').length;
+  if (has_alert) {
+    $.scrollTo('.alert-block', 500, {offset:{left:0,top:-50}} );
+  }
+  else {
+    $.scrollTo('.error', 500, {offset:{left:0,top:-50}} );
+  }
+});
 
 $(function() {
 // Javascript to enable link to tab

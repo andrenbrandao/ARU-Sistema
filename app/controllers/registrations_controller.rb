@@ -56,11 +56,11 @@ class RegistrationsController < Devise::RegistrationsController
       # resource[:moradores_attributes].values.each do |morador|
       #   morador[:exmorador] = '1'
       # end
-      resource.moradores.each do |morador|
-       if morador.exmorador_was == false 
-        morador.exmorador = '0'
-      end
-    end
+    #   resource.moradores.unscoped.each do |morador|
+    #    if morador.exmorador_was == false
+    #     morador.exmorador = '0'
+    #   end
+    # end
     clean_up_passwords resource
     respond_with resource
   end

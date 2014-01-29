@@ -1,54 +1,51 @@
 <legend>Moradores</legend>
 
 <div class='content-box content-box-for-table'>
-<table class='table table-condensed'>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Apelido</th>
-        <th>Curso</th>
-        <th>Ano de ingresso</th>
-        <th>Universidade</th>
-        <th>RA</th>
-        <th>Contato</th>
-        <th></th>
+    <table class='table table-condensed'>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Apelido</th>
+            <th>Curso</th>
+            <th>Ano de ingresso</th>
+            <th>Universidade</th>
+            <th>RA</th>
+            <th>Contato</th>
+            <th></th>
 
-    </tr>
-</thead>
+        </tr>
+    </thead>
 
-<tbody>
-    <% @moradores.each do |morador| %>
-    <% if morador.exmorador? == false %>
-    <tr>
-        <td>
-            <%= morador.nome + ' ' + morador.sobrenome %>
-            <% if morador.representante %>
-            <b> (Representante)</b>
-            <% end %>
-        </td>
-        <td><%= morador.apelido %></td>
-        <td><%= morador.curso %></td>
-        <td><%= morador.ano_de_ingresso %></td>
-        <td><%= morador.universidade %></td>
-        <td><%= morador.ra %></td>
-        <td>
-            <% if morador.representante %>
-            <%= morador.email  %> 
-            <br>
-            <%= morador.celular %>
-            <% end %>
-        </td>
+    <tbody>
+        <% @moradores.each do |morador| %>
+        <tr>
+            <td>
+                <%= morador.nome + ' ' + morador.sobrenome %>
+                <% if morador.representante %>
+                <b> (Representante)</b>
+                <% end %>
+            </td>
+            <td><%= morador.apelido %></td>
+            <td><%= morador.curso %></td>
+            <td><%= morador.ano_de_ingresso %></td>
+            <td><%= morador.universidade %></td>
+            <td><%= morador.ra %></td>
+            <td>
+                <% if morador.representante %>
+                <%= morador.email  %> 
+                <br>
+                <%= morador.celular %>
+                <% end %>
+            </td>
 
-        <td class='admin_action'>
-            <%= link_to 'Editar', edit_admin_republica_morador_path(@republica, morador), class: 'btn btn-mini admin_action' %>
-            <%= link_to 'Deletar', admin_republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
-            <%= link_to "Ex-morador?", admin_republica_morador_path(@republica, morador, :morador => {:exmorador => 'true', :data_de_saida => Time.now } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-warning admin_action' %>
-        </td>
-
-    </tr>
-    <% end %>
-    <% end %>
-</tbody>
+            <td class='admin_action'>
+                <%= link_to 'Editar', edit_admin_republica_morador_path(@republica, morador), class: 'btn btn-mini admin_action' %>
+                <%= link_to 'Deletar', admin_republica_morador_path(@republica, morador), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
+                <%= link_to "Ex-morador?", admin_republica_morador_path(@republica, morador, :morador => {:exmorador => 'true', :data_de_saida => Time.now } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-warning admin_action' %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
 </div>
 

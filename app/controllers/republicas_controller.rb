@@ -87,51 +87,6 @@ class RepublicasController < ApplicationController
     end
   end
 
-  ############################################
-  ####### FUNÇÕES ADICIONADAS POR MIM ########
-  ############################################
-
-
-
-  def index_exmoradores
-    @republica = Republica.find(params[:republica_id])
-    @exmoradores = @republica.moradores.where(exmorador: true).order('ano_de_ingresso')
-
-      # comando necessário para que CANCAN funcione!
-      authorize! :index_exmoradores, @republica
-
-      respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @exmoradores }
-    end
-  end
-
-
-  def add_exmoradores
-    @republica = Republica.find(params[:republica_id])
-    @republica.moradores.build
-    # comando necessário para que CANCAN funcione!
-    authorize! :add_exmoradores, @republica
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
-  end
-
-  def add_exmoradores_update
-    @republica = Republica.find(params[:republica_id])
-
-    respond_to do |format|
-      if @republica.update_attributes(params[:republica])
-        format.html { redirect_to @republica, notice: 'Ex-moradores adicionados com sucesso!' }
-        format.json { head :no_content }
-      else
-       format.html { render action: "add_exmoradores" }
-       format.json { render json: @republica.errors, status: :unprocessable_entity }
-     end
-   end
- end
-
  private
 
  def sort_column

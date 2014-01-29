@@ -3,6 +3,9 @@
 class Morador < ActiveRecord::Base
 	self.per_page = 9
 
+	default_scope { where(exmorador: false) }
+	scope :is_exmorador, where(exmorador: true) 
+
 	before_save :set_data_de_saida
 	
 	belongs_to :republica, :inverse_of => :moradores
@@ -24,9 +27,9 @@ class Morador < ActiveRecord::Base
 	validates :ano_de_ingresso, presence: true
 	validates :email, presence: true, :if => :is_representante?
 	validates :celular, presence: true, :if => :is_representante?
-	validates :data_de_saida, presence: true, :if => :is_exmorador?
+	validates :data_de_saida, presence: true, :if => :directly_added?
 
-	validate :verify_data_de_saida, :if => :is_exmorador?
+	validate :verify_data_de_saida, :if => :directly_added?
 
 	
 	def self.update_9digit(old_number, new_number) 
@@ -69,6 +72,10 @@ class Morador < ActiveRecord::Base
 
 	def is_exmorador?
 		exmorador == true
+	end
+
+	def directly_added?
+		self.exmorador == true && !self.persisted?
 	end
 
 end

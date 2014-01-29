@@ -21,13 +21,25 @@ class Admin::MoradoresController < AdminController
 
 		respond_to do |format|
 			if @morador.update_attributes(params[:morador])
-				format.html { redirect_to republica_path(@republica), notice: 'Morador foi atualizado com sucesso.' }
+				format.html { redirect_to admin_republica_path(@republica), notice: 'Morador foi atualizado com sucesso.' }
 				format.json { head :no_content }
 			else
-				format.html { render action: "edit_morador" }
+				format.html { render action: "edit" }
 				format.json { render json: @morador.errors, status: :unprocessable_entity }
 			end
 		end
 	end
+
+	def destroy
+		@republica = Republica.find(params[:republica_id])
+		@morador = Morador.find(params[:id])
+		@morador.destroy
+
+		respond_to do |format|
+			format.html { redirect_to admin_republica_moradores_path(@republica), notice: 'Morador deletado!' }
+			format.json { head :no_content }
+		end
+	end
+
 
 end

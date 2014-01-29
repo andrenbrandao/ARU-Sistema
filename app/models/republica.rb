@@ -123,6 +123,10 @@ class Republica < ActiveRecord::Base
       scoped
     end
   end
+  
+  def exmoradores
+    self.moradores.where(exmorador: true)
+  end
 
   private
 
@@ -192,13 +196,13 @@ end
 
 def min_of_moradores
  if self.moradores.reject( &:marked_for_destruction?).reject(&:exmorador?).length < 3
-  self.errors.add(:base, "República deve ter no mínimo 3 moradores")
+  self.errors.add(:base, "A república deve ter no mínimo 3 moradores.")
 end
 end
 
 def max_of_moradores
  if self.moradores.reject(&:marked_for_destruction?).reject(&:exmorador?).length > 20
-  self.errors.add(:base, "República possui mais de 20 moradores")
+  self.errors.add(:base, "A república possui mais de 20 moradores.")
 end
 end
 
@@ -211,7 +215,7 @@ def has_one_representante
 end
 
 if count == 0
-  self.errors.add(:base, "Selecione um representante")
+  self.errors.add(:base, "A república não pode ficar sem representante.")
 end
 end
 

@@ -40,24 +40,22 @@ class MoradoresController < ApplicationController
   end
 
   # GET /moradores/1/edit
-  # def edit
-  #   @republica = Republica.find(params[:republica_id])
-  #   @morador = Morador.find(params[:id])
-  # end
+  def edit
+    @republica = Republica.find(params[:republica_id])
+  end
 
   # POST /moradores
   # POST /moradores.json
   def create
     @republica = Republica.find(params[:republica_id])
-    @morador = @republica.moradores.build(params[:morador])
 
     respond_to do |format|
-      if @morador.save
-        format.html { redirect_to @morador, notice: 'Morador was successfully created.' }
-        format.json { render json: @morador, status: :created, location: @morador }
+      if @republica.update_attributes(params[:republica])
+        format.html { redirect_to @republica, notice: 'Novos moradores criados com sucesso!' }
+        format.json { render json: @republica, status: :created, location: @republica }
       else
         format.html { render action: "new" }
-        format.json { render json: @morador.errors, status: :unprocessable_entity }
+        format.json { render json: @republica.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,15 +64,14 @@ class MoradoresController < ApplicationController
   # PUT /moradores/1.json
   def update
     @republica = Republica.find(params[:republica_id])
-    @morador = Morador.find(params[:id])
 
     respond_to do |format|
-      if @morador.update_attributes(params[:morador])
-        format.html { redirect_to republica_moradores_path(@republica), notice: 'Morador foi atualizado com sucesso.' }
+      if @republica.update_attributes(params[:republica])
+        format.html { redirect_to republica_moradores_path(@republica), notice: 'Moradores atualizados com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @morador.errors, status: :unprocessable_entity }
+        format.json { render json: @republica.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -83,7 +80,7 @@ class MoradoresController < ApplicationController
   # DELETE /moradores/1.json
   def destroy
     @republica = Republica.find(params[:republica_id])
-    @moradores = @republica.moradores.where(exmorador: false)
+    @moradores = @republica.moradores
     @morador = Morador.find(params[:id])
 
     if @moradores.size > 3 

@@ -3,7 +3,7 @@
 	<span class='inline nome-morador label label-inverse'><%= f.object.nome + ' ' + f.object.sobrenome %></span>	
 	<span class='btn btn-mini edit-morador-btn'><i class="icon-edit"></i></span>
 	<span class='btn btn-mini btn-warning exmorador-btn' style=''>Ex-morador?</span>
-	<%= f.input :exmorador, as: :hidden,  label: false, input_html: {class: 'exmorador-input'} %>
+	<%= f.input :exmorador, as: :hidden,  label: false, input_html: {class: 'exmorador-input', value: false}  %>
 	</li>
 </div>
 
