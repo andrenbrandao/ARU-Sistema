@@ -1,21 +1,26 @@
 <fieldset>
 	<legend>Statistics of <%= @republica.nome %></legend>
 
+	<div class='container-fluid'>
+		<div class='span6' style='margin-top:20px'>
+			<%= high_chart("universidade_chart", @uni_chart) do |c| %>
+			<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+			<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+			<% end %>
+		</div>
 
-	<%= high_chart("universidade_chart", @uni_chart) do |c| %>
-	<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
-	<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
-	<% end %>
-
-
-	<%= high_chart("curso_chart", @curso_chart) do |c| %>
-	<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
-	<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
-	<% end %>
-
-	<%= high_chart("anos_chart", @anos_chart) do |c| %>
-	<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
-	<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
-	<% end %>
+		<div class='span6' style='margin-top:20px'>
+			<%= high_chart("curso_chart", @curso_chart) do |c| %>
+			<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+			<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+			<% end %>
+		</div>
+		<div class='span6' style='margin-top:20px'>
+			<%= high_chart("anos_chart", @anos_chart) do |c| %>
+			<%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+			<%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+			<% end %>
+		</div>
+	</div>
 
 </fieldset>
