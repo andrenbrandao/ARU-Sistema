@@ -46,6 +46,8 @@ Cadastro::Application.routes.draw do
     root :to => 'sistema#index'
   end
 
+  resources :servicos
+
   #resources :user_steps
 
   # The priority is based upon order of creation:

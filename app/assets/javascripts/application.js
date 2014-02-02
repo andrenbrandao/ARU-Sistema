@@ -14,11 +14,9 @@
 //= require jquery_ujs
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require rails.validations.nested_form
 //= require bootstrap
 //= require bootstrap-fileupload
 //= require jquery.inputmask
-//= require formToWizard
 //= require chosen
 //= require enhance.min
 //= require fileinput.jquery
@@ -28,7 +26,7 @@
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more  
 //= require bootstrap-datetimepicker       
-//= require datepicker_custom                                 
+//= require datepicker_custom                           
 //= require_tree .
 
 // $(function() {
@@ -397,3 +395,16 @@ $(document).ready(function(){
     resizeRepublicasNames();
   });
 });
+
+// FUNÇÃO PARA ADICIONAR POPOVERS!
+// $(function(){
+//   var error;
+//   $('.help-inline').each(function() {
+//     error = $(this).text();
+//     $input = $(this).closest('.error').find('input');
+//     $input.popover({title: 'Corrija o erro:', content: error, trigger: 'manual', placement: 'right'});
+//     $input.popover('show'); 
+//     $(this).closest('.error').find('.popover-title').css({'background-color': '#f2dede','color': '#b94a48'});  
+//     $(this).remove();
+//   });  
+// });

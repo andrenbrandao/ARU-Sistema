@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140128210437) do
+ActiveRecord::Schema.define(:version => 20140202015013) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(:version => 20140128210437) do
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
+
+  create_table "categorias", :force => true do |t|
+    t.string   "nome"
+    t.integer  "republica_id", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "categorias", ["republica_id"], :name => "index_categorias_on_republica_id"
+
+  create_table "categorizations", :force => true do |t|
+    t.integer  "servico_id"
+    t.integer  "categoria_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "categorizations", ["categoria_id"], :name => "index_categorizations_on_categoria_id"
+  add_index "categorizations", ["servico_id"], :name => "index_categorizations_on_servico_id"
 
   create_table "contatos", :force => true do |t|
     t.string   "email"
@@ -105,6 +124,23 @@ ActiveRecord::Schema.define(:version => 20140128210437) do
   add_index "republicas", ["confirmation_token"], :name => "index_republicas_on_confirmation_token", :unique => true
   add_index "republicas", ["email"], :name => "index_republicas_on_email", :unique => true
   add_index "republicas", ["reset_password_token"], :name => "index_republicas_on_reset_password_token", :unique => true
+
+  create_table "servicos", :force => true do |t|
+    t.string   "nome"
+    t.string   "endereco"
+    t.string   "tel1"
+    t.string   "tel2"
+    t.string   "email"
+    t.string   "site"
+    t.text     "descricao"
+    t.float    "preco"
+    t.integer  "avaliacao"
+    t.integer  "republica_id", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "servicos", ["republica_id"], :name => "index_servicos_on_republica_id"
 
   create_table "social_informations", :force => true do |t|
     t.string   "website"

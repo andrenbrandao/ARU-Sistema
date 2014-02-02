@@ -16,9 +16,6 @@ class Ability
       # end
 
       can :read, Republica, approved: true
-
-      can :add_exmoradores, Republica, id: user.id
-      can :add_exmoradores_update, Republica, id: user.id
       
       # Pode administrar os próprios MORADORES
       can :manage, Morador, republica: {id: user.id}
@@ -34,6 +31,11 @@ class Ability
 
       # Pode ativar ou desativar vagas
       can :update, Vaga, republica: {id: user.id}
+
+      # Pode administrar Serviços
+      can :manage, Servico, republica: {id: user.id}
+      can :create, Servico
+      can :manage, Categoria, republica: {id: user.id}
 
     else
       # Permissões para CONVIDADOS

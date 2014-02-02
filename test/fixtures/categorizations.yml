@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  servico_id: 1
+  categoria_id: 1
+
+two:
+  servico_id: 1
+  categoria_id: 1

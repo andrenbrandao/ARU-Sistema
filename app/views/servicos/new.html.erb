@@ -1,0 +1,41 @@
+  <div class='content-box center-form'>
+  	<%= simple_form_for @servico, validate: true do |f| %>
+  	<%= f.error_notification %>
+  	<%= display_base_errors @servico %>
+
+  	<h3>Novo Serviço</h3>
+
+
+  	<%= f.input :nome, label: false, placeholder: 'Nome da Pessoa ou Empresa', input_html: { class: 'input-xxlarge'} %>
+  	<%= f.input :endereco, label: false, placeholder: 'Endereço', input_html: { class: 'input-xxlarge'}  %>
+  	<%= f.input :descricao, label: false, placeholder: 'Descrição', input_html: { class: 'input-xxlarge', rows: 10} %>
+  	<%= f.input :preco, label: false, placeholder: 'Preço Médio' %>
+  	<%= f.input :avaliacao, label: false, placeholder: 'Avaliação (1-5)' %>
+
+    <h4>Contatos</h4>
+
+    <%= f.input :tel1, :wrapper => :prepend, label: false do %>
+    <span class="add-on"><i class="fa fa-phone"></i></span><%= f.input_field :tel1, placeholder: "Telefone 1", class: 'celular' %>
+    <% end %>
+
+    <%= f.input :tel2, :wrapper => :prepend, label: false do %>
+    <span class="add-on"><i class="fa fa-phone"></i></span><%= f.input_field :tel2, placeholder: "Telefone 2", class: 'celular' %>
+    <% end %>
+
+    <%= f.input :site, :wrapper => :prepend, label: false do %>
+    <span class="add-on"><i class="fa fa-globe"></i></span><%= f.input_field :site, placeholder: "Site" %>
+    <% end %>
+
+    <%= f.input :email, :wrapper => :prepend, label: false do %>
+    <span class="add-on"><i class="fa fa-envelope"></i></span><%= f.input_field :email, placeholder: "Email" %>
+    <% end %>
+
+
+    <div class="form-actions">
+      <%= f.submit 'Adicionar', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', servicos_path, class: 'btn' %>
+    </div>
+
+
+    <% end %>
+  </div>

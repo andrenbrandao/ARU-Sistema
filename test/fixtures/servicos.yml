@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  categoria: MyString
+  servico: MyString
+  nome: MyString
+  tel1: MyString
+  tel2: MyString
+  email: MyString
+  site: MyString
+  republica_id: 1
+  avaliacao: 1
+  descricao: MyText
+  preco: 1.5
+
+two:
+  categoria: MyString
+  servico: MyString
+  nome: MyString
+  tel1: MyString
+  tel2: MyString
+  email: MyString
+  site: MyString
+  republica_id: 1
+  avaliacao: 1
+  descricao: MyText
+  preco: 1.5
