@@ -2,7 +2,7 @@
 
 	<div class='span4'>
 		<div class='content-box categories-menu'>
-			<% Categoria.all.each_slice(3) do |cats| %>
+			<% @categorias.each_slice(3) do |cats| %>
 			<ul class='inline-list'>			
 				<% cats.each do |cat| %>
 				<li><%= link_to cat.nome, servicos_path(nome: cat.nome), class: 'nav-btn nav-btn-a nav-btn-small' %></li>

@@ -4,7 +4,8 @@ class ServicosController < ApplicationController
 	load_and_authorize_resource
 
 	def index
-		@servicos = Servico.all
+		@servicos = Servico.includes(:categorias).includes(:republica)
+		@categorias = Categoria.all
 
 		respond_to do |format|
 			format.html 
