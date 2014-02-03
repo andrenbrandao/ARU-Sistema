@@ -11,7 +11,7 @@
 
 (function() {
 
-  ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = {
+  ClientSideValidations.formBuilders['SimpleForm::FormBuilder'] = {
     add: function(element, settings, message) {
       return this.wrappers[settings.wrapper].add.call(this, element, settings, message);
     },

@@ -14,6 +14,7 @@ class ServicosController < ApplicationController
 	def new
 		@republica = current_republica
 		@servico = @republica.servicos.build
+		@categoria = @servico.categorias.build
 
 		respond_to do |format|
 			format.html 

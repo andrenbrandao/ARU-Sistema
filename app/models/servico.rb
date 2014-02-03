@@ -3,7 +3,7 @@
 class Servico < ActiveRecord::Base
 	before_save :titleize_endereco
 
-	has_many :categorizations
+	has_many :categorizations, dependent: :destroy
 	has_many :categorias, through: :categorizations
 	belongs_to :republica
 
@@ -19,6 +19,9 @@ class Servico < ActiveRecord::Base
 	validates :nome, presence: true
 	validates :descricao, length: {minimum: 40}, allow_blank: true
 	validates_format_of :site, :with => URI::regexp(%w(http https)), message: "Por favor, insira o link completo, com http(s).", allow_blank: true
+	validates :tel1, presence: {message: "Pelo menos um número deve estar presente."}
+
+	validate :has_a_category
 
 	private
 
@@ -26,6 +29,12 @@ class Servico < ActiveRecord::Base
 		if self.endereco?
 			self.endereco = self.endereco.titleize
 		end
+	end
+
+	def has_a_category
+		if self.categorias.blank?
+			self.errors.add(:base, "Você deve selecionar uma categoria ou criar uma nova.")
+		end		
 	end
 
 end

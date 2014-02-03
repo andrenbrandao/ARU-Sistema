@@ -1,5 +1,5 @@
 class Categoria < ActiveRecord::Base
-	has_many :categorizations
+	has_many :categorizations, dependent: :destroy
 	has_many :servicos, through: :categorizations
 	belongs_to :republica
 
