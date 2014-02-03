@@ -12,6 +12,12 @@
   	<%= f.input :preco, label: false, placeholder: 'Preço Médio' %>
   	<%= f.input :avaliacao, label: false, placeholder: 'Avaliação (1-5)' %>
 
+    <%= f.association :categorias, collection: Categoria.all, label: false, label_method: :nome, placeholder: 'Categoria', input_html: { class: 'input-xxlarge chosen-select'} %>
+
+    <%= f.simple_fields_for :categorias, @servico.categorias.build do |c| %>
+    <%= c.input :nome, label: false, placeholder: 'Nova Categoria' %>
+    <% end %>
+
     <h4>Contatos</h4>
 
     <%= f.input :tel1, :wrapper => :prepend, label: false do %>

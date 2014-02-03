@@ -1,4 +1,11 @@
 <% @servicos.each do |servico| %>
-<p><%= servico.nome %></p>
+<div class='content-box content-box-for-republica'>
+	<p><%= servico.nome %></p>
+	Categorias:
+	<ol>
+		<% servico.categorias.each do |cat| %>
+		<li><%= cat.nome %></li>
+		<% end %>
+	</ol>
+</div>
 <% end %>
-<%= @servicos %>

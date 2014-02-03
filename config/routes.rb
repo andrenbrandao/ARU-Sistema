@@ -46,7 +46,9 @@ Cadastro::Application.routes.draw do
     root :to => 'sistema#index'
   end
 
+  resources :categorias
   resources :servicos
+
 
   #resources :user_steps
 

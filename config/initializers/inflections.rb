@@ -16,4 +16,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'morador', 'moradores'
+	inflect.irregular 'categoria', 'categorias'
 end

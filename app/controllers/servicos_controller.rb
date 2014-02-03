@@ -12,7 +12,8 @@ class ServicosController < ApplicationController
 	end
 
 	def new
-		@servico = Servico.new
+		@republica = current_republica
+		@servico = @republica.servicos.build
 
 		respond_to do |format|
 			format.html 
@@ -22,6 +23,9 @@ class ServicosController < ApplicationController
 	def create
 		@republica = current_republica
 		@servico = @republica.servicos.build(params[:servico])
+		@servico.categorias.each do |cat|
+			cat.republica = current_republica
+		end
 
 		respond_to do |format|
 			if @servico.save
