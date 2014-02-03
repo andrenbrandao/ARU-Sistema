@@ -2,6 +2,7 @@
 
 class Servico < ActiveRecord::Base
 	before_save :titleize_endereco
+	before_validation :downcase_site
 
 	has_many :categorizations, dependent: :destroy
 	has_many :categorias, through: :categorizations, after_remove: :destroy_category_if_empty
@@ -17,7 +18,7 @@ class Servico < ActiveRecord::Base
 	validates :preco, numericality: {greater_than_or_equal_to: 0}, allow_blank: true
 	validates_format_of :email, :with => /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i, message: 'Email inválido', allow_blank: true
 	validates :nome, presence: true
-	validates :descricao, length: {minimum: 40}, allow_blank: true
+	validates :descricao, length: {minimum: 40, maximum: 500}, allow_blank: true
 	validates_format_of :site, :with => URI::regexp(%w(http https)), message: "Por favor, insira o link completo, com http(s).", allow_blank: true
 	validates :tel1, presence: {message: "Pelo menos um número deve estar presente."}
 
@@ -42,6 +43,10 @@ class Servico < ActiveRecord::Base
 	end
 
 	private
+
+	def downcase_site
+		self.site.downcase! if self.site.present?
+	end
 
 	def titleize_endereco
 		if self.endereco?
