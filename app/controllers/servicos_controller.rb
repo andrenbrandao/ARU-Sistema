@@ -4,11 +4,18 @@ class ServicosController < ApplicationController
 	load_and_authorize_resource
 
 	def index
-		@servicos = Servico.includes(:categorias).includes(:republica)
-		@categorias = Categoria.all
+		if params[:categoria].present?
+			@servicos = Servico.includes(:categorias).where('categorias.nome = ?', params[:categoria]).includes(:republica).order('avaliacao desc')
+		else
+			@servicos = Servico.includes(:categorias).includes(:republica).order('avaliacao desc')
+		end
+
+		@categorias = Categoria.order('nome')
+
 
 		respond_to do |format|
 			format.html 
+			format.js
 		end
 	end
 
