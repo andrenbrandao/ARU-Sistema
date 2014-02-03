@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 class Servico < ActiveRecord::Base
+	self.per_page = 5
 	before_save :titleize_endereco
 	before_validation :downcase_site
 

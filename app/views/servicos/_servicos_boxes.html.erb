@@ -1,56 +1,57 @@
-		<% @servicos.each do |servico| %>
-		<div class='content-box content-box-for-servico'>
-			<div class='content'>
-				<h2><%= servico.nome %></h2>
+<% @servicos.each do |servico| %>
+<div class='content-box content-box-for-servico'>
+	<div class='content'>
+		<h2><%= servico.nome %></h2>
 
-				<% if servico.endereco? %>
-				<p><b>Endereço:</b> <%= servico.endereco %></p>
-				<% end %>
-
-				<% if servico.preco? %>
-				<p><b>Preço médio:</b> R$<%= servico.preco %></p>
-				<% end %>
-
-				<% if servico.descricao? %>
-				<p><%= servico.descricao %></p>
-				<% end %>
-
-				<% if servico.tel1? %>
-				<p><i class='fa fa-phone'></i> <%= servico.tel1 %></p>
-				<% end %>
-
-				<% if servico.tel2? %>
-				<p><i class='fa fa-phone'></i> <%= servico.tel2 %></p>
-				<% end %>
-
-				<% if servico.email? %>
-				<p><i class='fa fa-envelope'></i> <%= servico.email %></p>
-				<% end %>
-
-				<% if servico.site? %>
-				<p><i class='fa fa-globe'></i> <%= servico.site %></p>
-				<% end %>
-
-
-				<div class='avaliacao-stars'>
-					<% servico.avaliacao.times do %>
-					<i class='fa fa-star'></i>
-					<% end %>
-					<% (5 - servico.avaliacao).times do %>
-					<i class='fa fa-star-o'></i>
-					<% end %>
-				</div>
-
-				<div class='categoria-tags'>
-					<% servico.categorias.each do |cat| %>
-					<p class='label label-inverse'><%= cat.nome %></p>
-					<% end %>
-				</div>
-				<% if servico.republica == current_republica %>
-				<%= link_to "Editar Serviço", edit_servico_path(servico), class: 'servico-edit'  %>
-				<% else %>
-				<p class='servico-edit'>Recomendação: <%= servico.republica.nome %></p>
-				<% end %>
-			</div>
-		</div>
+		<% if servico.endereco? %>
+		<p><b>Endereço:</b> <%= servico.endereco %></p>
 		<% end %>
+
+		<% if servico.preco? %>
+		<p><b>Preço médio:</b> R$<%= servico.preco %></p>
+		<% end %>
+
+		<% if servico.descricao? %>
+		<p><%= servico.descricao %></p>
+		<% end %>
+
+		<% if servico.tel1? %>
+		<p><i class='fa fa-phone'></i> <%= servico.tel1 %></p>
+		<% end %>
+
+		<% if servico.tel2? %>
+		<p><i class='fa fa-phone'></i> <%= servico.tel2 %></p>
+		<% end %>
+
+		<% if servico.email? %>
+		<p><i class='fa fa-envelope'></i> <%= servico.email %></p>
+		<% end %>
+
+		<% if servico.site? %>
+		<p><i class='fa fa-globe'></i> <%= servico.site %></p>
+		<% end %>
+
+
+		<div class='avaliacao-stars'>
+			<% servico.avaliacao.times do %>
+			<i class='fa fa-star'></i>
+			<% end %>
+			<% (5 - servico.avaliacao).times do %>
+			<i class='fa fa-star-o'></i>
+			<% end %>
+		</div>
+
+		<div class='categoria-tags'>
+			<% servico.categorias.each do |cat| %>
+			<p class='label label-inverse'><%= cat.nome %></p>
+			<% end %>
+		</div>
+		<% if servico.republica == current_republica %>
+		<%= link_to "Editar Serviço", edit_servico_path(servico), class: 'servico-edit'  %>
+		<% else %>
+		<p class='servico-edit'>Recomendação: <%= servico.republica.nome %></p>
+		<% end %>
+	</div>
+</div>
+<% end %>
+<p><%= will_paginate @servicos %></p>

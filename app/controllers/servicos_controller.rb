@@ -5,9 +5,9 @@ class ServicosController < ApplicationController
 
 	def index
 		if params[:categoria].present?
-			@servicos = Servico.includes(:categorias).where('categorias.nome = ?', params[:categoria]).includes(:republica).order('avaliacao desc')
+			@servicos = Servico.includes(:categorias).where('categorias.nome = ?', params[:categoria]).includes(:republica).order('avaliacao desc').page(params[:page])
 		else
-			@servicos = Servico.includes(:categorias).includes(:republica).order('avaliacao desc')
+			@servicos = Servico.includes(:categorias).includes(:republica).order('avaliacao desc').page(params[:page])
 		end
 
 		@categorias = Categoria.order('nome')
