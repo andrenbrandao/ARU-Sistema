@@ -22,6 +22,7 @@ class Servico < ActiveRecord::Base
 	validates :tel1, presence: {message: "Pelo menos um número deve estar presente."}
 
 	validate :has_a_category
+	validate :max_of_3_categories
 
 	private
 
@@ -34,6 +35,12 @@ class Servico < ActiveRecord::Base
 	def has_a_category
 		if self.categorias.blank?
 			self.errors.add(:base, "Você deve selecionar uma categoria ou criar uma nova.")
+		end		
+	end
+
+	def max_of_3_categories
+		if self.categorias.length > 3
+			self.errors.add(:base, "Você só pode selecionar no máximo 3 categorias.")
 		end		
 	end
 

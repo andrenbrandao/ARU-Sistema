@@ -1,11 +1,39 @@
-<% @servicos.each do |servico| %>
-<div class='content-box content-box-for-republica'>
-	<p><%= servico.nome %></p>
-	Categorias:
-	<ol>
-		<% servico.categorias.each do |cat| %>
-		<li><%= cat.nome %></li>
+<div class='row-fluid'>
+
+	<div class='span4'>
+		<div class='content-box categories-menu'>
+			<% Categoria.all.each_slice(3) do |cats| %>
+			<ul class='inline-list'>			
+				<% cats.each do |cat| %>
+				<li><%= link_to cat.nome, servicos_path(nome: cat.nome), class: 'nav-btn nav-btn-a nav-btn-small' %></li>
+				<% end %>
+			</ul>
+			<% end %>
+		</div>
+	</div>
+
+	<div class='span8'>
+		<% @servicos.each do |servico| %>
+		<div class='content-box content-box-for-republica'>
+			<h2><%= servico.nome %></h2>
+
+			<div class='avaliacao-stars'>
+				<% servico.avaliacao.times do %>
+				<i class='fa fa-star'></i>
+				<% end %>
+				<% (5 - servico.avaliacao).times do %>
+				<i class='fa fa-star-o'></i>
+				<% end %>
+			</div>
+
+			<div class='categoria-tags'>
+				<% servico.categorias.each do |cat| %>
+				<p class='label label-inverse'><%= cat.nome %></p>
+				<% end %>
+			</div>
+			<%= link_to "Editar Serviço", edit_servico_path(servico), class: 'servico-edit' if servico.republica == current_republica %>
+		</div>
 		<% end %>
-	</ol>
+	</div>
+
 </div>
-<% end %>

@@ -1,5 +1,5 @@
   <div class='content-box center-form'>
-    <% @servico.categorias.build if @categoria.blank? %>
+    <% @servico.categorias.build if @servico.categorias.blank? %>
     <%= simple_nested_form_for @servico,html: {novalidate: 'novalidate'} do |f| %>
     <%= f.error_notification %>
     <%= display_base_errors @servico %>
@@ -23,7 +23,9 @@
       <p>Ou adicione uma nova categoria:</p>
 
       <%= f.simple_fields_for :categorias do |c| %>
+      <% if c.object.new_record? %>
       <%= c.input :nome, label: false, placeholder: 'Nova Categoria' %>
+      <% end %>
       <% end %>
 
     </fieldset>

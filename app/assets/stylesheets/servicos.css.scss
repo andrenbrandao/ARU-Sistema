@@ -5,3 +5,43 @@
 legend {
 	margin-bottom: 0;
 }
+
+.categoria-tags {
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+}
+
+.avaliacao-stars {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+
+ul.inline-list {
+	list-style: none;
+	li {
+		display: inline;
+	}
+}
+
+.content-box.categories-menu {
+	padding: 10px 19px 14px;
+
+	ul {
+		white-space: nowrap;
+		margin: 5px 0 10px 0;
+	}
+
+	ul:last-child {
+		margin: 0;
+	}
+}
+
+.servico-edit {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
