@@ -18,7 +18,7 @@
     <fieldset>
       <legend>Categoria</legend>
 
-      <%= f.association :categorias, collection: Categoria.all, label: false, label_method: :nome, placeholder: 'Categoria', input_html: { class: 'input-xxlarge chz-categories'} %>
+      <%= f.association :categorias, label: false, label_method: :nome, placeholder: 'Categoria', input_html: { class: 'input-xxlarge chz-categories'} %>
 
       <p>Ou adicione uma nova categoria:</p>
 

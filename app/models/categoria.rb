@@ -9,6 +9,7 @@ class Categoria < ActiveRecord::Base
 
 	validates :nome, presence: true, uniqueness: true
 
+	private
 
 	def titleize_nome
 		self.nome = self.nome.titleize

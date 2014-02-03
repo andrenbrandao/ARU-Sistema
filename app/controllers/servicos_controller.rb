@@ -37,4 +37,24 @@ class ServicosController < ApplicationController
 		end
 	end
 
+	def edit
+		@servico = Servico.find(params[:id])
+
+		respond_to do |format|
+			format.html 
+		end
+	end
+
+	def update
+		@servico = Servico.find(params[:id])
+
+		respond_to do |format|
+			if @servico.update_attributes(params[:servico])
+				format.html { redirect_to servicos_path, notice: 'Serviço atualizado.' }
+			else
+				format.html { render 'edit'  }
+			end
+		end
+	end
+
 end

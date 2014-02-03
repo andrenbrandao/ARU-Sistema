@@ -4,7 +4,7 @@ class Servico < ActiveRecord::Base
 	before_save :titleize_endereco
 
 	has_many :categorizations, dependent: :destroy
-	has_many :categorias, through: :categorizations
+	has_many :categorias, through: :categorizations, after_remove: :destroy_category_if_empty
 	belongs_to :republica
 
 	accepts_nested_attributes_for :categorias, :reject_if => :all_blank
@@ -23,6 +23,23 @@ class Servico < ActiveRecord::Base
 
 	validate :has_a_category
 	validate :max_of_3_categories
+
+	delegate :check_categoria_empty, to: :categorias
+
+	def any_new_categorias?
+		self.categorias.each do |cat|
+			if cat.new_record?
+				return true
+			end
+		end
+		false
+	end
+
+	def destroy_category_if_empty(categoria)
+		if categoria.servicos.count.zero?
+			categoria.destroy
+		end
+	end
 
 	private
 
