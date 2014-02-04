@@ -4,6 +4,8 @@ class Servico < ActiveRecord::Base
 	self.per_page = 5
 	before_save :titleize_endereco
 	before_validation :downcase_site
+	before_destroy :find_categorias
+	after_destroy :destroy_categorias_vazias
 
 	has_many :categorizations, dependent: :destroy
 	has_many :categorias, through: :categorizations, after_remove: :destroy_category_if_empty
@@ -43,7 +45,18 @@ class Servico < ActiveRecord::Base
 		end
 	end
 
+
 	private
+
+	def find_categorias
+		@categorias = self.categorias
+	end
+
+	def destroy_categorias_vazias
+		@categorias.each do |cat|
+			cat.destroy if cat.servicos.count.zero?
+		end  
+	end
 
 	def downcase_site
 		self.site.downcase! if self.site.present?

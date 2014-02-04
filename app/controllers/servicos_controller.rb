@@ -4,10 +4,16 @@ class ServicosController < ApplicationController
 	load_and_authorize_resource
 
 	def index
+		@servicos_header = true
+
 		if params[:categoria].present?
 			@servicos = Servico.includes(:categorias).where('categorias.nome = ?', params[:categoria]).includes(:republica).order('avaliacao desc').page(params[:page])
 		else
 			@servicos = Servico.includes(:categorias).includes(:republica).order('avaliacao desc').page(params[:page])
+		end
+
+		if params[:republica] == 'true'
+			@servicos = @servicos.where(republica_id: current_republica.id)
 		end
 
 		@categorias = Categoria.order('nome')
@@ -61,6 +67,20 @@ class ServicosController < ApplicationController
 				format.html { redirect_to servicos_path, notice: 'Serviço atualizado.' }
 			else
 				format.html { render 'edit'  }
+			end
+		end
+	end
+
+	def destroy
+		@servico = Servico.find(params[:id])
+
+		respond_to do |format|
+			if @servico.destroy
+				flash[:notice] = "Serviço deletado!"
+				format.html { redirect_to servicos_path }
+			else
+				flash[:notice] = "Serviço não pode ser deletado."
+				format.html { redirect_to servicos_path }
 			end
 		end
 	end

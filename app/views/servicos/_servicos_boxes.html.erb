@@ -47,7 +47,10 @@
 			<% end %>
 		</div>
 		<% if servico.republica == current_republica %>
-		<%= link_to "Editar Serviço", edit_servico_path(servico), class: 'servico-edit'  %>
+		<div class='servico-edit'>
+			<%= link_to "Editar Serviço", edit_servico_path(servico)  %>
+			<%= link_to "Deletar", servico_path(servico), method: :delete, class: 'red' %>
+		</div>
 		<% else %>
 		<p class='servico-edit'>Recomendação: <%= servico.republica.nome %></p>
 		<% end %>

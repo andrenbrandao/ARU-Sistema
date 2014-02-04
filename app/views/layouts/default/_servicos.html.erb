@@ -1,0 +1,9 @@
+<header class='jumbotron subhead'>
+	<div class='container'>
+		<h1>Serviços</h1>
+		<p>Aqui você poderá adicionar e ver as recomendações de serviços de outras Repúblicas.</p>
+		<%= link_to 'Adicionar Serviço' , new_servico_path, class: 'nav-btn nav-btn-c' %>
+		<%= link_to 'Ver meus Serviços' , servicos_path(republica: 'true'), remote: true, class: 'nav-btn nav-btn-a' %>
+	</div>
+
+</header>
