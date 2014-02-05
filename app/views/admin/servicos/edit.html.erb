@@ -1,13 +1,10 @@
   <div class='content-box center-form'>
-   <% @servico.categorias.build unless @servico.any_new_categorias? %>
-   <%= simple_nested_form_for @servico,html: {novalidate: 'novalidate'} do |f| %>
+   <%= simple_nested_form_for @servico, html: {novalidate: 'novalidate'} do |f| %>
    <%= f.error_notification %>
    <%= display_base_errors @servico %>
 
    <fieldset>
     <legend>Editar Serviço</legend>
-
-
     <%= f.input :nome, label: false, placeholder: 'Nome da Pessoa ou Empresa', input_html: { class: 'input-xxlarge'} %>
     <%= f.input :endereco, label: false, placeholder: 'Endereço (opcional)', input_html: { class: 'input-xxlarge'}  %>
     <%= f.input :descricao, label: false, placeholder: 'Descrição', input_html: { class: 'input-xxlarge', rows: 10} %>
@@ -43,8 +40,8 @@
   </fieldset>
 
   <div class="form-actions">
-    <%= f.submit 'Adicionar', class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', servicos_path, class: 'btn' %>
+    <%= f.submit 'Editar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_servicos_path, class: 'btn' %>
   </div>
 
 

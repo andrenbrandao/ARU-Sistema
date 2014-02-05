@@ -46,14 +46,11 @@
 			<p class='label label-inverse'><%= cat.nome %></p>
 			<% end %>
 		</div>
-		<% if servico.republica == current_republica %>
-		<div class='servico-edit'>
-			<%= link_to "Editar Serviço", edit_servico_path(servico)  %> |
-			<%= link_to "Deletar", servico_path(servico), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'red' %>
+		<div class='servico-admin-action'>
+			<%= link_to 'Editar', edit_admin_servico_path(servico) %> |
+			<%= link_to 'Deletar', admin_servico_path(servico), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'red' %>
 		</div>
-		<% else %>
 		<p class='servico-edit'>Recomendação: <%= servico.republica.nome %></p>
-		<% end %>
 	</div>
 </div>
 <%= link_to "Comentários", servico_comentarios_path(servico), remote: true, class: "servico-#{servico.id}-comment-link comentarios-link nav-btn nav-btn-small" %>

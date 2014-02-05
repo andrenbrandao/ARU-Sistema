@@ -2,10 +2,10 @@
 
 	<div class='span4'>
 		<div class='content-box categories-menu'>
-			<%= link_to "Todas", servicos_path, remote: true, class: 'nav-btn nav-btn-a nav-btn-small' %><h3>Categorias</h3>
+			<%= link_to "Todas", admin_servicos_path, remote: true, class: 'nav-btn nav-btn-a nav-btn-small' %><h3>Categorias</h3>
 
 			<% @categorias.each do |cat| %>
-			<%= link_to cat.nome, servicos_path(categoria: cat.nome), remote: true, class: 'nav-btn nav-btn-a nav-btn-small' %>
+			<%= link_to cat.nome, admin_servicos_path(categoria: cat.nome), remote: true, class: 'nav-btn nav-btn-a nav-btn-small' %>
 			<% end %>
 		</div>
 	</div>
