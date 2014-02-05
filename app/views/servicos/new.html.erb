@@ -6,13 +6,12 @@
 
     <fieldset>
       <legend>Novo Serviço</legend>
-
-
       <%= f.input :nome, label: false, placeholder: 'Nome da Pessoa ou Empresa', input_html: { class: 'input-xxlarge'} %>
       <%= f.input :endereco, label: false, placeholder: 'Endereço (opcional)', input_html: { class: 'input-xxlarge'}  %>
       <%= f.input :descricao, label: false, placeholder: 'Descrição', input_html: { class: 'input-xxlarge', rows: 10} %>
       <%= f.input :preco, label: false, placeholder: 'Preço Médio (opcional)' %>
-      <%= f.input :avaliacao, label: false, placeholder: 'Avaliação (1-5)' %>
+      Avaliação
+      <%= f.input :avaliacao, as: :radio_buttons, collection:[1,2,3,4,5] ,label: false, placeholder: 'Avaliação (1-5)', :item_wrapper_class => 'inline' %>
     </fieldset>
 
     <fieldset>
