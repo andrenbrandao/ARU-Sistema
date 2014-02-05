@@ -23,7 +23,7 @@ Cadastro::Application.routes.draw do
 
     resources :categorias
     resources :servicos do
-      resources :comentarios, only: [:index, :edit, :new, :create]
+      resources :comentarios, only: [:index, :edit, :destroy]
     end
   end
 

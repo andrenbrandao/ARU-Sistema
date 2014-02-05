@@ -1,6 +1,7 @@
 <% @comentarios.each do |comment| %>
 <% if comment.persisted? %>
-<p><%= comment.republica.nome %>:<br/>
+<p><%= comment.republica.nome %>: <%= link_to 'Deletar', admin_servico_comentario_path(@servico, comment), method: :delete , data: { confirm: 'Você tem certeza?' }, class: 'red'%> <br/>
 <%= comment.texto %></p>
+
 <% end %>
 <% end %>
