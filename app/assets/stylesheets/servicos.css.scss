@@ -13,6 +13,7 @@ legend {
 	left: 10px;
 }
 
+
 .avaliacao-stars {
 	position: absolute;
 	top: 5px;
@@ -21,9 +22,15 @@ legend {
 }
 
 .comentarios-link {
-	position: absolute;
-	top: 25px;
-	right: 10px;
+	position: relative;
+	top: 2.4px;
+	left: 1px;
+	z-index: 10;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	background: white;
+	border-radius: 0 0 3px 3px;
 }
 
 ul.inline-list {
@@ -81,6 +88,12 @@ p.servico-edit {
 .content-box.content-box-for-servico {
 	padding: 33px 19px 14px;
 	margin-bottom: -5px;
+	margin-top: 60px;
+}
+
+
+.content-box.content-box-for-servico:first-child {
+	margin-top: 15px;
 }
 
 .content-box-for-servico .content {
