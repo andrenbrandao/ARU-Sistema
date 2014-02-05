@@ -4,4 +4,5 @@ class Comentario < ActiveRecord::Base
 
 	attr_accessible :texto
 
+	validates :texto, presence: true
 end

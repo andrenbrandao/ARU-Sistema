@@ -18,10 +18,10 @@ class ComentariosController < ApplicationController
 		@comentario = @servico.comentarios.build(params[:comentario])
 		@comentario.republica = current_republica
 		@new_comentario = @servico.comentarios.build
+		@comentarios = @servico.comentarios
 
 		respond_to do |format|
 			if @comentario.save
-				@comentarios = @servico.comentarios
 				format.html { redirect_to servicos_path, notice: 'Comentário criado com sucesso.' }
 				format.js
 			else
