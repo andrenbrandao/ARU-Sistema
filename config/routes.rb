@@ -20,6 +20,11 @@ Cadastro::Application.routes.draw do
     namespace :dashboard do
       get 'listadereps'
     end
+
+    resources :categorias
+    resources :servicos do
+      resources :comentarios, only: [:index, :edit, :new, :create]
+    end
   end
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}

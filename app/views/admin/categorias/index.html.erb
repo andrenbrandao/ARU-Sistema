@@ -1,0 +1,22 @@
+<table class='table table-condensed table-striped content-box'>
+	<thead>
+		<tr>
+			<th>Categoria</th>
+			<th>Recomendação</th>
+			<th>Número de Serviços</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @categorias.each do |cat| %>
+		<tr>
+			<td><span class='nav-btn nav-btn-a nav-btn-small'><%= cat.nome  %></span></td>
+			<td><%= cat.republica.nome %></td>
+			<td><%= cat.servicos.count %></td>
+			<td><%= link_to 'Deletar', admin_categoria_path(cat), method: :delete , data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini'%></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'Voltar', admin_servicos_path, class: 'btn btn-small'  %>

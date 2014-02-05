@@ -4,6 +4,8 @@ class Categoria < ActiveRecord::Base
 	belongs_to :republica
 
 	before_save :titleize_nome
+	before_destroy :find_servicos
+	after_destroy :destroy_servicos_sem_categorias
 
 	attr_accessible :nome
 
@@ -13,6 +15,16 @@ class Categoria < ActiveRecord::Base
 
 	def titleize_nome
 		self.nome = self.nome.titleize
+	end
+
+	def find_servicos
+		@servicos = self.servicos
+	end
+
+	def destroy_servicos_sem_categorias
+		@servicos.each do |serv|
+			serv.destroy if serv.categorias.count.zero?
+		end  
 	end
 
 end

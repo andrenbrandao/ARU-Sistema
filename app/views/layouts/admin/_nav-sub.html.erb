@@ -9,6 +9,10 @@
 
 		<li><a href="#">Eventos</a></li>
 
+		<li class="<%= 'active' if current_page?(admin_servicos_path) %>">
+			<%= link_to 'Serviços', admin_servicos_path %>
+		</li>
+
 		<li class='nav--text pull-right'><span>Logado como <%= link_to 'Admin', admin_dashboard_index_path %></span></li>
 	</ul>
 </div>
