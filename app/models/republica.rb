@@ -28,9 +28,9 @@ class Republica < ActiveRecord::Base
   has_one :contato, :dependent => :destroy
   has_one :social_information, :dependent => :destroy
   has_one :vaga, :dependent => :destroy
-  has_many :servicos
+  has_many :servicos, dependent: :destroy
   has_many :categorias
-  has_many :comentarios
+  has_many :comentarios, dependent: :destroy
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
