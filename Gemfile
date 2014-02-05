@@ -65,5 +65,7 @@ group :development do
 	gem 'thin'
 end
 
+gem 'unicorn'
+
 source "https://rubygems.org"
 ruby "1.9.3"
