@@ -3,4 +3,5 @@ class Comentario < ActiveRecord::Base
 	belongs_to :servico
 
 	attr_accessible :texto
+
 end

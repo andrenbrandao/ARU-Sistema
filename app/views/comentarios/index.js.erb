@@ -1,2 +1,2 @@
 $(".servico-<%= @servico.id %>").html("<%=j render 'comments' %>");
-$('.servico-<%= @servico.id %>').hide().slideDown('slow');
+$('.servico-<%= @servico.id %>').slideToggle('slow');

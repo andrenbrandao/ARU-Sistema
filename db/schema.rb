@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20140204214428) do
 
   create_table "comentarios", :force => true do |t|
     t.text     "texto"
-    t.integer  "republica_id"
-    t.integer  "servico_id"
+    t.integer  "republica_id", :null => false
+    t.integer  "servico_id",   :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
