@@ -54,7 +54,9 @@
 		<% else %>
 		<p class='servico-edit'>Recomendação: <%= servico.republica.nome %></p>
 		<% end %>
+		<%= link_to "Comentários", servico_comentarios_path(servico), remote: true, class: 'comentarios-link' %>
 	</div>
 </div>
+<div class='servico-<%= servico.id %> comentarios'></div>
 <% end %>
 <p><%= will_paginate @servicos %></p>

@@ -47,7 +47,9 @@ Cadastro::Application.routes.draw do
   end
 
   resources :categorias
-  resources :servicos
+  resources :servicos do
+    resources :comentarios, only: [:index, :edit, :new, :create]
+  end
 
 
   #resources :user_steps

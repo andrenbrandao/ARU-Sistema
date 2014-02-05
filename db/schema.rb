@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140202015013) do
+ActiveRecord::Schema.define(:version => 20140204214428) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(:version => 20140202015013) do
 
   add_index "categorizations", ["categoria_id"], :name => "index_categorizations_on_categoria_id"
   add_index "categorizations", ["servico_id"], :name => "index_categorizations_on_servico_id"
+
+  create_table "comentarios", :force => true do |t|
+    t.text     "texto"
+    t.integer  "republica_id"
+    t.integer  "servico_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "comentarios", ["republica_id"], :name => "index_comentarios_on_republica_id"
+  add_index "comentarios", ["servico_id"], :name => "index_comentarios_on_servico_id"
 
   create_table "contatos", :force => true do |t|
     t.string   "email"

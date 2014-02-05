@@ -36,6 +36,9 @@ class Ability
       can :manage, Servico, republica: {id: user.id}
       can :create, Servico
       can :manage, Categoria, republica: {id: user.id}
+      can :manage, Comentario, republica: {id: user.id}
+      can :create, Comentario
+      can :read, Comentario
 
     else
       # Permissões para CONVIDADOS

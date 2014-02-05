@@ -30,6 +30,7 @@ class Republica < ActiveRecord::Base
   has_one :vaga, :dependent => :destroy
   has_many :servicos
   has_many :categorias
+  has_many :comentarios
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true

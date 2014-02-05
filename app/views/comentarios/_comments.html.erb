@@ -1,0 +1,7 @@
+<% @comentarios.each do |comment| %>
+<p><%= comment.texto %></p>
+<% end %>
+
+<%= simple_form_for [@servico, @new_comentario] do |f| %>
+<%= f.text_field :texto, label: false, placeholder: "Insira um comentário" %> 
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  texto: MyText
+  republica_id: 1
+  servico_id: 1
+
+two:
+  texto: MyText
+  republica_id: 1
+  servico_id: 1

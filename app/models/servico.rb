@@ -10,6 +10,7 @@ class Servico < ActiveRecord::Base
 	has_many :categorizations, dependent: :destroy
 	has_many :categorias, through: :categorizations, after_remove: :destroy_category_if_empty
 	belongs_to :republica
+	has_many :comentarios
 
 	accepts_nested_attributes_for :categorias, :reject_if => :all_blank
 
