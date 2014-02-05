@@ -53,7 +53,7 @@
 		<p class='servico-edit'>Recomendação: <%= servico.republica.nome %></p>
 	</div>
 </div>
-<%= link_to "Comentários", admin_servico_comentarios_path(servico), remote: true, class: "servico-#{servico.id}-comment-link comentarios-link nav-btn nav-btn-small" %>
+<%= link_to "<i class='fa fa-comments'></i> #{servico.comentarios.count}".html_safe, admin_servico_comentarios_path(servico), remote: true, class: "servico-#{servico.id}-comment-link comentarios-link nav-btn nav-btn-small" %>
 <div class='servico-<%= servico.id %> comentarios'></div>
 <% end %>
 <p><%= will_paginate @servicos %></p>
