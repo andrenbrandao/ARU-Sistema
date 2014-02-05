@@ -1,0 +1,6 @@
+<% @comentarios.each do |comment| %>
+<% if comment.persisted? %>
+<p><%= comment.republica.nome %>:<br/>
+<%= comment.texto %></p>
+<% end %>
+<% end %>

@@ -1,0 +1,4 @@
+$(".servico-<%= @servico.id %>").html("<%=j render 'comments' %>");
+$(".servico-<%= @servico.id %>-comment-link").slideUp('fast', function() {
+	$(".servico-<%= @servico.id %>").slideToggle('slow');
+});
