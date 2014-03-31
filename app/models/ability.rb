@@ -40,6 +40,8 @@ class Ability
       can :create, Comentario
       can :read, Comentario
 
+      can :send_reconfirmation, Republica
+
     else
       # Permissões para CONVIDADOS
       can :read, Republica, approved: true

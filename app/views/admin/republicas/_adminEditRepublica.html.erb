@@ -27,7 +27,7 @@
       <% if builder.object.new_record? %>
       <%= render 'republicas/morador_fields', f: builder %>
       <% elsif builder.object.exmorador != true %>
-      <%= render 'devise/registrations/current_morador_fields', f: builder %>
+      <%= render 'moradores/current_morador_fields', f: builder %>
       <% end %>
       <% end %>
     </div>

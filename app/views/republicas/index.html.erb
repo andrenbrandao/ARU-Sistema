@@ -1,6 +1,7 @@
 <div class='search' id='search_field'>
 	<%= form_tag republicas_path, :method => 'get', :id => "republicas_search", remote: true do %>
 	<%= text_field_tag :search, params[:search], placeholder: 'Pesquisar por Nome', autocomplete: :off %>
+	<%= hidden_field_tag :tipo, @tipo %>
 	<% end %>
 </div>
 

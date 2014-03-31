@@ -155,6 +155,7 @@
           <b>Confirme o novo Email cadastrado:</b>
           <%= @republica.unconfirmed_email %>
         </p>
+        <%= link_to "Reenviar confirmação", republicas_send_reconfirmation_path, class: 'nav-btn nav-btn-a nav-btn-small', method: :put %>
         <% end %>
 
       </div>

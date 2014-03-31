@@ -115,6 +115,19 @@ def statistics
   end
 end
 
+def send_reconfirmation
+  @republica = Republica.find(params[:republica_id])
+
+  respond_to do |format|
+    if @republica.pending_reconfirmation?
+      @republica.send_confirmation_instructions
+      format.html { redirect_to admin_republica_path(@republica), notice: 'Reconfirmação de email enviada!' }
+    else
+      format.html { redirect_to admin_republica_path(@republica), :alert => "O email de reconfirmação não pôde ser enviado."  }
+    end
+  end
+end
+
 private
 
 def sort_column

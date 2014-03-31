@@ -148,6 +148,7 @@
           <b>Email Não Reconfirmado:</b>
           <%= @republica.unconfirmed_email %>
         </p>
+        <%= link_to "Reenviar confirmação", admin_republica_send_reconfirmation_path(@republica), class: 'nav-btn nav-btn-a nav-btn-small' %>
         <% end %>
 
       </div>

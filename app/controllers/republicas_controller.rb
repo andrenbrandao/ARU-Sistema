@@ -19,6 +19,8 @@ class RepublicasController < ApplicationController
       @republicas = Republica.search(params[:search]).where(approved: true).page(params[:page]).order(sort_column + ' ' + sort_direction)
     end
 
+    @tipo = params[:tipo]
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @republicas }
@@ -84,6 +86,19 @@ class RepublicasController < ApplicationController
     respond_to do |format|
       format.html { redirect_to republicas_url }
       format.json { head :no_content }
+    end
+  end
+
+  def send_reconfirmation
+    @republica = current_republica
+
+    respond_to do |format|
+      if @republica.pending_reconfirmation?
+        @republica.send_confirmation_instructions
+        format.html { redirect_to @republica, notice: 'Reconfirmação de email enviada!' }
+      else
+        format.html { redirect_to @republica, :alert => "O email de reconfirmação não pôde ser enviado."  }
+      end
     end
   end
 

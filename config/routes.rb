@@ -14,6 +14,7 @@ Cadastro::Application.routes.draw do
       put 'approve'
       put 'disapprove'
       get "statistics"
+      get 'send_reconfirmation'
     end
     resources :dashboard, except: [:show, :edit, :new, :update, :destroy]
 
@@ -43,6 +44,10 @@ Cadastro::Application.routes.draw do
     resource :contato, only: [:edit, :update]
     resource :social_information, only: [:edit, :update]
     resource :vaga, only: [:update]
+  end
+
+  namespace :republicas do
+    put 'send_reconfirmation'
   end
 
   get "/terms" => "sistema#terms", :as => :terms
