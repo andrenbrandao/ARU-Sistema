@@ -38,7 +38,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 gem 'wicked'
-gem 'localtunnel'
+# gem 'localtunnel'
 gem 'nested_form'
 gem 'simple_form'
 gem 'client_side_validations'

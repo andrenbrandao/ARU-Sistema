@@ -57,7 +57,7 @@ class Republica < ActiveRecord::Base
   validate :max_of_moradores
   validate :has_one_representante
   validate :uniqueness_of_email
-  validate :check_email
+  # validate :check_email
   # validate :is_exmorador_valid?
   validates_confirmation_of :password
 
