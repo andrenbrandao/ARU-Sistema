@@ -29,13 +29,13 @@ development:
   encoding: unicode
   database: cadastro_development
   pool: 5
-  username: andre
-  password: cadastro
+  username: andrebrandao
+  password: 
 
 test:
   adapter: postgresql
   encoding: unicode
   database: cadastro_test
   pool: 5
-  username: andre
-  password: cadastro
+  username: andrebrandao
+  password: 

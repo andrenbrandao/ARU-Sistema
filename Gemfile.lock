@@ -6,7 +6,6 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
@@ -98,10 +97,6 @@ GEM
     lazy_high_charts (1.4.3)
       bundler (>= 1.0)
       hash-deep-merge
-    localtunnel (0.3)
-      json (>= 1.2.4)
-      net-ssh (>= 2.0.22)
-      net-ssh-gateway (>= 1.0.1)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -115,8 +110,6 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.2)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
     newrelic_rpm (3.7.1.188)
     nokogiri (1.5.9)
     orm_adapter (0.4.0)
@@ -157,7 +150,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12)
       json (~> 1.4)
-    rmagick (2.13.1)
+    rmagick (2.14.0)
     rolify (3.2.0)
     ruby-hmac (0.4.0)
     sass (3.2.4)
@@ -215,7 +208,6 @@ DEPENDENCIES
   font-awesome-sass
   jquery-rails
   lazy_high_charts
-  localtunnel
   meta_request
   nested_form
   newrelic_rpm

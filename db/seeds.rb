@@ -12,7 +12,7 @@
 Republica.destroy_all
 
 Admin.destroy_all
-Admin.create(username: ENV["ADMIN_USER"], email: ENV["ADMIN_EMAIL"], password: ENV["ADMIN_PASSWORD"], password_confirmation: ENV["ADMIN_PASSWORD"])
+Admin.create(username: 'admin', email: 'admin@teste.com.br', password: 'admin', password_confirmation: 'admin')
 
 # Paidabartira
 params = 
@@ -20,7 +20,6 @@ params =
   {
     approved: true,
     presente_reunioes: true,
-    campea_interreps: '2012, 2013',
     nome: 'Paidabartira',
     descricao: 
     %{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id aliquet eros, et lacinia est. Morbi vitae libero odio. Proin rutrum accumsan purus, non pulvinar quam. Vestibulum pretium, lorem vel sollicitudin convallis, enim justo feugiat massa, eu scelerisque neque risus eget dolor. Sed congue nisl ac massa feugiat, ut congue diam tempus. Vivamus non quam semper, elementum sem sed, mollis elit.},
@@ -64,8 +63,7 @@ params =
               ra: '123454',
               representante: false,
               _destroy: 'false',
-              },
-
+             }
             }
           }
         }
