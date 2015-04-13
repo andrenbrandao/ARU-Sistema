@@ -31,6 +31,8 @@ class Republica < ActiveRecord::Base
   has_many :servicos, dependent: :destroy
   has_many :categorias
   has_many :comentarios, dependent: :destroy
+  has_many :evento_republicas, dependent: :destroy
+  has_many :eventos, through: :evento_republicas
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
