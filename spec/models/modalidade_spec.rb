@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Modalidade do
+RSpec.describe Modalidade, :type => :model do
 	it 'should have a valid factory' do
 		expect(build(:modalidade)).to be_valid
 	end

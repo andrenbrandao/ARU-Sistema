@@ -11,6 +11,9 @@ class Morador < ActiveRecord::Base
 	belongs_to :republica, :inverse_of => :moradores
 	validates :republica, presence: true
 
+	has_many :evento_moradores, dependent: :destroy
+    has_many :eventos, through: :evento_moradores
+
 	attr_accessible :ano_de_ingresso, :curso, :nome, :ra, :republica_id, :sobrenome, :universidade
 	attr_accessible :email, :celular, :representante, :apelido, :exmorador, :data_de_saida
 
