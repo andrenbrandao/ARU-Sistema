@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140204214428) do
+ActiveRecord::Schema.define(:version => 20150412152558) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -74,6 +74,23 @@ ActiveRecord::Schema.define(:version => 20140204214428) do
 
   add_index "contatos", ["republica_id"], :name => "index_contatos_on_republica_id"
 
+  create_table "evento_modalidades", :force => true do |t|
+    t.integer  "evento_id"
+    t.integer  "modalidade_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "evento_modalidades", ["evento_id"], :name => "index_evento_modalidades_on_evento_id"
+  add_index "evento_modalidades", ["modalidade_id"], :name => "index_evento_modalidades_on_modalidade_id"
+
+  create_table "eventos", :force => true do |t|
+    t.string   "nome",       :null => false
+    t.integer  "ano",        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "interreps_vencidos", :force => true do |t|
     t.integer  "ano",          :null => false
     t.integer  "republica_id", :null => false
@@ -82,6 +99,13 @@ ActiveRecord::Schema.define(:version => 20140204214428) do
   end
 
   add_index "interreps_vencidos", ["republica_id"], :name => "index_interreps_vencidos_on_republica_id"
+
+  create_table "modalidades", :force => true do |t|
+    t.string   "nome"
+    t.string   "tipo"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "moradores", :force => true do |t|
     t.string   "nome"

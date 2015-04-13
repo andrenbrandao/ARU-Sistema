@@ -65,6 +65,15 @@ group :development do
 	gem 'thin'
 end
 
+group :test, :development do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+	gem 'guard-rspec'
+end
+
 gem 'unicorn'
 gem 'newrelic_rpm'
 
