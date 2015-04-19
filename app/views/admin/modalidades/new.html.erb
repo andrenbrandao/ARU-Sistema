@@ -1,0 +1,23 @@
+
+<div class='content-box center-form'>
+
+	<%= simple_form_for [:admin, @modalidade], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
+	<%= f.error_notification %>
+	<%= display_base_errors @modalidade %> 
+
+
+	<fieldset id='modalidade'>
+		<legend>Modalidade</legend>
+		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
+		<%= f.input :tipo, label: false, collection: Modalidade::TIPO, prompt: 'Tipo' %>
+	</fieldset>
+
+	<div class="form-actions" id='cadastro_actions'>
+		<%= f.submit 'Criar', class: 'btn btn-primary' %>
+		<%= link_to 'Cancel', admin_modalidades_path, class: 'btn' %>
+	</div>
+
+
+	<% end %>
+
+</div>

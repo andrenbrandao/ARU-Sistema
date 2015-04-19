@@ -1,0 +1,22 @@
+<% @modalidades.each do |mod_tipo, mods| %>
+<legend><%= mod_tipo %></legend>
+<div class='content-box-for-table'>
+	<table class='table table-condensed'>
+	    <thead>
+	        <tr>
+	            <th>Nome</th>
+	            <th>Tipo</th>
+	            <th></th>
+
+	        </tr>
+	    </thead>
+
+		    <tbody>
+
+			<%= render partial: 'modalidades_box', collection: mods, as: :mod %>
+
+			</tbody>
+	</table>
+
+</div>
+<% end %>

@@ -1,0 +1,11 @@
+<tr>
+    <td>
+        <%= mod.nome %>
+    </td>
+    <td><%= mod.tipo %></td>
+
+    <td class='admin_action'>
+        <%= link_to 'Editar', edit_admin_modalidade_path(mod), class: 'btn btn-mini admin_action' %>
+        <%= link_to 'Deletar', admin_modalidade_path(mod), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
+    </td>
+</tr>

@@ -15,7 +15,7 @@ pt-BR:
       locked: 'Sua conta está bloqueada.'
       timeout: 'Sua sessão expirou, por favor, efetue login novamente para continuar.'
       unauthenticated: 'Para continuar, efetue login ou registre-se.'
-      unconfirmed: 'Antes de continuar, confirme a sua conta.'
+      unconfirmed: 'Antes de continuar, confirme o email de cadastro do representante.'
       not_approved: 'Aguarde a aprovação de sua conta pelo administrador da ARU.'
     mailer:
       confirmation_instructions:

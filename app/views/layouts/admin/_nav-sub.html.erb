@@ -7,7 +7,9 @@
 			<%= link_to "Repúblicas", admin_republicas_path %>
 		</li>
 
-		<li><a href="#">Eventos</a></li>
+		<li class="<%= 'active' if current_page?(admin_eventos_path) %>">
+			<%= link_to 'Eventos', admin_eventos_path %>
+		</li>
 
 		<li class="<%= 'active' if current_page?(admin_servicos_path) %>">
 			<%= link_to 'Serviços', admin_servicos_path %>

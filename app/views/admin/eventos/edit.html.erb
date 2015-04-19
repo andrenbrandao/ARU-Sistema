@@ -1,0 +1,29 @@
+
+<div class='content-box center-form'>
+
+	<%= simple_form_for [:admin, @evento], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
+	<%= f.error_notification %>
+	<%= display_base_errors @evento %> 
+
+
+	<fieldset id='evento'>
+		<legend>Evento</legend>
+		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
+		<%= f.input :ano, label: false, placeholder: 'Ano' %>
+
+		<legend>Modalidades</legend>
+		<% @modalidades.try(:each) do |tipo, mod| %>
+			<span class="label label-info"><%= tipo + "s" %></span>
+	    	<%= f.association :modalidades, collection: mod, label: false, label_method: :nome, as: :check_boxes %>
+	    <% end %>
+	</fieldset>
+
+	<div class="form-actions" id='cadastro_actions'>
+		<%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+		<%= link_to 'Cancel', admin_eventos_path, class: 'btn' %>
+	</div>
+
+
+	<% end %>
+
+</div>

@@ -1,0 +1,11 @@
+<tr>
+    <td>
+        <%= ev.nome %>
+    </td>
+    <td><%= ev.ano %></td>
+
+    <td class='admin_action'>
+        <%= link_to 'Editar', edit_admin_evento_path(ev), class: 'btn btn-mini admin_action' %>
+        <%= link_to 'Deletar', admin_evento_path(ev), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
+    </td>
+</tr>

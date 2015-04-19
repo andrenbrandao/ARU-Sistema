@@ -26,6 +26,9 @@ Cadastro::Application.routes.draw do
     resources :servicos do
       resources :comentarios, only: [:index, :edit, :destroy]
     end
+
+    resources :eventos
+    resources :modalidades
   end
 
   devise_for :republicas, :controllers => {:registrations => 'registrations'}
