@@ -7,7 +7,7 @@ class Evento < ActiveRecord::Base
   has_many :evento_republicas, dependent: :destroy
   has_many :republicas, through: :evento_republicas
 
-  attr_accessible :ano, :nome, :modalidade_ids
+  attr_accessible :ano, :nome, :open, :modalidade_ids
 
   validates :ano, presence: true
   validates :nome, presence: true

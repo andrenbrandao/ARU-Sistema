@@ -7,5 +7,11 @@
     <td class='admin_action'>
         <%= link_to 'Editar', edit_admin_evento_path(ev), class: 'btn btn-mini admin_action' %>
         <%= link_to 'Deletar', admin_evento_path(ev), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>
+
+        <% if !ev.open %>
+        	<%= link_to "Abrir para Inscrições", admin_evento_path(ev, :evento => {open: 'true' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-info admin_action' %>
+        <% else %>
+        	<%= link_to "Fechar Inscrições", admin_evento_path(ev, :evento => {open: 'false' } ), method: :put, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-mini btn-warning admin_action' %>
+        <% end %>
     </td>
 </tr>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150419155643) do
+ActiveRecord::Schema.define(:version => 20150425201804) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -106,10 +106,11 @@ ActiveRecord::Schema.define(:version => 20150419155643) do
   add_index "evento_republicas", ["republica_id"], :name => "index_evento_republicas_on_republica_id"
 
   create_table "eventos", :force => true do |t|
-    t.string   "nome",       :null => false
-    t.integer  "ano",        :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "nome",                          :null => false
+    t.integer  "ano",                           :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "open",       :default => false, :null => false
   end
 
   create_table "interreps_vencidos", :force => true do |t|

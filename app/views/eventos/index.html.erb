@@ -1,5 +1,3 @@
-<% @eventos.group_by{|d| d[:nome]}.sort.each do |ev_name, evs| %>
-<legend><%= ev_name %></legend>
 <div class='content-box-for-table'>
 	<table class='table table-condensed'>
 	    <thead>
@@ -12,11 +10,12 @@
 	    </thead>
 
 		    <tbody>
-
-			<%= render partial: 'eventos_box', collection: evs, as: :ev %>
+		    	
+		    <% @eventos.each do |ev| %>
+			<%= render partial: 'eventos_box', locals: {ev: ev} %>
+			<% end %>
 
 			</tbody>
 	</table>
 
 </div>
-<% end %>

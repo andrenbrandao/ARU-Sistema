@@ -18,6 +18,11 @@ RSpec.describe Evento, :type => :model do
 		expect(build(:evento, nome: 'abc', ano: 123)).to_not be_valid 
 	end
 
+	it "should always start with subscriptions closed" do
+		evento = create(:evento)
+		expect(evento.open).to eq(false)
+	end
+
 	context 'creating an evento' do
 
 		it 'should be able to add modalidades' do
