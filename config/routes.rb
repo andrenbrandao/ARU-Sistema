@@ -59,6 +59,8 @@ Cadastro::Application.routes.draw do
     root :to => 'sistema#index'
   end
 
+  resources :eventos
+
   resources :categorias
   resources :servicos do
     resources :comentarios, only: [:index, :edit, :new, :create]

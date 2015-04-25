@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :modalidade do
   	nome 'Futsal'
-  	tipo 'masc'
+  	tipo 'Masculina'
   end
 end

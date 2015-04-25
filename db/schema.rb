@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150413161041) do
+ActiveRecord::Schema.define(:version => 20150419155643) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -145,6 +145,16 @@ ActiveRecord::Schema.define(:version => 20150413161041) do
     t.boolean  "exmorador",       :default => false, :null => false
     t.datetime "data_de_saida"
   end
+
+  create_table "republica_evento_modalidades", :force => true do |t|
+    t.integer  "republica_id"
+    t.integer  "evento_modalidade_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "republica_evento_modalidades", ["evento_modalidade_id"], :name => "index_republica_evento_modalidades_on_evento_modalidade_id"
+  add_index "republica_evento_modalidades", ["republica_id"], :name => "index_republica_evento_modalidades_on_republica_id"
 
   create_table "republicas", :force => true do |t|
     t.string   "nome"

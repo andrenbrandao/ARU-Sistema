@@ -1,0 +1,22 @@
+<% @eventos.group_by{|d| d[:nome]}.sort.each do |ev_name, evs| %>
+<legend><%= ev_name %></legend>
+<div class='content-box-for-table'>
+	<table class='table table-condensed'>
+	    <thead>
+	        <tr>
+	            <th>Nome</th>
+	            <th>Ano</th>
+	            <th></th>
+
+	        </tr>
+	    </thead>
+
+		    <tbody>
+
+			<%= render partial: 'eventos_box', collection: evs, as: :ev %>
+
+			</tbody>
+	</table>
+
+</div>
+<% end %>
