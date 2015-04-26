@@ -30,8 +30,11 @@ class EventosController < ApplicationController
 
     @modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
 
-    # if @evento.evento_republicas.count 
-    @evento.evento_republicas.build
+    # Cria numero de agregados que podem ser inscritos
+    max_ag = [@evento.max1_ag, @evento.max2_ag].max
+    (max_ag -@evento.evento_republicas.count).times do |i|
+      @evento.evento_republicas.build
+    end
   end
 
   # def create
@@ -55,7 +58,7 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.update_attributes(params[:evento])
-        format.html { redirect_to eventos_path, notice: 'Evento foi atualizado com sucesso.' }
+        format.html { redirect_to eventos_path, notice: 'Inscrição efetuada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

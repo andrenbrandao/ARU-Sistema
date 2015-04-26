@@ -7,7 +7,7 @@ class Evento < ActiveRecord::Base
   has_many :evento_republicas, dependent: :destroy, inverse_of: :evento
   has_many :republicas, through: :evento_republicas
 
-  accepts_nested_attributes_for :evento_republicas, :allow_destroy => true, :reject_if => lambda { |a| a[:agregado].blank? }
+  accepts_nested_attributes_for :evento_republicas, :allow_destroy => true, :reject_if => :reject_agregado
 
   attr_accessible :ano, :nome, :open, :max1_ex, :max1_ag, :max2_ex, :max2_ag
   attr_accessible :modalidade_ids, :morador_ids, :republicas, :evento_republicas_attributes
@@ -28,6 +28,13 @@ class Evento < ActiveRecord::Base
     if evs.any?
       self.errors.add(:base, "Já existe um evento com esse nome e ano.")
     end
+  end
+
+  def reject_agregado(attributes)
+    exists = attributes['id'].present?
+    empty = attributes[:agregado].blank?
+    attributes.merge!({:_destroy => 1}) if exists and empty
+    return (!exists and empty)
   end
 
 end
