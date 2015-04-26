@@ -1,0 +1,31 @@
+ <div class='content-box center-form'>
+
+   <%= simple_nested_form_for [@republica, @evento], html: {method: :put, id: 'evento_form', novalidate: 'novalidate'}, :url => republica_evento_path(@republica, @evento) do |f| %>
+   <%= f.error_notification %>
+   <%= display_base_errors @evento %>
+
+   <h3><%= @evento.nome + " #{@evento.ano}" %></h3>
+
+   <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
+   <br>
+
+
+   <%= f.association :moradores, collection: current_republica.moradores, label: false, label_method: :full_name, as: :check_boxes %>
+
+   <%= f.simple_fields_for :evento_republicas do |r| %>
+    <%= r.input :agregado, placeholder: 'Agregado', label: false %>
+    <%= r.hidden_field :republica_id, value: @republica.id %>
+   <% end %>
+
+
+  <div class="form-actions" id='cadastro_actions'>
+    <p class='terms_text pull-left'>Ao clicar no botão 'Efetuar Inscrição', você confirma que os moradores e seus respectivos dados são verdadeiros.</p>
+
+    <%= f.submit 'Efetuar Inscrição',  class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', eventos_path, class: 'btn' %>
+  </div>
+
+
+
+  <% end %>
+</div>

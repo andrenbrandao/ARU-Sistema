@@ -1,9 +1,9 @@
 #encoding: utf-8
 
 class EventosController < ApplicationController
-  load_and_authorize_resource :republica
 
   def index
+    authorize! :index, Evento
     @eventos_header = true
     @eventos = Evento.order("ano DESC")
 
@@ -24,32 +24,38 @@ class EventosController < ApplicationController
   end
 
   def edit
+    @republica = current_republica
     @evento = Evento.find(params[:id])
+    authorize! :edit, Evento
+
     @modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
+
+    # if @evento.evento_republicas.count 
+    @evento.evento_republicas.build
   end
 
-  def create
-  params[:evento][:modalidade_ids].reject! { |c| c.empty? }
-    @evento = Evento.new(params[:evento])
-    @modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
+  # def create
+  #   params[:evento][:modalidade_ids].reject! { |c| c.empty? }
+  #   @evento = Evento.new(params[:evento])
 
-        respond_to do |format|
-        if @evento.save
-          format.html { redirect_to admin_eventos_path, notice: 'Novo evento criado com sucesso!' }
-          format.json { render json: @evento, status: :created, location: @evento }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @evento.errors, status: :unprocessable_entity }
-          end
-        end
-    end
+  #       respond_to do |format|
+  #       if @evento.save
+  #         format.html { redirect_to eventos_path, notice: 'Novo evento criado com sucesso!' }
+  #         format.json { render json: @evento, status: :created, location: @evento }
+  #       else
+  #         format.html { render action: "new" }
+  #         format.json { render json: @evento.errors, status: :unprocessable_entity }
+  #         end
+  #       end
+  #   end
 
   def update
+    @republica = current_republica
     @evento = Evento.find(params[:id])
 
     respond_to do |format|
       if @evento.update_attributes(params[:evento])
-        format.html { redirect_to admin_eventos_path, notice: 'Evento foi atualizado com sucesso.' }
+        format.html { redirect_to eventos_path, notice: 'Evento foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

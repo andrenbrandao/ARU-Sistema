@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150425201804) do
+ActiveRecord::Schema.define(:version => 20150426120859) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -111,6 +111,10 @@ ActiveRecord::Schema.define(:version => 20150425201804) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "open",       :default => false, :null => false
+    t.integer  "max1_ag",    :default => 0
+    t.integer  "max1_ex",    :default => 0
+    t.integer  "max2_ag",    :default => 0
+    t.integer  "max2_ex",    :default => 0
   end
 
   create_table "interreps_vencidos", :force => true do |t|

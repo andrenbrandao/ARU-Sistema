@@ -47,6 +47,7 @@ Cadastro::Application.routes.draw do
     resource :contato, only: [:edit, :update]
     resource :social_information, only: [:edit, :update]
     resource :vaga, only: [:update]
+    resources :eventos, except: [:index]
   end
 
   namespace :republicas do
@@ -59,7 +60,7 @@ Cadastro::Application.routes.draw do
     root :to => 'sistema#index'
   end
 
-  resources :eventos
+  resources :eventos, only: [:index]
 
   resources :categorias
   resources :servicos do

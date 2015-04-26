@@ -13,6 +13,11 @@
  *= require_self
  *= require_tree .
  */
+
+ .inline-field {
+ 	display: inline-block;
+ 	margin-right: 20px;
+ }
  .field_with_errors .message {
  	color: white;
  	font-size: 12px;

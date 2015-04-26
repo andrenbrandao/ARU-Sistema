@@ -3,20 +3,29 @@
 
 	<%= simple_form_for [:admin, @evento], validate: true, html: {id: 'republica_form', multipart: true} do |f| %>
 	<%= f.error_notification %>
-	<%= display_base_errors @evento %> 
+	<%= display_base_errors @evento %>
 
 
-	<fieldset id='evento'>
-		<legend>Evento</legend>
+		<h3>Evento</h3>
 		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
 		<%= f.input :ano, label: false, placeholder: 'Ano' %>
 
-		<legend>Modalidades</legend>
+		<p class="text-info">Selecione o número máximo de ex-moradores e agregados que poderão ser inscritos. Por exemplo: 2 ex-moradores e 1 agregado.</p>
+
+		<%= f.input :max1_ex, wrapper: :inline, label: 'Ex-Moradores' %>
+		<%= f.input :max1_ag, wrapper: :inline, label: 'Agregados' %>
+
+		<p class="text-info">Insira aqui a segunda opção para as inscrições. Por exemplo: nenhum ex-morador e 2 agregados.</p>
+
+		<%= f.input :max2_ex, wrapper: :inline, label: 'Ex-Moradores' %>
+		<%= f.input :max2_ag, wrapper: :inline, label: 'Agregados' %>
+
+		<h3>Modalidades</h3>
 		<% @modalidades.try(:each) do |tipo, mod| %>
 			<span class="label label-info"><%= tipo + "s" %></span>
 	    	<%= f.association :modalidades, collection: mod, label: false, label_method: :nome, as: :check_boxes %>
 	    <% end %>
-	</fieldset>
+
 
 	<div class="form-actions" id='cadastro_actions'>
 		<%= f.submit 'Atualizar', class: 'btn btn-primary' %>

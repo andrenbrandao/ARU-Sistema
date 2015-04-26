@@ -44,10 +44,21 @@ SimpleForm.setup do |config|
     b.use :input
   end
 
-  config.wrappers :small, :tag => 'div', :class => 'controls inline-inputs' do |b|
+  config.wrappers :small, :tag => 'div', :class => 'control-group inline-inputs' do |b|
     b.use :html5
     b.use :placeholder
     b.use :input
+  end
+
+  config.wrappers :inline, :tag => 'div', :class => "inline-field", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.wrapper :tag => 'div', :class => 'control-group' do |input|
+      input.use :label
+      input.use :input
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
   end
 
 

@@ -31,7 +31,7 @@ class Republica < ActiveRecord::Base
   has_many :servicos, dependent: :destroy
   has_many :categorias
   has_many :comentarios, dependent: :destroy
-  has_many :evento_republicas, dependent: :destroy
+  has_many :evento_republicas, dependent: :destroy, inverse_of: :republica
   has_many :eventos, through: :evento_republicas
   has_many :republica_evento_modalidades, dependent: :destroy
   has_many :evento_modalidades, through: :republica_evento_modalidades

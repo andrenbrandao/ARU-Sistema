@@ -43,6 +43,10 @@ class Morador < ActiveRecord::Base
 		end
 	end
 
+	def full_name
+		"#{nome} #{sobrenome}"
+	end
+
 	private
 
 	def verify_data_de_saida
