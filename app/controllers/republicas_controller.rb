@@ -35,7 +35,7 @@ class RepublicasController < ApplicationController
     @contato = @republica.contato
     @social_info = @republica.social_information
 
-    @republica.moradores.each do |morador|
+    @republica.moradores.atual.each do |morador|
       if morador.representante == true
         @representante = morador
       end

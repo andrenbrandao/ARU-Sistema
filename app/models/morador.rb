@@ -3,11 +3,12 @@
 class Morador < ActiveRecord::Base
 	self.per_page = 9
 
-	default_scope { where(exmorador: false) }
-	scope :is_exmorador, where(exmorador: true) 
+	# default_scope { where(exmorador: false) }
+	scope :atual, where(exmorador: false)
+	scope :is_exmorador, where(exmorador: true)
 
 	before_save :set_data_de_saida
-	
+
 	belongs_to :republica, :inverse_of => :moradores
 	validates :republica, presence: true
 

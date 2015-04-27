@@ -24,7 +24,7 @@
 				<%= 'Não' %>
 				<% end %>
 			</td>
-			<td style='text-align:left'><% rep.moradores.order(:nome).each do |morador| %>
+			<td style='text-align:left'><% rep.moradores.atual.order(:nome).each do |morador| %>
 				<%= morador.nome + ' ' + morador.sobrenome %>
 				<br>
 				<% end %>
@@ -61,7 +61,7 @@
 					<%= 'Não' %>
 					<% end %>
 				</td>
-				<td style='text-align:left'><% rep.moradores.order(:nome).each do |morador| %>
+				<td style='text-align:left'><% rep.moradores.atual.order(:nome).each do |morador| %>
 					<%= morador.nome + ' ' + morador.sobrenome %>
 					<br>
 					<% end %>
@@ -99,7 +99,7 @@
 						<%= 'Não' %>
 						<% end %>
 					</td>
-					<td style='text-align:left'><% rep.moradores.order(:nome).each do |morador| %>
+					<td style='text-align:left'><% rep.moradores.atual.order(:nome).each do |morador| %>
 						<%= morador.nome + ' ' + morador.sobrenome %>
 						<br>
 						<% end %>

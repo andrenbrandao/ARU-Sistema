@@ -130,7 +130,7 @@ class Republica < ActiveRecord::Base
       scoped
     end
   end
-  
+
   def exmoradores
     self.moradores.where(exmorador: true)
   end

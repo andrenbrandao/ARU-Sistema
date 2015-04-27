@@ -9,8 +9,16 @@
    <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
    <br>
 
+   <h3>Moradores</h3>
 
-   <%= f.association :moradores, collection: current_republica.moradores, label: false, label_method: :full_name, as: :check_boxes %>
+
+   <%= f.association :moradores, collection: current_republica.moradores.atual, label: false, label_method: :full_name, as: :check_boxes %>
+
+   <h3>Ex-Moradores</h3>
+
+   <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes %>
+
+   <h3>Agregados</h3>
 
    <%= f.simple_fields_for :evento_republicas do |r| %>
     <%= r.input :agregado, placeholder: 'Agregado', label: false %>

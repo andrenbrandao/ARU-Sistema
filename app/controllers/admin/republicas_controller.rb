@@ -36,7 +36,7 @@ class Admin::RepublicasController < AdminController
     @contato = @republica.contato
     @social_info = @republica.social_information
 
-    @republica.moradores.each do |morador|
+    @republica.moradores.atual.each do |morador|
       if morador.representante == true
         @representante = morador
       end
@@ -104,7 +104,7 @@ end
 
 def statistics
   @republica = Republica.find(params[:republica_id])
-  @moradores = @republica.moradores
+  @moradores = @republica.moradores.atual
 
   @uni_chart = generate_university_chart(@moradores)
   @curso_chart = generate_curso_chart(@moradores)

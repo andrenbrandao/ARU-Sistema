@@ -7,7 +7,7 @@ class MoradoresController < ApplicationController
   # GET /moradores.json
   def index
     @republica = Republica.find(params[:republica_id])
-    @moradores = @republica.moradores.order(:ano_de_ingresso)
+    @moradores = @republica.moradores.atual.order(:ano_de_ingresso)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,7 +80,7 @@ class MoradoresController < ApplicationController
   # DELETE /moradores/1.json
   def destroy
     @republica = Republica.find(params[:republica_id])
-    @moradores = @republica.moradores
+    @moradores = @republica.moradores.atual
     @morador = Morador.find(params[:id])
 
     if @moradores.size > 3 

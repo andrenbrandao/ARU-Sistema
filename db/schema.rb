@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150426120859) do
+ActiveRecord::Schema.define(:version => 20150426163157) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -87,8 +87,9 @@ ActiveRecord::Schema.define(:version => 20150426120859) do
   create_table "evento_moradores", :force => true do |t|
     t.integer  "evento_id"
     t.integer  "morador_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "type_of_player", :default => false, :null => false
   end
 
   add_index "evento_moradores", ["evento_id"], :name => "index_evento_moradores_on_evento_id"
