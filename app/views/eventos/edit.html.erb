@@ -4,24 +4,50 @@
    <%= f.error_notification %>
    <%= display_base_errors @evento %>
 
-   <h3><%= @evento.nome + " #{@evento.ano}" %></h3>
+  <div class="">
 
-   <p style='font-size: 12px'>Selecione um dos moradores para ser o <i class="icon-user"></i> <b>Representante</b> da República.</p>
-   <br>
+    <h1><%= @evento.nome + " #{@evento.ano}" %></h1>
+
+    <p style='font-size: 12px'>Selecione aqui as modalidades que a República irá jogar e, logo em seguida, os moradores, ex-moradores e agregados.</p>
+
+  </div>
 
    <h3>Moradores</h3>
 
 
-   <%= f.association :moradores, collection: current_republica.moradores.atual, label: false, label_method: :full_name, as: :check_boxes %>
+   <% if params[:evento].try(:[], :morador_ids).present? %>
+      <%= f.association :moradores, collection: current_republica.moradores.atual, label: false, label_method: :full_name, as: :check_boxes, :checked => params[:evento].try(:[], :morador_ids) %>
+   <% else %>
+      <%= f.association :moradores, collection: current_republica.moradores.atual, label: false, label_method: :full_name, as: :check_boxes %>
+    <% end %>
+
+   <hr>
+
+   <% if params[:evento].try(:[],:opcao_exag).present? %>
+      <%= f.input :opcao_exag, :collection => [[1, "#{f.object.max1_ex} Ex-moradores e #{f.object.max1_ag} Agregados"], [2, "#{f.object.max2_ex} Ex-moradores e #{f.object.max2_ag} Agregados"]], :label_method => :last, :value_method => :first, :as => :radio_buttons, label: "<i class='icon-info-sign'></i> Escolha uma das opções abaixo:", checked:  params[:evento].try(:[],:opcao_exag) %>
+   <% else %>
+      <%= f.input :opcao_exag, :collection => [[1, "#{f.object.max1_ex} Ex-moradores e #{f.object.max1_ag} Agregados"], [2, "#{f.object.max2_ex} Ex-moradores e #{f.object.max2_ag} Agregados"]], :label_method => :last, :value_method => :first, :as => :radio_buttons, label: "<i class='icon-info-sign'></i> Escolha uma das opções abaixo:" %>
+   <% end %>
 
    <h3>Ex-Moradores</h3>
 
-   <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes %>
+  <div id="exmoradores">
+   <% if params[:evento].try(:[],:exmorador_ids).present?  %>
+      <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes, :checked => params[:evento].try(:[],:exmorador_ids) %>
+   <% else %>
+      <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes%>
+   <% end %>
+  </div>
+
+  <%= f.hidden_field :max1_ex %>
+  <%= f.hidden_field :max2_ex %>
+  <%= f.hidden_field :max1_ag %>
+  <%= f.hidden_field :max2_ag %>
 
    <h3>Agregados</h3>
 
    <%= f.simple_fields_for :evento_republicas do |r| %>
-    <%= r.input :agregado, placeholder: 'Agregado', label: false %>
+    <%= r.input :agregado, placeholder: 'Agregado', label: false, input_html: {class: 'agregado'} %>
     <%= r.hidden_field :republica_id, value: @republica.id %>
    <% end %>
 

@@ -27,7 +27,8 @@
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more  
 //= require bootstrap-datetimepicker       
-//= require datepicker_custom                           
+//= require datepicker_custom
+//= require eventos
 //= require_tree .
 
 // $(function() {

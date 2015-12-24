@@ -4,7 +4,7 @@ class Evento < ActiveRecord::Base
   has_many :modalidades, through: :evento_modalidades
 
   # Condicoes para retornar apenas moradores
-  has_many :evento_moradores, dependent: :destroy, :conditions => {type_of_player: false}
+  has_many :evento_moradores, dependent: :destroy, :conditions => {type_of_player: false}, inverse_of: :evento
   has_many :moradores, through: :evento_moradores, :conditions => "evento_moradores.type_of_player = 'false'"
 
   # Condicoes para retotrnar apenas ex-moradores
@@ -28,6 +28,8 @@ class Evento < ActiveRecord::Base
 
   attr_accessible :ano, :nome, :open, :max1_ex, :max1_ag, :max2_ex, :max2_ag
   attr_accessible :modalidade_ids, :morador_ids, :republicas, :evento_republicas_attributes, :exmorador_ids
+  attr_accessor :opcao_exag
+  attr_accessible :opcao_exag
 
   validates :ano, presence: true
   validates :nome, presence: true

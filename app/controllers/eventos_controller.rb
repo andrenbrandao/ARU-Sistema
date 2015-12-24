@@ -56,11 +56,21 @@ class EventosController < ApplicationController
     @republica = current_republica
     @evento = Evento.find(params[:id])
 
+    # raise params
+    error = check_number_exmoradores_agregados(params[:evento], @evento)
+    error = error || check_number_moradores(params[:evento], @evento)
+
     respond_to do |format|
-      if @evento.update_attributes(params[:evento])
+      if error == false && @evento.update_attributes(params[:evento])
         format.html { redirect_to eventos_path, notice: 'Inscrição efetuada com sucesso.' }
         format.json { head :no_content }
       else
+    # Cria numero de agregados que podem ser inscritos
+      max_ag = [@evento.max1_ag, @evento.max2_ag].max
+      (max_ag - @evento.evento_republicas.count).times do |i|
+        @evento.evento_republicas.build
+      end
+
         format.html { render action: "edit" }
         format.json { render json: @evento.errors, status: :unprocessable_entity }
       end
@@ -79,6 +89,56 @@ class EventosController < ApplicationController
         format.json { render json: @evento.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def check_number_exmoradores_agregados(params, evento)
+    opcao_exag = params[:opcao_exag]
+    exmorador_ids = params[:exmorador_ids]
+    exmorador_ids.reject!(&:empty?)
+
+    count = 0
+    params[:evento_republicas_attributes].each do |id, a|
+      if !a[:agregado].empty?
+        count += 1
+      end
+    end
+
+    if opcao_exag == '1'
+      if exmorador_ids.size > evento.max1_ex
+        evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max1_ex} ex-moradores")
+      end
+      if count > evento.max1_ag
+        evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max1_ag} agregados")
+      end
+
+    elsif opcao_exag == '2'
+      if exmorador_ids.size > evento.max2_ex
+        evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max2_ex} ex-moradores")
+      end
+
+      if count > evento.max2_ag
+        evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max2_ag} agregados")
+      end
+
+    else
+      evento.errors.add(:base, "Você deve escolher uma das opções")
+    end
+
+    return true if evento.errors.present?
+    return false
+
+  end
+
+  def check_number_moradores(params, evento)
+    morador_ids = params[:morador_ids]
+    morador_ids.reject!(&:empty?)
+
+    if morador_ids.size == 0
+      evento.errors.add(:base, "Você deve escolher ao menos 1 morador")
+      return true
+    end
+
+    return false
   end
 
 end
