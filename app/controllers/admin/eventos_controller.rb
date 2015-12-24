@@ -32,6 +32,7 @@ class Admin::EventosController < AdminController
     @evento = Evento.new(params[:evento])
     @modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
 
+
         respond_to do |format|
 	      if @evento.save
 	        format.html { redirect_to admin_eventos_path, notice: 'Novo evento criado com sucesso!' }

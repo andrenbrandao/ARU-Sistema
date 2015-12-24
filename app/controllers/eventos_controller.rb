@@ -56,9 +56,14 @@ class EventosController < ApplicationController
     @republica = current_republica
     @evento = Evento.find(params[:id])
 
-    # raise params
-    error = check_number_exmoradores_agregados(params[:evento], @evento)
-    error = error || check_number_moradores(params[:evento], @evento)
+    error = false
+    # So faz verificacoes se houver valores positivios
+    if [@evento.max1_ex, @evento.max1_ag, @evento.max2_ex, @evento.max2_ag].max != 0
+      error = check_number_exmoradores_agregados(params[:evento], @evento)
+    end
+
+    # Checa numero de moradores
+    error = check_number_moradores(params[:evento], @evento) || error
 
     respond_to do |format|
       if error == false && @evento.update_attributes(params[:evento])
@@ -96,13 +101,16 @@ class EventosController < ApplicationController
     exmorador_ids = params[:exmorador_ids]
     exmorador_ids.reject!(&:empty?)
 
-    count = 0
-    params[:evento_republicas_attributes].each do |id, a|
-      if !a[:agregado].empty?
-        count += 1
+
+    # Se houver agregados nas opcoes
+    if evento.max1_ag != 0 || evento.max2_ag != 0
+      count = 0
+      params[:evento_republicas_attributes].each do |id, a|
+        if !a[:agregado].empty?
+          count += 1
+        end
       end
     end
-
     if opcao_exag == '1'
       if exmorador_ids.size > evento.max1_ex
         evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max1_ex} ex-moradores")

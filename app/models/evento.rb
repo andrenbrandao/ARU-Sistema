@@ -35,6 +35,7 @@ class Evento < ActiveRecord::Base
   validates :nome, presence: true
   # validates :nome, uniqueness: {scope: :ano}
   validate :check_uniqueness_name_and_year
+  before_create :repeat_old_names
 
   def check_uniqueness_name_and_year
     evs = []
@@ -55,5 +56,26 @@ class Evento < ActiveRecord::Base
     attributes.merge!({:_destroy => 1}) if exists and empty
     return (!exists and empty)
   end
+
+  def repeat_old_names
+    ev = []
+    ev = Evento.where('lower(nome) = ?', self.nome.downcase)
+
+    if ev.any?
+      self.nome = ev.first.nome
+    end
+  end
+
+  def inscrito?(republica)
+    if republica.eventos.include?(self)
+      return true
+    else
+      return false
+    end
+  end
+
+  # def cancelar_inscricao(republica)
+    
+  # end
 
 end

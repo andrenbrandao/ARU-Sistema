@@ -6,7 +6,8 @@
 	<%= display_base_errors @evento %>
 
 
-		<h3>Evento</h3>
+	<fieldset id='evento'>
+		<legend>Evento</legend>
 		<%= f.input :nome, placeholder: 'Nome', label: false, input_html: {class: 'nome'}  %>
 		<%= f.input :ano, label: false, placeholder: 'Ano' %>
 
@@ -20,12 +21,13 @@
 		<%= f.input :max2_ex, wrapper: :inline, label: 'Ex-Moradores' %>
 		<%= f.input :max2_ag, wrapper: :inline, label: 'Agregados' %>
 
-		<h3>Modalidades</h3>
+
+		<legend>Modalidades</legend>
 		<% @modalidades.try(:each) do |tipo, mod| %>
 			<span class="label label-info"><%= tipo + "s" %></span>
 	    	<%= f.association :modalidades, collection: mod, label: false, label_method: :nome, as: :check_boxes %>
 	    <% end %>
-
+	</fieldset>
 
 	<div class="form-actions" id='cadastro_actions'>
 		<%= f.submit 'Atualizar', class: 'btn btn-primary' %>

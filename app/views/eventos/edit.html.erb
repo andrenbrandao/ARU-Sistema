@@ -21,35 +21,46 @@
       <%= f.association :moradores, collection: current_republica.moradores.atual, label: false, label_method: :full_name, as: :check_boxes %>
     <% end %>
 
-   <hr>
 
+   <% if [@evento.max1_ex, @evento.max1_ag, @evento.max2_ex, @evento.max2_ag].max != 0 %>
+
+   <hr>
    <% if params[:evento].try(:[],:opcao_exag).present? %>
       <%= f.input :opcao_exag, :collection => [[1, "#{f.object.max1_ex} Ex-moradores e #{f.object.max1_ag} Agregados"], [2, "#{f.object.max2_ex} Ex-moradores e #{f.object.max2_ag} Agregados"]], :label_method => :last, :value_method => :first, :as => :radio_buttons, label: "<i class='icon-info-sign'></i> Escolha uma das opções abaixo:", checked:  params[:evento].try(:[],:opcao_exag) %>
    <% else %>
       <%= f.input :opcao_exag, :collection => [[1, "#{f.object.max1_ex} Ex-moradores e #{f.object.max1_ag} Agregados"], [2, "#{f.object.max2_ex} Ex-moradores e #{f.object.max2_ag} Agregados"]], :label_method => :last, :value_method => :first, :as => :radio_buttons, label: "<i class='icon-info-sign'></i> Escolha uma das opções abaixo:" %>
    <% end %>
 
-   <h3>Ex-Moradores</h3>
-
-  <div id="exmoradores">
-   <% if params[:evento].try(:[],:exmorador_ids).present?  %>
-      <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes, :checked => params[:evento].try(:[],:exmorador_ids) %>
-   <% else %>
-      <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes%>
    <% end %>
-  </div>
+
+
+   <% if [@evento.max1_ex, @evento.max2_ex].max != 0 %>
+     <h3>Ex-Moradores</h3>
+
+    <div id="exmoradores">
+     <% if params[:evento].try(:[],:exmorador_ids).present?  %>
+        <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes, :checked => params[:evento].try(:[],:exmorador_ids) %>
+     <% else %>
+        <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes%>
+     <% end %>
+    </div>
+
+   <% end %>
 
   <%= f.hidden_field :max1_ex %>
   <%= f.hidden_field :max2_ex %>
   <%= f.hidden_field :max1_ag %>
   <%= f.hidden_field :max2_ag %>
 
+  <% if [@evento.max1_ag, @evento.max2_ag].max != 0 %>
    <h3>Agregados</h3>
 
    <%= f.simple_fields_for :evento_republicas do |r| %>
     <%= r.input :agregado, placeholder: 'Agregado', label: false, input_html: {class: 'agregado'} %>
     <%= r.hidden_field :republica_id, value: @republica.id %>
    <% end %>
+
+  <% end %>
 
 
   <div class="form-actions" id='cadastro_actions'>

@@ -32,9 +32,10 @@ class Republica < ActiveRecord::Base
   has_many :categorias
   has_many :comentarios, dependent: :destroy
   has_many :evento_republicas, dependent: :destroy, inverse_of: :republica
-  has_many :eventos, through: :evento_republicas
   has_many :republica_evento_modalidades, dependent: :destroy
   has_many :evento_modalidades, through: :republica_evento_modalidades
+  has_many :evento_moradores, through: :moradores
+  has_many :eventos, through: :evento_moradores
 
 
   accepts_nested_attributes_for :moradores, :allow_destroy => true
@@ -54,7 +55,7 @@ class Republica < ActiveRecord::Base
   validates :numero, presence: true, numericality: {greater_than: 0}
   #validates :telefone, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  
+
   validates :email, uniqueness: {case_sensitive: false}
 
   validate :min_of_moradores

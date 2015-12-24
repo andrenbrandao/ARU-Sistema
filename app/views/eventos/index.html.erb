@@ -1,3 +1,4 @@
+<% if @eventos.any? %>
 <div class='content-box-for-table'>
 	<table class='table table-condensed'>
 	    <thead>
@@ -19,3 +20,8 @@
 	</table>
 
 </div>
+<% else %>
+<div class='content-box-for-table'>
+	<h3>Não há eventos disponíveis no momento.</h3>
+</div>
+<% end %>
