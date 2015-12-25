@@ -64,9 +64,14 @@
 
 
   <div class="form-actions" id='cadastro_actions'>
-    <p class='terms_text pull-left'>Ao clicar no botão 'Efetuar Inscrição', você confirma que os moradores e seus respectivos dados são verdadeiros.</p>
+    <% if @evento.inscrito?(current_republica) %>
+      <p class='terms_text pull-left'>Ao clicar no botão 'Atualizar Inscrição', você confirma que os moradores e seus respectivos dados são verdadeiros.</p>
+      <%= f.submit 'Atualizar Inscrição',  class: 'btn btn-primary' %>
+    <% else %>
+      <p class='terms_text pull-left'>Ao clicar no botão 'Efetuar Inscrição', você confirma que os moradores e seus respectivos dados são verdadeiros.</p>
+      <%= f.submit 'Efetuar Inscrição',  class: 'btn btn-primary' %>
+    <% end %>
 
-    <%= f.submit 'Efetuar Inscrição',  class: 'btn btn-primary' %>
     <%= link_to 'Cancel', eventos_path, class: 'btn' %>
   </div>
 

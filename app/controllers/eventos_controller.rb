@@ -86,11 +86,11 @@ class EventosController < ApplicationController
     @evento = Evento.find(params[:id])
 
     respond_to do |format|
-      if @evento.destroy
-        format.html { redirect_to admin_eventos_path, notice: 'Evento deletado!' }
+      if @evento.cancelar_inscricao(current_republica)
+        format.html { redirect_to eventos_path, notice: 'Inscrição Cancelada!' }
         format.json { head :no_content }
       else
-        format.html { redirect_to admin_eventos_path, :alert => "O evento não pode ser deletado."  }
+        format.html { redirect_to eventos_path, :alert => "A inscrição não pôde ser cancelada."  }
         format.json { render json: @evento.errors, status: :unprocessable_entity }
       end
     end

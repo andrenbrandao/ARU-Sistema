@@ -7,7 +7,8 @@
     <td class='table_actions'>
     	<% if ev.open %>
             <% if ev.inscrito?(current_republica) %>
-       		   <%= link_to 'Editar Inscrição', edit_republica_evento_path(current_republica, ev), class: 'btn btn-success btn-small' %>
+       		   <%= link_to 'Editar Inscrição', edit_republica_evento_path(current_republica, ev), class: 'btn btn-success btn-mini' %>
+               <%= link_to 'Deletar Inscrição', republica_evento_path(current_republica, ev), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini' %>
            <% else %>
                 <%= link_to 'Inscrever-se', edit_republica_evento_path(current_republica, ev), class: 'btn btn-info btn-small' %>
            <% end %>

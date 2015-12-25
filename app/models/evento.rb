@@ -7,13 +7,13 @@ class Evento < ActiveRecord::Base
   has_many :evento_moradores, dependent: :destroy, :conditions => {type_of_player: false}, inverse_of: :evento
   has_many :moradores, through: :evento_moradores, :conditions => "evento_moradores.type_of_player = 'false'"
 
-  # Condicoes para retotrnar apenas ex-moradores
+  # Condicoes para retornar apenas ex-moradores
   has_many :evento_exmoradores, class_name: "EventoMorador", source: :evento_morador, :conditions => {type_of_player: true}
   has_many :exmoradores, class_name: "Morador", source: :morador, through: :evento_exmoradores, :conditions => "evento_moradores.type_of_player = 'true'"
 
   # Condicoes para retornar TODOS os JOGADORES
   has_many :evento_jogadores, class_name: "EventoMorador", source: :evento_morador
-  has_many :jogadores, class_name: "Morador", source: :morador, through: :evento_exmoradores
+  has_many :jogadores, class_name: "Morador", source: :morador, through: :evento_moradores
 
   # has_many :jogadores, through: :evento_exmoradores do
   #  def all_moradores
@@ -23,6 +23,8 @@ class Evento < ActiveRecord::Base
 
   has_many :evento_republicas, dependent: :destroy, inverse_of: :evento
   has_many :republicas, through: :evento_republicas
+
+  has_many :republica_evento_modalidades, through: :evento_modalidades
 
   accepts_nested_attributes_for :evento_republicas, :allow_destroy => true, :reject_if => :reject_agregado
 
@@ -74,8 +76,21 @@ class Evento < ActiveRecord::Base
     end
   end
 
-  # def cancelar_inscricao(republica)
-    
-  # end
+  def cancelar_inscricao(republica)
+    # Deletar Moradores Inscritos
+    moradores_ids = republica.moradores.collect(&:id)
+    exmoradores_ids = republica.exmoradores.collect(&:id)
+    todos_ids = moradores_ids + exmoradores_ids
+
+    self.evento_jogadores.where(morador_id: todos_ids).destroy_all
+
+    # Deletar Agregados Inscritos
+    self.evento_republicas.where(republica_id: republica.id).destroy_all
+
+    # Deletar Modalidades Inscritas
+    self.republica_evento_modalidades.where(republica_id: republica.id).destroy_all
+
+    return true
+  end
 
 end
