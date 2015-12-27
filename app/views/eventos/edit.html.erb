@@ -12,6 +12,19 @@
 
   </div>
 
+    <h3>Modalidades</h3>
+    <% @modalidades.try(:each) do |tipo, mod| %>
+      <span class="label label-info"><%= tipo + "s" %></span>
+      <!-- Quando falha o update -->
+      <% if params[:evento].try(:[], :play_mods_ids).present? %>
+        <%= f.input :play_mods_ids, collection: mod, value_method: lambda { |m| @evento.evento_modalidades.where(modalidade_id: m.id).first.id}, label: false, label_method: :nome,  as: :check_boxes, :checked => params[:evento].try(:[], :play_mods_ids) %>
+      <% else %>
+        <%= f.input :play_mods_ids, collection: mod, value_method: lambda { |m| @evento.evento_modalidades.where(modalidade_id: m.id).first.id}, label: false, label_method: :nome,  as: :check_boxes, :checked => @evento.republica_evento_modalidades.collect(&:evento_modalidade_id) %>
+      <% end %>
+    <% end %>
+
+     <%-# f.association :evento_modalidades, collection: mod, label: false, label_method: :nome, as: :check_boxes -%>
+
    <h3>Moradores</h3>
 
 

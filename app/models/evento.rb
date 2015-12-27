@@ -32,6 +32,8 @@ class Evento < ActiveRecord::Base
   attr_accessible :modalidade_ids, :morador_ids, :republicas, :evento_republicas_attributes, :exmorador_ids
   attr_accessor :opcao_exag
   attr_accessible :opcao_exag
+  attr_accessor :play_mods_ids
+  attr_accessible :play_mods_ids
 
   validates :ano, presence: true
   validates :nome, presence: true
@@ -58,6 +60,7 @@ class Evento < ActiveRecord::Base
     attributes.merge!({:_destroy => 1}) if exists and empty
     return (!exists and empty)
   end
+
 
   def repeat_old_names
     ev = []

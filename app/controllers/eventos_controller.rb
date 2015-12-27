@@ -28,7 +28,7 @@ class EventosController < ApplicationController
     @evento = Evento.find(params[:id])
     authorize! :edit, Evento
 
-    @modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
+    @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
 
     # Cria numero de agregados que podem ser inscritos
     max_ag = [@evento.max1_ag, @evento.max2_ag].max
@@ -55,6 +55,7 @@ class EventosController < ApplicationController
   def update
     @republica = current_republica
     @evento = Evento.find(params[:id])
+    @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
 
     error = false
     # So faz verificacoes se houver valores positivios
@@ -65,12 +66,21 @@ class EventosController < ApplicationController
     # Checa numero de moradores
     error = check_number_moradores(params[:evento], @evento) || error
 
+    # Tenta inscrever modalidades
+    Evento.transaction do
+      inscritas = inscreve_modalidades(params[:evento], @evento)
+
     respond_to do |format|
-      if error == false && @evento.update_attributes(params[:evento])
+      if error == false && inscritas == true && @evento.update_attributes(params[:evento])
         format.html { redirect_to eventos_path, notice: 'Inscrição efetuada com sucesso.' }
         format.json { head :no_content }
       else
-    # Cria numero de agregados que podem ser inscritos
+
+      if inscritas != true
+       raise ActiveRecord::Rollback
+      end
+    end
+      # Cria numero de agregados que podem ser inscritos
       max_ag = [@evento.max1_ag, @evento.max2_ag].max
       (max_ag - @evento.evento_republicas.count).times do |i|
         @evento.evento_republicas.build
@@ -147,6 +157,25 @@ class EventosController < ApplicationController
     end
 
     return false
+  end
+
+  def inscreve_modalidades(params, evento)
+    play_mods = params[:play_mods_ids].reject(&:empty?)
+    disponiveis_id = evento.evento_modalidades.collect(&:id) # Todos evento_modalidades disponiveis pra esse evento
+
+    remover = disponiveis_id - play_mods
+
+    Evento.transaction do
+      # Remove todas as outras modalidades que nao foram escolhidas
+      RepublicaEventoModalidade.where(republica_id: current_republica.id, evento_modalidade_id: remover).destroy_all
+
+      # Cria se nao existir
+      play_mods.each do |id|
+        RepublicaEventoModalidade.where(republica_id: current_republica.id, evento_modalidade_id: id).first_or_create!
+      end
+    end
+
+    return true
   end
 
 end

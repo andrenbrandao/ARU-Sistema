@@ -1,6 +1,6 @@
 class EventoModalidade < ActiveRecord::Base
-  belongs_to :evento
-  belongs_to :modalidade
+  belongs_to :evento, inverse_of: :evento_modalidades
+  belongs_to :modalidade, inverse_of: :evento_modalidades
   has_many :republica_evento_modalidades
   has_many :republicas, through: :republica_evento_modalidades
   # attr_accessible :title, :body
