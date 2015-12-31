@@ -85,13 +85,16 @@ class Evento < ActiveRecord::Base
     exmoradores_ids = republica.exmoradores.collect(&:id)
     todos_ids = moradores_ids + exmoradores_ids
 
-    self.evento_jogadores.where(morador_id: todos_ids).destroy_all
+    Evento.transaction do
 
-    # Deletar Agregados Inscritos
-    self.evento_republicas.where(republica_id: republica.id).destroy_all
+      self.evento_jogadores.where(morador_id: todos_ids).destroy_all
 
-    # Deletar Modalidades Inscritas
-    self.republica_evento_modalidades.where(republica_id: republica.id).destroy_all
+      # Deletar Agregados Inscritos
+      self.evento_republicas.where(republica_id: republica.id).destroy_all
+
+      # Deletar Modalidades Inscritas
+      self.republica_evento_modalidades.where(republica_id: republica.id).destroy_all
+    end
 
     return true
   end

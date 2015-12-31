@@ -96,7 +96,7 @@ class EventosController < ApplicationController
     @evento = Evento.find(params[:id])
 
     respond_to do |format|
-      if @evento.cancelar_inscricao(current_republica)
+      if destroy_modalidades(@evento) && @evento.cancelar_inscricao(current_republica)
         format.html { redirect_to eventos_path, notice: 'Inscrição Cancelada!' }
         format.json { head :no_content }
       else
@@ -173,6 +173,17 @@ class EventosController < ApplicationController
       play_mods.each do |id|
         RepublicaEventoModalidade.where(republica_id: current_republica.id, evento_modalidade_id: id).first_or_create!
       end
+    end
+
+    return true
+  end
+
+  def destroy_modalidades(evento)
+    disponiveis_id = evento.evento_modalidades.collect(&:id) # Todos evento_modalidades disponiveis pra esse evento
+
+    Evento.transaction do
+      # Remove todas as modalidades para essa republica nesse evento
+      RepublicaEventoModalidade.where(republica_id: current_republica.id, evento_modalidade_id: disponiveis_id).destroy_all
     end
 
     return true

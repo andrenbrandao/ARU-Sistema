@@ -39,7 +39,14 @@ function check_exmoradores_and_agregados() {
 	  }
 
 	$(".agregado").show();
+
 	$(".agregado").slice($max_ag).hide();
+
+	$("input.agregado").each(function() {
+		if($(this).val() != "") {
+			$(this).show();
+		}
+	});
 }
 
 function empty_values() {
