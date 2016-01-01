@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150426163157) do
+ActiveRecord::Schema.define(:version => 20151231004545) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20150426163157) do
     t.string   "agregado"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "opcao"
   end
 
   add_index "evento_republicas", ["evento_id"], :name => "index_evento_republicas_on_evento_id"

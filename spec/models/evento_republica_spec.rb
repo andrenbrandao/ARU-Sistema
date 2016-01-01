@@ -36,4 +36,39 @@ RSpec.describe EventoRepublica, :type => :model do
 			expect(ag2).to_not be_valid  
 		end
 	end
+
+	context 'registering an option in an event' do
+
+		it 'should be able to choose a option' do
+			ag = EventoRepublica.new(opcao: 1)
+			ag.republica = republica
+			ag.evento = evento
+			expect{ag.save}.to_not raise_error
+			expect(ag.opcao).to eq(1)
+			expect(ag.republica).to eq(republica)
+			expect(ag.evento).to eq(evento)
+		end
+
+		it 'should have unique options in an event' do
+			ag = EventoRepublica.new(opcao: 1)
+			ag.republica = republica
+			ag.evento = evento
+			ag.save
+			ag2 = EventoRepublica.new(opcao: 1)
+			ag2.republica = republica
+			ag2.evento = evento
+			expect(ag2).to_not be_valid
+		end
+
+		it 'should have only one option in one event' do
+			ag = EventoRepublica.new(opcao: 1)
+			ag.republica = republica
+			ag.evento = evento
+			ag.save
+			ag2 = EventoRepublica.new(opcao: 2)
+			ag2.republica = republica
+			ag2.evento = evento
+			expect(ag2).to_not be_valid
+		end
+	end
 end

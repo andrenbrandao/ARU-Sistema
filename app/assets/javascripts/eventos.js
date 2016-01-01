@@ -6,12 +6,12 @@ $(function() {
 	$("#exmoradores input:checkbox").on('click', function(){
 	  check_exmoradores_and_agregados();
 	});
-	$("#evento_opcao_exag_1").change( function(){
+	$("#evento_evento_republicas_attributes_0_opcao_1").change( function(){
 	  empty_values();
 	  check_exmoradores_and_agregados();
 
 	});
-	$("#evento_opcao_exag_2").change(function(){
+	$("#evento_evento_republicas_attributes_0_opcao_2").change(function(){
 	  empty_values();
 	  check_exmoradores_and_agregados();
 	});
@@ -23,7 +23,7 @@ function check_exmoradores_and_agregados() {
 	$max1_ag = $("#evento_max1_ag").val();
 	$max2_ag = $("#evento_max2_ag").val();
 
-	if( $("#evento_opcao_exag_2:checked").size() == 1) {
+	if( $("#evento_evento_republicas_attributes_0_opcao_2:checked").size() == 1) {
 		$max_ex = $max2_ex;
 		$max_ag = $max2_ag;
 	} else {

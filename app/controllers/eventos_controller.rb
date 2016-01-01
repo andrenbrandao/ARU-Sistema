@@ -30,10 +30,12 @@ class EventosController < ApplicationController
 
     @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
 
+
     # Cria numero de agregados que podem ser inscritos
+    @agregados = @evento.evento_republicas.find_with_agregados(current_republica)
     max_ag = [@evento.max1_ag, @evento.max2_ag].max
-    (max_ag -@evento.evento_republicas.count).times do |i|
-      @evento.evento_republicas.build
+    (max_ag - @agregados.count).times do |i|
+      @agregados << @evento.evento_republicas.build
     end
   end
 
@@ -56,6 +58,8 @@ class EventosController < ApplicationController
     @republica = current_republica
     @evento = Evento.find(params[:id])
     @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
+
+    # raise error
 
     error = false
     # So faz verificacoes se houver valores positivios
@@ -80,10 +84,16 @@ class EventosController < ApplicationController
        raise ActiveRecord::Rollback
       end
     end
+    Rails.logger.info(@evento.errors.inspect) 
       # Cria numero de agregados que podem ser inscritos
+      @agregados = @evento.evento_republicas.find_with_agregados(current_republica)
       max_ag = [@evento.max1_ag, @evento.max2_ag].max
-      (max_ag - @evento.evento_republicas.count).times do |i|
-        @evento.evento_republicas.build
+
+      lista = params[:evento][:evento_republicas_attributes]
+      lista = lista.drop(1)
+      (max_ag - @agregados.count).times do |i|
+        @agregados << @evento.evento_republicas.build(agregado: lista.first.last.try(:[],:agregado))
+        lista = lista.drop(1)
       end
 
         format.html { render action: "edit" }
@@ -107,15 +117,17 @@ class EventosController < ApplicationController
   end
 
   def check_number_exmoradores_agregados(params, evento)
-    opcao_exag = params[:opcao_exag]
+    opcao_exag = params[:evento_republicas_attributes].first.last[:opcao]
     exmorador_ids = params[:exmorador_ids]
     exmorador_ids.reject!(&:empty?)
 
+    # raise error
 
     # Se houver agregados nas opcoes
+    p = params[:evento_republicas_attributes].drop(1)
     if evento.max1_ag != 0 || evento.max2_ag != 0
       count = 0
-      params[:evento_republicas_attributes].each do |id, a|
+     p.each do |id, a|
         if !a[:agregado].empty?
           count += 1
         end

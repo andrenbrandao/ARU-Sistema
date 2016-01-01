@@ -26,7 +26,7 @@ class Evento < ActiveRecord::Base
 
   has_many :republica_evento_modalidades, through: :evento_modalidades
 
-  accepts_nested_attributes_for :evento_republicas, :allow_destroy => true, :reject_if => :reject_agregado
+  accepts_nested_attributes_for :evento_republicas, :allow_destroy => true, :reject_if => :reject_empty_opcao_agregado
 
   attr_accessible :ano, :nome, :open, :max1_ex, :max1_ag, :max2_ex, :max2_ag
   attr_accessible :modalidade_ids, :morador_ids, :republicas, :evento_republicas_attributes, :exmorador_ids
@@ -54,9 +54,9 @@ class Evento < ActiveRecord::Base
     end
   end
 
-  def reject_agregado(attributes)
+  def reject_empty_opcao_agregado(attributes)
     exists = attributes['id'].present?
-    empty = attributes[:agregado].blank?
+    empty = attributes[:agregado].blank? && attributes[:opcao].blank?
     attributes.merge!({:_destroy => 1}) if exists and empty
     return (!exists and empty)
   end
