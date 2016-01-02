@@ -70,32 +70,23 @@ class EventosController < ApplicationController
     # Checa numero de moradores
     error = check_number_moradores(params[:evento], @evento) || error
 
-    # Tenta inscrever modalidades
-    Evento.transaction do
-      inscritas = inscreve_modalidades(params[:evento], @evento)
-
     respond_to do |format|
-      if error == false && inscritas == true && @evento.update_attributes(params[:evento])
+      if updates_all_subelements(error, @evento, params[:evento])
         format.html { redirect_to eventos_path, notice: 'Inscrição efetuada com sucesso.' }
         format.json { head :no_content }
       else
+          # Cria numero de agregados que podem ser inscritos
+          @agregados = @evento.evento_republicas.find_with_agregados(current_republica)
+          max_ag = [@evento.max1_ag, @evento.max2_ag].max
 
-      if inscritas != true
-       raise ActiveRecord::Rollback
-      end
-    end
-    Rails.logger.info(@evento.errors.inspect) 
-      # Cria numero de agregados que podem ser inscritos
-      @agregados = @evento.evento_republicas.find_with_agregados(current_republica)
-      max_ag = [@evento.max1_ag, @evento.max2_ag].max
-
-      lista = params[:evento][:evento_republicas_attributes]
-      lista = lista.drop(1)
-      (max_ag - @agregados.count).times do |i|
-        @agregados << @evento.evento_republicas.build(agregado: lista.first.last.try(:[],:agregado))
-        lista = lista.drop(1)
-      end
-
+          if max_ag != 0
+            lista = params[:evento][:evento_republicas_attributes]
+            lista = lista.drop(1)
+            (max_ag - @agregados.count).times do |i|
+              @agregados << @evento.evento_republicas.build(agregado: lista.first.last.try(:[],:agregado))
+              lista = lista.drop(1)
+            end
+          end
         format.html { render action: "edit" }
         format.json { render json: @evento.errors, status: :unprocessable_entity }
       end
@@ -173,6 +164,13 @@ class EventosController < ApplicationController
 
   def inscreve_modalidades(params, evento)
     play_mods = params[:play_mods_ids].reject(&:empty?)
+
+    # devolve erro se não houver modalidades escolhidas
+    if play_mods.empty?
+      evento.errors.add(:base, "Você deve escolher pelo menos 1 modalidade")
+      return false
+    end
+
     disponiveis_id = evento.evento_modalidades.collect(&:id) # Todos evento_modalidades disponiveis pra esse evento
 
     remover = disponiveis_id - play_mods
@@ -188,6 +186,27 @@ class EventosController < ApplicationController
     end
 
     return true
+  end
+
+  def updates_all_subelements(error, evento, params)
+    # Tenta inscrever modalidades
+    result = false
+    Evento.transaction do
+      if evento.modalidades.any?
+        inscritas = inscreve_modalidades(params, evento)
+      else
+        inscritas = true
+      end
+
+      result = (error == false && inscritas == true && evento.update_attributes(params))
+
+      if inscritas != true
+        raise ActiveRecord::Rollback
+        return false
+      end
+    end
+
+    return result
   end
 
   def destroy_modalidades(evento)
