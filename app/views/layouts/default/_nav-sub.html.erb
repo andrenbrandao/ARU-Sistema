@@ -9,6 +9,10 @@
 			<%= link_to 'Serviços', servicos_path %>
 		</li>
 
+		<li class="<%= 'active' if current_page?(eventos_path) %>">
+			<%= link_to 'Eventos', eventos_path %>
+		</li>
+
 		<!-- 	<li><a href="#">Eventos</a></li> -->
 
 		<li class='pull-right nav--text'><span>Logado como <%= link_to current_republica.nome, republica_path(current_republica) %></span></li>

@@ -43,8 +43,7 @@ class Ability
       can :send_reconfirmation, Republica
 
       can :read, Evento
-      can :manage, Evento, republica: {id: user.id}
-
+      can :manage, Evento, open: true
     else
       # Permissões para CONVIDADOS
       can :read, Republica, approved: true

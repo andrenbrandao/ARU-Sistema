@@ -26,7 +26,7 @@ class EventosController < ApplicationController
   def edit
     @republica = current_republica
     @evento = Evento.find(params[:id])
-    authorize! :edit, Evento
+    authorize! :edit, @evento
 
     @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
 
@@ -95,6 +95,7 @@ class EventosController < ApplicationController
 
   def destroy
     @evento = Evento.find(params[:id])
+    authorize! :destroy, @evento
 
     respond_to do |format|
       if destroy_modalidades(@evento) && @evento.cancelar_inscricao(current_republica)
