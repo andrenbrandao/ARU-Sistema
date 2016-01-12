@@ -70,13 +70,20 @@
    <% if [@evento.max1_ex, @evento.max2_ex].max != 0 %>
      <h3>Ex-Moradores</h3>
 
-    <div id="exmoradores">
-     <% if params[:evento].try(:[],:exmorador_ids).present?  %>
-        <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes, :checked => params[:evento].try(:[],:exmorador_ids) %>
-     <% else %>
-        <%= f.association :exmoradores, collection: current_republica.exmoradores, label: false, label_method: :full_name, as: :check_boxes%>
-     <% end %>
-    </div>
+     <% if @exmoradores_ajogar.any? %>
+       <small>Lembre-se: só estão disponíveis ex-moradores que já jogaram como moradores em InterReps passados.</small>
+
+      <div id="exmoradores">
+       <% if params[:evento].try(:[],:exmorador_ids).present?  %>
+          <%= f.association :exmoradores, collection: @exmoradores_ajogar, label: false, label_method: :full_name, as: :check_boxes, :checked => params[:evento].try(:[],:exmorador_ids) %>
+       <% else %>
+          <%= f.association :exmoradores, collection: @exmoradores_ajogar, label: false, label_method: :full_name, as: :check_boxes%>
+       <% end %>
+      </div>
+
+    <% else %>
+      <small>A sua República não possui ex-moradores que já jogaram em anos anteriores como moradores.</small>
+    <% end %>
 
    <% end %>
 

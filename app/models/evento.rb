@@ -8,6 +8,7 @@ class Evento < ActiveRecord::Base
   has_many :moradores, through: :evento_moradores, :conditions => "evento_moradores.type_of_player = 'false'"
 
   # Condicoes para retornar apenas ex-moradores
+  # Salva jogador como type_of_player = true para indicar ex-morador
   has_many :evento_exmoradores, class_name: "EventoMorador", source: :evento_morador, :conditions => {type_of_player: true}
   has_many :exmoradores, class_name: "Morador", source: :morador, through: :evento_exmoradores, :conditions => "evento_moradores.type_of_player = 'true'"
 

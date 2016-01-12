@@ -30,6 +30,9 @@ class EventosController < ApplicationController
 
     @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
 
+    # Seleciona somente os ex-moradores que podem jogar
+    # No caso do InterReps
+    @exmoradores_ajogar = find_exmoradores_aptos(@evento, @republica)
 
     # Cria numero de agregados que podem ser inscritos
     @agregados = @evento.evento_republicas.find_with_agregados(current_republica)
@@ -75,6 +78,10 @@ class EventosController < ApplicationController
         format.html { redirect_to eventos_path, notice: 'Inscrição efetuada com sucesso.' }
         format.json { head :no_content }
       else
+        # Seleciona somente os ex-moradores que podem jogar
+        # No caso do InterReps
+        @exmoradores_ajogar = find_exmoradores_aptos(@evento, @republica)
+
           # Cria numero de agregados que podem ser inscritos
           @agregados = @evento.evento_republicas.find_with_agregados(current_republica)
           max_ag = [@evento.max1_ag, @evento.max2_ag].max
@@ -111,14 +118,14 @@ class EventosController < ApplicationController
   def check_number_exmoradores_agregados(params, evento)
     opcao_exag = params[:evento_republicas_attributes].first.last[:opcao]
     exmorador_ids = params[:exmorador_ids]
-    exmorador_ids.reject!(&:empty?)
+    exmorador_ids.reject!(&:empty?) if exmorador_ids.present?
 
     # raise error
 
     # Se houver agregados nas opcoes
     p = params[:evento_republicas_attributes].drop(1)
+    count = 0
     if evento.max1_ag != 0 || evento.max2_ag != 0
-      count = 0
      p.each do |id, a|
         if !a[:agregado].empty?
           count += 1
@@ -126,7 +133,7 @@ class EventosController < ApplicationController
       end
     end
     if opcao_exag == '1'
-      if exmorador_ids.size > evento.max1_ex
+      if exmorador_ids.present? && (exmorador_ids.size > evento.max1_ex)
         evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max1_ex} ex-moradores")
       end
       if count > evento.max1_ag
@@ -134,7 +141,7 @@ class EventosController < ApplicationController
       end
 
     elsif opcao_exag == '2'
-      if exmorador_ids.size > evento.max2_ex
+      if exmorador_ids.present? && (exmorador_ids.size > evento.max2_ex)
         evento.errors.add(:base, "Você só pode escolher no máximo #{evento.max2_ex} ex-moradores")
       end
 
@@ -219,6 +226,22 @@ class EventosController < ApplicationController
     end
 
     return true
+  end
+
+  def find_exmoradores_aptos(evento, republica)
+    if evento.nome.downcase == "interreps"
+      exmoradores = republica.exmoradores
+      # Retorna interreps anteriores ao atual com seus moradores que jogaram
+      eventos = Evento.joins(:evento_moradores).where("lower(nome) = 'interreps' AND ano < ?", evento.ano).uniq
+
+      # Busca todos os morador_ids desses eventos
+      jogador_ids = eventos.map(&:evento_moradores).flatten.map(&:morador_id)
+
+      # Seleciona exmoradores que podem jogar
+      exmoradores_ajogar = exmoradores.where(id: jogador_ids)
+
+      return exmoradores_ajogar
+    end
   end
 
 end
