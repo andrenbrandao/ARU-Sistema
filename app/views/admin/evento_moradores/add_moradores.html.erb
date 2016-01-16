@@ -10,21 +10,27 @@
 
 
 <% @republicas.each do |r|  %>
-  <fieldset>
-    <legend><%= "#{r.nome}" %></legend>
-
-
+<div class="accordion" id="accordion<%= r.id %>">
+  <div class="accordion-group  accordion-caret">
+    <div class="accordion-heading">
+      <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion<%= r.id %>" href="#collapse<%= r.id %>">
+        <%= "#{r.nome}" %>
+      </a>
+    </div>
+    <div id="collapse<%= r.id %>" class="accordion-body collapse">
+      <div class="accordion-inner">
       <div class="evento_morador">
-        <br>
-        <%= f.association :moradores, collection: r.moradores, label: false, label_method: lambda {|e| "#{e.full_name} #{'(atualmente ex-morador)' if e.exmorador?}"}, as: :check_boxes %>
+        <%= f.association :moradores, collection: r.moradores.atual.order("nome ASC") + r.exmoradores.order("nome ASC"), label: false, label_method: lambda {|e| "#{e.full_name} #{'(atualmente ex-morador)' if e.exmorador?}"}, as: :check_boxes %>
       </div>
-
-  </fieldset>
-  <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
 
   <div class="form-actions" id='cadastro_actions'>
    <%= f.submit 'Concluir', class: 'btn btn-primary' %>
-   <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+   <%= link_to 'Cancel', admin_eventos_path, class: 'btn' %>
  </div>
 
 
