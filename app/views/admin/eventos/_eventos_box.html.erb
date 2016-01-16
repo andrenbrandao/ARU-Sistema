@@ -4,6 +4,14 @@
     </td>
     <td><%= ev.ano %></td>
 
+    <td>
+        <%= link_to 'Adicionar', add_moradores_admin_evento_evento_moradores_path(ev), class: 'btn btn-mini btn-success' %>
+    </td>
+
+    <td>
+        <%= link_to 'Adicionar', add_exmoradores_admin_evento_evento_moradores_path(ev), class: 'btn btn-mini btn-success' %>
+    </td>
+
     <td class='admin_action'>
         <%= link_to 'Editar', edit_admin_evento_path(ev), class: 'btn btn-mini admin_action' %>
         <%= link_to 'Deletar', admin_evento_path(ev), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-mini admin_action' %>

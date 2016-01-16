@@ -27,7 +27,14 @@ Cadastro::Application.routes.draw do
       resources :comentarios, only: [:index, :edit, :destroy]
     end
 
-    resources :eventos
+    resources :eventos do
+      resources :evento_moradores do
+        collection do
+          get 'add_moradores'
+          get 'add_exmoradores'
+        end
+      end
+    end
     resources :modalidades
   end
 

@@ -1,0 +1,12 @@
+<tr>
+    <td>
+        <%= ev.morador.full_name %>
+    </td>
+
+    <td>
+        <% if ev.morador.exmorador? %>
+            <p>Ex-Morador</p>
+        <% end %>
+    </td>
+
+</tr>

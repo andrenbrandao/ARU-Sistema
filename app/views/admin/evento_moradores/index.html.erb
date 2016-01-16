@@ -1,0 +1,27 @@
+<% @evento_jogadores.group_by{|d| d.evento}.sort.each do |evento, ev_jogadores| %>
+<h2><%= "#{evento.nome} #{evento.ano}"%></h2>
+
+<% ev_jogadores.group_by{|d| d.morador.republica}.sort.each do |republica, ev_jogadores| %>
+<div class='content-box-for-table'>
+	<%= image_tag republica.logotipo_url(:thumb), id: 'logo_index', class: 'pull-left '%>
+	<h3><%= "#{republica.nome}"%></h3>
+	<table class='table table-condensed'>
+	    <thead>
+	        <tr>
+	            <th>Nome</th>
+	            <th>Tipo</th>
+	            <th></th>
+
+	        </tr>
+	    </thead>
+
+		    <tbody>
+
+			<%= render partial: 'jogadores_box', collection: ev_jogadores, as: :ev %>
+
+			</tbody>
+	</table>
+
+</div>
+<% end %>
+<% end %>

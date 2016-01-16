@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151231004545) do
+ActiveRecord::Schema.define(:version => 20160116200255) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20151231004545) do
     t.boolean  "type_of_player", :default => false, :null => false
   end
 
+  add_index "evento_moradores", ["evento_id", "morador_id"], :name => "index_evento_moradores_on_evento_id_and_morador_id", :unique => true
   add_index "evento_moradores", ["evento_id"], :name => "index_evento_moradores_on_evento_id"
   add_index "evento_moradores", ["morador_id"], :name => "index_evento_moradores_on_morador_id"
 

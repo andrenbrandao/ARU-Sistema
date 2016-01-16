@@ -1,0 +1,33 @@
+<div class='center-form content-box'>
+
+  <%= simple_nested_form_for @evento, validate: true, html: {method: :create, id: 'evento_moradores_form', multipart: true}, :url => admin_evento_evento_moradores_path do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @evento %>
+
+  <p>Selecione aqueles que jogaram no <%= "#{@evento.nome} #{@evento.ano}" %> como <b>MORADORES</b></p>
+
+    <%= hidden_field_tag :tipo, 'morador'  %>
+
+
+<% @republicas.each do |r|  %>
+  <fieldset>
+    <legend><%= "#{r.nome}" %></legend>
+
+
+      <div class="evento_morador">
+        <br>
+        <%= f.association :moradores, collection: r.moradores, label: false, label_method: lambda {|e| "#{e.full_name} #{'(atualmente ex-morador)' if e.exmorador?}"}, as: :check_boxes %>
+      </div>
+
+  </fieldset>
+  <% end %>
+
+  <div class="form-actions" id='cadastro_actions'>
+   <%= f.submit 'Concluir', class: 'btn btn-primary' %>
+   <%= link_to 'Cancel', republicas_path, class: 'btn' %>
+ </div>
+
+
+ <% end %>
+
+ </div>
