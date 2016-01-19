@@ -28,7 +28,7 @@ class Admin::EventosController < AdminController
 	end
 
 	def create
-	params[:evento][:modalidade_ids].reject! { |c| c.empty? }
+	params[:evento][:modalidade_ids].reject! { |c| c.empty? } if params[:evento][:modalidade_ids].present?
     @evento = Evento.new(params[:evento])
     @modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
 
