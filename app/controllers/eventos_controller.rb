@@ -62,8 +62,6 @@ class EventosController < ApplicationController
     @evento = Evento.find(params[:id])
     @modalidades = @evento.modalidades.group_by{ |d| d[:tipo]}
 
-    # raise error
-
     error = false
     # So faz verificacoes se houver valores positivios
     if [@evento.max1_ex, @evento.max1_ag, @evento.max2_ex, @evento.max2_ag].max != 0
@@ -81,6 +79,8 @@ class EventosController < ApplicationController
         # Seleciona somente os ex-moradores que podem jogar
         # No caso do InterReps
         @exmoradores_ajogar = find_exmoradores_aptos(@evento, @republica)
+
+            # raise error
 
           # Cria numero de agregados que podem ser inscritos
           @agregados = @evento.evento_republicas.find_with_agregados(current_republica)

@@ -12,6 +12,9 @@ class EventoRepublica < ActiveRecord::Base
   validates :opcao, presence: true, unless: :agregado_present?
   validates :agregado, presence: true, unless: :opcao_present?
 
+  validates :agregado, format: { with: /\A[^0-9`!@#\$%\^&*+_=\,\.\?]+\z/,
+    message: "somente nomes" }, allow_blank: true
+
   validate :only_one_option_per_event, if: :opcao_present?
   validate :check_agregado_uniqueness, if: :agregado_present?
 
