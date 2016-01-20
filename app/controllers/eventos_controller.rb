@@ -23,6 +23,13 @@ class EventosController < ApplicationController
     end
   end
 
+  def show
+    @republica = current_republica
+    @evento = Evento.find(params[:id])
+    authorize! :show, @evento
+    render :layout => "show"
+  end
+
   def edit
     @republica = current_republica
     @evento = Evento.find(params[:id])

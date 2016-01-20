@@ -46,6 +46,7 @@ class Admin::EventosController < AdminController
 
 	def update
 		@evento = Evento.find(params[:id])
+		@modalidades = Modalidade.all.group_by{ |d| d[:tipo]}
 
 		respond_to do |format|
 			if @evento.update_attributes(params[:evento])

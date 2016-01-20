@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "ARU | Sistema de Repúblicas" %></title>
+  <meta name="description" content="O Sistema de Repúblicas da ARU foi criado para facilitar o controle das Repúblicas Associadas. Além disso, ele fornece informações sobre cada República, formas de contato e utilidades únicas aos associados.">
+  <meta name="author" content="André Brandão">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ARU | Sistema de Repúblicas" />
+  <meta property="og:url" content="http://cadastro.republicasunicamp.com.br/" />
+  <meta property="og:description" content="O Sistema de Repúblicas da ARU foi criado para facilitar o controle das Repúblicas Associadas. Além disso, ele fornece informações sobre cada República, formas de contato e utilidades únicas aos associados." />
+  <meta property="og:image" content="https://s3.amazonaws.com/arquivosaru/facebook-opengraph.png"/>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield(:head) %>
+</head>
+<body>
+
+  <div id='main' class="container-fluid">
+    <div class="content">
+      <!-- Body Content -->
+      <%= yield %>
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>

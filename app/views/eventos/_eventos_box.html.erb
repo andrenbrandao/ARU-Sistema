@@ -4,6 +4,12 @@
     </td>
     <td><%= ev.ano %></td>
 
+    <td>
+      <% if !ev.open && ev.inscrito?(current_republica) %>
+         <%= link_to 'Gerar', republica_evento_path(current_republica, ev), class: 'btn btn-warning btn-small', target: '_blank' %>
+      <% end %>
+    </td>
+
     <td class='table_actions'>
     	<% if ev.open %>
             <% if ev.inscrito?(current_republica) %>

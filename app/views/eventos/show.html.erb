@@ -1,0 +1,10 @@
+<div class='center-form content-box'>
+<h1 style="text-align: center"><%= "#{@evento.nome} #{@evento.ano}"  %> </h1>
+
+	<%= image_tag @republica.logotipo_url(:thumb), id: 'logotipo', class: 'pull-left '%>
+	<h3 style="margin-left: 50px"><%= "#{@republica.nome}"%></h3>
+	<p>Representante: <%= @republica.representante.full_name %> </p>
+	<p>Email: <%= @republica.representante.email %> </p>
+
+	
+</div>

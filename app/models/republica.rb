@@ -136,6 +136,10 @@ class Republica < ActiveRecord::Base
     self.moradores.where(exmorador: true)
   end
 
+  def representante
+    self.moradores.where(representante: true).first
+  end
+
   private
 
   def generate_contato_social_vaga
@@ -234,11 +238,11 @@ end
 
 def self.find_first_by_auth_conditions(warden_conditions)
  conditions = warden_conditions.dup
- if login = conditions.delete(:login)
-  where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-else
-  where(conditions).first
-end
+   if login = conditions.delete(:login)
+    where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+  else
+    where(conditions).first
+  end
 end
 
 	# function to handle user's login via email or username
