@@ -1,9 +1,10 @@
 #encoding: utf-8
 
-class RepublicasController < ApplicationController
+class RepublicasController < RepublicaController
   load_and_authorize_resource
   helper_method :sort_column, :sort_direction
-  
+  skip_before_filter :check_approved_republica
+
   # GET /republicas
   # GET /republicas.json
   def index

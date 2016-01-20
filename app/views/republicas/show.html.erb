@@ -57,7 +57,7 @@
       <li><a href="#contato"  data-toggle="tab">Contato</a></li>
       <% end%>
 
-      <% if republica_signed_in?  %>
+      <% if republica_signed_in? && current_republica.approved?  %>
       <li><a href="#representante"  data-toggle="tab">Representante</a></li>
       <% end %>
 

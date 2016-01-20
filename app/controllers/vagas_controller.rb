@@ -1,4 +1,4 @@
-class VagasController < ApplicationController
+class VagasController < RepublicaController
 	load_and_authorize_resource :republica
 	load_and_authorize_resource :vaga, :through => :republica, :singleton => true
 

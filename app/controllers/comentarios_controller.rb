@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-class ComentariosController < ApplicationController
+class ComentariosController < RepublicaController
 	load_and_authorize_resource
 
 	def new

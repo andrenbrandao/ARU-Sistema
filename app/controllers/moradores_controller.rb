@@ -1,8 +1,9 @@
 #encoding: utf-8
 
-class MoradoresController < ApplicationController
+class MoradoresController < RepublicaController
   load_and_authorize_resource :republica
   load_and_authorize_resource :morador, :through => :republica
+  skip_before_filter :check_approved_republica
   # GET /moradores
   # GET /moradores.json
   def index

@@ -1,8 +1,9 @@
 #encoding: utf-8
 
-class ExmoradoresController < ApplicationController
+class ExmoradoresController < RepublicaController
   load_and_authorize_resource :republica
   load_and_authorize_resource :morador, :through => :republica
+  skip_before_filter :check_approved_republica
 
   def index
     @republica = Republica.find(params[:republica_id])

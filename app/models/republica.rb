@@ -79,7 +79,8 @@ class Republica < ActiveRecord::Base
         last_login = republica.created_at
       end
 
-      if (Time.now - last_login).to_i / 1.day >= 180
+      # Desativa republica com 1 ano nao atualizada
+      if (Time.now - last_login).to_i / 1.day >= 360
         if republica.update_attribute(:approved, 'false')
          # puts "Republica being disapproved... " + republica.nome
          RepublicaMailer.inactivity_email(republica).deliver
@@ -112,17 +113,18 @@ class Republica < ActiveRecord::Base
   end
 
 
-  def active_for_authentication? 
-    super && approved? 
-  end 
+  # So deixa fazer login de for aprovada
+  # def active_for_authentication? 
+  #   super && approved? 
+  # end 
 
-  def inactive_message 
-    if !approved? 
-      :not_approved 
-    else 
-      super # Use whatever other message 
-    end 
-  end
+  # def inactive_message 
+  #   if !approved? 
+  #     :not_approved 
+  #   else 
+  #     super # Use whatever other message 
+  #   end 
+  # end
 
   def self.search(search)
     if search

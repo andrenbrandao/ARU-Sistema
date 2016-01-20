@@ -16,7 +16,8 @@ class Ability
       # end
 
       can :read, Republica, approved: true
-      
+      can :read, Republica, id: user.id
+
       # Pode administrar os próprios MORADORES
       can :manage, Morador, republica: {id: user.id}
 

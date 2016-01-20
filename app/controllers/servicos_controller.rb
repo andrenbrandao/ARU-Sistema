@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-class ServicosController < ApplicationController
+class ServicosController < RepublicaController
 	load_and_authorize_resource
 
 	def index

@@ -229,6 +229,15 @@ pt-BR:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Por favor, corrija os erros abaixo:"
+
+  unauthorized:
+    default: "Você não está autorizado a acessar essa página."
+    manage:
+      all: "Você não está autorizado a acessar essa página."
+      user: "Você não está autorizado a acessar essa página."
+    update:
+      project: "Você não está autorizado a acessar essa página."
+    not_approved: "Você não está autorizado a acessar essa página. A sua república ainda não foi aprovada."
     # Labels and hints examples
     # labels:
     #   defaults:

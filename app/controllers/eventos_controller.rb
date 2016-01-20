@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-class EventosController < ApplicationController
+class EventosController < RepublicaController
 
   def index
     authorize! :index, Evento

@@ -1,6 +1,7 @@
-class SocialInformationsController < ApplicationController
+class SocialInformationsController < RepublicaController
 	load_and_authorize_resource :republica
 	load_and_authorize_resource :social_information, :through => :republica, :singleton => true
+	skip_before_filter :check_approved_republica
 
 	def edit
 		@republica = Republica.find(params[:republica_id])
