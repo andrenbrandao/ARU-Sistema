@@ -35,12 +35,16 @@ class Evento < ActiveRecord::Base
   attr_accessible :opcao_exag
   attr_accessor :play_mods_ids
   attr_accessible :play_mods_ids
+  attr_accessible :terms_of_service
+  attr_accessible :terms_text
 
   validates :ano, presence: true
   validates :nome, presence: true
+  validates :terms_text, presence: true, length: {minimum: 100}
   # validates :nome, uniqueness: {scope: :ano}
   validate :check_uniqueness_name_and_year
   before_create :repeat_old_names
+  validates_acceptance_of :terms_of_service, message: "Os termos de inscrição devem ser aceitos."
 
   def check_uniqueness_name_and_year
     evs = []

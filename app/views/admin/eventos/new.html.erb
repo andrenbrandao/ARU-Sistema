@@ -27,6 +27,9 @@
 			<span class="label label-info"><%= tipo + "s" %></span>
 	    	<%= f.association :modalidades, collection: mod, label: false, label_method: :nome, as: :check_boxes %>
 	    <% end %>
+
+	    <legend>Termos de Inscrição</legend>
+	    <%= f.input :terms_text, placeholder: 'Termos de inscrição com as regras do evento, casos de reembolso, etc. (mínimo de 100 caracteres)', label: false, input_html: {class: 'input-xxlarge', rows: 10} %>
 	</fieldset>
 
 	<div class="form-actions" id='cadastro_actions'>

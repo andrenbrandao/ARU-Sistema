@@ -1,3 +1,12 @@
+// Disable submit se nao aceitar os termos
+$(function() {
+	$('#inscrever_evento').attr('disabled', !$('#evento_terms_of_service').is(':checked'));
+	$('#evento_terms_of_service').change(function() {
+	   $('#inscrever_evento').attr('disabled', !$(this).is(':checked'));
+	});
+});
+
+
 $(function() {
 	$("#exmoradores input:checkbox:not(:checked)").attr("disabled", true);
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160116200255) do
+ActiveRecord::Schema.define(:version => 20160201141954) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20160116200255) do
     t.integer  "max1_ex",    :default => 0
     t.integer  "max2_ag",    :default => 0
     t.integer  "max2_ex",    :default => 0
+    t.text     "terms_text"
   end
 
   create_table "interreps_vencidos", :force => true do |t|
