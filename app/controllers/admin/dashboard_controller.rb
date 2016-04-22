@@ -8,6 +8,8 @@ class Admin::DashboardController < AdminController
 
 		@dashboard_header = true
 
+		@eventos = Evento.where(ano: Time.now.year, open: false)
+
 		respond_to do |format|
 	      format.html # index.html.erb
 	      format.js

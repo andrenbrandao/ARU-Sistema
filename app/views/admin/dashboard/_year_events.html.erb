@@ -1,0 +1,34 @@
+<% @eventos.sort_by(&:created_at).each do |ev| %>
+<div class='content-box-for-table'>
+	<table class='table table-condensed'>
+	    <thead>
+	        <tr>
+	            <th>Nome</th>
+	            <th>Ano</th>
+	            <th>Total Repúblicas</th>
+	            <th>Total Jogadores</th>
+	            <th></th>
+
+	        </tr>
+	    </thead>
+
+		    <tbody>
+				<tr>
+				    <td>
+				        <%= ev.nome %>
+				    </td>
+				    <td><%= ev.ano %></td>
+				    <td><%= ev.republicas.count  %> </td>
+				    <td><%= ev.jogadores.count  %> </td>
+				    <td>
+				    	<% if !ev.open %>
+				        	<%= link_to "Gerar Relatório Final", admin_evento_evento_moradores_path(ev), class: 'btn btn-small btn-success admin_action' %>
+				        <% end %>
+				    </td>
+				</tr>
+
+			</tbody>
+	</table>
+
+</div>
+<% end %>
