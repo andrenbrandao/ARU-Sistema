@@ -1,6 +1,6 @@
-#Sistema de Cadastros da ARU!
+# Sistema de Cadastros da ARU!
 
-##Steps to Start
+## Steps to Start
 
 Make sure to install `rvm` to use the correct Ruby and Rails versions.
 
